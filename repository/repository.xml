@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/repository.xsd"
+            id="example.labbench.io">
+    <protocols>
+        <protocol id="cpardemo"
+                  location="CPARDEMO\"
+                  protocol="cpardemo.prtx"
+                  name="CPAR Demonstration Protocol" />
+
+        <protocol id="scriptdemo"
+                  location="SCRIPTDEMO\"
+                  protocol="scriptdemo.prtx"
+                  name="Scripting Demonstration Protocol" />
+
+        <protocol id="thrdemo"
+                  location="THRDEMO\"
+                  protocol="thrdemo.prtx"
+                  name="Threshold Demonstration Protocol" />
+
+        <protocol id="sounddemo"
+                  location="SOUNDDEMO\"
+                  protocol="sounddemo.prtx"
+                  name="Sound Demonstration Protocol" />
+
+        <protocol id="tactiledemo"
+                  location="TACTILEDEMO\"
+                  protocol="tactiledemo.prtx"
+                  name="Tactile Demonstration Protocol" />
+    </protocols>
+</repository>
+

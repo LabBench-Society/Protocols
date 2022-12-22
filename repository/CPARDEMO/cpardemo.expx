@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/experiment.xsd"
+            name="CPAR Demonstration Experiment"
+            id="cpardemo"
+            protocol="cpardemo@example.labbench.io">
+    <description />
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <description />
+        <devices>
+            <!--
+            -->
+            <cpar id="dev" compressor-mode="AUTO" />
+            <!--
+            <cpar-plus id="dev"/>
+            -->
+        </devices>
+        <device-mapping>
+            <device-assignment test-type="algometry-stimulus-response"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-conditioned-pain-modulation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-temporal-summation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-static-temporal-summation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-stimulus-rating"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-static-temporal-summation-rating"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-conditioned-pain-rating"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-arbitrary-temporal-summation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="psychophysics-cold-pressor"
+                               instrument-name="Button"
+                               device-id="dev" />
+        </device-mapping>
+    </experimental-setup>
+</experiment>

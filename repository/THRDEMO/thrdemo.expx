@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/experiment.xsd"
+            name="Threshold Demonstration Study"
+            id="thrdemo"
+            protocol="thrdemo@example.labbench.io">
+<description>
+An experiment that is designed to demonstrate the capabilities of LabBench in estimating psychometric functions.
+</description>
+<citation>
+None - can freely be used without any requirements for a citation.
+</citation>
+<authors>
+Kristian Hennings, Inventors' Way ApS
+</authors>
+	<experimental-setup>
+		<description />
+		<devices>
+			<daqmx id="dev">
+				<stimulators>
+					<ds5 name="Stimulator" transconductance="5mA_1V" />
+				</stimulators>
+				<amplifiers>
+					<generic-amplifier name="Applied Voltage" maximal-output-voltage="10" signal="applied-voltage">
+						<gains>
+							<gain name="20V/1V" gain="0.05" />
+						</gains>
+					</generic-amplifier>
+					<generic-amplifier name="Applied Current" maximal-output-voltage="10" signal="applied-current">
+						<gains>
+							<gain name="10mA/1V" gain="10"/>
+						</gains>
+					</generic-amplifier>
+				</amplifiers>
+			</daqmx>
+		</devices>
+		<device-mapping>
+			<device-assignment test-type="psychophysics-threshold-estimation" instrument-name="Button" device-id="dev" />
+			<device-assignment test-type="psychophysics-threshold-estimation" instrument-name="Stimulator" device-id="dev" />
+			<device-assignment test-type="psychophysics-threshold-estimation" instrument-name="SweepSampler" device-id="dev" />
+		</device-mapping>
+	</experimental-setup>
+</experiment>
