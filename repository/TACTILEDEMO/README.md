@@ -1,3 +1,0 @@
-# Tactile Demonstration Protocol
-
-

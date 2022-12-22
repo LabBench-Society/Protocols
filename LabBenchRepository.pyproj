@@ -28,29 +28,6 @@
     <Content Include="repository\CPARDEMO\cpardemo.prtx" />
     <Content Include="repository\CPARDEMO\README.md" />
     <Content Include="repository\README.md" />
-    <Content Include="repository\SCRIPTDEMO\README.md" />
-    <Content Include="repository\SCRIPTDEMO\scriptdemo.expx" />
-    <Content Include="repository\SCRIPTDEMO\scriptdemo.prtx" />
-    <Content Include="repository\SCRIPTDEMO\SURVEY_DA.rtf" />
-    <Content Include="repository\SCRIPTDEMO\SURVEY_EN.rtf" />
-    <Content Include="repository\SCRIPTDEMO\SURVEY_IT.rtf" />
-    <Content Include="repository\SOUNDDEMO\README.md" />
-    <Content Include="repository\SOUNDDEMO\sounddemo.expx" />
-    <Content Include="repository\SOUNDDEMO\sounddemo.prtx" />
-    <Content Include="repository\TACTILEDEMO\Filament.png" />
-    <Content Include="repository\TACTILEDEMO\GratingAcross.png" />
-    <Content Include="repository\TACTILEDEMO\GratingAlong.png" />
-    <Content Include="repository\TACTILEDEMO\README.md" />
-    <Content Include="repository\TACTILEDEMO\tactiledemo.expx" />
-    <Content Include="repository\TACTILEDEMO\tactiledemo.prtx" />
-    <Content Include="repository\TACTILEDEMO\NoFilament.png" />
-    <Content Include="repository\TACTILEDEMO\OneProng.png" />
-    <Content Include="repository\TACTILEDEMO\TwoProngs.png" />
-    <Content Include="repository\TACTILEDEMO\TwoProngsAcross.png" />
-    <Content Include="repository\TACTILEDEMO\TwoProngsAlong.png" />
-    <Content Include="repository\THRDEMO\README.md" />
-    <Content Include="repository\THRDEMO\thrdemo.expx" />
-    <Content Include="repository\THRDEMO\thrdemo.prtx" />
     <Content Include="tools\post-session-actions\csv.adx" />
     <Content Include="tools\post-session-actions\json.adx" />
     <Content Include="tools\post-session-actions\matlab.adx" />
@@ -60,16 +37,10 @@
   <ItemGroup>
     <Folder Include="repository\" />
     <Folder Include="repository\CPARDEMO\" />
-    <Folder Include="repository\SCRIPTDEMO\" />
-    <Folder Include="repository\SOUNDDEMO\" />
-    <Folder Include="repository\TACTILEDEMO\" />
-    <Folder Include="repository\THRDEMO\" />
     <Folder Include="tools\" />
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="repository\SCRIPTDEMO\SURVEY.py" />
-    <Compile Include="repository\SCRIPTDEMO\TEXT.py" />
     <Compile Include="repository\test.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

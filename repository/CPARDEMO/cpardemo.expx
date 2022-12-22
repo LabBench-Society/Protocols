@@ -3,7 +3,7 @@
             xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/experiment.xsd"
             name="CPAR Demonstration Experiment"
             id="cpardemo"
-            protocol="cpardemo@example.labbench.io">
+            protocol="cpardemo@labbench.io">
     <description />
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
