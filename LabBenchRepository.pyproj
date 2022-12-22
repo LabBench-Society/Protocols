@@ -12,6 +12,7 @@
     <Name>LabBenchRepositoryExample</Name>
     <RootNamespace>LabBenchRepositoryExample</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
