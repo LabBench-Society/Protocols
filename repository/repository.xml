@@ -6,7 +6,11 @@
         <protocol id="cpardemo"
                   location="CPARDEMO\"
                   protocol="cpardemo.prtx"
-                  name="CPAR Demonstration Protocol" />
+                  name="Cuff Pressure Algometry (Demonstration Protocol)" />
+        <protocol id="ctcpm"
+                  location="CTCPM\"
+                  protocol="ctcpm.prtx"
+                  name="Cuff Pressure Algometry (Temporal summation and Conditioned Pain Modulation)" />
     </protocols>
 </repository>
 
