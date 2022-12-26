@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/protocol.xsd"
-          name="Protocol 01"
-          id="ctcpm">
+          name="Temporal summation and Conditioned Pain Modulation"
+          id="ctscpm">
   <description />
   <defines />
   <tests>

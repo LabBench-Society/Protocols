@@ -2,8 +2,8 @@
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/experiment.xsd"
             name="Cuff Pressure Algometry (Temporal summation and Conditioned Pain Modulation)"
-            id="ctcpm"
-            protocol="ctcpm@labbench.io">
+            id="ctscpm"
+            protocol="ctscpm@labbench.io">
   <description />
   <experimental-setup>
     <description />

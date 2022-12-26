@@ -7,9 +7,9 @@
                   location="CPARDEMO\"
                   protocol="cpardemo.prtx"
                   name="Cuff Pressure Algometry (Demonstration Protocol)" />
-        <protocol id="ctcpm"
-                  location="CTCPM\"
-                  protocol="ctcpm.prtx"
+        <protocol id="ctscpm"
+                  location="CTSCPM\"
+                  protocol="ctscpm.prtx"
                   name="Cuff Pressure Algometry (Temporal summation and Conditioned Pain Modulation)" />
     </protocols>
 </repository>
