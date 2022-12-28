@@ -30,6 +30,7 @@
     <Content Include="repository\CPARDEMO\README.md" />
     <Content Include="repository\CTSCPMAUTO\ctscpmauto.expx" />
     <Content Include="repository\CTSCPMAUTO\ctscpmauto.prtx" />
+    <Content Include="repository\CTSCPMAUTO\README.md" />
     <Content Include="repository\CTSCPM\ctscpm.expx" />
     <Content Include="repository\CTSCPM\ctscpm.prtx" />
     <Content Include="repository\README.md" />
