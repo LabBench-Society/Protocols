@@ -8,7 +8,7 @@
   <experimental-setup>
     <description />
     <devices>
-      <cparplus id="dev" />
+        <cpar-plus id="dev"/>
     </devices>
     <device-mapping>
       <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
