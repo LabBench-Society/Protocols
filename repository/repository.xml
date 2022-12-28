@@ -10,7 +10,11 @@
         <protocol id="ctscpm"
                   location="CTSCPM\"
                   protocol="ctscpm.prtx"
-                  name="Cuff Pressure Algometry (Temporal summation and Conditioned Pain Modulation)" />
+                  name="Temporal summation and Conditioned Pain Modulation" />
+        <protocol id="ctscpmauto"
+                  location="CTSCPMAUTO\"
+                  protocol="ctscpmauto.prtx"
+                  name="Temporal summation and Conditioned Pain Modulation (Compressor Test)" />
     </protocols>
 </repository>
 

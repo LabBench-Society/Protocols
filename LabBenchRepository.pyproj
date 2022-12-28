@@ -28,6 +28,10 @@
     <Content Include="repository\CPARDEMO\cpardemo.expx" />
     <Content Include="repository\CPARDEMO\cpardemo.prtx" />
     <Content Include="repository\CPARDEMO\README.md" />
+    <Content Include="repository\CTSCPMAUTO\ctscpmauto.expx" />
+    <Content Include="repository\CTSCPMAUTO\ctscpmauto.prtx" />
+    <Content Include="repository\CTSCPM\ctscpm.expx" />
+    <Content Include="repository\CTSCPM\ctscpm.prtx" />
     <Content Include="repository\README.md" />
     <Content Include="tools\post-session-actions\csv.adx" />
     <Content Include="tools\post-session-actions\json.adx" />
@@ -38,6 +42,8 @@
   <ItemGroup>
     <Folder Include="repository\" />
     <Folder Include="repository\CPARDEMO\" />
+    <Folder Include="repository\CTSCPMAUTO\" />
+    <Folder Include="repository\CTSCPM\" />
     <Folder Include="tools\" />
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>
