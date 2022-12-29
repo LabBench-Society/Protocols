@@ -14,9 +14,8 @@
 #
 # To use the script to analyse data for your compressor (Device Under Test (DUT):
 #
-#   1. Change the filename in line 40 to the name of your data file.
-#   2. Change the conversion factor in line 46 to convert from the measurement 
-#      unit of your compressor to the kPa.
+#   1. Change the filename in the load_data(filename) call to the name of your data file.
+#   2. Change the conversion_factor to convert from the measurement unit of your compressor to the kPa.
 # 
 import json
 import matplotlib.pyplot as plt
@@ -49,6 +48,7 @@ data = load_data("L24R1.json")
 # This conversion must be changes to convert from the unit of the DUT to kPa.
 conversion_factor = 6.89475729 #psi to kPa
 
+# Collect the air tank pressures from the loaded data
 pressure = []
 sessions = []
 
@@ -56,6 +56,12 @@ sessions = []
 for index, session in enumerate(data, 1):
     survey = session['SURVEY']
     
+    # Check if the data set for the SURVEY test contains the air tank pressure
+    # (PRESSURE) key is present in the collection.
+    #
+    # If for some reason the test was not run, either because of an operator 
+    # error or if it is the last session in the test where the supply pressure
+    # failed then this key will not be present in the data set.
     if 'PRESSURE' in survey:
         value = survey['PRESSURE'] * conversion_factor
         pressure.append(value)
@@ -71,6 +77,8 @@ reg = LinearRegression().fit(x, pressure)
 
 # Make predictions using the model
 pressure_pred = reg.predict(x)
+
+numberOfSessions = maximal_number_of_sessions(reg)
 
 # Plotting the data in a figure that displayes the remaining air tank pressure
 # at the end of each session as a function of the number of sessions that has 
@@ -93,14 +101,14 @@ plt.title('Pressure at the end of a session')
 plt.scatter(sessions, pressure, color='blue')
 plt.plot(sessions, pressure_pred, color='black')
 plt.xlim([0, 20])
-plt.xticks([0, 5, 10, 15, 20], ['0', '5', '10', '15', '20'])
+#plt.xticks([0, 5, 10, 15, 20], ['0', '5', '10', '15', '20'])
 plt.ylim([0, 800])
 
 # Show the plot
-plt.savefig('L24.png')
+plt.savefig('result.png')
 plt.show()
 
 # Determining and printing our the maximal number of sessions that can be 
 # performed consequetively with the DUT.
-print("Maximal number of sessions with the device under test: {maxSessions:.0f} sessions".format(maxSessions = maximal_number_of_sessions(reg)))
+print("Maximal number of sessions with the device under test: {maxSessions:.0f} sessions".format(maxSessions = numberOfSessions))
 print("Average air pressure drop for each session: {slope:.0f} kPa".format(slope = -reg.coef_[0]))

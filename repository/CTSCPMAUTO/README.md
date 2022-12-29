@@ -54,20 +54,20 @@ To perform the test:
 
 ### Data analysis
 
-A python script ```analysis.py``` is available for this protocol and is listed below. This script will analyse the protocol results by performing a linear regression analysis and plotting the data from the test.
+A python script [```analysis.py```](analysis.py) is available for this protocol and is listed below. This script will analyse the protocol results by performing a linear regression analysis and plotting the data from the test.
 
 The maximum number of sessions is determined from the regression line as the last session for which the remaining pressure in the air tank was higher than 200kPa. The script also provides the average pressure drop per session from the slope of the regression line.
 
 To use the script, export the data from the test from LabBench as a JSON file. Data from the test is exported in the LabBench Designer under the Experiments page.
 
-In the ```analysis.py``` change the filename to the name of the file you exported from LabBench Designer. For the analysis to be correct, you must also change the conversion factor so the pressure values will be in kPa.
+In the [```analysis.py```](analysis.py) change the filename to the name of the file you exported from LabBench Designer. For the analysis to be correct, you must also change the conversion factor so the pressure values will be in kPa.
 
 When you run the script, it will produce a PNG file with the data plot and write the maximum number of sessions and average pressure drop to the console.
 
 ## Results
 
 
-![](L24.png)
+![](result.png)
 
 
 ## Discusion
