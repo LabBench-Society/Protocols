@@ -1,4 +1,4 @@
-# Temporal summation and Conditioned Pain Modulation (Compressor Test)
+# Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)
 
 # Introduction
 
