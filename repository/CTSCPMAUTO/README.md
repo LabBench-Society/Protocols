@@ -42,7 +42,7 @@ Please see Figure 2 for an illustration of the experimental setup.
 
 *Figure 2: Setup of LabBench for the compressor test. Installation of the "Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" protocol.*
 
-**Important Note:** Place the water-filled bottles in a bucket for the safety of your laboratory. Ideally, it should be possible to cover the buckets, as a water geyser may erupt if it cannot withstand the pressure. Alternatively, turn the bottles upside down, which in case of bottle failure, will direct the water geyser into the bucket. However, in that case, secure the bottles to the bucket, so they do not risk flying through the air. We have made these mistakes at Inventors' Way, so you don't have to.
+**Important Note:** Place the water-filled bottles in a bucket for the safety of your laboratory. Ideally, it should be possible to cover the buckets, as a water geyser may erupt if the bottles cannot withstand the pressure. Alternatively, turn the bottles upside down, which in case of bottle failure, will direct the water geyser into the bucket. However, in that case, secure the bottles to the bucket, so they do not risk flying through the air. We have made these mistakes at Inventors' Way, so you don't have to.
 
 
 ### Protocol
