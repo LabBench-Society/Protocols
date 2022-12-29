@@ -66,9 +66,9 @@ When you run the script, it will produce a PNG file with the data plot and write
 
 ## Results
 
+The compressor tested had a 24L air tank. With a 24L air tank it was possible to perform up to 16 sessions, with an average air pressure decrease per session of 32kPa. The air pressure decrease as a function of session is shown in Figure 3.
 
 ![](result.png)
-
 
 ## Discusion
 
@@ -76,4 +76,4 @@ For the test to provide a reliable estimate of the number of consecutive session
 
 ## Conclusion
 
-* With a 24L compressor it is possible to run at least 17 sessions before the air pressure in the tank is depleted.
+* With a 24L compressor it is possible to run at least 16 sessions before the air pressure in the tank is depleted.
