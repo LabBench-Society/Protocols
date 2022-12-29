@@ -46,16 +46,19 @@ data = load_data("L24R1.json")
 conversion_factor = 6.89475729 #psi to kPa
 
 pressure = []
-session = []
+sessions = []
 
 
 for index, session in enumerate(data, 1):
+    survey = session['SURVEY']
     
-    pass
+    if 'PRESSURE' in survey:
+        value = survey['PRESSURE'] * conversion_factor
+        pressure.append(value)
+        sessions.append(index)
 
-pressure = np.array([session['SURVEY']['PRESSURE'] * conversion_factor for session in data])
-pressure[11] = 54 * conversion_factor # Data entry error during the test (these things happens unfortunately)
-sessions = np.array(range(1, len(pressure) + 1))
+pressure = np.array(pressure)
+sessions = np.array(sessions)
 
 # Perform linear regression on the data in order to acount for measurement errors
 # in each individual session.
