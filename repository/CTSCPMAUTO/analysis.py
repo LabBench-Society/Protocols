@@ -29,12 +29,16 @@ def load_data(filename):
 
         return content['data'][:-1]
 
-def maximal_number_of_sessions(pressure):
-    for index, value in enumerate(pressure, 1):
-        if (value < 200):
-            return index - 1
+def maximal_number_of_sessions(reg):
+    # Calculate the slope and intercept of the regression line
+    slope = reg.coef_[0]
+    intercept = reg.intercept_
     
-    return len(pressure) + 1
+    # Define the y value at which you want to find the corresponding x value
+    y_value = 200
+    
+    # Calculate the x value at which the regression line crosses the given y value
+    return (y_value - intercept) / slope
 
 # Change the filename to the name of your data file.
 data = load_data("L24R1.json")
@@ -98,5 +102,5 @@ plt.show()
 
 # Determining and printing our the maximal number of sessions that can be 
 # performed consequetively with the DUT.
-print("Maximal number of sessions with the device under test: {maxSessions} sessions".format(maxSessions = maximal_number_of_sessions(pressure_pred)))
+print("Maximal number of sessions with the device under test: {maxSessions:.0f} sessions".format(maxSessions = maximal_number_of_sessions(reg)))
 print("Average air pressure drop for each session: {slope:.0f} kPa".format(slope = -reg.coef_[0]))
