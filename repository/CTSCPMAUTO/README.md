@@ -8,7 +8,7 @@ This protocol contains the same cuff pressure algometry tests as the ```ctscpm@l
 
 The idea in the protocol is to repeat the protocol in consecutive sessions until the protocol fails because the air supply pressure falls below the minimal air supply pressure of 200kPa that the CPAR+ device requires to operate. 
 
-This test assumes that the air tank is fully pressurised to prevent unwanted noise during an experiment and the compressor is turned off. The air tank must hold sufficient pressure for an entire workday or a session, depending on whether the air tank can be repressurised after each session.
+This test assumes that the air tank is fully pressurised and the compressor is turned off to prevent unwanted noise during an experiment. The air tank must hold sufficient pressure for an entire workday or a session, depending on whether the air tank can be repressurised after each session.
 
 ## Methods and materials
 
