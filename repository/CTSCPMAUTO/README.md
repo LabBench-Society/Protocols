@@ -153,3 +153,5 @@ print("Average air pressure drop for each session: {slope:.1f} kPa".format(slope
 For the test to provide a reliable estimate of the number of consecutive sessions possible with a compressor, the cuffs must mimic their use in an actual experiment. At the same time, the experiment is performed in a worst-case condition where the pressure is allowed to reach 100kPa. A stimulation pressure of 100kPa is likely to be extremely painful for a subject; consequently, this test cannot be performed on a human subject. It has been found that 1.5L or 2.0L plastic soda bottles , partially filled with water, can approximate the lower calf of the leg and be used instead of human subjects for this test. Selecting the right amount of water makes it possible to approximate the "softness" of the test sites used in the experiment, as air is compressible.
 
 ## Conclusion
+
+* With a 24L compressor it is possible to run up to 17 sessions before the air pressure in the tank is depleted.
