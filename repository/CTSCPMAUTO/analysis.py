@@ -37,13 +37,21 @@ def maximal_number_of_sessions(pressure):
     return len(pressure) + 1
 
 # Change the filename to the name of your data file.
-data = load_data("L24compressor.json")
+data = load_data("L24R1.json")
 
 # The compressor that was used in the test at Inventors' Way provides the tank
 # pressure in psi, while the script assumes the pressure is in kPa. 
 #
 # This conversion must be changes to convert from the unit of the DUT to kPa.
 conversion_factor = 6.89475729 #psi to kPa
+
+pressure = []
+session = []
+
+
+for index, session in enumerate(data, 1):
+    
+    pass
 
 pressure = np.array([session['SURVEY']['PRESSURE'] * conversion_factor for session in data])
 pressure[11] = 54 * conversion_factor # Data entry error during the test (these things happens unfortunately)
