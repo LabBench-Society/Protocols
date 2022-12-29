@@ -18,8 +18,9 @@ The experimental setup consists of:
 
 1. The Compressor (Device Under Test)
 2. A computer that is running the LabBench and the ```ctscpmauto@labbench.io``` protocol
-3. A LabBench CPAR+ DUE device
+3. A LabBench CPAR+ DUO device
 4. Two Surgical Tourniquet Cuffs (In the present test: VBM Tourniquet Cuffs (REF 20-54-522))
+5. A LabBench SCALE (not shown in figure 1)
 
 For an overview of the experimental setup, please see Figur 1.
 
@@ -27,11 +28,21 @@ For an overview of the experimental setup, please see Figur 1.
 
 *Figure 1: Experimental setup for testing if a compressor or similar air supply system (Device Under Test) has a sufficient air supply for an experimental protocol.*
 
+To set up the equipment for testing the compressor:
+
+1. Install the "Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" (```ctscpmauto@labbench.io```) protocol on the LabBench computer (please see Figure 2)
+2. Connect the computer with the USB cable to the CPAR+ DUO device.
+3. Connect the air pressure hose from the compressor to the CPAR+ Due device.
+4. Connect the LabBench SCALE device to the Response Port of the CPAR+ Due device. Set the slider to a rating of zero.
+5. Connect to cuffs to Outlets 1 and 2 on the CPAR+ DUO device. These cuffs must be set up in a way that mimics use during an actual experiment (please see below).
+
+Please see Figure 2 for an illustration of the experimental setup.
 
 ![](ProtocolInstallation.png)
 
 *Figure 2: Setup of LabBench for the compressor test. Installation of the "Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" protocol.*
 
+For the test to provide a reliable estimate of the number of consecutive sessions possible with a compressor, the cuffs must mimic their use in an actual experiment. At the same time, the experiment is performed in a worst-case condition where the pressure is allowed to reach 100kPa. A stimulation pressure of 100kPa is likely to be extremely painful for a subject; consequently, this test cannot be performed on a human subject. It has been found that 1.5L or 2.0L plastic soda bottles, partially filled with water, approximate the lower calf of the leg. Selecting the right amount of water makes it possible to approximate the "softness" of the test sites used in the experiment, as air is compressible.
 
 ### Protocol
 
@@ -55,8 +66,8 @@ For an overview of the experimental setup, please see Figur 1.
 #
 # To use the script to analyse data for your compressor (Device Under Test (DUT):
 #
-#   1. Change the filename in line 38 to the name of your data file.
-#   2. Change the conversion factor in line 44 to convert from the measurement 
+#   1. Change the filename in line 40 to the name of your data file.
+#   2. Change the conversion factor in line 46 to convert from the measurement 
 #      unit of your compressor to the kPa.
 # 
 import json
@@ -120,6 +131,7 @@ plt.scatter(sessions, pressure, color='blue')
 plt.plot(sessions, pressure_pred, color='black')
 plt.xlim([0, 20])
 plt.xticks([0, 5, 10, 15, 20], ['0', '5', '10', '15', '20'])
+plt.ylim([0, 800])
 
 # Show the plot
 plt.savefig('L24.png')
@@ -129,8 +141,6 @@ plt.show()
 # performed consequetively with the DUT.
 print("Maximal number of sessions with the device under test: {maxSessions} sessions".format(maxSessions = maximal_number_of_sessions(pressure_pred)))
 print("Average air pressure drop for each session: {slope:.1f} kPa".format(slope = -reg.coef_[0]))
-
-## copy-paste area
 ```
 
 

@@ -89,5 +89,3 @@ plt.show()
 # performed consequetively with the DUT.
 print("Maximal number of sessions with the device under test: {maxSessions} sessions".format(maxSessions = maximal_number_of_sessions(pressure_pred)))
 print("Average air pressure drop for each session: {slope:.1f} kPa".format(slope = -reg.coef_[0]))
-
-## copy-paste area
