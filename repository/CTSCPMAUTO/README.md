@@ -76,7 +76,7 @@ The compressor tested had a 24L air tank. With a 24L air tank it was possible to
 
 ![](result.png)
 
-*Figure 4: Air tank pressure at the end of a session as a function of the number of sessions performed.*
+*Figure 4: Air tank pressure at the end of a session as a function of the number of sessions performed. Measured air supply pressure is shown as a scatter plot of blue dots, the linear regression model fitted to the data is shown as the black line.*
 
 
 ## Discusion
