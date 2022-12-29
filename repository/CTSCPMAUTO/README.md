@@ -34,15 +34,13 @@ To set up the equipment for testing the compressor:
 2. Connect the computer with the USB cable to the CPAR+ DUO device.
 3. Connect the air pressure hose from the compressor to the CPAR+ Due device.
 4. Connect the LabBench SCALE device to the Response Port of the CPAR+ Due device. Set the slider to a rating of zero.
-5. Connect to cuffs to Outlets 1 and 2 on the CPAR+ DUO device. These cuffs must be set up in a way that mimics use during an actual experiment (please see below).
+5. Connect to cuffs to Outlets 1 and 2 on the CPAR+ DUO device. These cuffs are wrapped around water-filled plastic bottles with a circumference similar to the limb being tested in the actual experiment. Their water level is set, so the softness of the bottle approximates the softness of the limb being tested.
 
 Please see Figure 2 for an illustration of the experimental setup.
 
 ![](ProtocolInstallation.png)
 
 *Figure 2: Setup of LabBench for the compressor test. Installation of the "Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" protocol.*
-
-For the test to provide a reliable estimate of the number of consecutive sessions possible with a compressor, the cuffs must mimic their use in an actual experiment. At the same time, the experiment is performed in a worst-case condition where the pressure is allowed to reach 100kPa. A stimulation pressure of 100kPa is likely to be extremely painful for a subject; consequently, this test cannot be performed on a human subject. It has been found that 1.5L or 2.0L plastic soda bottles , partially filled with water, can approximate the lower calf of the leg and be used instead of human subjects for this test. Selecting the right amount of water makes it possible to approximate the "softness" of the test sites used in the experiment, as air is compressible.
 
 ### Protocol
 
@@ -152,5 +150,6 @@ print("Average air pressure drop for each session: {slope:.1f} kPa".format(slope
 
 ## Discusion
 
+For the test to provide a reliable estimate of the number of consecutive sessions possible with a compressor, the cuffs must mimic their use in an actual experiment. At the same time, the experiment is performed in a worst-case condition where the pressure is allowed to reach 100kPa. A stimulation pressure of 100kPa is likely to be extremely painful for a subject; consequently, this test cannot be performed on a human subject. It has been found that 1.5L or 2.0L plastic soda bottles , partially filled with water, can approximate the lower calf of the leg and be used instead of human subjects for this test. Selecting the right amount of water makes it possible to approximate the "softness" of the test sites used in the experiment, as air is compressible.
 
 ## Conclusion
