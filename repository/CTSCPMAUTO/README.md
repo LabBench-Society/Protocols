@@ -8,6 +8,9 @@ The idea in the protocol is to run the protocol to completion until the air supp
 
 ## Experimental setup
 
+![](ExperimentalSetup.png)
+
+*Figure 1: Experimental setup for testing if a compressor or similar air supply system (Device Under Test) has a sufficient air supply for an experimental protocol.*
 
 ## Protocol
 
