@@ -14,9 +14,24 @@ This test assumes that the air tank is fully pressurised to prevent unwanted noi
 
 ### Experimental setup
 
+The experimental setup consists of:
+
+1. The Compressor (Device Under Test)
+2. A computer that is running the LabBench and the ```ctscpmauto@labbench.io``` protocol
+3. A LabBench CPAR+ DUE device
+4. Two Surgical Tourniquet Cuffs (In the present test: VBM Tourniquet Cuffs (REF 20-54-522))
+
+For an overview of the experimental setup, please see Figur 1.
+
 ![](ExperimentalSetup.png)
 
 *Figure 1: Experimental setup for testing if a compressor or similar air supply system (Device Under Test) has a sufficient air supply for an experimental protocol.*
+
+
+![](ProtocolInstallation.png)
+
+*Figure 2: Setup of LabBench for the compressor test. Installation of the "Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" protocol.*
+
 
 ### Protocol
 

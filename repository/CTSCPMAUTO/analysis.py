@@ -79,6 +79,7 @@ plt.scatter(sessions, pressure, color='blue')
 plt.plot(sessions, pressure_pred, color='black')
 plt.xlim([0, 20])
 plt.xticks([0, 5, 10, 15, 20], ['0', '5', '10', '15', '20'])
+plt.ylim([0, 800])
 
 # Show the plot
 plt.savefig('L24.png')

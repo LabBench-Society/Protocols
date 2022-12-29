@@ -10,11 +10,11 @@
         <protocol id="ctscpm"
                   location="CTSCPM\"
                   protocol="ctscpm.prtx"
-                  name="Temporal summation and Conditioned Pain Modulation" />
+                  name="Temporal Summation and Conditioned Pain Modulation Protocol" />
         <protocol id="ctscpmauto"
                   location="CTSCPMAUTO\"
                   protocol="ctscpmauto.prtx"
-                  name="Temporal summation and Conditioned Pain Modulation (Compressor Test)" />
+                  name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" />
     </protocols>
 </repository>
 
