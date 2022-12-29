@@ -1,18 +1,128 @@
 # Temporal summation and Conditioned Pain Modulation (Compressor Test)
 
+# Introduction
+
 This protocol is intended as a protocol to determine the required air supply for the [Temporal summation and Conditioned Pain Modulation protocol](https://github.com/LabBench-Society/Protocols/tree/main/repository/CTSCPM) (```ctscpm@labbench.io```) and **NOT** as a protocol for actual experiments. With this protocol, you can determine if a given air supply system, such as a compressor or diving bottle, holds sufficient air for the number of consecutive sessions you plan to perform in your study.
 
 This protocol contains the same cuff pressure algometry tests as the ```ctscpm@labbench.io``` protocol, with an additional survey test at the end of the protocol. This survey test allows you to enter the remaining air supply pressure at the end of the protocol. In this protocol, autostart is enabled. All tests will run automatically when you click start in the LabBench Start-up Wizard. 
 
-The idea in the protocol is to run the protocol to completion until the air supply pressure falls below 200kPa, which is the minimal air supply pressure that the CPAR+ device requires to operate. It assumes that the air tank is fully pressurised to prevent unwanted noise during an experiment, and then the compressor is turned off. The air tank must hold sufficient pressure for an entire workday or a session, depending on whether the air tank can be repressurised after each session.
+The idea in the protocol is to repeat the protocol in consecutive sessions until the protocol fails because the air supply pressure falls below the minimal air supply pressure of 200kPa that the CPAR+ device requires to operate. 
 
-## Experimental setup
+This test assumes that the air tank is fully pressurised to prevent unwanted noise during an experiment and the compressor is turned off. The air tank must hold sufficient pressure for an entire workday or a session, depending on whether the air tank can be repressurised after each session.
+
+## Methods and materials
+
+### Experimental setup
 
 ![](ExperimentalSetup.png)
 
 *Figure 1: Experimental setup for testing if a compressor or similar air supply system (Device Under Test) has a sufficient air supply for an experimental protocol.*
 
-## Protocol
+### Protocol
 
 
-## Data analysis
+### Data analysis
+
+```python
+# ANALYSIS OF COMPRESSOR DATA
+#
+# This script will load the data from the ctscpmauto@labbench.io and will plot
+# the remaining pressure at the end of each session as a function of the number
+# of sessions run.
+#
+# The script assumes that the data export from LabBench contains only sessions
+# that are run in chronological order, from when the air tank was fully 
+# pressurised until the air tank was depleted and that the last session failed
+# because the LabBench CPAR+ reported to low supply pressure.
+#
+# For that reason the last session in the data set is discarded from the data 
+# analysis.
+#
+# To use the script to analyse data for your compressor (Device Under Test (DUT):
+#
+#   1. Change the filename in line 38 to the name of your data file.
+#   2. Change the conversion factor in line 44 to convert from the measurement 
+#      unit of your compressor to the kPa.
+# 
+import json
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+def load_data(filename):
+    with open(filename) as f:
+        content = json.load(f)
+
+        return content['data'][:-1]
+
+def maximal_number_of_sessions(pressure):
+    for index, value in enumerate(pressure, 1):
+        if (value < 200):
+            return index - 1
+    
+    return len(pressure) + 1
+
+# Change the filename to the name of your data file.
+data = load_data("L24compressor.json")
+
+# The compressor that was used in the test at Inventors' Way provides the tank
+# pressure in psi, while the script assumes the pressure is in kPa. 
+#
+# This conversion must be changes to convert from the unit of the DUT to kPa.
+conversion_factor = 6.89475729 #psi to kPa
+
+pressure = np.array([session['SURVEY']['PRESSURE'] * conversion_factor for session in data])
+pressure[11] = 54 * conversion_factor # Data entry error during the test (these things happens unfortunately)
+sessions = np.array(range(1, len(pressure) + 1))
+
+# Perform linear regression on the data in order to acount for measurement errors
+# in each individual session.
+x = sessions.reshape((-1, 1))
+reg = LinearRegression().fit(x, pressure)
+
+# Make predictions using the model
+pressure_pred = reg.predict(x)
+
+# Plotting the data in a figure that displayes the remaining air tank pressure
+# at the end of each session as a function of the number of sessions that has 
+# been executed.
+fig, ax = plt.subplots()
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+# Set the x-axis label
+plt.xlabel('Sessions []')
+
+# Set the y-axis label
+plt.ylabel('Pressure [kPa]')
+
+# Set the title
+plt.title('Pressure at the end of a session')
+
+# Create the plot
+plt.scatter(sessions, pressure, color='blue')
+plt.plot(sessions, pressure_pred, color='black')
+plt.xlim([0, 20])
+plt.xticks([0, 5, 10, 15, 20], ['0', '5', '10', '15', '20'])
+
+# Show the plot
+plt.savefig('L24.png')
+plt.show()
+
+# Determining and printing our the maximal number of sessions that can be 
+# performed consequetively with the DUT.
+print("Maximal number of sessions with the device under test: {maxSessions} sessions".format(maxSessions = maximal_number_of_sessions(pressure_pred)))
+print("Average air pressure drop for each session: {slope:.1f} kPa".format(slope = -reg.coef_[0]))
+
+## copy-paste area
+```
+
+
+## Results
+
+
+![](L24.png)
+
+
+## Conclusion

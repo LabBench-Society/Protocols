@@ -14,8 +14,8 @@
 #
 # To use the script to analyse data for your compressor (Device Under Test (DUT):
 #
-#   1. Change the filename in line 38 to the name of your data file.
-#   2. Change the conversion factor in line 44 to convert from the measurement 
+#   1. Change the filename in line 40 to the name of your data file.
+#   2. Change the conversion factor in line 46 to convert from the measurement 
 #      unit of your compressor to the kPa.
 # 
 import json
