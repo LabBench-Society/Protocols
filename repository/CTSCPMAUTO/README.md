@@ -42,6 +42,12 @@ Please see Figure 2 for an illustration of the experimental setup.
 
 *Figure 2: Setup of LabBench for the compressor test. Installation of the "Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" protocol.*
 
+Place the water-filled bottles in a bucket for the safety of your laboratory (see Figure 3). Ideally, it should be possible to cover the buckets, as a water geyser may erupt if it cannot withstand the pressure (not shown in Figure 3). Alternatively, turn the bottles upside down, which in case of bottle failure, will direct the water geyser into the bucket. However, in that case, secure the bottles to the bucket, so they do not risk flying through the air. We have made these mistakes at Inventors' Way, so you don't have to.
+
+![](Cuffs.png)
+
+*Figure 3: Placement of the cuffs with water filled bottles*
+
 ### Protocol
 
 To perform the test:
@@ -66,9 +72,12 @@ When you run the script, it will produce a PNG file with the data plot and write
 
 ## Results
 
-The compressor tested had a 24L air tank. With a 24L air tank it was possible to perform up to 16 sessions, with an average air pressure decrease per session of 32kPa. The air pressure decrease as a function of session is shown in Figure 3.
+The compressor tested had a 24L air tank. With a 24L air tank it was possible to perform up to 16 sessions, with an average air pressure decrease per session of 32kPa. The air pressure decrease as a function of session is shown in Figure 4.
 
 ![](result.png)
+
+*Figure 4: Air tank pressure at the end of a session as a function of the number of sessions performed.*
+
 
 ## Discusion
 
