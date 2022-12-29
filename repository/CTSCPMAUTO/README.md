@@ -44,8 +44,25 @@ Please see Figure 2 for an illustration of the experimental setup.
 
 ### Protocol
 
+To perform the test:
+1. Turn on the compressor and repressurise its air tank to its maximum pressure.
+2. Until the protocol fails, run this protocol consecutively by:
+   1. Start LabBench and go through its Startup Wizard. In the Session Step, name the session after the run number (i.e. SES01, SES02, etc.). 
+   2. At the end of the Startup Wizard, when you press "Start", the CPAR+ DUO device will automatically start the first cuff pressure algometry test, and it will continue until all the tests have been completed. Let it complete all tests without stopping them manually.
+   3. When all the cuff pressure algometry tests in the protocol have been completed, read the air pressure in the air tank and enter it in the Survey test that is now active and finish the survey test.
+   4. Close LabBench Runner, restart it and rerun the protocol until it fails because of too low air supply pressure. 
 
 ### Data analysis
+
+A python script ```analysis.py``` is available for this protocol and is listed below. This script will analyse the protocol results by performing a linear regression analysis and plotting the data from the test.
+
+The maximum number of sessions is determined from the regression line as the last session for which the remaining pressure in the air tank was higher than 200kPa. The script also provides the average pressure drop per session from the slope of the regression line.
+
+To use the script, export the data from the test from LabBench as a JSON file. Data from the test is exported in the LabBench Designer under the Experiments page.
+
+In the ```analysis.py``` change the filename to the name of the file you exported from LabBench Designer. For the analysis to be correct, you must also change the conversion factor so the pressure values will be in kPa.
+
+When you run the script, it will produce a PNG file with the data plot and write the maximum number of sessions and average pressure drop to the console.
 
 ```python
 # ANALYSIS OF COMPRESSOR DATA
