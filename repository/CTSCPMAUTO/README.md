@@ -36,7 +36,7 @@ To set up the equipment for testing the compressor:
 4. Connect the LabBench SCALE device to the Response Port of the CPAR+ Due device. Set the slider to a rating of zero.
 5. Connect to cuffs to Outlets 1 and 2 on the CPAR+ DUO device. These cuffs are wrapped around water-filled plastic bottles with a circumference similar to the limb being tested in the actual experiment. Their water level is set, so the softness of the bottle approximates the softness of the limb being tested.
 
-Please see Figure 2 for an illustration of the experimental setup.
+Please see Figure 2 for how to install the test protocol in LabBench.
 
 ![](ProtocolInstallation.png)
 
