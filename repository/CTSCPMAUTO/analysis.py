@@ -40,7 +40,7 @@ def maximal_number_of_sessions(reg):
     return (y_value - intercept) / slope
 
 # Change the filename to the name of your data file.
-data = load_data("L24R1.json")
+data = load_data("L24R2.json")
 
 # The compressor that was used in the test at Inventors' Way provides the tank
 # pressure in psi, while the script assumes the pressure is in kPa. 
