@@ -100,7 +100,7 @@ plt.title('24L Compressor')
 # Create the plot
 plt.scatter(sessions, pressure, color='blue')
 plt.plot(sessions, pressure_pred, color='black')
-plt.xlim([0, 20])
+plt.xlim([0, 18])
 #plt.xticks([0, 5, 10, 15, 20], ['0', '5', '10', '15', '20'])
 plt.ylim([0, 800])
 
