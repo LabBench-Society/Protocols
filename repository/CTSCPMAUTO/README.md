@@ -69,11 +69,22 @@ When you run the script, it will produce a PNG file with the data plot and write
 
 ## Results
 
-The compressor tested had a 24L air tank. With a 24L air tank it was possible to perform up to 16 sessions, with an average air pressure decrease per session of 32kPa. The air pressure decrease as a function of session is shown in Figure 3.
+The maximum number of sessions and loss of air pressure per session is shown in Table 1.
 
-![](result.png)
+| Air Tank Size | Number of sessions | Air Pressure Loss/Session |
+|---------------|--------------------|---------------------------|
+| 5L            | 5                  | 100kPa                    |
+| 24L           | 16                 | 32kPa                     |
 
-*Figure 3: Air tank pressure at the end of a session as a function of the number of sessions performed. Measured air supply pressure is shown as a scatter plot of blue dots, the linear regression model fitted to the data is shown as the black line.*
+*Table 1: Maximal number of sessoins and air pressure loss/session*
+
+![](L24R2.png)
+
+*Figure 3: Air tank pressure at the end of a session as a function of the number of sessions performed for the 24L Compressor. Measured air supply pressure is shown as a scatter plot of blue dots, the linear regression model fitted to the data is shown as the black line.*
+
+![](L05R1.png)
+
+*Figure 4: Air tank pressure at the end of a session as a function of the number of sessions performed for the 5L Compressor. Measured air supply pressure is shown as a scatter plot of blue dots, the linear regression model fitted to the data is shown as the black line.*
 
 
 ## Discusion

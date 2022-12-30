@@ -40,13 +40,13 @@ def maximal_number_of_sessions(reg):
     return (y_value - intercept) / slope
 
 # Change the filename to the name of your data file.
-data = load_data("L24R2.json")
+data = load_data("L05R1.json")
 
 # The compressor that was used in the test at Inventors' Way provides the tank
 # pressure in psi, while the script assumes the pressure is in kPa. 
 #
 # This conversion must be changes to convert from the unit of the DUT to kPa.
-conversion_factor = 6.89475729 #psi to kPa
+conversion_factor = 100 #atm to kPa
 
 # Collect the air tank pressures from the loaded data
 pressure = []
@@ -95,17 +95,17 @@ plt.xlabel('Sessions []')
 plt.ylabel('Pressure [kPa]')
 
 # Set the title
-plt.title('24L Compressor')
+plt.title('5L Compressor')
 
 # Create the plot
 plt.scatter(sessions, pressure, color='blue')
 plt.plot(sessions, pressure_pred, color='black')
-plt.xlim([0, 20])
+plt.xlim([0, 6])
 #plt.xticks([0, 5, 10, 15, 20], ['0', '5', '10', '15', '20'])
 plt.ylim([0, 800])
 
 # Show the plot
-plt.savefig('L24R2.png')
+plt.savefig('L05R1.png')
 plt.show()
 
 # Determining and printing our the maximal number of sessions that can be 
