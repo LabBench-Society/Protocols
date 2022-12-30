@@ -95,4 +95,5 @@ This protocol provides a worst-case estimate of the number of possible sessions 
 
 ## Conclusion
 
+* With a 5L compressor it is possible to run at least 5 sessions before the air pressure in the tank is depleted.
 * With a 24L compressor it is possible to run at least 16 sessions before the air pressure in the tank is depleted.
