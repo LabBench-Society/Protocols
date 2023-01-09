@@ -187,7 +187,7 @@
                         non-painful stimulations to be rated by the subject.                                  
     -->
     <algometry-stimulus-response ID="T01"
-                                 name="Stimulus Response (Cuff 1)"
+                                 name="Stimulus Response (Stop on VAS 10) [Cuff 1]"
                                  delta-pressure="1"
                                  pressure-limit="100"
                                  primary-cuff="1"
@@ -201,7 +201,7 @@
       This Stimulus-Response test is the same as T01 except that the Cuff 2 will be used instead of Cuff 1.
     -->
     <algometry-stimulus-response ID="T02"
-                                 name="Stimulus Response (Cuff 2)"
+                                 name="Stimulus Response (Stop on VAS 10) [Cuff 2]"
                                  delta-pressure="1"
                                  pressure-limit="100"
                                  primary-cuff="2"
@@ -215,7 +215,7 @@
       Illustrates the use of the second-cuff parameter to study spatial summation of pressure stimuli.
     -->
     <algometry-stimulus-response ID="T03"
-                               name="Stimulus Response (Cuff 1+2)"
+                               name="Stimulus Response (Stop on VAS 10) [Cuff 1+2]"
                                delta-pressure="1"
                                pressure-limit="100"
                                primary-cuff="1"
@@ -257,7 +257,7 @@
          
     -->
     <algometry-conditioned-pain-modulation ID="T04"
-                                           name="CPM Test"
+                                           name="CPM Test (Stop on VAS 10)"
                                            delta-conditional-pressure="10"
                                            conditional-pressure="T02.PTT"
                                            delta-pressure="1"
@@ -304,8 +304,8 @@
                                   pressure-stimulate="T01.PTT"
                                   primary-cuff="1"
                                   second-cuff="false"
-                                  t-on="2"
-                                  t-off="5">
+                                  t-on="1"
+                                  t-off="1">
       <!--
       In this test the pressure-stimuli depends on the PTT determined in test T01. A dependency to this test is
       therefore defined in the dependencies element.
@@ -410,13 +410,13 @@
       as it is used for the stimulus-rating test.
     -->
     <algometry-conditioned-pain-modulation-rating ID="T09"
-                                                name="Conditioned Pain Modulation Rating (PDT)"
-                                                conditional-pressure="T07.PTT"
-                                                delta-conditional-pressure="10"
-                                                delta-pressure="1"
-                                                pressure-limit="100"
-                                                primary-cuff="2"
-                                                measurement="PDT">
+                                                  name="Conditioned Pain Modulation Rating (PDT)"
+                                                  conditional-pressure="T07.PTT"
+                                                  delta-conditional-pressure="10"
+                                                  delta-pressure="1"
+                                                  pressure-limit="100"
+                                                  primary-cuff="2"
+                                                  measurement="PDT">
       <dependencies>
         <dependency ID="T07"/>
       </dependencies>
@@ -424,17 +424,17 @@
 
     <algometry-arbitrary-temporal-summation ID="T12"
                                             name="Arbitrary Temporal Summation"
-                                            pressure-static="5"
+                                            pressure-static="0"
                                             primary-cuff="1"
                                             second-cuff="false">
       <dependencies>
         <dependency ID="T01"/>
       </dependencies>
       <stimuli>
-        <stimulus pressure="0.2 * T01.PTT" t-on="1" t-off="4"/>
-        <stimulus pressure="0.4 * T01.PTT" t-on="1" t-off="4"/>
-        <stimulus pressure="0.6 * T01.PTT" t-on="1" t-off="4"/>
-        <stimulus pressure="0.8 * T01.PTT" t-on="1" t-off="4"/>
+        <stimulus pressure="0.2 * T01.PTT" t-on="1" t-off="1"/>
+        <stimulus pressure="0.4 * T01.PTT" t-on="1" t-off="1"/>
+        <stimulus pressure="0.6 * T01.PTT" t-on="1" t-off="1"/>
+        <stimulus pressure="0.8 * T01.PTT" t-on="1" t-off="1"/>
         <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
         <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
         <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>

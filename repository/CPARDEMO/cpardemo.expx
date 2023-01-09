@@ -11,10 +11,10 @@
         <description />
         <devices>
             <!--
-            -->
             <cpar id="dev" compressor-mode="AUTO" />
-            <!--
+            -->
             <cpar-plus id="dev"/>
+            <!--
             -->
         </devices>
         <device-mapping>

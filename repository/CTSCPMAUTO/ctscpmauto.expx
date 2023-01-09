@@ -5,27 +5,33 @@
             id="ctscpmauto"
             protocol="ctscpmauto@labbench.io">
     <description>
-DO NOT USE FOR REAL EXPERIMENTS
+        DO NOT USE FOR REAL EXPERIMENTS
 
-This protocol has autostart enabled for all tests and is intended to be used only for testing the requirements of the air supply tank volume.
+        This protocol has autostart enabled for all tests and is intended to be used only for testing the requirements of the air supply tank volume.
 
-To test the air supply volume:
-1. Determine how many sessions you need to run consequetively.
-2. Run this protocol in a worst case condition. This mean running it with water-filled bottles in the cuffs and let each test run until it completes by itself.
-3. For each complete run of the protocol, note down the pressure in the tank after the completion of the protocol.
+        To test the air supply volume:
+        1. Determine how many sessions you need to run consequetively.
+        2. Run this protocol in a worst case condition. This mean running it with water-filled bottles in the cuffs and let each test run until it completes by itself.
+        3. For each complete run of the protocol, note down the pressure in the tank after the completion of the protocol.
 
-Autostart has been enabled so you just need to start the first test, and then it the protocol will complete automatically all tests without requiring further intervention.
+        Autostart has been enabled so you just need to start the first test, and then it the protocol will complete automatically all tests without requiring further intervention.
     </description>
-  <experimental-setup>
-    <description />
-    <devices>
-        <cpar-plus id="dev"/>
-    </devices>
-    <device-mapping>
-      <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
-      <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
-      <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
-    </device-mapping>
-  </experimental-setup>
+    <experimental-setup>
+        <description />
+        <devices>
+            <cpar-plus id="dev"/>
+        </devices>
+        <device-mapping>
+            <device-assignment test-type="algometry-stimulus-response"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-temporal-summation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-conditioned-pain-modulation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+        </device-mapping>
+    </experimental-setup>
 </experiment>
 
