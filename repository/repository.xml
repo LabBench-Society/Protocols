@@ -6,15 +6,22 @@
         <protocol id="cpardemo"
                   location="CPARDEMO\"
                   protocol="cpardemo.prtx"
-                  name="Cuff Pressure Algometry (Demonstration Protocol)" />
+                  name="Cuff Pressure Algometry (Demonstration Protocol)" 
+                  category="Pressure Algometry;Demonstration Protocol"/>
         <protocol id="ctscpm"
                   location="CTSCPM\"
                   protocol="ctscpm.prtx"
-                  name="Temporal Summation and Conditioned Pain Modulation Protocol" />
+                  name="Temporal Summation and Conditioned Pain Modulation Protocol" 
+                  category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
         <protocol id="ctscpmauto"
                   location="CTSCPMAUTO\"
                   protocol="ctscpmauto.prtx"
-                  name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" />
+                  name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" 
+                  category="Pressure Algometry;Calibration Protocol"/>
+        <protocol id="pcsdemo"
+                  location="PCSDEMO\"
+                  protocol="pcsdemo.prtx"
+                  name="Pain Catastrophizing Scale"
+                  category="Psychometrics;Demonstration Protocol"/>
     </protocols>
 </repository>
-
