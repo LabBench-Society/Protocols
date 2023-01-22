@@ -33,6 +33,9 @@
     <Content Include="repository\CTSCPMAUTO\README.md" />
     <Content Include="repository\CTSCPM\ctscpm.expx" />
     <Content Include="repository\CTSCPM\ctscpm.prtx" />
+    <Content Include="repository\PCSDEMO\pcsdemo.expx" />
+    <Content Include="repository\PCSDEMO\pcsdemo.prtx" />
+    <Content Include="repository\PCSDEMO\README.md" />
     <Content Include="repository\README.md" />
     <Content Include="tools\post-session-actions\csv.adx" />
     <Content Include="tools\post-session-actions\json.adx" />
@@ -45,6 +48,7 @@
     <Folder Include="repository\CPARDEMO\" />
     <Folder Include="repository\CTSCPMAUTO\" />
     <Folder Include="repository\CTSCPM\" />
+    <Folder Include="repository\PCSDEMO\" />
     <Folder Include="tools\" />
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>

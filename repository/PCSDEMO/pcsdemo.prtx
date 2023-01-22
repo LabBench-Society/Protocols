@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/protocol.xsd"
+          name="CPAR Demonstration (Version 1)"
+          id="cpardemo">
+    <description />
+    <defines />
+    <tests>
+        <meta-survey ID="SUBJECT"
+                     name="Subject">
+            <dependencies />
+            <content>
+                <likert id="SEX"
+                        title="Sex"
+                        instruction="Please specify the sex of the subject">
+                    <choice value="0"
+                            label="Female" />
+                    <choice value="1"
+                            label="Male" />
+                    <choice value="2"
+                            label="Non-binary"/>
+                </likert>
+
+                <numeric id="AGE"
+                         title="Age"
+                         instruction="Please specify the age of the subject">
+                    <validation min="14"
+                                min-included="true"
+                                max="120"
+                                max-included="true"/>
+                </numeric>
+
+                <boolean id="CONSENT"
+                         title="Consent"
+                         instruction="Does the subject consent to the collection of psychological data"/>
+            </content>
+        </meta-survey>
+
+        <meta-survey ID="PCS"
+                     name="Pain Catastrophizing">
+            <dependencies>
+                <dependency ID="SUBJECT"/>
+            </dependencies>
+            <condition expression="SUBJECT[CONSENT]"
+                       help="The subject must have consented to the collection of psychological data"/>
+            <content>
+                <likert id="I01"
+                        title="When I'm in pain ..."
+                        instruction="I worry all the time about whether the pain will end.">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I02"
+                        title="When I'm in pain ..."
+                        instruction="I feel I can't go on.">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I03"
+                        title="When I'm in pain ..."
+                        instruction="It's terrible and I think it's never going to get any better">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I04"
+                        title="When I'm in pain ..."
+                        instruction="It's awful and I feel that it overwhelms me">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I05"
+                        title="When I'm in pain ..."
+                        instruction="I feel I can't stand it anymore">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I06"
+                        title="When I'm in pain ..."
+                        instruction="I become afraid that the pain will get worse">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I07"
+                        title="When I'm in pain ..."
+                        instruction="I keep thinking of other painful events">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I08"
+                        title="When I'm in pain ..."
+                        instruction="I anxiously want the pain to go away">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I09"
+                        title="When I'm in pain ..."
+                        instruction="I can't seem to keep it out of my mind">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I10"
+                        title="When I'm in pain ..."
+                        instruction="I keep thinking about how much it hurts">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I11"
+                        title="When I'm in pain ..."
+                        instruction="I keep thinking about how badly I want the pain to stop">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I12"
+                        title="When I'm in pain ..."
+                        instruction="There's nothing I can do to reduce the intensity of the pain">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+
+                <likert id="I13"
+                        title="When I'm in pain ..."
+                        instruction="I wonder whether something serious may happen">
+                    <choice value="0"
+                            label="0) Not at all"/>
+                    <choice value="1"
+                            label="1) To a slight degree"/>
+                    <choice value="2"
+                            label="2) To a moderate degree"/>
+                    <choice value="3"
+                            label="3) To a great degree"/>
+                    <choice value="4"
+                            label="4) All the time"/>
+                </likert>
+            </content>
+        </meta-survey>
+    </tests>
+    <assets>
+    </assets>
+</protocol>

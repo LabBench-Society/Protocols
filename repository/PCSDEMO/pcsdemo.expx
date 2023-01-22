@@ -7,13 +7,7 @@
   <description />
   <experimental-setup>
     <description />
-    <devices>
-        <cpar-plus id="dev"/>
-    </devices>
-    <device-mapping>
-      <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
-      <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
-      <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
-    </device-mapping>
+    <devices />
+    <device-mapping />
   </experimental-setup>
 </experiment>
