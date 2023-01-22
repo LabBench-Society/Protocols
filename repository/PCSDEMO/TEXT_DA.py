@@ -14,8 +14,8 @@ def CreateText():
 		"I11": "I keep thinking about how badly I want the pain to stop [DK]",
 		"I12": "There's nothing I can do to reduce the intensity of the pain [DK]",
 		"I13": "I wonder whether something serious may happen [DK]",
-		"L0": "0) Not at all [DK]",
-		"L1": "1) To a slight degree [DK]",
+		"L0": "0) Slet ikke",
+		"L1": "1) I	ringe grad",
 		"L2": "2) To a moderate degree [DK]",
 		"L3": "3) To a great degree [DK]",
 		"L4": "4) All the time [DK]"
