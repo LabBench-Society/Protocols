@@ -14,11 +14,11 @@ def CreateText():
 		"I11": "I keep thinking about how badly I want the pain to stop",
 		"I12": "There's nothing I can do to reduce the intensity of the pain",
 		"I13": "I wonder whether something serious may happen",
-		"L0": "0) Not at all",
-		"L1": "1) To a slight degree",
-		"L2": "2) To a moderate degree",
-		"L3": "3) To a great degree",
-		"L4": "4) All the time"
+		"L0": "Not at all",
+		"L1": "To a slight degree",
+		"L2": "To a moderate degree",
+		"L3": "To a great degree",
+		"L4": "All the time"
 	}
 
 
