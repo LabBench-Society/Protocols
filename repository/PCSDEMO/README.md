@@ -10,7 +10,7 @@ The scale that is implemented by the protocol is the Pain Catastrophizing Scale 
 
 The Pain Catastrophizing Scale (PCS) is a self-report measure that assesses an individual's tendency to catastrophize in response to pain. Catastrophizing is defined as a negative cognitive and emotional state characterized by excessive fear, worry, and hopelessness about the consequences of pain. The PCS consists of 13 items that measure three dimensions of pain catastrophizing: rumination, magnification, and helplessness. Participants rate each item on a 5-point Likert scale, with higher scores indicating greater levels of pain catastrophizing.
 
-The PCS is typically administered by a healthcare professional or researcher in a clinical setting and can be used in various contexts, such as chronic pain, post-operative pain, and acute pain. It is often used as an outcome measure in studies of pain management interventions and as a predictor of pain-related disability and emotional distress.
+The PCS is typically administered by a healthcare professional or researcher and can be used in various contexts, such as chronic pain, post-operative pain, and acute pain. It is often used as an outcome measure in studies of pain management interventions and as a predictor of pain-related disability and emotional distress.
 
 ## Methods and materials
 
