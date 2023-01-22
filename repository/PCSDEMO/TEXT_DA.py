@@ -1,6 +1,6 @@
 def CreateText():
    	return {
-		"QUESTION": "Når jeg har smerte ... [DK]",
+		"QUESTION": "Når jeg har smerte ...",
 		"I01": "Det bekymrer mig hele tiden, om smerterne vil forsvinde",
 		"I02": "Jeg føler, at jeg ikke kan mere",
 		"I03": "Det er frygteligt, og jeg tænker, at det aldrig bliver bedre",
@@ -15,7 +15,7 @@ def CreateText():
 		"I12": "Der er intet, jeg kan gøre for at mindske intensiteten af mine smerterne",
 		"I13": "Jeg tænker på, om der kunne ske noget alvorligt",
 		"L0": "0) Slet ikke",
-		"L1": "1) I	ringe grad",
+		"L1": "1) I ringe grad",
 		"L2": "2) I nogen grad",
 		"L3": "3) I høj grad",
 		"L4": "4) I meget høj grad"
