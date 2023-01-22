@@ -1,24 +1,24 @@
 def CreateText():
    	return {
-		"QUESTION": "When I'm in pain ... [DK]",
-		"I01": "I worry all the time about whether the pain will end. [DK]",
-		"I02": "I feel I can't go on. [DK]",
-		"I03": "It's terrible and I think it's never going to get any better [DK]",
-		"I04": "It's awful and I feel that it overwhelms me [DK]",
-		"I05": "I feel I can't stand it anymore [DK]",
-		"I06": "I become afraid that the pain will get worse [DK]",
-		"I07": "I keep thinking of other painful events [DK]",
-		"I08": "I anxiously want the pain to go away [DK]",
-		"I09": "I can't seem to keep it out of my mind [DK]",
-		"I10": "I keep thinking about how much it hurts [DK]",
-		"I11": "I keep thinking about how badly I want the pain to stop [DK]",
-		"I12": "There's nothing I can do to reduce the intensity of the pain [DK]",
-		"I13": "I wonder whether something serious may happen [DK]",
+		"QUESTION": "Når jeg har smerte ... [DK]",
+		"I01": "Det bekymrer mig hele tiden, om smerterne vil forsvinde",
+		"I02": "Jeg føler, at jeg ikke kan mere",
+		"I03": "Det er frygteligt, og jeg tænker, at det aldrig bliver bedre",
+		"I04": "Det er forfærdeligt, og jeg føler mig overvældet af smerterne",
+		"I05": "Jeg føler, at jeg ikke kan holde det ud længere",
+		"I06": "Jeg bliver bange for at smerterne bliver værre",
+		"I07": "Jeg tænker hele tiden på andre smertefulde oplevelser",
+		"I08": "Jeg ønsker desperat, at smerterne vil forsvinde",
+		"I09": "Jeg kan ikke lade være med at tænke på mine smerter",
+		"I10": "Jeg bliver ved med at tænke på hvor ondt det gør",
+		"I11": "Jeg bliver ved med at tænke på, hvor meget jeg ønsker, at smerterne skal holde op",
+		"I12": "Der er intet, jeg kan gøre for at mindske intensiteten af mine smerterne",
+		"I13": "Jeg tænker på, om der kunne ske noget alvorligt",
 		"L0": "0) Slet ikke",
 		"L1": "1) I	ringe grad",
-		"L2": "2) To a moderate degree [DK]",
-		"L3": "3) To a great degree [DK]",
-		"L4": "4) All the time [DK]"
+		"L2": "2) I nogen grad",
+		"L3": "3) I høj grad",
+		"L4": "4) I meget høj grad"
 	}
 
 
