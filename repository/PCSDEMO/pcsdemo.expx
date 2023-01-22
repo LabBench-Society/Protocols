@@ -28,6 +28,12 @@ The PCS is typically administered by a healthcare professional or researcher and
                        header="true"
                        seperator=";"
                        filename="dynamic: '{session}-{time}.csv'.format(session = SESSION_NAME, time = SESSION_TIME)">
+            <item name="Sex"
+                  value="SUBJECT['SEX']"
+                  default="NA"/>
+            <item name="Age"
+                  value="SUBJECT['AGE']"
+                  default="NA"/>
             <item name="Rumination"
                   value="func: CALCULATIONS.Rumination"
                   default="NA"/>
