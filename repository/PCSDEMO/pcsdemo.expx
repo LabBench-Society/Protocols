@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/experiment.xsd"
+            name="Pain Catastrophizing Scale (Demonstration Protocol)"
+            id="pcsdemo"
+            protocol="pcsdemo@labbench.io">
+  <description />
+  <experimental-setup>
+    <description />
+    <devices>
+        <cpar-plus id="dev"/>
+    </devices>
+    <device-mapping>
+      <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
+      <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
+      <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
+    </device-mapping>
+  </experimental-setup>
+</experiment>

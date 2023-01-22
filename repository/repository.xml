@@ -21,7 +21,7 @@
         <protocol id="pcsdemo"
                   location="PCSDEMO\"
                   protocol="pcsdemo.prtx"
-                  name="Pain Catastrophizing Scale"
+                  name="Pain Catastrophizing Scale (Demonstration Protocol)"
                   category="Psychometrics;Demonstration Protocol"/>
     </protocols>
 </repository>
