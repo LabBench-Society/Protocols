@@ -15,7 +15,9 @@ The Pain Catastrophizing Scale (PCS) is a self-report measure that assesses an i
 
 The PCS is typically administered by a healthcare professional or researcher in a clinical setting and can be used in various contexts, such as chronic pain, post-operative pain, and acute pain. It is often used as an outcome measure in studies of pain management interventions and as a predictor of pain-related disability and emotional distress.
     </description>
-  <experimental-setup>
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
     <description />
     <devices />
     <device-mapping />
