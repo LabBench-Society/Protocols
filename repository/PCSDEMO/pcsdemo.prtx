@@ -258,5 +258,7 @@
             <language code="DA"
                       file="TEXT_DA.py"/>
         </file-asset>
+        <file-asset id="CALCULATIONS"
+                    file="CALCULATIONS.py" />
     </assets>
 </protocol>

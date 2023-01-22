@@ -22,4 +22,24 @@ The PCS is typically administered by a healthcare professional or researcher in 
     <devices />
     <device-mapping />
   </experimental-setup>
+    <post-actions>
+        <export-to-csv name="Calculate PCS Scores and export to CSV"
+                       location="C:\CPAR\pcsdemo"
+                       header="true"
+                       seperator=";"
+                       filename="dynamic: '{session}-{time}.csv'.format(session = SESSION_NAME, time = SESSION_TIME)">
+            <item name="Rumination"
+                  value="func: CALCULATIONS.Rumination"
+                  default="NA"/>
+            <item name="Magnification"
+                  value="func: CALCULATIONS.Magnification"
+                  default="NA"/>
+            <item name="Helplessness"
+                  value="func: CALCULATIONS.Helplessness"
+                  default="NA"/>
+            <item name="Total"
+                  value="func: CALCULATIONS.Total"
+                  default="NA"/>
+        </export-to-csv>
+    </post-actions>
 </experiment>

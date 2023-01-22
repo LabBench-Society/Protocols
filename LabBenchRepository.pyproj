@@ -53,6 +53,7 @@
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="repository\PCSDEMO\CALCULATIONS.py" />
     <Compile Include="repository\PCSDEMO\TEXT_DA.py" />
     <Compile Include="repository\PCSDEMO\TEXT_EN.py" />
     <Compile Include="repository\test.py" />
