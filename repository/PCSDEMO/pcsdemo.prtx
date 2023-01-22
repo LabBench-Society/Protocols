@@ -32,7 +32,9 @@
 
                 <boolean id="CONSENT"
                          title="Consent"
-                         instruction="Does the subject consent to the collection of psychological data"/>
+                         instruction="Does the subject consent to the collection of psychological data"
+                         true-label="I consent"
+                         false-label="I do NOT consent"/>
             </content>
         </meta-survey>
 
@@ -41,7 +43,7 @@
             <dependencies>
                 <dependency ID="SUBJECT"/>
             </dependencies>
-            <condition expression="SUBJECT[CONSENT]"
+            <condition expression="SUBJECT['CONSENT']"
                        help="The subject must have consented to the collection of psychological data"/>
             <content>
                 <likert id="I01"
