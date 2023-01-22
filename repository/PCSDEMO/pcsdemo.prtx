@@ -4,7 +4,16 @@
           name="CPAR Demonstration (Version 1)"
           id="cpardemo">
     <description />
-    <defines />
+    <languages>
+        <language code="EN"
+                  name="English"/>
+        <language code="DK"
+                  name="Danish"/>
+    </languages>    
+    <defines>
+        <define name="Text"
+                value="func: TEXT.CreateText"/>
+    </defines>
     <tests>
         <meta-survey ID="SUBJECT"
                      name="Subject">
@@ -47,202 +56,207 @@
                        help="The subject must have consented to the collection of psychological data"/>
             <content>
                 <likert id="I01"
-                        title="When I'm in pain ..."
-                        instruction="I worry all the time about whether the pain will end.">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I01']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I02"
-                        title="When I'm in pain ..."
-                        instruction="I feel I can't go on.">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I02']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I03"
-                        title="When I'm in pain ..."
-                        instruction="It's terrible and I think it's never going to get any better">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I03']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I04"
-                        title="When I'm in pain ..."
-                        instruction="It's awful and I feel that it overwhelms me">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I04']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I05"
-                        title="When I'm in pain ..."
-                        instruction="I feel I can't stand it anymore">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I05']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I06"
-                        title="When I'm in pain ..."
-                        instruction="I become afraid that the pain will get worse">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I06']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I07"
-                        title="When I'm in pain ..."
-                        instruction="I keep thinking of other painful events">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I07']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I08"
-                        title="When I'm in pain ..."
-                        instruction="I anxiously want the pain to go away">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I08']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I09"
-                        title="When I'm in pain ..."
-                        instruction="I can't seem to keep it out of my mind">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I09']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I10"
-                        title="When I'm in pain ..."
-                        instruction="I keep thinking about how much it hurts">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I10']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I11"
-                        title="When I'm in pain ..."
-                        instruction="I keep thinking about how badly I want the pain to stop">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I11']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I12"
-                        title="When I'm in pain ..."
-                        instruction="There's nothing I can do to reduce the intensity of the pain">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I12']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
 
                 <likert id="I13"
-                        title="When I'm in pain ..."
-                        instruction="I wonder whether something serious may happen">
+                        title="dynamic: Text['QUESTION']"
+                        instruction="dynamic: Text['I13']">
                     <choice value="0"
-                            label="0) Not at all"/>
+                            label="dynamic: Text['L0']"/>
                     <choice value="1"
-                            label="1) To a slight degree"/>
+                            label="dynamic: Text['L1']"/>
                     <choice value="2"
-                            label="2) To a moderate degree"/>
+                            label="dynamic: Text['L2']"/>
                     <choice value="3"
-                            label="3) To a great degree"/>
+                            label="dynamic: Text['L3']"/>
                     <choice value="4"
-                            label="4) All the time"/>
+                            label="dynamic: Text['L4']"/>
                 </likert>
             </content>
         </meta-survey>
     </tests>
     <assets>
+        <file-asset id="TEXT"                    
+                    file="TEXT_EN.py">
+            <language code="DA"
+                      file="TEXT_DA.py"/>
+        </file-asset>
     </assets>
 </protocol>

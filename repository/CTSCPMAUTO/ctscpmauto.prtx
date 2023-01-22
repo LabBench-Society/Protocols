@@ -4,7 +4,6 @@
           name="Temporal summation and Conditioned Pain Modulation"
           id="ctscpmauto">
     <description />
-    <defines />
     <tests>
         <algometry-stimulus-response ID="SR01"
                                      name="Stimulus-Response (Cuff 1)"

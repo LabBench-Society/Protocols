@@ -53,6 +53,8 @@
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="repository\PCSDEMO\TEXT_DA.py" />
+    <Compile Include="repository\PCSDEMO\TEXT_EN.py" />
     <Compile Include="repository\test.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
