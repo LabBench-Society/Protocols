@@ -52,14 +52,18 @@
 
         <meta-survey ID="DASS"
                      name="Pain Catastrophizing">
+            <properties>
+                <instructions default-instructions="INSTRUCTIONS"
+                              override-results="true"/>
+            </properties>
             <dependencies>
                 <dependency ID="SUBJECT"/>
             </dependencies>
-            <condition expression="SUBJECT['CONSENT']"
-                       help="The subject must have consented to the collection of psychological data"/>
+            <condition expression="SUBJECT['STATUS'] == 0"
+                       help="The subject must be in the educational system"/>
             <templates>
                 <likert id="LIKERT"
-                        title="Depression Anxiety Stress Scales (DASS)">
+                        title="dynamic: Text['QUESTION']">
                     <choice value="0" label="dynamic: Text['L0']"/>
                     <choice value="1" label="dynamic: Text['L1']"/>
                     <choice value="2" label="dynamic: Text['L2']"/>
@@ -67,9 +71,48 @@
                 </likert>
             </templates>
             <content>
-                <likert id="I01"
-                        template="LIKERT"
-                        instruction="dynamic: Text['I01']" />
+                <likert id="I01" template="LIKERT" instruction="dynamic: Text['I01']" />
+                <likert id="I02" template="LIKERT" instruction="dynamic: Text['I02']" />
+                <likert id="I03" template="LIKERT" instruction="dynamic: Text['I03']" />
+                <likert id="I04" template="LIKERT" instruction="dynamic: Text['I04']" />
+                <likert id="I05" template="LIKERT" instruction="dynamic: Text['I05']" />
+                <likert id="I06" template="LIKERT" instruction="dynamic: Text['I06']" />
+                <likert id="I07" template="LIKERT" instruction="dynamic: Text['I07']" />
+                <likert id="I08" template="LIKERT" instruction="dynamic: Text['I08']" />
+                <likert id="I09" template="LIKERT" instruction="dynamic: Text['I09']" />
+                <likert id="I10" template="LIKERT" instruction="dynamic: Text['I10']" />
+                <likert id="I11" template="LIKERT" instruction="dynamic: Text['I11']" />
+                <likert id="I12" template="LIKERT" instruction="dynamic: Text['I12']" />
+                <likert id="I13" template="LIKERT" instruction="dynamic: Text['I13']" />
+                <likert id="I14" template="LIKERT" instruction="dynamic: Text['I14']" />
+                <likert id="I15" template="LIKERT" instruction="dynamic: Text['I15']" />
+                <likert id="I16" template="LIKERT" instruction="dynamic: Text['I16']" />
+                <likert id="I17" template="LIKERT" instruction="dynamic: Text['I17']" />
+                <likert id="I18" template="LIKERT" instruction="dynamic: Text['I18']" />
+                <likert id="I19" template="LIKERT" instruction="dynamic: Text['I19']" />
+                <likert id="I20" template="LIKERT" instruction="dynamic: Text['I20']" />
+                <likert id="I21" template="LIKERT" instruction="dynamic: Text['I21']" />
+                <likert id="I22" template="LIKERT" instruction="dynamic: Text['I22']" />
+                <likert id="I23" template="LIKERT" instruction="dynamic: Text['I23']" />
+                <likert id="I24" template="LIKERT" instruction="dynamic: Text['I24']" />
+                <likert id="I25" template="LIKERT" instruction="dynamic: Text['I25']" />
+                <likert id="I26" template="LIKERT" instruction="dynamic: Text['I26']" />
+                <likert id="I27" template="LIKERT" instruction="dynamic: Text['I27']" />
+                <likert id="I28" template="LIKERT" instruction="dynamic: Text['I28']" />
+                <likert id="I29" template="LIKERT" instruction="dynamic: Text['I29']" />
+                <likert id="I30" template="LIKERT" instruction="dynamic: Text['I30']" />
+                <likert id="I31" template="LIKERT" instruction="dynamic: Text['I31']" />
+                <likert id="I32" template="LIKERT" instruction="dynamic: Text['I32']" />
+                <likert id="I33" template="LIKERT" instruction="dynamic: Text['I33']" />
+                <likert id="I34" template="LIKERT" instruction="dynamic: Text['I34']" />
+                <likert id="I35" template="LIKERT" instruction="dynamic: Text['I35']" />
+                <likert id="I36" template="LIKERT" instruction="dynamic: Text['I36']" />
+                <likert id="I37" template="LIKERT" instruction="dynamic: Text['I37']" />
+                <likert id="I38" template="LIKERT" instruction="dynamic: Text['I38']" />
+                <likert id="I39" template="LIKERT" instruction="dynamic: Text['I39']" />
+                <likert id="I40" template="LIKERT" instruction="dynamic: Text['I40']" />
+                <likert id="I41" template="LIKERT" instruction="dynamic: Text['I41']" />
+                <likert id="I42" template="LIKERT" instruction="dynamic: Text['I42']" />
             </content>
         </meta-survey>
     </tests>
@@ -78,5 +121,9 @@
             <language code="DA" file="TEXT_DA.py"/>
         </file-asset>
         <file-asset id="CALCULATIONS" file="CALCULATIONS.py" />
+        <file-asset id="INSTRUCTIONS"
+                    file="DASS_EN.rtf">
+            <language code="DA" file="DASS_DA.rtf"/>
+        </file-asset>
     </assets>
 </protocol>
