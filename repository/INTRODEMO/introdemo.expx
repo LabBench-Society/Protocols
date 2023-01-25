@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/experiment.xsd"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/3.2.0/experiment.xsd"
             name="Pain Catastrophizing Scale (Demonstration Protocol)"
-            id="pcsdemo"
-            protocol="pcsdemo@labbench.io">
+            id="introdemo"
+            protocol="introdemo@labbench.io">
     <description>
 The present protocol is a demonstration protocol that allows an experimenter to collect pain catastrophizing scale (PCS) reports from subjects. It is not intended to be a protocol used in actual experiments; instead, it is intended as a protocol that can demonstrate the general capabilities of LabBench, particularly its capability to collect psychometric data. The PCS test from this protocol can also be copied into other LabBench protocols to include the PCS reporting.
 

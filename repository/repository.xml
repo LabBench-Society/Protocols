@@ -18,10 +18,10 @@
                   protocol="ctscpmauto.prtx"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" 
                   category="Pressure Algometry;Calibration Protocol"/>
-        <protocol id="pcsdemo"
-                  location="PCSDEMO\"
-                  protocol="pcsdemo.prtx"
-                  name="Pain Catastrophizing Scale (Demonstration Protocol)"
+        <protocol id="introdemo"
+                  location="INTRODEMO\"
+                  protocol="introdemo.prtx"
+                  name="Student Survey (Demonstration Protocol)"
                   category="Psychometrics;Demonstration Protocol"/>
     </protocols>
 </repository>

@@ -33,9 +33,10 @@
     <Content Include="repository\CTSCPMAUTO\README.md" />
     <Content Include="repository\CTSCPM\ctscpm.expx" />
     <Content Include="repository\CTSCPM\ctscpm.prtx" />
-    <Content Include="repository\PCSDEMO\pcsdemo.expx" />
-    <Content Include="repository\PCSDEMO\pcsdemo.prtx" />
-    <Content Include="repository\PCSDEMO\README.md" />
+    <Content Include="repository\INTRODEMO\demodata.json" />
+    <Content Include="repository\INTRODEMO\introdemo.expx" />
+    <Content Include="repository\INTRODEMO\introdemo.prtx" />
+    <Content Include="repository\INTRODEMO\README.md" />
     <Content Include="repository\README.md" />
     <Content Include="tools\post-session-actions\csv.adx" />
     <Content Include="tools\post-session-actions\json.adx" />
@@ -48,14 +49,14 @@
     <Folder Include="repository\CPARDEMO\" />
     <Folder Include="repository\CTSCPMAUTO\" />
     <Folder Include="repository\CTSCPM\" />
-    <Folder Include="repository\PCSDEMO\" />
+    <Folder Include="repository\INTRODEMO\" />
     <Folder Include="tools\" />
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="repository\PCSDEMO\CALCULATIONS.py" />
-    <Compile Include="repository\PCSDEMO\TEXT_DA.py" />
-    <Compile Include="repository\PCSDEMO\TEXT_EN.py" />
+    <Compile Include="repository\INTRODEMO\Calculations.py" />
+    <Compile Include="repository\INTRODEMO\TEXT_DA.py" />
+    <Compile Include="repository\INTRODEMO\TEXT_EN.py" />
     <Compile Include="repository\test.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
