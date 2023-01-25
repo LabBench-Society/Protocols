@@ -3,6 +3,11 @@
             xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/repository.xsd"
             id="labbench.io">
     <protocols>
+        <protocol id="introdemo"
+                  location="INTRODEMO\"
+                  protocol="introdemo.prtx"
+                  name="Introduction to LabBench (Demonstration Protocol)"
+                  category="Psychometrics;Demonstration Protocol"/>
         <protocol id="cpardemo"
                   location="CPARDEMO\"
                   protocol="cpardemo.prtx"
@@ -18,10 +23,5 @@
                   protocol="ctscpmauto.prtx"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" 
                   category="Pressure Algometry;Calibration Protocol"/>
-        <protocol id="introdemo"
-                  location="INTRODEMO\"
-                  protocol="introdemo.prtx"
-                  name="Student Survey (Demonstration Protocol)"
-                  category="Psychometrics;Demonstration Protocol"/>
     </protocols>
 </repository>
