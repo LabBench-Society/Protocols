@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/3.2.0/experiment.xsd"
-            name="Temporal Summation and Conditioned Pain Modulation Protocol (LabBench CPAR)"
+            name="Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
             id="ctscpm"
-            protocol="ctscpm@labbench.io">
+            protocol="ctscpmnct@labbench.io">
   <description />
   <experimental-setup>
     <description />
     <devices>
-        <cpar-plus id="dev"/>
+        <cpar id="dev" compressor-mode="AUTO"/>
     </devices>
     <device-mapping>
       <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />

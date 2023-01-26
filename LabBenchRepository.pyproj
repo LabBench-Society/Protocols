@@ -31,6 +31,9 @@
     <Content Include="repository\CTSCPMAUTO\ctscpmauto.expx" />
     <Content Include="repository\CTSCPMAUTO\ctscpmauto.prtx" />
     <Content Include="repository\CTSCPMAUTO\README.md" />
+    <Content Include="repository\CTSCPMNCT\ctscpmnct.expx" />
+    <Content Include="repository\CTSCPMnct\ctscpmnct.prtx" />
+    <Content Include="repository\CTSCPMnct\README.md" />
     <Content Include="repository\CTSCPM\ctscpm.expx" />
     <Content Include="repository\CTSCPM\ctscpm.prtx" />
     <Content Include="repository\INTRODEMO\demodata.json" />
@@ -48,6 +51,7 @@
     <Folder Include="repository\" />
     <Folder Include="repository\CPARDEMO\" />
     <Folder Include="repository\CTSCPMAUTO\" />
+    <Folder Include="repository\CTSCPMnct\" />
     <Folder Include="repository\CTSCPM\" />
     <Folder Include="repository\INTRODEMO\" />
     <Folder Include="tools\" />
