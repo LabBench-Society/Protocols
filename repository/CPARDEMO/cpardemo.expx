@@ -10,12 +10,7 @@
     <experimental-setup>
         <description />
         <devices>
-            <!--
-            <cpar id="dev" compressor-mode="AUTO" />
-            -->
             <cpar-plus id="dev"/>
-            <!--
-            -->
         </devices>
         <device-mapping>
             <device-assignment test-type="algometry-stimulus-response"

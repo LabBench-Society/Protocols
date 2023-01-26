@@ -18,7 +18,7 @@
                   protocol="ctscpm.prtx"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol (LabBench CPAR+)" 
                   category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
-        <protocol id="ctscpm"
+        <protocol id="ctscpmnct"
                   location="CTSCPMNCT\"
                   protocol="ctscpmnct.prtx"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
