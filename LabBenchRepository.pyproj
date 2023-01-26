@@ -25,21 +25,21 @@
   <ItemGroup>
     <Content Include="README.md" />
     <Content Include="repository/repository.xml" />
-    <Content Include="repository\CPARDEMO\cpardemo.expx" />
-    <Content Include="repository\CPARDEMO\cpardemo.prtx" />
-    <Content Include="repository\CPARDEMO\README.md" />
-    <Content Include="repository\CTSCPMAUTO\ctscpmauto.expx" />
-    <Content Include="repository\CTSCPMAUTO\ctscpmauto.prtx" />
-    <Content Include="repository\CTSCPMAUTO\README.md" />
-    <Content Include="repository\CTSCPMNCT\ctscpmnct.expx" />
-    <Content Include="repository\CTSCPMnct\ctscpmnct.prtx" />
-    <Content Include="repository\CTSCPMnct\README.md" />
-    <Content Include="repository\CTSCPM\ctscpm.expx" />
-    <Content Include="repository\CTSCPM\ctscpm.prtx" />
-    <Content Include="repository\INTRODEMO\demodata.json" />
-    <Content Include="repository\INTRODEMO\introdemo.expx" />
-    <Content Include="repository\INTRODEMO\introdemo.prtx" />
-    <Content Include="repository\INTRODEMO\README.md" />
+    <Content Include="repository\cpardemo\cpardemo.expx" />
+    <Content Include="repository\cpardemo\cpardemo.prtx" />
+    <Content Include="repository\cpardemo\README.md" />
+    <Content Include="repository\ctscomauto\ctscpmauto.expx" />
+    <Content Include="repository\ctscomauto\ctscpmauto.prtx" />
+    <Content Include="repository\ctscomauto\README.md" />
+    <Content Include="repository\ctscomnct\ctscpmnct.expx" />
+    <Content Include="repository\ctscomnct\ctscpmnct.prtx" />
+    <Content Include="repository\ctscomnct\README.md" />
+    <Content Include="repository\ctscom\ctscpm.expx" />
+    <Content Include="repository\ctscom\ctscpm.prtx" />
+    <Content Include="repository\introdemo\demodata.json" />
+    <Content Include="repository\introdemo\introdemo.expx" />
+    <Content Include="repository\introdemo\introdemo.prtx" />
+    <Content Include="repository\introdemo\README.md" />
     <Content Include="repository\README.md" />
     <Content Include="tools\post-session-actions\csv.adx" />
     <Content Include="tools\post-session-actions\json.adx" />
@@ -49,18 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="repository\" />
-    <Folder Include="repository\CPARDEMO\" />
-    <Folder Include="repository\CTSCPMAUTO\" />
-    <Folder Include="repository\CTSCPMnct\" />
-    <Folder Include="repository\CTSCPM\" />
-    <Folder Include="repository\INTRODEMO\" />
+    <Folder Include="repository\cpardemo\" />
+    <Folder Include="repository\ctscomauto\" />
+    <Folder Include="repository\ctscomnct\" />
+    <Folder Include="repository\ctscom\" />
+    <Folder Include="repository\introdemo\" />
     <Folder Include="tools\" />
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="repository\INTRODEMO\Calculations.py" />
-    <Compile Include="repository\INTRODEMO\TEXT_DA.py" />
-    <Compile Include="repository\INTRODEMO\TEXT_EN.py" />
+    <Compile Include="repository\introdemo\Calculations.py" />
+    <Compile Include="repository\introdemo\TEXT_DA.py" />
+    <Compile Include="repository\introdemo\TEXT_EN.py" />
     <Compile Include="repository\test.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

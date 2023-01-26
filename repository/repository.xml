@@ -4,28 +4,18 @@
             id="labbench.io">
     <protocols>
         <protocol id="introdemo"
-                  location="INTRODEMO\"
-                  protocol="introdemo.prtx"
                   name="Introduction to LabBench (Demonstration Protocol)"
                   category="Psychometrics;Demonstration Protocol"/>
         <protocol id="cpardemo"
-                  location="CPARDEMO\"
-                  protocol="cpardemo.prtx"
                   name="Cuff Pressure Algometry (Demonstration Protocol)" 
                   category="Pressure Algometry;Demonstration Protocol"/>
         <protocol id="ctscpm"
-                  location="CTSCPM\"
-                  protocol="ctscpm.prtx"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol (LabBench CPAR+)" 
                   category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
         <protocol id="ctscpmnct"
-                  location="CTSCPMNCT\"
-                  protocol="ctscpmnct.prtx"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
                   category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
         <protocol id="ctscpmauto"
-                  location="CTSCPMAUTO\"
-                  protocol="ctscpmauto.prtx"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Test Version)" 
                   category="Pressure Algometry;Calibration Protocol"/>
     </protocols>
