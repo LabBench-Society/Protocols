@@ -28,14 +28,14 @@
     <Content Include="repository\cpardemo\cpardemo.expx" />
     <Content Include="repository\cpardemo\cpardemo.prtx" />
     <Content Include="repository\cpardemo\README.md" />
-    <Content Include="repository\ctscomauto\ctscpmauto.expx" />
-    <Content Include="repository\ctscomauto\ctscpmauto.prtx" />
-    <Content Include="repository\ctscomauto\README.md" />
-    <Content Include="repository\ctscomnct\ctscpmnct.expx" />
-    <Content Include="repository\ctscomnct\ctscpmnct.prtx" />
-    <Content Include="repository\ctscomnct\README.md" />
-    <Content Include="repository\ctscom\ctscpm.expx" />
-    <Content Include="repository\ctscom\ctscpm.prtx" />
+    <Content Include="repository\ctscpmauto\ctscpmauto.expx" />
+    <Content Include="repository\ctscpmauto\ctscpmauto.prtx" />
+    <Content Include="repository\ctscpmauto\README.md" />
+    <Content Include="repository\ctscpmnct\ctscpmnct.expx" />
+    <Content Include="repository\ctscpmnct\ctscpmnct.prtx" />
+    <Content Include="repository\ctscpmnct\README.md" />
+    <Content Include="repository\ctscpm\ctscpm.expx" />
+    <Content Include="repository\ctscpm\ctscpm.prtx" />
     <Content Include="repository\introdemo\demodata.json" />
     <Content Include="repository\introdemo\introdemo.expx" />
     <Content Include="repository\introdemo\introdemo.prtx" />
@@ -50,9 +50,9 @@
   <ItemGroup>
     <Folder Include="repository\" />
     <Folder Include="repository\cpardemo\" />
-    <Folder Include="repository\ctscomauto\" />
-    <Folder Include="repository\ctscomnct\" />
-    <Folder Include="repository\ctscom\" />
+    <Folder Include="repository\ctscpmauto\" />
+    <Folder Include="repository\ctscpmnct\" />
+    <Folder Include="repository\ctscpm\" />
     <Folder Include="repository\introdemo\" />
     <Folder Include="tools\" />
     <Folder Include="tools\post-session-actions\" />
