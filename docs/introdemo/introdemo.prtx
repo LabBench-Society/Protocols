@@ -120,7 +120,7 @@
         <file-asset id="TEXT" file="TEXT_EN.py">
             <language code="DA" file="TEXT_DA.py"/>
         </file-asset>
-        <file-asset id="CALCULATIONS" file="CALCULATIONS.py" />
+        <file-asset id="CALCULATIONS" file="Calculations.py" />
         <file-asset id="INSTRUCTIONS"
                     file="DASS_EN.rtf">
             <language code="DA" file="DASS_DA.rtf"/>
