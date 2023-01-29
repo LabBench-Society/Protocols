@@ -16,6 +16,10 @@
 
         Autostart has been enabled so you just need to start the first test, and then it the protocol will complete automatically all tests without requiring further intervention.
     </description>
+    <citation>
+        No citation is required when using this protocol.
+    </citation>
+
     <experimental-setup>
         <description />
         <devices>
