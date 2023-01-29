@@ -51,7 +51,7 @@
         </meta-survey>
 
         <meta-survey ID="DASS"
-                     name="Pain Catastrophizing">
+                     name="Depression, Anxietry and Stress Survey">
             <properties>
                 <instructions default-instructions="INSTRUCTIONS"
                               override-results="true"/>
