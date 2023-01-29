@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>addd7d4f-be9c-4451-af7b-29ceb706fc1d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>repository/test.py</StartupFile>
+    <StartupFile>docs\test.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,24 +23,25 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="docs\ctscpm\README.md" />
     <Content Include="README.md" />
-    <Content Include="repository/repository.xml" />
-    <Content Include="repository\cpardemo\cpardemo.expx" />
-    <Content Include="repository\cpardemo\cpardemo.prtx" />
-    <Content Include="repository\cpardemo\README.md" />
-    <Content Include="repository\ctscpmauto\ctscpmauto.expx" />
-    <Content Include="repository\ctscpmauto\ctscpmauto.prtx" />
-    <Content Include="repository\ctscpmauto\README.md" />
-    <Content Include="repository\ctscpmnct\ctscpmnct.expx" />
-    <Content Include="repository\ctscpmnct\ctscpmnct.prtx" />
-    <Content Include="repository\ctscpmnct\README.md" />
-    <Content Include="repository\ctscpm\ctscpm.expx" />
-    <Content Include="repository\ctscpm\ctscpm.prtx" />
-    <Content Include="repository\introdemo\demodata.json" />
-    <Content Include="repository\introdemo\introdemo.expx" />
-    <Content Include="repository\introdemo\introdemo.prtx" />
-    <Content Include="repository\introdemo\README.md" />
-    <Content Include="repository\README.md" />
+    <Content Include="docs\repository.xml" />
+    <Content Include="docs\cpardemo\cpardemo.expx" />
+    <Content Include="docs\cpardemo\cpardemo.prtx" />
+    <Content Include="docs\cpardemo\README.md" />
+    <Content Include="docs\ctscpmauto\ctscpmauto.expx" />
+    <Content Include="docs\ctscpmauto\ctscpmauto.prtx" />
+    <Content Include="docs\ctscpmauto\README.md" />
+    <Content Include="docs\ctscpmnct\ctscpmnct.expx" />
+    <Content Include="docs\ctscpmnct\ctscpmnct.prtx" />
+    <Content Include="docs\ctscpmnct\README.md" />
+    <Content Include="docs\ctscpm\ctscpm.expx" />
+    <Content Include="docs\ctscpm\ctscpm.prtx" />
+    <Content Include="docs\introdemo\demodata.json" />
+    <Content Include="docs\introdemo\introdemo.expx" />
+    <Content Include="docs\introdemo\introdemo.prtx" />
+    <Content Include="docs\introdemo\README.md" />
+    <Content Include="docs\README.md" />
     <Content Include="tools\post-session-actions\csv.adx" />
     <Content Include="tools\post-session-actions\json.adx" />
     <Content Include="tools\post-session-actions\matlab.adx" />
@@ -48,20 +49,20 @@
     <Content Include="tools\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="repository\" />
-    <Folder Include="repository\cpardemo\" />
-    <Folder Include="repository\ctscpmauto\" />
-    <Folder Include="repository\ctscpmnct\" />
-    <Folder Include="repository\ctscpm\" />
-    <Folder Include="repository\introdemo\" />
+    <Folder Include="docs\" />
+    <Folder Include="docs\cpardemo\" />
+    <Folder Include="docs\ctscpmauto\" />
+    <Folder Include="docs\ctscpmnct\" />
+    <Folder Include="docs\ctscpm\" />
+    <Folder Include="docs\introdemo\" />
     <Folder Include="tools\" />
     <Folder Include="tools\post-session-actions\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="repository\introdemo\Calculations.py" />
-    <Compile Include="repository\introdemo\TEXT_DA.py" />
-    <Compile Include="repository\introdemo\TEXT_EN.py" />
-    <Compile Include="repository\test.py" />
+    <Compile Include="docs\introdemo\Calculations.py" />
+    <Compile Include="docs\introdemo\TEXT_DA.py" />
+    <Compile Include="docs\introdemo\TEXT_EN.py" />
+    <Compile Include="docs\test.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
