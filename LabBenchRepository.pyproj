@@ -23,6 +23,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="docs\ctscpm\README.md" />
     <Content Include="README.md" />
     <Content Include="docs\repository.xml" />
     <Content Include="docs\cpardemo\cpardemo.expx" />
