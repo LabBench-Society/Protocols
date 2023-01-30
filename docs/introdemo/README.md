@@ -1,21 +1,7 @@
-# Pain Catastrophizing Demonstration Protocol (pcsdemo.prtx)
+# Introduction to LabBench
 
-## Introduction
+The present protocol accompanies the first chapter of the LabBench book. It is intended to give you a brief overview of the capabilities of LabBench without going into too much detail. This chapter takes you through converting a paper-based protocol and case report form (CRF) to an executable LabBench protocol (this protocol). Developing this protocol involves writing the configuration files (Experiment Definition Files (*.expx), Protocol Definitition Files (*.prtx), and scripts (*.py)), setting up an experiment in LabBench Designer, collecting data with LabBench Runner, and preparing and exporting the data with the LabBench Designer for further data analysis in 3rd party software such as Jupiter Notebooks, Matlab, Excel, or similar.
 
-The present protocol is a demonstration protocol that allows an experimenter to collect pain catastrophizing scale (PCS) reports from subjects. It is not intended to be a protocol used in actual experiments; instead, it is intended as a protocol that can demonstrate the general capabilities of LabBench, particularly its capability to collect psychometric data. The PCS test from this protocol can also be copied into other LabBench protocols to include the PCS reporting.
-
-The scale that is implemented by the protocol is the Pain Catastrophizing Scale by Sullivan et al.:
-
-[The pain catastrophizing scale: development and validation.](https://psycnet.apa.org/record/1996-10094-001)
-
-The Pain Catastrophizing Scale (PCS) is a self-report measure that assesses an individual's tendency to catastrophize in response to pain. Catastrophizing is defined as a negative cognitive and emotional state characterized by excessive fear, worry, and hopelessness about the consequences of pain. The PCS consists of 13 items that measure three dimensions of pain catastrophizing: rumination, magnification, and helplessness. Participants rate each item on a 5-point Likert scale, with higher scores indicating greater levels of pain catastrophizing.
-
-The PCS is typically administered by a healthcare professional or researcher and can be used in various contexts, such as chronic pain, post-operative pain, and acute pain. It is often used as an outcome measure in studies of pain management interventions and as a predictor of pain-related disability and emotional distress.
-
-## Methods and materials
+The protocol implements an experiment in which psychometrics measuring Depression, Anxiety, and Stress is obtained from pupils and students in the educational system. The survey used in this protocol is the Depression Anxiety Stress Scales (DASS) that the Psychology Foundation of Australia provides. This scale is in the public domain, but requires a citation to the website of [Psychology Foundation of Australia](http://www2.psy.unsw.edu.au/dass/) if it is used in a publication.
 
 
-## Results
-
-
-## Discussion
