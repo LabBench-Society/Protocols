@@ -5,7 +5,11 @@
             id="ctscpm"
             protocol="ctscpmnct@labbench.io">
   <description />
-  <experimental-setup>
+    <citation>
+H. B. Vaegter, T. E. Andersen, M. Harvold, P. G. Andersen, and T. Graven-Nielsen, ‘Increased Pain Sensitivity in Accident-related Chronic Pain Patients With Comorbid Posttraum, Clin. J. Pain, vol. 34, no. 4, pp. 313–321, Apr. 2018, doi: 10.1097/AJP.0000000000000543.
+    </citation>
+
+    <experimental-setup>
     <description />
     <devices>
         <cpar id="dev" compressor-mode="AUTO"/>
