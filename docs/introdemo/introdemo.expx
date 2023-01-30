@@ -9,9 +9,7 @@ The present protocol accompanies the first chapter of the LabBench book. It is i
 
 The protocol implements an experiment in which psychometrics measuring Depression, Anxiety, and Stress is obtained from pupils and students in the educational system. The survey used in this protocol is the Depression Anxiety Stress Scales (DASS) that the Psychology Foundation of Australia provides. This scale is in the public domain, but requires a citation to the website of [Psychology Foundation of Australia](http://www2.psy.unsw.edu.au/dass/) if it is used in a publication.      
     </description>
-    <citation>
-        No citation is required when using this protocol.
-    </citation>
+    <citation>No citation is required when using this protocol.</citation>
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup>

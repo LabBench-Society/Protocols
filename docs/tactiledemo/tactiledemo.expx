@@ -4,10 +4,9 @@
             name="Tactile Demonstration"
             id="tactiledemo"
             protocol="tactiledemo@test.labbench.io">
-<description>      
+<description>This protocol demonstrate how two-point-discrimination discs and von Frey hairs can be used to test tactile sensitivity.       
 </description>
   <subject-validator regex="^S[0-9]{3}$"
                      advice="Please enter an ID in the form of SXXX, where X is a digit" />  
   <experimental-setup />
 </experiment>
-

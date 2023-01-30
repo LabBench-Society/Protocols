@@ -12,6 +12,9 @@
         <protocol id="sounddemo"
                   name="Introduction to Audiometry"
                   category="Audiometry;Demonstration Protocol;Generic Sound Card;Generic Joystick"/>
+        <protocol id="tactiledemo"
+                  name="Introduction to Tactile Sensitivity Testing"
+                  category="Tactile sensitivity;Demonstration Protocol;Two-Point-Discrimination;von Frey hairs"/>
         <protocol id="pttdemo"
                   name="Introduction to Perception Threshold Tracking"
                   category="Perception Threshold Tracking;Demonstration Protocol;DAQmx"/>

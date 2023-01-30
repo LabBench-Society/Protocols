@@ -3,7 +3,8 @@
           xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/3.2.0/protocol.xsd"
           name="CPAR Demonstration (Version 1)"
           id="cpardemo">
-  <description />
+  <description>This protocol is intended to provide a demonstration of what is possible with a Cuff Pressure Algometer.</description>
+  <citation>No citation is required when using this protocol.</citation>
   <defines />
   <tests>
     <!-- 
