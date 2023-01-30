@@ -6,8 +6,17 @@
         <protocol id="introdemo"
                   name="Introduction to LabBench"
                   category="Psychometrics;Demonstration Protocol"/>
+        <protocol id="scriptdemo"
+                  name="Introduction to Scripting"
+                  category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
+        <protocol id="sounddemo"
+                  name="Introduction to Audiometry"
+                  category="Audiometry;Demonstration Protocol;Generic Sound Card;Generic Joystick"/>
+        <protocol id="pttdemo"
+                  name="Introduction to Perception Threshold Tracking"
+                  category="Perception Threshold Tracking;Demonstration Protocol;DAQmx"/>
         <protocol id="cpardemo"
-                  name="Cuff Pressure Algometry" 
+                  name="Introudction to Cuff Pressure Algometry" 
                   category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
         <protocol id="ctscpmnct"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol"
@@ -16,7 +25,7 @@
                   name="Temporal Summation and Conditioned Pain Modulation Protocol" 
                   category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
         <protocol id="ctscpmauto"
-                  name="Temporal Summation and Conditioned Pain Modulation Protocol" 
-                  category="Pressure Algometry;Calibration Protocol;LabBench CPAR+"/>
+                  name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
+                  category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
     </protocols>
 </repository>
