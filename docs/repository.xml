@@ -7,7 +7,7 @@
               name="Introduction to LabBench"
               category="Psychometrics;Demonstration Protocol"/>
     <protocol id="cpardemo"
-              name="Introudction to Cuff Pressure Algometry" 
+              name="Introduction to Cuff Pressure Algometry" 
               category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
     <protocol id="ctscpmnct"
               name="Temporal Summation and Conditioned Pain Modulation Protocol"
@@ -36,7 +36,7 @@
                   name="Introduction to Perception Threshold Tracking"
                   category="Perception Threshold Tracking;Demonstration Protocol;DAQmx"/>
         <protocol id="cpardemo"
-                  name="Introudction to Cuff Pressure Algometry" 
+                  name="Introduction to Cuff Pressure Algometry" 
                   category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
         <protocol id="ctscpmnct"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol"
