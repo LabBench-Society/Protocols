@@ -2,6 +2,23 @@
 <repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/repository.xsd"
             id="labbench.io">
+
+    <protocol id="introdemo"
+              name="Introduction to LabBench"
+              category="Psychometrics;Demonstration Protocol"/>
+    <protocol id="cpardemo"
+              name="Introudction to Cuff Pressure Algometry" 
+              category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
+    <protocol id="ctscpmnct"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol"
+              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
+    <protocol id="ctscpm"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol" 
+              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
+    <protocol id="ctscpmauto"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
+              category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
+    
     <protocols>
         <protocol id="introdemo"
                   name="Introduction to LabBench"
