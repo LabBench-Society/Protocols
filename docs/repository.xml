@@ -38,6 +38,9 @@
         <protocol id="cpardemo"
                   name="Introduction to Cuff Pressure Algometry" 
                   category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
+        <protocol id="cstscpmnct"
+                  name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
+                  category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
         <protocol id="ctscpmnct"
                   name="Temporal Summation and Conditioned Pain Modulation Protocol"
                   category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
