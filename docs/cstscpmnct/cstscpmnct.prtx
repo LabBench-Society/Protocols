@@ -12,8 +12,8 @@
                                  pressure-limit="100"
                                  primary-cuff="1"
                                  second-cuff="false"
-                                 stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
-                                 vas-pdt="0.1">
+                                 stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                 vas-pdt="1.0">
       <dependencies />
     </algometry-stimulus-response>
 
@@ -23,11 +23,22 @@
                                  pressure-limit="100"
                                  primary-cuff="2"
                                  second-cuff="false"
-                                 stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
-                                 vas-pdt="0.1">
+                                 stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                 vas-pdt="1.0">
       <dependencies />
     </algometry-stimulus-response>
 
+      <algometry-stimulus-response ID="SpS"
+                                   name="Spatial Summation (Cuff 1 + 2)"
+                                   delta-pressure="1"
+                                   pressure-limit="100"
+                                   primary-cuff="2"
+                                   second-cuff="true"
+                                   stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                   vas-pdt="1.0">
+          <dependencies />
+      </algometry-stimulus-response>
+      
     <algometry-temporal-summation ID="TS"
                                   name="Temporal Summation (Cuff 1)"
                                   no-of-stimuli="10"
@@ -49,8 +60,8 @@
                                            delta-pressure="1"
                                            pressure-limit="100"
                                            primary-cuff="1"
-                                           stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
-                                           vas-pdt="0.1">
+                                           stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                           vas-pdt="1.0">
       <dependencies>
         <dependency ID="SR02"/>
       </dependencies>
