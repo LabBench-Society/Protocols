@@ -19,6 +19,12 @@
                                                   experimental-setup-id="image"
                                                   response-collection="yes-no"
                                                   stimulus-update-rate="10000">
+            <test-events selected="func: Script.NeutralInstructions(tc)">
+                <instrument name="Display"
+                            interface="image-display"
+                            required="true"/>
+            </test-events>
+            
             <stimulation-scripts initialize="func: Script.Initialize(tc)"
                                  stimulate="func: Script.Stimulate(tc,x)"
                                  stimulus-description="Image"
@@ -102,6 +108,12 @@
                                           experimental-setup-id="image"
                                           response-collection="yes-no"
                                           stimulus-update-rate="10000">
+            <test-events selected="func: Script.Instructions(tc)">
+                <instrument name="Display"
+                            interface="image-display"
+                            required="true"/>
+            </test-events>
+            
             <stimulation-scripts initialize="func: Script.Initialize(tc)"
                                  stimulate="func: Script.Stimulate(tc,x)"
                                  stimulus-description="Image"
