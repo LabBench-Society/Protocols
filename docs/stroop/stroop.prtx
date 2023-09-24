@@ -19,7 +19,8 @@
                                                   experimental-setup-id="image"
                                                   response-collection="yes-no"
                                                   stimulus-update-rate="10000">
-            <test-events selected="func: Script.NeutralInstructions(tc)">
+            <test-events selected="func: Script.NeutralInstructions(tc)"
+                         complete="func: Script.Evaluate(tc)">
                 <instrument name="Display"
                             interface="image-display"
                             required="true"/>
@@ -45,18 +46,10 @@
             </stimulation-pattern>
 
             <stimuli order="block-random">
-                <stimulus name="rn"
-                          count="1"
-                          intensity="1" />
-                <stimulus name="gn"
-                          count="1"
-                          intensity="1" />
-                <stimulus name="bn"
-                          count="1"
-                          intensity="1" />
-                <stimulus name="yn"
-                          count="1"
-                          intensity="1" />                
+                <stimulus name="rn" />
+                <stimulus name="gn" />
+                <stimulus name="bn" />
+                <stimulus name="yn" />                
             </stimuli>
         </electrophysiology-evoked-potentials>
         
@@ -65,6 +58,8 @@
                                              experimental-setup-id="image"
                                              response-collection="yes-no"
                                              stimulus-update-rate="10000">
+            <test-events complete="func: Script.Evaluate(tc)" />
+            
             <dependencies>
                 <dependency ID="NSTROOPTrial"/>
             </dependencies>
@@ -88,18 +83,10 @@
             </stimulation-pattern>
 
             <stimuli order="block-random">
-                <stimulus name="rn"
-                          count="1"
-                          intensity="1" />
-                <stimulus name="gn"
-                          count="1"
-                          intensity="1" />
-                <stimulus name="bn"
-                          count="1"
-                          intensity="1" />
-                <stimulus name="yn"
-                          count="1"
-                          intensity="1" />
+                <stimulus name="rn" />
+                <stimulus name="gn" />
+                <stimulus name="bn" />
+                <stimulus name="yn" />
             </stimuli>
         </electrophysiology-evoked-potentials>
 
@@ -108,7 +95,8 @@
                                           experimental-setup-id="image"
                                           response-collection="yes-no"
                                           stimulus-update-rate="10000">
-            <test-events selected="func: Script.Instructions(tc)">
+            <test-events selected="func: Script.Instructions(tc)"
+                         complete="func: Script.Evaluate(tc)">
                 <instrument name="Display"
                             interface="image-display"
                             required="true"/>
@@ -150,6 +138,8 @@
                                           experimental-setup-id="image"
                                           response-collection="yes-no"
                                           stimulus-update-rate="10000">
+            <test-events complete="func: Script.Evaluate(tc)" />
+
             <dependencies>
                 <dependency ID="STROOPTrial"/>
             </dependencies>
