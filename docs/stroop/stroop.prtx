@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/protocol.xsd"
+          name="Stroop Task"
+          id="stroop">
+    <languages>
+        <language code="EN"
+                  name="English"/>
+        <language code="DA"
+                  name="Danish"/>
+    </languages>    
+    <defines>
+        <define name="CongruentRepetitions" value="5"/>
+        <define name="NumberOfCongruentStimuli" value="4"/>
+        <define name="StoopTask" value="func: Script.CreateTask(tc)"/>
+    </defines>
+    <tests>
+        <electrophysiology-evoked-potentials ID="STROOP"
+                                             name="Stroop Task"
+                                             experimental-setup-id="image"
+                                             response-collection="yes-no"
+                                             stimulus-update-rate="10000">
+            <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                 stimulate="func: Script.Stimulate(tc,x)"
+                                 stimulus-description="Image"
+                                 stimulus-unit="N/A">
+                <instrument name="Display"
+                            interface="image-display"
+                            required="true"/>                
+            </stimulation-scripts>
+
+            <stimulation-pattern time-base="seconds">
+                <uniformly-distributed-sequence minTperiod="3"
+                                                maxTperiod="5"
+                                                iterations="NumberOfStimuli * NumberOfCongruentStimuli * CongruentRepetitions" />
+            </stimulation-pattern>
+
+            <stimuli order="block-random">
+                <stimulus name="Congruent"
+                          count="1"
+                          intensity="1" />
+
+                <stimulus name="Inconguent"
+                          count="1"
+                          intensity="1" />
+
+                <stimulus name="Neutral"
+                          count="1"
+                          intensity="1" />
+            </stimuli>
+        </electrophysiology-evoked-potentials>
+    </tests>
+    <assets>
+        <file-asset id="images" file="images_en.zip">
+            <language code="da" file="images_da.zip"/>
+        </file-asset>
+        <file-asset id="Script" file="Script.py" />
+    </assets>
+</protocol>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/3.2.0/experiment.xsd"
+            name="Template Experimental Definition File"
+            id="XTEMPLATE"
+            protocol="XTEMPLATE@labbench.io">
+    <description>
+    </description>
+    <citation>No citation is required when using this protocol.</citation>
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <devices />
+        <device-mapping />
+    </experimental-setup>
+    <post-actions>
+    </post-actions>
+</experiment>
