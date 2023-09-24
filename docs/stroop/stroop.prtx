@@ -10,7 +10,7 @@
                   name="Danish"/>
     </languages>    
     <defines>
-        <define name="StimulusRepetitions" value="5"/>
+        <define name="StimulusRepetitions" value="6"/>
         <define name="DisplayTime" value="1500"/>
     </defines>
     <tests>
@@ -96,6 +96,92 @@
                           intensity="1" />
             </stimuli>
         </electrophysiology-evoked-potentials>
+
+        <electrophysiology-evoked-potentials ID="STROOPTrial"
+                                          name="Stroop Task (Trial)"
+                                          experimental-setup-id="image"
+                                          response-collection="yes-no"
+                                          stimulus-update-rate="10000">
+            <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                 stimulate="func: Script.Stimulate(tc,x)"
+                                 stimulus-description="Image"
+                                 stimulus-unit="N/A">
+                <instrument name="Display"
+                            interface="image-display"
+                            required="true"/>
+            </stimulation-scripts>
+
+            <stimulation-pattern time-base="seconds">
+                <sequence iterations="1">
+                    <sequence iterations="1" Tperiod="4" stimulate="false" />
+
+                    <uniformly-distributed-sequence minTperiod="3"
+                                                    maxTperiod="5"
+                                                    iterations="NumberOfStimuli" />
+                </sequence>
+            </stimulation-pattern>
+
+            <stimuli order="block-random">
+                <stimulus name="rr" />
+                <stimulus name="gg" />
+                <stimulus name="bb" />
+                <stimulus name="yy" />
+                <stimulus name="rg" />
+                <stimulus name="gb" />
+                <stimulus name="by" />
+                <stimulus name="yr" />
+            </stimuli>
+        </electrophysiology-evoked-potentials>
+
+        <electrophysiology-evoked-potentials ID="STROOP"
+                                          name="Stroop Task"
+                                          experimental-setup-id="image"
+                                          response-collection="yes-no"
+                                          stimulus-update-rate="10000">
+            <dependencies>
+                <dependency ID="STROOPTrial"/>
+            </dependencies>
+            <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                 stimulate="func: Script.Stimulate(tc,x)"
+                                 stimulus-description="Image"
+                                 stimulus-unit="N/A">
+                <instrument name="Display"
+                            interface="image-display"
+                            required="true"/>
+            </stimulation-scripts>
+
+            <stimulation-pattern time-base="seconds">
+                <sequence iterations="1">
+                    <sequence iterations="1" Tperiod="4" stimulate="false" />
+
+                    <uniformly-distributed-sequence minTperiod="3"
+                                                    maxTperiod="5"
+                                                    iterations="(StimulusRepetitions/3)*NumberOfStimuli" />
+                </sequence>
+            </stimulation-pattern>
+
+            <stimuli order="block-random">
+                <stimulus name="rr" count="3" />
+                <stimulus name="rg" />
+                <stimulus name="rb" />
+                <stimulus name="ry" />
+                
+                <stimulus name="gr" />
+                <stimulus name="gg" count="3"/>
+                <stimulus name="gb" />
+                <stimulus name="gy" />
+                
+                <stimulus name="br" />
+                <stimulus name="bg" />
+                <stimulus name="bb" count="3"/>
+                <stimulus name="by" />
+                
+                <stimulus name="yr" />
+                <stimulus name="yb" />
+                <stimulus name="yg" />
+                <stimulus name="yy" count="3"/>
+            </stimuli>
+        </electrophysiology-evoked-potentials>        
     </tests>
     <assets>
         <file-asset id="EnglishImages" file="images_en.zip" />

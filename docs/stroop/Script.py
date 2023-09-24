@@ -16,5 +16,5 @@ def Initialize(tc):
 def Stimulate(tc, x):
     key = "{name}.PNG".format(name = tc.StimulusName)   
     display = tc.Devices.Display
-    display.Display(getImages(tc).GetAsset(key).Data)       
+    display.Display(getImages(tc).GetAsset(key).Data, tc.DisplayTime)       
     return True
