@@ -10,17 +10,59 @@
                   name="Danish"/>
     </languages>    
     <defines>
-        <define name="CongruentRepetitions" value="5"/>
-        <define name="NumberOfCongruentStimuli" value="4"/>
-        <define name="StroopTask" value="func: Script.CreateTask(tc)"/>
+        <define name="StimulusRepetitions" value="5"/>
+        <define name="Images" value="func: Script.LoadImages(tc)"/>
         <define name="DisplayTime" value="1500"/>
     </defines>
     <tests>
-        <electrophysiology-evoked-potentials ID="STROOP"
-                                             name="Stroop Task"
+        <electrophysiology-evoked-potentials ID="NSTROOPTrial"
+                                                  name="Neutral Stroop Task (Trial)"
+                                                  experimental-setup-id="image"
+                                                  response-collection="yes-no"
+                                                  stimulus-update-rate="10000">
+            <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                 stimulate="func: Script.Stimulate(tc,x)"
+                                 stimulus-description="Image"
+                                 stimulus-unit="N/A">
+                <instrument name="Display"
+                            interface="image-display"
+                            required="true"/>
+            </stimulation-scripts>
+
+            <stimulation-pattern time-base="seconds">
+                <sequence iterations="1">
+                    <sequence iterations="1" Tperiod="4" stimulate="false" />
+
+                    <uniformly-distributed-sequence minTperiod="3"
+                                                    maxTperiod="5"
+                                                    iterations="NumberOfStimuli" />
+                </sequence>
+            </stimulation-pattern>
+
+            <stimuli order="block-random">
+                <stimulus name="rn"
+                          count="1"
+                          intensity="1" />
+                <stimulus name="gn"
+                          count="1"
+                          intensity="1" />
+                <stimulus name="bn"
+                          count="1"
+                          intensity="1" />
+                <stimulus name="yn"
+                          count="1"
+                          intensity="1" />                
+            </stimuli>
+        </electrophysiology-evoked-potentials>
+        
+        <electrophysiology-evoked-potentials ID="NSTROOP"
+                                             name="Neutral Stroop Task"
                                              experimental-setup-id="image"
                                              response-collection="yes-no"
                                              stimulus-update-rate="10000">
+            <dependencies>
+                <dependency ID="NSTROOPTrial"/>
+            </dependencies>
             <stimulation-scripts initialize="func: Script.Initialize(tc)"
                                  stimulate="func: Script.Stimulate(tc,x)"
                                  stimulus-description="Image"
@@ -31,21 +73,26 @@
             </stimulation-scripts>
 
             <stimulation-pattern time-base="seconds">
-                <uniformly-distributed-sequence minTperiod="3"
-                                                maxTperiod="5"
-                                                iterations="NumberOfStimuli * NumberOfCongruentStimuli * CongruentRepetitions" />
+                <sequence iterations="1">
+                    <sequence iterations="1" Tperiod="4" stimulate="false" />
+                    
+                    <uniformly-distributed-sequence minTperiod="3"
+                                                    maxTperiod="5"
+                                                    iterations="StimulusRepetitions * NumberOfStimuli" />
+                </sequence>
             </stimulation-pattern>
 
             <stimuli order="block-random">
-                <stimulus name="Congruent"
+                <stimulus name="rn"
                           count="1"
                           intensity="1" />
-
-                <stimulus name="Inconguent"
+                <stimulus name="gn"
                           count="1"
                           intensity="1" />
-
-                <stimulus name="Neutral"
+                <stimulus name="bn"
+                          count="1"
+                          intensity="1" />
+                <stimulus name="yn"
                           count="1"
                           intensity="1" />
             </stimuli>
