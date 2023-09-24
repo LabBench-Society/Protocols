@@ -12,7 +12,8 @@
     <defines>
         <define name="CongruentRepetitions" value="5"/>
         <define name="NumberOfCongruentStimuli" value="4"/>
-        <define name="StoopTask" value="func: Script.CreateTask(tc)"/>
+        <define name="StroopTask" value="func: Script.CreateTask(tc)"/>
+        <define name="DisplayTime" value="1500"/>
     </defines>
     <tests>
         <electrophysiology-evoked-potentials ID="STROOP"
@@ -51,9 +52,8 @@
         </electrophysiology-evoked-potentials>
     </tests>
     <assets>
-        <file-asset id="images" file="images_en.zip">
-            <language code="da" file="images_da.zip"/>
-        </file-asset>
+        <file-asset id="EnglishImages" file="images_en.zip" />
+        <file-asset id="DanishImages" file="images_da.zip" />
         <file-asset id="Script" file="Script.py" />
     </assets>
 </protocol>
