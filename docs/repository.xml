@@ -12,6 +12,9 @@
     <protocol id="flanker"
               name="Flanker Task"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+    <protocol id="gonogo"
+              name="Go/Nogo Task"
+              category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
     <protocol id="cpardemo"
               name="Introduction to Cuff Pressure Algometry" 
               category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
