@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="docs\gonogo\" />
+    <Folder Include="docs\stroop\images\images_da\" />
+    <Folder Include="docs\stroop\images\images_en\" />
+  </ItemGroup>
+
 </Project>

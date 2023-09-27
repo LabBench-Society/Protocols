@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
+            name="Stroop Task"
+            id="stroop"
+            protocol="stroop@labbench.io">
+    <description>
+    </description>
+    <citation>No citation is required when using this protocol.</citation>
+    <authors>Kristian Hennings, and Laura Petrini</authors>
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <devices>
+            <display id="display"
+                     active-color="rgb(255,255,255)"
+                     background-color="rgb(0,0,0)"
+                     inactive-color="rgb(32,32,32)"
+                     position="upper-right"
+                     screen="primary"
+                     normative-distance="40">
+                
+                <monitor diagonal-size="13"
+                         diagonal-size-unit="inch"
+                         distance="40"
+                         length-unit="cm"/>
+
+                <configurations>
+                    <image-display id="image"
+                                   experimental-setup-id="image"
+                                   background-color="rgb(0,0,0)" />
+                </configurations>
+            </display>
+            <joystick id="button">
+                <button-assignments>
+                    <assignment code="1" button="button-01"/>
+                    <assignment code="2" button="button-02"/>
+                    <assignment code="4" button="button-03"/>
+                    <assignment code="8" button="button-04"/>
+                </button-assignments>
+            </joystick>
+        </devices>
+        <device-mapping>
+            <device-assignment test-type="electrophysiology-evoked-potentials"
+                               instrument-name="Display"
+                               device-id="display.image"/>
+            <device-assignment test-type="electrophysiology-evoked-potentials"
+                               instrument-name="Response"
+                               device-id="button"/>
+        </device-mapping>
+    </experimental-setup>
+    <post-actions>
+    </post-actions>
+</experiment>
