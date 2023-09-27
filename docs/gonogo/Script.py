@@ -34,5 +34,4 @@ def IsCorrect(result):
 def Evaluate(tc):
     result = tc.Current
     tc.Current.Annotations.Add("correct", [IsCorrect(s) for s in result.Stimulations])
-    
     return True

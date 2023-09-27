@@ -4,8 +4,8 @@
           name="Go/NoGo Task"
           id="gonogo">
     <defines>
-        <define name="StimulusRepetitions" value="8"/>
-        <define name="DisplayTime" value="1000"/>
+        <define name="StimulusRepetitions" value="16"/>
+        <define name="DisplayTime" value="250"/>
     </defines>
     <tests>
         <electrophysiology-evoked-potentials ID="GONOGO"
@@ -33,8 +33,8 @@
                 <sequence iterations="1">
                     <sequence iterations="1" Tperiod="4" stimulate="false" />
 
-                    <uniformly-distributed-sequence minTperiod="2.5"
-                                                    maxTperiod="3"
+                    <uniformly-distributed-sequence minTperiod="1.25"
+                                                    maxTperiod="1.75"
                                                     iterations="NumberOfStimuli * StimulusRepetitions" />
                 </sequence>
             </stimulation-pattern>
