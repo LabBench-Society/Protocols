@@ -15,6 +15,9 @@
     <protocol id="gonogo"
               name="Go/Nogo Task"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+    <protocol id="aoddball"
+              name="Audiotory Oddball Task"
+              category="Psychology Research Paradigm;EEG;LabBench I/O" />
     <protocol id="cpardemo"
               name="Introduction to Cuff Pressure Algometry" 
               category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
