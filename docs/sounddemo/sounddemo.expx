@@ -10,7 +10,7 @@
         <description />
         <devices>
             <joystick id="joystick" />
-            <sound id="sound" calidation-data=""/>
+            <sound id="sound" />
         </devices>
         <device-mapping>
             <device-assignment test-type="psychophysics-threshold-estimation"
