@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/repository.xsd"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/repository.xsd"
             id="labbench.io">
 
     <protocol id="introdemo"
               name="Introduction to LabBench"
+              labbench-version="4.0.2"
               category="Psychometrics;Demonstration Protocol"/>
     <protocol id="stroop"
               name="Stroop Task"
@@ -15,20 +16,28 @@
     <protocol id="gonogo"
               name="Go/Nogo Task"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+    <protocol id="aoddball"
+              name="Audiotory Oddball Task"
+              category="Psychology Research Paradigm;EEG;LabBench I/O" />
     <protocol id="cpardemo"
-              name="Introduction to Cuff Pressure Algometry" 
+              name="Introduction to Cuff Pressure Algometry"
+              labbench-version="4.0.2"
               category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
     <protocol id="cstscpmnct"
               name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
+              labbench-version="4.0.2"
               category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
     <protocol id="ctscpmnct"
               name="Temporal Summation and Conditioned Pain Modulation Protocol"
+              labbench-version="4.0.2"
               category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
     <protocol id="ctscpm"
               name="Temporal Summation and Conditioned Pain Modulation Protocol" 
+              labbench-version="4.0.2"
               category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
     <protocol id="ctscpmauto"
               name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
+              labbench-version="4.0.2"
               category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
     
     <protocols>

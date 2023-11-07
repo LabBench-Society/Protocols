@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
+            name="Auditory Oddball Task"
+            id="aoddball"
+            protocol="aoddball@labbench.io">
+    <description>
+Implementation of an auditory oddball task.
+    </description>
+    <citation>No citation is required when using this protocol.</citation>
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <devices>
+            <lio id="lio"
+                 trigger-logic-system="positive">
+                <response-devices>
+                    <audio-trigger id="trigger"
+                                   arming-period="200"
+                                   gain="127"
+                                   threshold="127"
+                                   timing-source="response-port01" />
+                    <button id="button"
+                            timing-source="response-port01" />
+                </response-devices>
+            </lio>
+            <sound id="sound" />
+        </devices>
+        <device-mapping>
+            <device-assignment test-type="electrophysiology-evoked-potentials"
+                               instrument-name="Response"
+                               device-id="lio.button"/>
+            <device-assignment test-type="electrophysiology-evoked-potentials"
+                               instrument-name="Stimulator"
+                               device-id="sound"/>
+            <device-assignment test-type="electrophysiology-evoked-potentials"
+                               instrument-name="Trigger"
+                               device-id="lio"/>
+        </device-mapping>
+    </experimental-setup>
+    <post-actions>
+    </post-actions>
+</experiment>
