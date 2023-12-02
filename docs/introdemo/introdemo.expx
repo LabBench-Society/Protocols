@@ -1,47 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd">
-    <description>
-The present protocol accompanies the first chapter of the LabBench book. It is intended to give you a brief overview of the capabilities of LabBench without going into too much detail. This chapter takes you through converting a paper-based protocol and case report form (CRF) to an executable LabBench protocol (this protocol). Developing this protocol involves writing the configuration files (Experiment Definition Files (*.expx), Protocol Definitition Files (*.prtx), and scripts (*.py)), setting up an experiment in LabBench Designer, collecting data with LabBench Runner, and preparing and exporting the data with the LabBench Designer for further data analysis in 3rd party software such as Jupiter Notebooks, Matlab, Excel, or similar.
+      xsi:noNamespaceSchemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd">
+      <description>
+      </description>
+      <citation>No citation is required when using this protocol.</citation>
+      <subject-validator regex="^S[0-9]{3}$"
+            advice="Please enter an ID in the form of SXXX, where X is a digit" />
+      <experimental-setup>
+            <description />
+            <devices />
+            <device-mapping />
+      </experimental-setup>
+      <protocol>
+            <languages>
+                  <language code="EN" name="English" />
+                  <language code="DA" name="Danish" />
+            </languages>
+            <defines>
+                  <define name="Text" value="func: TEXT.CreateText" />
+            </defines>
+            <tests>
+                  <meta-survey ID="SUBJECT"
+                        name="Subject">
+                        <dependencies />
+                        <content>
+                              <likert id="SEX"
+                                    title="Sex"
+                                    instruction="Please specify the sex of the subject">
+                                    <choice value="0" label="Female" />
+                                    <choice value="1" label="Male" />
+                                    <choice value="2" label="Non-binary" />
+                              </likert>
+                              <numeric id="AGE"
+                                    title="Age"
+                                    instruction="Please specify the age of the subject">
+                                    <validation min="14"
+                                          min-included="true"
+                                          max="120"
+                                          max-included="true" />
+                              </numeric>
+                        </content>
+                  </meta-survey>
 
-The protocol implements an experiment in which psychometrics measuring Depression, Anxiety, and Stress is obtained from pupils and students in the educational system. The survey used in this protocol is the Depression Anxiety Stress Scales (DASS) that the Psychology Foundation of Australia provides. This scale is in the public domain, but requires a citation to the website of [Psychology Foundation of Australia](http://www2.psy.unsw.edu.au/dass/) if it is used in a publication.      
-    </description>
-
-    <citation>No citation is required when using this protocol.</citation>
-    <subject-validator regex="^S[0-9]{3}$"
-                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup>
-    <description />
-    <devices />
-    <device-mapping />
-  </experimental-setup>
-    <post-actions>
-        <export-to-csv name="Calculate scores and export to CSV"
-                       location="C:\CPAR\intro"
-                       header="true"
-                       seperator=";"
-                       filename="dynamic: '{session}-{time}.csv'.format(session = SESSION_NAME, time = SESSION_TIME)">
-            <item name="Sex"
-                  value="SUBJECT['SEX']"
-                  default="NA"/>
-            <item name="Age"
-                  value="SUBJECT['AGE']"
-                  default="NA"/>
-            <item name="Status"
-                  value="SUBJECT['STATUS']"
-                  default="NA"/>
-            <item name="Duration"
-                  value="SUBJECT['DURATION']"
-                  default="NA"/>
-            <item name="Stess"
-                  value="func: CALCULATIONS.Stess"
-                  default="NA"/>
-            <item name="Anxiety"
-                  value="func: CALCULATIONS.Anxiety"
-                  default="NA"/>
-            <item name="Depresion"
-                  value="func: CALCULATIONS.Depresion"
-                  default="NA"/>
-        </export-to-csv>
-    </post-actions>
+                  <meta-survey ID="DASS"
+                        name="Depression, Anxietry and Stress Survey">
+                        <properties>
+                              <instructions default-instructions="INSTRUCTIONS"
+                                    override-results="true" />
+                        </properties>
+                        <dependencies>
+                              <dependency ID="SUBJECT" />
+                        </dependencies>
+                        <condition expression="SUBJECT['STATUS'] == 0"
+                              help="The subject must be in the educational system" />
+                        <templates>
+                              <likert id="LIKERT"
+                                    title="dynamic: Text['QUESTION']">
+                                    <choice value="0" label="dynamic: Text['L0']" />
+                                    <choice value="1" label="dynamic: Text['L1']" />
+                                    <choice value="2" label="dynamic: Text['L2']" />
+                                    <choice value="3" label="dynamic: Text['L3']" />
+                              </likert>
+                        </templates>
+                        <content>
+                              <likert id="I01" template="LIKERT" instruction="dynamic: Text['I01']" />
+                              <likert id="I02" template="LIKERT" instruction="dynamic: Text['I02']" />
+                              <likert id="I03" template="LIKERT" instruction="dynamic: Text['I03']" />
+                              <likert id="I04" template="LIKERT" instruction="dynamic: Text['I04']" />
+                              <likert id="I05" template="LIKERT" instruction="dynamic: Text['I05']" />
+                              <likert id="I06" template="LIKERT" instruction="dynamic: Text['I06']" />
+                              <likert id="I07" template="LIKERT" instruction="dynamic: Text['I07']" />
+                              <likert id="I08" template="LIKERT" instruction="dynamic: Text['I08']" />
+                              <likert id="I09" template="LIKERT" instruction="dynamic: Text['I09']" />
+                              <likert id="I10" template="LIKERT" instruction="dynamic: Text['I10']" />
+                              <likert id="I11" template="LIKERT" instruction="dynamic: Text['I11']" />
+                              <likert id="I12" template="LIKERT" instruction="dynamic: Text['I12']" />
+                              <likert id="I13" template="LIKERT" instruction="dynamic: Text['I13']" />
+                              <likert id="I14" template="LIKERT" instruction="dynamic: Text['I14']" />
+                              <likert id="I15" template="LIKERT" instruction="dynamic: Text['I15']" />
+                              <likert id="I16" template="LIKERT" instruction="dynamic: Text['I16']" />
+                              <likert id="I17" template="LIKERT" instruction="dynamic: Text['I17']" />
+                              <likert id="I18" template="LIKERT" instruction="dynamic: Text['I18']" />
+                              <likert id="I19" template="LIKERT" instruction="dynamic: Text['I19']" />
+                              <likert id="I20" template="LIKERT" instruction="dynamic: Text['I20']" />
+                              <likert id="I21" template="LIKERT" instruction="dynamic: Text['I21']" />
+                              <likert id="I22" template="LIKERT" instruction="dynamic: Text['I22']" />
+                              <likert id="I23" template="LIKERT" instruction="dynamic: Text['I23']" />
+                              <likert id="I24" template="LIKERT" instruction="dynamic: Text['I24']" />
+                              <likert id="I25" template="LIKERT" instruction="dynamic: Text['I25']" />
+                              <likert id="I26" template="LIKERT" instruction="dynamic: Text['I26']" />
+                              <likert id="I27" template="LIKERT" instruction="dynamic: Text['I27']" />
+                              <likert id="I28" template="LIKERT" instruction="dynamic: Text['I28']" />
+                              <likert id="I29" template="LIKERT" instruction="dynamic: Text['I29']" />
+                              <likert id="I30" template="LIKERT" instruction="dynamic: Text['I30']" />
+                              <likert id="I31" template="LIKERT" instruction="dynamic: Text['I31']" />
+                              <likert id="I32" template="LIKERT" instruction="dynamic: Text['I32']" />
+                              <likert id="I33" template="LIKERT" instruction="dynamic: Text['I33']" />
+                              <likert id="I34" template="LIKERT" instruction="dynamic: Text['I34']" />
+                              <likert id="I35" template="LIKERT" instruction="dynamic: Text['I35']" />
+                              <likert id="I36" template="LIKERT" instruction="dynamic: Text['I36']" />
+                              <likert id="I37" template="LIKERT" instruction="dynamic: Text['I37']" />
+                              <likert id="I38" template="LIKERT" instruction="dynamic: Text['I38']" />
+                              <likert id="I39" template="LIKERT" instruction="dynamic: Text['I39']" />
+                              <likert id="I40" template="LIKERT" instruction="dynamic: Text['I40']" />
+                              <likert id="I41" template="LIKERT" instruction="dynamic: Text['I41']" />
+                              <likert id="I42" template="LIKERT" instruction="dynamic: Text['I42']" />
+                        </content>
+                  </meta-survey>
+            </tests>
+            <assets>
+                  <file-asset id="TEXT" file="TEXT_EN.py">
+                        <language code="DA" file="TEXT_DA.py" />
+                  </file-asset>
+                  <file-asset id="CALCULATIONS" file="Calculations.py" />
+                  <file-asset id="INSTRUCTIONS" file="DASS_EN.rtf">
+                        <language code="DA" file="DASS_DA.rtf" />
+                  </file-asset>
+            </assets>
+      </protocol>
+      <post-actions>
+            <export-to-csv name="Calculate scores and export to CSV"
+                  location="C:\CPAR\intro"
+                  header="true"
+                  seperator=";"
+                  filename="dynamic: '{session}-{time}.csv'.format(session = SESSION_NAME, time = SESSION_TIME)">
+                  <item name="Sex" value="SUBJECT['SEX']" default="NA" />
+                  <item name="Age" value="SUBJECT['AGE']" default="NA" />
+                  <item name="Stess" value="func: CALCULATIONS.Stess" default="NA" />
+                  <item name="Anxiety" value="func: CALCULATIONS.Anxiety" default="NA" />
+                  <item name="Depresion" value="func: CALCULATIONS.Depresion" default="NA" />
+            </export-to-csv>
+      </post-actions>
 </experiment>
