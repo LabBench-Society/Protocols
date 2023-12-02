@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd">
     <description>
 The present protocol accompanies the first chapter of the LabBench book. It is intended to give you a brief overview of the capabilities of LabBench without going into too much detail. This chapter takes you through converting a paper-based protocol and case report form (CRF) to an executable LabBench protocol (this protocol). Developing this protocol involves writing the configuration files (Experiment Definition Files (*.expx), Protocol Definitition Files (*.prtx), and scripts (*.py)), setting up an experiment in LabBench Designer, collecting data with LabBench Runner, and preparing and exporting the data with the LabBench Designer for further data analysis in 3rd party software such as Jupiter Notebooks, Matlab, Excel, or similar.
 
