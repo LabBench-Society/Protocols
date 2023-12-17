@@ -9,6 +9,7 @@
               category="Psychometrics;Demonstration Protocol;Nocitech CPAR"/>
     <protocol id="stopsignal"
               name="Stop Signal Task"
+              labbench-version="4.1.0"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>              
     <protocol id="stroop"
               name="Stroop Task"
