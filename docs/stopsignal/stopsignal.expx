@@ -70,13 +70,13 @@
                 value="50"/>
             <define
                 name="HighDelayLimit"
-                value="400"/>
+                value="800"/>
             <define
                 name="FeedbackDelay"
-                value="500"/>
+                value="1000"/>
             <define
                 name="FixationDelay"
-                value="100"/>
+                value="500"/>
             <define
                 name="FeedbackTime"
                 value="1000"/>
