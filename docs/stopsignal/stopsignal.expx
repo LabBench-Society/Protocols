@@ -64,25 +64,25 @@
                 value="func: Script.CreateImages(tc)"/>
             <define 
                 name="NumberOfBlocks" 
-                value="1"/>
+                value="int(50/3)"/>
             <define
                 name="LowDelayLimit"
-                value="100"/>
+                value="50"/>
             <define
                 name="HighDelayLimit"
-                value="1000"/>
+                value="400"/>
             <define
                 name="FeedbackDelay"
-                value="2000"/>
+                value="500"/>
             <define
                 name="FixationDelay"
-                value="500"/>
+                value="100"/>
             <define
                 name="FeedbackTime"
                 value="1000"/>
             <define
                 name="Pause"
-                value="1000"/>
+                value="500"/>
             <define
                 name="Period"
                 value="(2*FixationDelay + FeedbackDelay + FeedbackTime + Pause)/1000"/>
