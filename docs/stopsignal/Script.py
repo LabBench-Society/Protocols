@@ -13,7 +13,8 @@ class ImageRepository:
         self.StopRight = images.GetImageFromArchive("stopRight.png")
         self.Correct = images.GetImageFromArchive("correct.png")
         self.Wrong = images.GetImageFromArchive("wrong.png")
-        self.Instruction = images.GetImageFromArchive("instructions.png")        
+        self.InstructionSound = images.GetImageFromArchive("instructionsSound.png")        
+        self.InstructionVisual = images.GetImageFromArchive("instructionsVisual.png")        
         self.FixationCross = images.GetImageFromArchive("fixation.png")
 
 class UpDownStopSignalTask:
@@ -261,8 +262,12 @@ class GoSignalTask:
 def CreateImages(tc):
     return ImageRepository(tc)
 
-def Instructions(tc):
-    tc.Devices.ImageDisplay.Display(tc.Images.Instruction)
+def InstructionsVisual(tc):
+    tc.Devices.ImageDisplay.Display(tc.Images.InstructionVisual)
+    return True
+
+def InstructionsAuditory(tc):
+    tc.Devices.ImageDisplay.Display(tc.Images.InstructionSound)
     return True
 
 def UpDownInitialize(tc):
