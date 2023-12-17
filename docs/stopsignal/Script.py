@@ -17,11 +17,31 @@ class ImageRepository:
         self.InstructionVisual = images.GetImageFromArchive("instructionsVisual.png")        
         self.FixationCross = images.GetImageFromArchive("fixation.png")
 
-class UpDownStopSignalTask:
+class VisualStopSignal:
     def __init__(self, tc):
+        self.display = tc.Devices.ImageDisplay
+        self.images = tc.Images
+
+    def run(self, signal):
+        if signal == 0:
+            self.display.Display(self.images.StopLeft)
+        else:
+            self.display.Display(self.images.StopRight)       
+
+class AuditoryStopSignal:
+    def __init__(self, tc):
+        self.sound = tc.Devices.Sound
+        self.stopSound = tc.Create(tc.Waveforms.Sin(1, 500, 0, int(0.2 * 44100), 44100))
+
+    def run(self, signal):
+        self.sound.playsc(self.stopSound)
+
+class UpDownStopSignalTask:
+    def __init__(self, tc, stopSignal):
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Response
         self.images = tc.Images
+        self.stopSignal = stopSignal
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -59,12 +79,7 @@ class UpDownStopSignalTask:
         return self.delay
         
     def Stop(self):
-
-        if self.signal == 0:
-            self.display.Display(self.images.StopLeft)
-        else:
-            self.display.Display(self.images.StopRight)                      
-
+        self.stopSignal.run(self.signal)
         return self.feedbackDelay - self.delay
         
     def Feedback(self):
@@ -95,11 +110,12 @@ class UpDownStopSignalTask:
         return self.feedbackTime
 
 class PsiStopSignalTask:
-    def __init__(self, tc):
+    def __init__(self, tc, stopSignal):
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Response
         self.images = tc.Images
-                  
+        self.stopSignal = stopSignal
+
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
         self.time = []
@@ -159,12 +175,7 @@ class PsiStopSignalTask:
         return self.delay
         
     def Stop(self):
-
-        if self.signal == 0:
-            self.display.Display(self.images.StopLeft)
-        else:
-            self.display.Display(self.images.StopRight)                      
-
+        self.stopSignal.run(self.signal)
         return self.feedbackDelay - self.delay
         
     def Feedback(self):
@@ -200,7 +211,7 @@ class GoSignalTask:
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Response
         self.images = tc.Images
-                  
+
         self.goDelay = tc.HighDelayLimit
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -270,13 +281,23 @@ def InstructionsAuditory(tc):
     tc.Devices.ImageDisplay.Display(tc.Images.InstructionSound)
     return True
 
-def UpDownInitialize(tc):
-    tc.Defines.Set("StopTask", UpDownStopSignalTask(tc))
+def UpDownInitializeAuditory(tc):
+    tc.Defines.Set("StopTask", UpDownStopSignalTask(tc, AuditoryStopSignal(tc)))
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
-def PsiInitialize(tc):
-    tc.Defines.Set("StopTask", PsiStopSignalTask(tc))
+def PsiInitializeAuditory(tc):
+    tc.Defines.Set("StopTask", PsiStopSignalTask(tc, AuditoryStopSignal(tc)))
+    tc.Defines.Set("GoTask", GoSignalTask(tc))
+    return True
+
+def UpDownInitializeVisual(tc):
+    tc.Defines.Set("StopTask", UpDownStopSignalTask(tc, VisualStopSignal(tc)))
+    tc.Defines.Set("GoTask", GoSignalTask(tc))
+    return True
+
+def PsiInitializeVisual(tc):
+    tc.Defines.Set("StopTask", PsiStopSignalTask(tc, VisualStopSignal(tc)))
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
