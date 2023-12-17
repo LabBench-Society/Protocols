@@ -327,14 +327,12 @@ def Stimulate(tc, x):
                     .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Go)
                     .Run(Stop)
-                    .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Feedback))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
                     .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Go)
-                    .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Feedback))
     else:
         Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))

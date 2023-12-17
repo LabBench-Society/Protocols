@@ -85,7 +85,7 @@
                 value="500"/>
             <define
                 name="Period"
-                value="(2*FixationDelay + FeedbackDelay + FeedbackTime + Pause)/1000"/>
+                value="(FixationDelay + FeedbackDelay + FeedbackTime + Pause)/1000"/>
             <define 
                 name="Trials"
                 value="30"/>
