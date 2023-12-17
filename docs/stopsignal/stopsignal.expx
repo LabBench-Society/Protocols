@@ -5,7 +5,9 @@
     <experimental-setup>
         <description />
         <devices>
-            <sound id="sound"/>
+            <!-- 
+                <sound id="sound"/>
+            -->
             
             <joystick id="joystick">
                 <map>
@@ -48,11 +50,13 @@
                 device-id="display.image"
                 instrument-name="ImageDisplay"/>
 
-            <device-assignment
+            <!-- 
+                <device-assignment
                 test-type="electrophysiology-evoked-potentials"
                 device-id="sound"
                 instrument-name="Sound"/>                
-        </device-mapping>        
+            -->
+            </device-mapping>        
     </experimental-setup>
     <protocol>
         <languages>
@@ -202,6 +206,7 @@
                 </stimuli>
             </electrophysiology-evoked-potentials>
 
+            <!--
             <electrophysiology-evoked-potentials 
                 ID="UDSOUND"
                 name="Auditory Stop Signal Task (Up/Dwon-Method Tracking)"
@@ -293,7 +298,8 @@
                         name="STOP"
                         count="3"/>
                 </stimuli>
-            </electrophysiology-evoked-potentials>            
+            </electrophysiology-evoked-potentials>    
+        -->        
         </tests>
         <assets>
             <file-asset id="Images" file="Images.zip" />
