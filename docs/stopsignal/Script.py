@@ -23,6 +23,7 @@ class VisualStopSignal:
         self.images = tc.Images
 
     def run(self, signal):
+        Log.Information("VISUAL STOP SIGNAL")
         if signal == 0:
             self.display.Display(self.images.StopLeft)
         else:
@@ -31,10 +32,13 @@ class VisualStopSignal:
 class AuditoryStopSignal:
     def __init__(self, tc):
         self.sound = tc.Devices.Sound
-        self.stopSound = tc.Create(tc.Waveforms.Sin(1, 500, 0, int(0.2 * 44100), 44100))
+        self.stopSound = tc.Create(tc.Waveforms.Sin(1, 500, 0, int(0.2 * 44100), 44100)
+                                   .SetChannel(3)
+                                   .SetSampleRate(44100))
 
     def run(self, signal):
-        self.sound.playsc(self.stopSound)
+        Log.Information("AUDITORY STOP SIGNAL")
+        self.sound.Play(self.stopSound)
 
 class UpDownStopSignalTask:
     def __init__(self, tc, stopSignal):
