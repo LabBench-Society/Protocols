@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
-            name="Flanker Task"
-            id="flanker"
-            protocol="flanker@labbench.io">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.1.0/experiment.xsd">
     <description>
     </description>
     <citation>No citation is required when using this protocol.</citation>
@@ -32,10 +29,10 @@
                 </configurations>
             </display>
             <joystick id="button">
-                <button-assignments>
-                    <assignment code="2" button="button-02"/>
-                    <assignment code="4" button="button-03"/>
-                </button-assignments>
+                <map>
+                    <button-assignment code="2" button="button-02"/>
+                    <button-assignment code="4" button="button-03"/>
+                </map>
             </joystick>
         </devices>
         <device-mapping>
@@ -47,6 +44,67 @@
                                device-id="button"/>
         </device-mapping>
     </experimental-setup>
+    <protocol>
+        <defines>
+            <define name="StimulusRepetitions" value="3"/>
+            <define name="DisplayTime" value="1000"/>
+        </defines>
+        <tests>
+            <electrophysiology-evoked-potentials ID="FLANKER"
+                                                 name="Flanker Task"
+                                                 experimental-setup-id="image"
+                                                 response-collection="yes-no"
+                                                 stimulus-update-rate="10000">
+                <test-events selected="func: Script.Instructions(tc)"
+                             complete="func: Script.Evaluate(tc)">
+                    <instrument name="Display"
+                                interface="image-display"
+                                required="true"/>
+                </test-events>
+                
+                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="Display"
+                                interface="image-display"
+                                required="true"/>
+                </stimulation-scripts>
+    
+                <stimulation-pattern time-base="seconds">
+                    <sequence iterations="1">
+                        <sequence iterations="1" Tperiod="4" stimulate="false" />
+    
+                        <uniformly-distributed-sequence minTperiod="2"
+                                                        maxTperiod="3"
+                                                        iterations="NumberOfStimuli * StimulusRepetitions" />
+                    </sequence>
+                </stimulation-pattern>
+    
+                <stimuli order="block-random">
+                    <stimulus name="ch" count="2" />
+                    <stimulus name="ck" />
+                    <stimulus name="cs" />
+    
+                    <stimulus name="hc" count="2" />
+                    <stimulus name="hk" />
+                    <stimulus name="hs" />
+    
+                    <stimulus name="kc" count="2" />
+                    <stimulus name="kh" />
+                    <stimulus name="ks" />
+    
+                    <stimulus name="sc" count="2" />
+                    <stimulus name="sh" />
+                    <stimulus name="sk" />
+                </stimuli>
+            </electrophysiology-evoked-potentials>        
+        </tests>
+        <assets>
+            <file-asset id="EnglishImages" file="images_en.zip" />
+            <file-asset id="Script" file="Script.py" />
+        </assets>
+    </protocol>    
     <post-actions>
     </post-actions>
 </experiment>

@@ -17,6 +17,7 @@
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
     <protocol id="flanker"
               name="Flanker Task"
+              labbench-version="4.1.0"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
     <protocol id="gonogo"
               name="Go/Nogo Task"
