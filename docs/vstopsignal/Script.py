@@ -13,7 +13,7 @@ class ImageRepository:
         self.StopRight = images.GetImageFromArchive("stopRight.png")
         self.Correct = images.GetImageFromArchive("correct.png")
         self.Wrong = images.GetImageFromArchive("wrong.png")
-        self.Instruction = images.GetImageFromArchive("instructionsVisual.png")        
+        self.Instruction = images.GetImageFromArchive("instructions.png")        
         self.FixationCross = images.GetImageFromArchive("fixation.png")
 
 class UpDownAlgorithm:
