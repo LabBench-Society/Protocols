@@ -78,7 +78,6 @@ class PsiAlgorithm:
         result.Annotations.Add("sstBeta", self.beta)   
         result.Annotations.Add("sstBetaLower", [x[0] for x in self.betaConfidence])        
         result.Annotations.Add("sstBetaUpper", [x[1] for x in self.betaConfidence])                
-        result.Annotations.Add("sstDelays", self.delays)
 
     def Iterate(self, answer):
         self.delays.append(self.delay)
