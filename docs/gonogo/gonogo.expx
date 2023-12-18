@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
-            name="Go/NoGo Task"
-            id="gonogo"
-            protocol="gonogo@labbench.io">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.0.0/experiment.xsd">
     <description>
     </description>
     <citation>No citation is required when using this protocol.</citation>
@@ -32,12 +29,12 @@
                 </configurations>
             </display>
             <joystick id="button">
-                <button-assignments>
-                    <assignment code="1" button="button-01"/>
-                    <assignment code="2" button="button-01"/>
-                    <assignment code="4" button="button-01"/>
-                    <assignment code="8" button="button-01"/>
-                </button-assignments>
+                <map>
+                    <button-assignment code="1" button="button-01"/>
+                    <button-assignment code="2" button="button-01"/>
+                    <button-assignment code="4" button="button-01"/>
+                    <button-assignment code="8" button="button-01"/>
+                </map>
             </joystick>
         </devices>
         <device-mapping>
@@ -49,6 +46,54 @@
                                device-id="button"/>
         </device-mapping>
     </experimental-setup>
+    <protocol>
+        <defines>
+            <define name="StimulusRepetitions" value="16"/>
+            <define name="DisplayTime" value="250"/>
+        </defines>
+        <tests>
+            <electrophysiology-evoked-potentials ID="GONOGO"
+                                                 name="Go/NoGo Task"
+                                                 experimental-setup-id="image"
+                                                 response-collection="yes-no"
+                                                 stimulus-update-rate="10000">
+                <test-events selected="func: Script.Instructions(tc)"
+                             complete="func: Script.Evaluate(tc)">
+                    <instrument name="Display"
+                                interface="image-display"
+                                required="true"/>
+                </test-events>
+                
+                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="Display"
+                                interface="image-display"
+                                required="true"/>
+                </stimulation-scripts>
+    
+                <stimulation-pattern time-base="seconds">
+                    <sequence iterations="1">
+                        <sequence iterations="1" Tperiod="4" stimulate="false" />
+    
+                        <uniformly-distributed-sequence minTperiod="1.25"
+                                                        maxTperiod="1.75"
+                                                        iterations="NumberOfStimuli * StimulusRepetitions" />
+                    </sequence>
+                </stimulation-pattern>
+    
+                <stimuli order="block-random">
+                    <stimulus name="go" count="4" />
+                    <stimulus name="nogo" />
+                </stimuli>
+            </electrophysiology-evoked-potentials>        
+        </tests>
+        <assets>
+            <file-asset id="EnglishImages" file="images_en.zip" />
+            <file-asset id="Script" file="Script.py" />
+        </assets>
+    </protocol>
     <post-actions>
     </post-actions>
 </experiment>
