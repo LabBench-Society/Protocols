@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
-            name="Auditory Oddball Task"
-            id="aoddball"
-            protocol="aoddball@labbench.io">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.1.0/experiment.xsd">
     <description>
 Implementation of an auditory oddball task.
     </description>
@@ -13,7 +10,11 @@ Implementation of an auditory oddball task.
     <experimental-setup>
         <devices>
             <lio id="lio"
-                 trigger-logic-system="positive">
+                 default-analog-output="0">
+                 <trigger-setup 
+                    logic-system="positive" 
+                    low-byte-voltage-level="5.0V" 
+                    high-byte-voltage-level="unconnected" />
                 <response-devices>
                     <audio-trigger id="trigger"
                                    arming-period="200"
@@ -38,6 +39,62 @@ Implementation of an auditory oddball task.
                                device-id="lio"/>
         </device-mapping>
     </experimental-setup>
+    <protocol>
+        <defines>
+            <define name="NumberOfOddballs" value="40"/>
+        </defines>
+        <tests>
+            <electrophysiology-evoked-potentials ID="ODDBALL"
+                                                 name="Auditory Oddball Task"
+                                                 response-collection="yes-no"
+                                                 stimulus-update-rate="44100"
+                                                 trigger-update-rate="20000">
+    
+                <configuration>
+                    <trigger-generation trigger-source="response-port01" />
+                </configuration>
+                
+                <stimulation-pattern time-base="seconds">
+                    <uniformly-distributed-sequence iterations="NumberOfStimuli * NumberOfOddballs"
+                                                    minTperiod="1"
+                                                    maxTperiod="2" 
+                                                    stimulate="true"/>                                                                                                
+                </stimulation-pattern>
+                
+                <stimuli order="block-random">
+                    <stimulus name="Oddball"
+                              count="1"
+                              intensity="80">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="Code"
+                                      value="1"/>
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine Is="x" Frequency="1000" Ts="200"/>
+                        </stimulus>
+                    </stimulus>
+    
+                    <stimulus name="Normal"
+                              count="5"
+                              intensity="80">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="Code"
+                                      value="2"/>
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine Is="x" Frequency="500" Ts="200"/>
+                        </stimulus>
+                    </stimulus>
+                </stimuli>
+            </electrophysiology-evoked-potentials>                                             
+        </tests>
+        <assets>
+        </assets>
+    </protocol>
     <post-actions>
     </post-actions>
 </experiment>

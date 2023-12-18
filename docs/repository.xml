@@ -25,6 +25,7 @@
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
     <protocol id="aoddball"
               name="Audiotory Oddball Task"
+              labbench-version="4.1.0"
               category="Psychology Research Paradigm;EEG;LabBench I/O" />
     <protocol id="cpardemo"
               name="Introduction to Cuff Pressure Algometry"
