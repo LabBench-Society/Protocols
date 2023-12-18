@@ -13,6 +13,7 @@
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>              
     <protocol id="stroop"
               name="Stroop Task"
+              labbench-version="4.1.0"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
     <protocol id="flanker"
               name="Flanker Task"
