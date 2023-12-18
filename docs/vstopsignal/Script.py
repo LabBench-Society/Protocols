@@ -13,8 +13,7 @@ class ImageRepository:
         self.StopRight = images.GetImageFromArchive("stopRight.png")
         self.Correct = images.GetImageFromArchive("correct.png")
         self.Wrong = images.GetImageFromArchive("wrong.png")
-        self.InstructionSound = images.GetImageFromArchive("instructionsSound.png")        
-        self.InstructionVisual = images.GetImageFromArchive("instructionsVisual.png")        
+        self.Instruction = images.GetImageFromArchive("instructionsVisual.png")        
         self.FixationCross = images.GetImageFromArchive("fixation.png")
 
 class UpDownAlgorithm:
@@ -228,7 +227,7 @@ def CreateImages(tc):
     return ImageRepository(tc)
 
 def Instructions(tc):
-    tc.Devices.ImageDisplay.Display(tc.Images.InstructionVisual)
+    tc.Devices.ImageDisplay.Display(tc.Images.Instruction)
     return True
 
 def UpDownInitialize(tc):
