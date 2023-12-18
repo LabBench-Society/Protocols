@@ -247,7 +247,7 @@ class GoSignalTask:
                
     def Feedback(self):
         button = self.response.LatchedActive
-        self.time = self.response.ReactionTime
+        self.time.append(self.response.ReactionTime)
         
         if button == ButtonID.BUTTON_NONE:
             self.answer.append(0)
@@ -270,7 +270,11 @@ class GoSignalTask:
                     self.answer.append(0)
                     self.display.Display(self.images.Wrong)
                         
-        Log.Debug("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, ]", button, "left" if self.signal == 0 else "right", self.answer[-1])
+        Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
+                         button, 
+                         "left" if self.signal == 0 else "right", 
+                         self.answer[-1],
+                         self.time[-1])
         
         return self.feedbackTime
  
