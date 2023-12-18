@@ -127,14 +127,14 @@
                 stimulus-update-rate="44100">
 
                 <test-events 
-                    selected="func: Script.InstructionsVisual(tc)"
+                    selected="func: Script.Instructions(tc)"
                     complete="func: Script.Complete(tc)">
                     <instrument name="ImageDisplay"
                                 interface="image-display"
                                 required="true"/>
                 </test-events>
 
-                <stimulation-scripts initialize="func: Script.UpDownInitializeVisual(tc)"
+                <stimulation-scripts initialize="func: Script.UpDownInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
@@ -171,14 +171,14 @@
                 stimulus-update-rate="44100">
 
                 <test-events
-                    selected="func: Script.InstructionsVisual(tc)"
+                    selected="func: Script.Instructions(tc)"
                     complete="func: Script.Complete(tc)">
                     <instrument name="ImageDisplay"
                                 interface="image-display"
                                 required="true"/>
                 </test-events>
 
-                <stimulation-scripts initialize="func: Script.PsiInitializeVisual(tc)"
+                <stimulation-scripts initialize="func: Script.PsiInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
