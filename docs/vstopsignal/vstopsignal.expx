@@ -120,8 +120,8 @@
         </defines>
         <tests>
             <electrophysiology-evoked-potentials 
-                ID="UDVISUAL"
-                name="Visual Stop Signal Task (Up/Dwon-Method Tracking)"
+                ID="T01"
+                name="Stop Signal Task (Up/Dwon-Method Tracking)"
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100">
@@ -164,8 +164,8 @@
             </electrophysiology-evoked-potentials>
 
             <electrophysiology-evoked-potentials
-                ID="PSIVISUAL"
-                name="Visual Stop Signal Task (Psi-Method Tracking)"
+                ID="T02"
+                name="Stop Signal Task (Psi-Method Tracking)"
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100">
@@ -204,102 +204,7 @@
                         name="STOP"
                         count="3"/>
                 </stimuli>
-            </electrophysiology-evoked-potentials>
-
-            <!--
-            <electrophysiology-evoked-potentials 
-                ID="UDSOUND"
-                name="Auditory Stop Signal Task (Up/Dwon-Method Tracking)"
-                experimental-setup-id="image"
-                response-collection="none"
-                stimulus-update-rate="44100">
-
-                <test-events 
-                    selected="func: Script.InstructionsAuditory(tc)"
-                    complete="func: Script.Complete(tc)">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
-                </test-events>
-
-                <stimulation-scripts initialize="func: Script.UpDownInitializeAuditory(tc)"
-                                     stimulate="func: Script.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
-                    <instrument name="Response"
-                                interface="button"
-                                required="true"/>       
-                    <instrument name="Sound" 
-                                interface="sound-player" 
-                                required="true" />            
-                </stimulation-scripts>
-
-                <stimulation-pattern time-base="seconds">
-                    <sequence
-                        Tperiod="Period"
-                        iterations="NumberOfStimuli * NumberOfBlocks" />                        
-                </stimulation-pattern>
-
-                <stimuli order="block-random">
-                    <stimulus 
-                        name="GO" 
-                        count="7" />
-                    <stimulus 
-                        name="STOP" 
-                        count="3"/>
-                </stimuli>
-
-            </electrophysiology-evoked-potentials>
-
-            <electrophysiology-evoked-potentials
-                ID="PSISOUND"
-                name="Auditory Stop Signal Task (Psi-Method Tracking)"
-                experimental-setup-id="image"
-                response-collection="none"
-                stimulus-update-rate="44100">
-
-                <test-events
-                    selected="func: Script.InstructionsAuditory(tc)"
-                    complete="func: Script.Complete(tc)">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
-                </test-events>
-
-                <stimulation-scripts initialize="func: Script.PsiInitializeAuditory(tc)"
-                                     stimulate="func: Script.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
-                    <instrument name="Response"
-                                interface="button"
-                                required="true"/>
-                    <instrument name="Sound" 
-                                interface="sound-player" 
-                                required="true" />            
-                </stimulation-scripts>
-
-                <stimulation-pattern time-base="seconds">
-                    <sequence
-                        Tperiod="Period"
-                        iterations="NumberOfStimuli * NumberOfBlocks" />
-                </stimulation-pattern>
-
-                <stimuli order="block-random">
-                    <stimulus
-                        name="GO"
-                        count="7" />
-                    <stimulus
-                        name="STOP"
-                        count="3"/>
-                </stimuli>
             </electrophysiology-evoked-potentials>    
-        -->        
         </tests>
         <assets>
             <file-asset id="Images" file="Images.zip" />
