@@ -22,8 +22,8 @@
                 background-color="rgb(0,0,0)"
                 inactive-color="rgb(32,32,32)"
                 normative-distance="40"
-                position="upper-right"
-                screen="primary">
+                position="fullscreen"
+                screen="secondary">
 
                 <monitor
                     diagonal-size="13.3"
