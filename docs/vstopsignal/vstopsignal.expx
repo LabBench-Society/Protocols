@@ -68,7 +68,7 @@
                 value="func: Script.CreateImages(tc)"/>
             <define 
                 name="NumberOfBlocks" 
-                value="int(1)"/> <!-- Correct value 50/3-->
+                value="int(50/3)"/> <!-- Correct value 50/3-->
             <define
                 name="LowDelayLimit"
                 value="50"/>
