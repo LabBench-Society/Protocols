@@ -65,21 +65,23 @@
                 name="HighDelayLimit"
                 value="500"/>
             <define
-                name="ResponseTimeout"
-                value="1000"/>
-            
-            <define
                 name="FixationDelay"
                 value="500"/>
+            <define
+                name="ResponseTimeout"
+                value="1000"/>
+            <define 
+                name="FeedbackDelay"
+                value="1000"/>            
             <define
                 name="FeedbackTime"
                 value="1000"/>
             <define
                 name="Pause"
-                value="500"/>
+                value="1000"/>
             <define
                 name="Period"
-                value="(FixationDelay + ResponseTimeout + FeedbackTime + Pause)/1000"/>
+                value="(FixationDelay + ResponseTimeout + FeedbackDelay + FeedbackTime + Pause)/1000"/>
             <define 
                 name="Trials"
                 value="30"/>

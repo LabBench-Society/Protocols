@@ -100,6 +100,7 @@ class StopSignalTask:
         self.algorithm = algorithm
         self.feedbackTime = tc.FeedbackTime
         self.responseTimeout = tc.ResponseTimeout
+        self.feedbackDelay = tc.FeedbackDelay
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -136,15 +137,15 @@ class StopSignalTask:
 
         return self.responseTimeout - self.algorithm.delay
         
-    def Feedback(self):       
+    def Evaluate(self):     
+        self.display.Display(self.images.FixationCross)
+
         if self.response.LatchedActive != ButtonID.BUTTON_NONE:
             self.answer.append(0)
             self.time.append(self.response.ReactionTime)
-            self.display.Display(self.images.Wrong)        
         else:           
             self.answer.append(1)
             self.time.append(-1)
-            self.display.Display(self.images.Correct)
 
         self.algorithm.Iterate(True if self.answer[-1] == 1 else False)
 
@@ -153,6 +154,14 @@ class StopSignalTask:
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
         
+        return self.feedbackDelay
+    
+    def Feedback(self):
+        if self.answer[-1] == 1:
+            self.display.Display(self.images.Correct)
+        else:
+            self.display.Display(self.images.Wrong)
+
         return self.feedbackTime
 
 class GoSignalTask:
@@ -169,6 +178,7 @@ class GoSignalTask:
         
         self.feedbackTime = tc.FeedbackTime
         self.responseTimeout = tc.ResponseTimeout
+        self.feedbackDelay = tc.FeedbackDelay
         
         self.result = tc.Current
             
@@ -191,30 +201,25 @@ class GoSignalTask:
        
         return self.responseTimeout
                
-    def Feedback(self):
+    def Evaluate(self):
         button = self.response.LatchedActive
         self.time.append(self.response.ReactionTime)
+        self.display.Display(self.images.FixationCross)
         
         if button == ButtonID.BUTTON_NONE:
             self.answer.append(0)
-            self.display.Display(self.images.Wrong)
-       
         else:         
             if self.signal == 0: # Left
                 if button == ButtonID.LEFT: # Correct
                     self.answer.append(1)
-                    self.display.Display(self.images.Correct)
                 else: # wrong
                     self.answer.append(0)
-                    self.display.Display(self.images.Wrong)
                     
             else: # Right
                 if button == ButtonID.RIGHT: # Correct
                     self.answer.append(1)
-                    self.display.Display(self.images.Correct)
                 else: # wrong
                     self.answer.append(0)
-                    self.display.Display(self.images.Wrong)
                         
         Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 
@@ -222,6 +227,14 @@ class GoSignalTask:
                          self.answer[-1],
                          self.time[-1])
         
+        return self.feedbackDelay
+    
+    def Feedback(self):
+        if self.answer[-1] == 1:
+            self.display.Display(self.images.Correct)
+        else:
+            self.display.Display(self.images.Wrong)
+
         return self.feedbackTime
  
 def CreateImages(tc):
@@ -264,6 +277,9 @@ def Go(task):
 def Stop(task):
     return task.Stop()
     
+def Evaluate(task):
+    return task.Evaluate()
+
 def Feedback(task):
     return task.Feedback()
     
@@ -275,12 +291,14 @@ def Stimulate(tc, x):
                     .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Go)
                     .Run(Stop)
+                    .Run(Evaluate)
                     .Run(Feedback))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
                     .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Go)
+                    .Run(Evaluate)
                     .Run(Feedback))
     else:
         Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
