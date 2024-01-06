@@ -7,8 +7,8 @@
         <devices>
             <joystick id="joystick">
                 <map>
-                    <button-assignment code="32" button="left" label="left"/>
-                    <button-assignment code="128" button="right" label="right"/>
+                    <button-assignment code="16" button="left" label="left"/>
+                    <button-assignment code="32" button="right" label="right"/>
                 </map>
             </joystick>
 
@@ -18,8 +18,8 @@
                 background-color="rgb(0,0,0)"
                 inactive-color="rgb(32,32,32)"
                 normative-distance="40"
-                position="fullscreen"
-                screen="secondary">
+                position="upper-right"
+                screen="primary">
 
                 <monitor
                     diagonal-size="13.3"
@@ -56,8 +56,8 @@
                 name="Images"
                 value="func: Script.CreateImages(tc)"/>
             <define 
-                name="NumberOfBlocks" 
-                value="int(1)"/> <!-- Correct value 50/3-->
+                name="NumberOfStopSignals" 
+                value="50"/> <!-- Correct value 50/3-->
             <define
                 name="LowDelayLimit"
                 value="50"/>
@@ -112,46 +112,6 @@
         </defines>
         <tests>
             <electrophysiology-evoked-potentials 
-                ID="GOTASK"
-                name="Go Signal Task"
-                experimental-setup-id="image"
-                response-collection="none"
-                stimulus-update-rate="44100">
-
-                <test-events 
-                    selected="func: Script.Instructions(tc)"
-                    complete="func: Script.GoComplete(tc)">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
-                </test-events>
-
-                <stimulation-scripts initialize="func: Script.GoInitialize(tc)"
-                                     stimulate="func: Script.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
-                    <instrument name="Response"
-                                interface="button"
-                                required="true"/>
-                </stimulation-scripts>
-
-                <stimulation-pattern time-base="seconds">
-                    <sequence
-                        Tperiod="Period"
-                        iterations="NumberOfStimuli * NumberOfBlocks" />                        
-                </stimulation-pattern>
-
-                <stimuli order="block-random">
-                    <stimulus 
-                        name="GO" 
-                        count="7" />
-                </stimuli>
-            </electrophysiology-evoked-potentials>    
-
-            <electrophysiology-evoked-potentials 
                 ID="T01"
                 name="Stop Signal Task (Up/Dwon-Method Tracking)"
                 experimental-setup-id="image"
@@ -165,10 +125,6 @@
                                 interface="image-display"
                                 required="true"/>
                 </test-events>
-
-                <dependencies>
-                    <dependency ID="GOTASK"/>
-                </dependencies>
 
                 <stimulation-scripts initialize="func: Script.UpDownInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
@@ -185,16 +141,16 @@
                 <stimulation-pattern time-base="seconds">
                     <sequence
                         Tperiod="Period"
-                        iterations="NumberOfStimuli * NumberOfBlocks" />                        
+                        iterations="NumberOfStimuli * NumberOfStopSignals" />                        
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
                     <stimulus 
                         name="GO" 
-                        count="7" />
+                        count="3" />
                     <stimulus 
                         name="STOP" 
-                        count="3"/>
+                        count="1"/>
                 </stimuli>
 
             </electrophysiology-evoked-potentials>
@@ -214,10 +170,6 @@
                                 required="true"/>
                 </test-events>
 
-                <dependencies>
-                    <dependency ID="GOTASK"/>
-                </dependencies>
-
                 <stimulation-scripts initialize="func: Script.PsiInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
@@ -233,16 +185,16 @@
                 <stimulation-pattern time-base="seconds">
                     <sequence
                         Tperiod="Period"
-                        iterations="NumberOfStimuli * NumberOfBlocks" />
+                        iterations="NumberOfStimuli * NumberOfStopSignals" />
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
                     <stimulus
                         name="GO"
-                        count="7" />
+                        count="3" />
                     <stimulus
                         name="STOP"
-                        count="3"/>
+                        count="1"/>
                 </stimuli>
             </electrophysiology-evoked-potentials>    
         </tests>
