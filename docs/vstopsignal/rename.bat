@@ -9,5 +9,7 @@ move Slide6.PNG wrong.png
 move Slide7.PNG instructions.png
 move Slide8.PNG clear.png
 move Slide9.PNG fixation.png
+move Slide10.PNG goInstructions.png
 
 cd ..
+pause

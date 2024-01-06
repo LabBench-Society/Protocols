@@ -14,6 +14,7 @@ class ImageRepository:
         self.Correct = images.GetImageFromArchive("correct.png")
         self.Wrong = images.GetImageFromArchive("wrong.png")
         self.Instruction = images.GetImageFromArchive("instructions.png")        
+        self.GoInstruction = images.GetImageFromArchive("goInstructions.png")        
         self.FixationCross = images.GetImageFromArchive("fixation.png")
 
 class UpDownAlgorithm:
@@ -226,8 +227,16 @@ class GoSignalTask:
 def CreateImages(tc):
     return ImageRepository(tc)
 
+def GoInstructions(tc):
+    tc.Devices.ImageDisplay.Display(tc.Images.GoInstruction)
+    return True
+
 def Instructions(tc):
     tc.Devices.ImageDisplay.Display(tc.Images.Instruction)
+    return True
+
+def GoInitialize(tc):
+    tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
 def UpDownInitialize(tc):
@@ -238,6 +247,10 @@ def UpDownInitialize(tc):
 def PsiInitialize(tc):
     tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc)))
     tc.Defines.Set("GoTask", GoSignalTask(tc))
+    return True
+
+def GoComplete(tc):
+    tc.GoTask.Complete()
     return True
 
 def Complete(tc):
