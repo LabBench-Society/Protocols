@@ -1,5 +1,6 @@
 ﻿from Serilog import Log
 from LabBench.Interface.Instruments.Response import ButtonID
+from LabBench.Interface.Waveforms import Waveform
 import traceback
 import random
 
@@ -95,6 +96,7 @@ class PsiAlgorithm:
 class StopSignalTask:
     def __init__(self, tc, algorithm):
         self.display = tc.Devices.ImageDisplay
+        self.sound = tc.Devices.Sound
         self.response = tc.Devices.Response
         self.images = tc.Images
         self.algorithm = algorithm
@@ -161,6 +163,9 @@ class StopSignalTask:
             self.display.Display(self.images.Correct)
         else:
             self.display.Display(self.images.Wrong)
+            self.sound.Play(Waveform.Sin(amplitude = 1, frequency = 250, phase = 0, length = int(44100/4), rate = 44100)
+                              .SetChannel(3)
+                              .SetSampleRate(44100))
 
         return self.feedbackTime
 
@@ -168,6 +173,7 @@ class GoSignalTask:
     def __init__(self, tc):       
         self.tc = tc
         self.display = tc.Devices.ImageDisplay
+        self.sound = tc.Devices.Sound
         self.response = tc.Devices.Response
         self.images = tc.Images
 
@@ -234,6 +240,9 @@ class GoSignalTask:
             self.display.Display(self.images.Correct)
         else:
             self.display.Display(self.images.Wrong)
+            self.sound.Play(Waveform.Sin(amplitude = 1, frequency = 250, phase = 0, length = int(44100/4), rate = 44100)
+                              .SetChannel(3)
+                              .SetSampleRate(44100))
 
         return self.feedbackTime
  
