@@ -154,7 +154,7 @@
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100">
-
+                
                 <test-events 
                     selected="func: Script.Instructions(tc)"
                     complete="func: Script.Complete(tc)">
@@ -162,6 +162,10 @@
                                 interface="image-display"
                                 required="true"/>
                 </test-events>
+
+                <dependencies>
+                    <dependency ID="GOTASK"/>
+                </dependencies>
 
                 <stimulation-scripts initialize="func: Script.UpDownInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
@@ -206,6 +210,10 @@
                                 interface="image-display"
                                 required="true"/>
                 </test-events>
+
+                <dependencies>
+                    <dependency ID="GOTASK"/>
+                </dependencies>
 
                 <stimulation-scripts initialize="func: Script.PsiInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
