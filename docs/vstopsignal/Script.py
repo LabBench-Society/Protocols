@@ -18,11 +18,12 @@ class ImageRepository:
         self.FixationCross = images.GetImageFromArchive("fixation.png")
 
 class UpDownAlgorithm:
-    def __init__(self, tc):
-        self.lowerLimit = tc.LowDelayLimit
-        self.highLimit = tc.HighDelayLimit
-        self.delay = (self.highLimit - self.lowerLimit)/2 + self.lowerLimit
+    def __init__(self, tc, feedbackDelay):
+        self.lowerLimit = 0
+        self.highLimit = feedbackDelay
+        self.delay = self.highLimit/2
         self.stopSignalDelay = []
+        self.stepSize = feedbackDelay/20
 
         self.delays = []
 
@@ -32,12 +33,12 @@ class UpDownAlgorithm:
 
     def Iterate(self, answer):
         if answer:
-            self.delay = self.delay + 50
+            self.delay = self.delay + self.stepSize
             
             if self.delay > self.highLimit:
                 self.delay = self.highLimit
         else:
-            self.delay = self.delay - 50
+            self.delay = self.delay - self.stepSize
             
             if self.delay < self.lowerLimit:
                 self.delay = self.lowerLimit
@@ -93,13 +94,13 @@ class PsiAlgorithm:
         
 
 class StopSignalTask:
-    def __init__(self, tc, algorithm):
+    def __init__(self, tc, algorithm, feedbackDelay):
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Response
         self.images = tc.Images
         self.algorithm = algorithm
         self.feedbackTime = tc.FeedbackTime
-        self.feedbackDelay = tc.FeedbackDelay
+        self.feedbackDelay = feedbackDelay
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -153,7 +154,7 @@ class StopSignalTask:
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
         
-        return self.feedbackTime
+        return self.feedbackTime    
 
 class GoSignalTask:
     def __init__(self, tc):       
@@ -178,6 +179,7 @@ class GoSignalTask:
         self.result.Annotations.Add("gtSignals", self.goSignals)
         self.result.Annotations.Add("gtAnswer", self.answer)
         self.result.Annotations.Add("gtTime", self.time)
+        self.result.Annotations.Add("gtMeanTime", sum(self.time) / len(self.time))
     
     def Go(self):
         self.response.Reset()        
@@ -240,12 +242,14 @@ def GoInitialize(tc):
     return True
 
 def UpDownInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc)))
+    feedbackDelay = tc.GOTASK.Annotations['gtMeanTime'].Value
+    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, feedbackDelay), feedbackDelay))
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
 def PsiInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc)))
+    feedbackDelay = tc.GOTASK.Annotations['gtMeanTime'].Value
+    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedbackDelay))
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
