@@ -63,10 +63,11 @@
                 value="50"/>
             <define
                 name="HighDelayLimit"
-                value="800"/>
+                value="500"/>
             <define
-                name="FeedbackDelay"
+                name="ResponseTimeout"
                 value="1000"/>
+            
             <define
                 name="FixationDelay"
                 value="500"/>
@@ -78,7 +79,7 @@
                 value="500"/>
             <define
                 name="Period"
-                value="(FixationDelay + FeedbackDelay + FeedbackTime + Pause)/1000"/>
+                value="(FixationDelay + ResponseTimeout + FeedbackTime + Pause)/1000"/>
             <define 
                 name="Trials"
                 value="30"/>
@@ -154,7 +155,7 @@
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100">
-                
+
                 <test-events 
                     selected="func: Script.Instructions(tc)"
                     complete="func: Script.Complete(tc)">

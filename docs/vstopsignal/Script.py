@@ -99,7 +99,7 @@ class StopSignalTask:
         self.images = tc.Images
         self.algorithm = algorithm
         self.feedbackTime = tc.FeedbackTime
-        self.feedbackDelay = tc.FeedbackDelay
+        self.responseTimeout = tc.ResponseTimeout
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -134,7 +134,7 @@ class StopSignalTask:
         else:
             self.display.Display(self.images.StopRight)    
 
-        return self.feedbackDelay - self.algorithm.delay
+        return self.responseTimeout - self.algorithm.delay
         
     def Feedback(self):       
         if self.response.LatchedActive != ButtonID.BUTTON_NONE:
@@ -168,7 +168,7 @@ class GoSignalTask:
         self.time = []
         
         self.feedbackTime = tc.FeedbackTime
-        self.feedbackDelay = tc.FeedbackDelay
+        self.responseTimeout = tc.ResponseTimeout
         
         self.result = tc.Current
             
@@ -189,7 +189,7 @@ class GoSignalTask:
         else:
             self.display.Display(self.images.Right)                      
        
-        return self.feedbackDelay
+        return self.responseTimeout
                
     def Feedback(self):
         button = self.response.LatchedActive
