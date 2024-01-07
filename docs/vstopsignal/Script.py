@@ -89,7 +89,7 @@ class PsiAlgorithm:
         self.alpha.append(alpha)
         self.beta.append(self.method.EstimateBeta())
         self.alphaConfidence.append(self.method.EstimateAlphaConfidenceInterval(self.ConfidenceLevel))
-        self.betaConfidence.append(self.method.EstimateAlphaConfidenceInterval(self.ConfidenceLevel))
+        self.betaConfidence.append(self.method.EstimateBetaConfidenceInterval(self.ConfidenceLevel))
         self.stopSignalDelay.append(self.Transform(alpha))
         
 
@@ -141,7 +141,10 @@ class StopSignalTask:
         
     def Evaluate(self):     
         self.display.Display(self.images.FixationCross)
-
+        
+        return self.feedbackDelay
+    
+    def Feedback(self):
         if self.response.LatchedActive != ButtonID.BUTTON_NONE:
             self.answer.append(0)
             self.time.append(self.response.ReactionTime)
@@ -155,10 +158,7 @@ class StopSignalTask:
                         self.answer[-1], 
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
-        
-        return self.feedbackDelay
-    
-    def Feedback(self):
+
         if self.answer[-1] == 1:
             self.display.Display(self.images.Correct)
         else:
@@ -208,9 +208,13 @@ class GoSignalTask:
         return self.responseTimeout
                
     def Evaluate(self):
+        self.display.Display(self.images.FixationCross)
+        
+        return self.feedbackDelay
+    
+    def Feedback(self):
         button = self.response.LatchedActive
         self.time.append(self.response.ReactionTime)
-        self.display.Display(self.images.FixationCross)
         
         if button == ButtonID.BUTTON_NONE:
             self.answer.append(0)
@@ -232,10 +236,7 @@ class GoSignalTask:
                          "left" if self.signal == 0 else "right", 
                          self.answer[-1],
                          self.time[-1])
-        
-        return self.feedbackDelay
-    
-    def Feedback(self):
+
         if self.answer[-1] == 1:
             self.display.Display(self.images.Correct)
         else:

@@ -64,7 +64,7 @@
                 value="func: Script.CreateImages(tc)"/>
             <define 
                 name="NumberOfStopSignals" 
-                value="50"/> <!-- Correct value 50/3-->
+                value="50"/> 
             <define
                 name="LowDelayLimit"
                 value="50"/>
