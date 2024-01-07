@@ -19,11 +19,12 @@ class ImageRepository:
         self.FixationCross = images.GetImageFromArchive("fixation.png")
 
 class UpDownAlgorithm:
-    def __init__(self, tc):
+    def __init__(self, tc, stepsize, initialDelay):
         self.lowerLimit = tc.LowDelayLimit
         self.highLimit = tc.HighDelayLimit
-        self.delay = (self.highLimit - self.lowerLimit)/2 + self.lowerLimit
+        self.delay = initialDelay
         self.stopSignalDelay = []
+        self.stepsize = stepsize
 
         self.delays = []
 
@@ -33,18 +34,17 @@ class UpDownAlgorithm:
 
     def Iterate(self, answer):
         if answer:
-            self.delay = self.delay + 50
+            self.delay = self.delay + self.stepsize
             
             if self.delay > self.highLimit:
                 self.delay = self.highLimit
         else:
-            self.delay = self.delay - 50
+            self.delay = self.delay - self.stepsize
             
             if self.delay < self.lowerLimit:
                 self.delay = self.lowerLimit
         
         self.stopSignalDelay.append(self.delay)
-
 
 class PsiAlgorithm:
     def __init__(self, tc):
@@ -263,7 +263,7 @@ def GoInitialize(tc):
     return True
 
 def UpDownInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc)))
+    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 50, 100)))
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 

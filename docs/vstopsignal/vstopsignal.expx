@@ -62,9 +62,12 @@
             <define
                 name="Images"
                 value="func: Script.CreateImages(tc)"/>
+                <define 
+                name="TrainingStopSignals" 
+                value="4"/> 
             <define 
                 name="NumberOfStopSignals" 
-                value="50"/> 
+                value="30"/> 
             <define
                 name="LowDelayLimit"
                 value="50"/>
@@ -120,7 +123,7 @@
         <tests>
             <electrophysiology-evoked-potentials 
                 ID="T01"
-                name="Stop Signal Task (Up/Dwon-Method Tracking)"
+                name="Stop Signal Task (Training Task)"
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100">
@@ -151,7 +154,7 @@
                 <stimulation-pattern time-base="seconds">
                     <sequence
                         Tperiod="Period"
-                        iterations="NumberOfStimuli * NumberOfStopSignals" />                        
+                        iterations="NumberOfStimuli * TrainingStopSignals" />                        
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
@@ -167,7 +170,7 @@
 
             <electrophysiology-evoked-potentials
                 ID="T02"
-                name="Stop Signal Task (Psi-Method Tracking)"
+                name="Stop Signal Task"
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100">
