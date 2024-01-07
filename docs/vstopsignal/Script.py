@@ -138,12 +138,7 @@ class StopSignalTask:
             self.display.Display(self.images.StopRight)    
 
         return self.responseTimeout - self.algorithm.delay
-        
-    def Evaluate(self):     
-        self.display.Display(self.images.FixationCross)
-        
-        return self.feedbackDelay
-    
+            
     def Feedback(self):
         if self.response.LatchedActive != ButtonID.BUTTON_NONE:
             self.answer.append(0)
@@ -203,12 +198,7 @@ class GoSignalTask:
             self.display.Display(self.images.Right)                      
        
         return self.responseTimeout
-               
-    def Evaluate(self):
-        self.display.Display(self.images.FixationCross)
-        
-        return self.feedbackDelay
-    
+                  
     def Feedback(self):
         button = self.response.LatchedActive
         self.time.append(self.response.ReactionTime)
@@ -281,9 +271,6 @@ def Go(task):
 def Stop(task):
     return task.Stop()
     
-def Evaluate(task):
-    return task.Evaluate()
-
 def Feedback(task):
     return task.Feedback()
     
@@ -295,14 +282,14 @@ def Stimulate(tc, x):
                     .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Go)
                     .Run(Stop)
-                    .Run(Evaluate)
+                    .Display(tc.Images.FixationCross, tc.FeedbackDelay)
                     .Run(Feedback))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
                     .Display(tc.Images.FixationCross, tc.FixationDelay)
                     .Run(Go)
-                    .Run(Evaluate)
+                    .Display(tc.Images.FixationCross, tc.FeedbackDelay)
                     .Run(Feedback))
     else:
         Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
