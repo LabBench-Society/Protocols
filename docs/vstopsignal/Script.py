@@ -53,7 +53,7 @@ class PsiAlgorithm:
         self.delays = []
         self.method = tc.Create(tc.Psychophysics.PsiMethod()
                                                 .NumberOfTrials(tc.Trials)
-                                                .Function(tc.Psychophysics.Functions.Quick(Beta=1, Lambda=0.05, Gamma=0))
+                                                .Function(tc.Psychophysics.Functions.Quick(Beta=1, Lambda=0.02, Gamma=0))
                                                 .Alpha(X0=tc.AlphaX0,X1=1.0,N = tc.AlphaN)
                                                 .Beta(X0=tc.BetaX0,X1=tc.BetaX1,N = tc.BetaN)
                                                 .Intensity(X0 = tc.IntensityX0,X1 = 1.0,N = tc.IntensityN))

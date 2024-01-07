@@ -96,19 +96,19 @@
                 value="200"/>
             <define
                 name="BetaX0"
-                value="-2.5"/> <!--  Old value: -1.2041 -->
+                value="-2"/> <!--  Old value: -1.2041 -->
             <define
                 name="BetaX1"
-                value="2.5"/> <!--  Old value: 1.2041 -->
+                value="2"/> <!--  Old value: 1.2041 -->
             <define
                 name="BetaN"
-                value="100"/>
+                value="50"/>
             <define 
                 name="IntensityX0"
                 value="0.0"/>
             <define 
                 name="IntensityN"
-                value="100"/>
+                value="50"/>
             <define
                 name="ConfidenceLevel"
                 value="0.95"/>
