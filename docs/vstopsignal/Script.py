@@ -247,7 +247,7 @@ def GoInitialize(tc):
     return True
 
 def UpDownInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 50, 100)))
+    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150)))
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
