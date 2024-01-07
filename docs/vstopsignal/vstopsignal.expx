@@ -90,22 +90,22 @@
                 value="30"/>
             <define 
                 name="AlphaX0"
-                value="0.05"/>
+                value="0.0"/>
             <define 
                 name="AlphaN"
                 value="200"/>
             <define
                 name="BetaX0"
-                value="-1.2041"/>
+                value="-2.5"/> <!--  Old value: -1.2041 -->
             <define
                 name="BetaX1"
-                value="1.2041"/>
+                value="2.5"/> <!--  Old value: 1.2041 -->
             <define
                 name="BetaN"
-                value="50"/>
+                value="100"/>
             <define 
                 name="IntensityX0"
-                value="0.05"/>
+                value="0.0"/>
             <define 
                 name="IntensityN"
                 value="100"/>
