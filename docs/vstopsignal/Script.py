@@ -71,6 +71,8 @@ class PsiAlgorithm:
         return (self.highLimit - self.lowerLimit) * (1 - x) + self.lowerLimit
     
     def Complete(self, result):
+        result.Annotations.Add("sstLowerLimit", self.lowerLimit)
+        result.Annotations.Add("sstHighLimit", self.highLimit)
         result.Annotations.Add("sstDelays", self.delays)
         result.Annotations.Add("sstStopSignalDelay", self.stopSignalDelay)
         result.Annotations.Add("sstAlpha", self.alpha)        
