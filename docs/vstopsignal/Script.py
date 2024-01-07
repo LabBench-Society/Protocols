@@ -96,7 +96,6 @@ class PsiAlgorithm:
 class StopSignalTask:
     def __init__(self, tc, algorithm):
         self.display = tc.Devices.ImageDisplay
-        self.sound = tc.Devices.Sound
         self.response = tc.Devices.Response
         self.images = tc.Images
         self.algorithm = algorithm
@@ -129,6 +128,8 @@ class StopSignalTask:
         else:
             self.display.Display(self.images.Right)                      
        
+        Log.Information("STOP-SIGNAL TESTING DELAY [ Delay: {delay} ]".format(delay = self.algorithm.delay))
+
         return self.algorithm.delay
         
     def Stop(self):
@@ -165,7 +166,6 @@ class GoSignalTask:
     def __init__(self, tc):       
         self.tc = tc
         self.display = tc.Devices.ImageDisplay
-        self.sound = tc.Devices.Sound
         self.response = tc.Devices.Response
         self.images = tc.Images
 

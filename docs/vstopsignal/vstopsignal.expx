@@ -34,8 +34,6 @@
                         background-color="rgb(0,0,0)" />
                 </configurations>                
             </display>         
-            
-            <sound id="sound"/>
         </devices>
         <device-mapping>
             <device-assignment 
@@ -47,12 +45,7 @@
                 test-type="electrophysiology-evoked-potentials"
                 device-id="display.image"
                 instrument-name="ImageDisplay"/>
-
-            <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                device-id="sound"
-                instrument-name="Sound"/>
-            </device-mapping>        
+        </device-mapping>        
     </experimental-setup>
     <protocol>
         <languages>
@@ -146,9 +139,6 @@
                     <instrument name="Response"
                                 interface="button"
                                 required="true"/>
-                    <instrument name="Sound"
-                                interface="sound-player"
-                                required="true"/>
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">
@@ -193,9 +183,6 @@
                     <instrument name="Response"
                                 interface="button"
                                 required="true"/>
-                    <instrument name="Sound"
-                                interface="sound-player"
-                                required="true"/>
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">
@@ -207,7 +194,7 @@
                 <stimuli order="block-random">
                     <stimulus
                         name="GO"
-                        count="3" />
+                        count="3" />                        
                     <stimulus
                         name="STOP"
                         count="1"/>
