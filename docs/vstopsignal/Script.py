@@ -163,9 +163,6 @@ class StopSignalTask:
             self.display.Display(self.images.Correct)
         else:
             self.display.Display(self.images.Wrong)
-            self.sound.Play(Waveform.Sin(amplitude = 1, frequency = 250, phase = 0, length = int(44100/4), rate = 44100)
-                              .SetChannel(3)
-                              .SetSampleRate(44100))
 
         return self.feedbackTime
 
@@ -241,9 +238,6 @@ class GoSignalTask:
             self.display.Display(self.images.Correct)
         else:
             self.display.Display(self.images.Wrong)
-            self.sound.Play(Waveform.Sin(amplitude = 1, frequency = 250, phase = 0, length = int(44100/4), rate = 44100)
-                              .SetChannel(3)
-                              .SetSampleRate(44100))
 
         return self.feedbackTime
  
