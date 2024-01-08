@@ -8,9 +8,13 @@
               labbench-version="4.0.2"
               category="Psychometrics;Demonstration Protocol;Nocitech CPAR"/>
     <protocol id="vstopsignal"
-              name="Visual Stop Signal Task"
+              name="Visual Stop Signal Task (Joystick)"
               labbench-version="4.1.0"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>              
+    <protocol id="vstopsignallio"
+              name="Visual Stop Signal Task (LabBench I/O)"
+              labbench-version="4.1.0"
+              category="Psychology Research Paradigm;Cognitive Inhibition Task;LabBench I/O"/>              
     <protocol id="stroop"
               name="Stroop Task"
               labbench-version="4.1.0"
