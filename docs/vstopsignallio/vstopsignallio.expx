@@ -24,12 +24,6 @@
                         timing-source="response-port02" />
                 </response-devices>
             </lio>
-            <joystick id="joystick">
-                <map>
-                    <button-assignment code="16" button="left" label="left"/>
-                    <button-assignment code="32" button="right" label="right"/>
-                </map>
-            </joystick>
 
             <display
                 id="display"
