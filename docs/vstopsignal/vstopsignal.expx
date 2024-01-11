@@ -7,8 +7,8 @@
         <devices>
             <joystick id="joystick">
                 <map>
-                    <button-assignment code="16" button="left" label="left"/>
-                    <button-assignment code="32" button="right" label="right"/>
+                    <button-assignment code="32" button="left" label="left"/> <!-- number: 5-->
+                    <button-assignment code="128" button="right" label="right"/> <!--  number: 7 -->
                 </map>
             </joystick>
 
