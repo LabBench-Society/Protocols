@@ -73,6 +73,12 @@
                 ID="PRESENTATION"
                 name="Presentation of tones">
 
+                <properties>
+                    <instructions 
+                        default-instructions="TonePresentation"
+                        override-results="true"/>
+                </properties>
+
                 <intensity 
                     type="array"
                     value="[1, 2]"/>
@@ -104,6 +110,12 @@
                 response-collection="yes-no"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
+
+                <properties>
+                    <instructions 
+                        default-instructions="ResponseTask"
+                        override-results="true"/>
+                </properties>
 
                 <configuration>
                     <trigger-generation trigger-source="response-port01" />
@@ -164,6 +176,7 @@
                     </stimulus>
                 </stimuli>
             </electrophysiology-evoked-potentials>
+
             <electrophysiology-evoked-potentials
                 ID="ODDBALLC"
                 name="Auditory Oddball Task (Counting Task)"
@@ -171,17 +184,31 @@
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
 
+                <properties>
+                    <instructions 
+                        default-instructions="CountingTask"
+                        override-results="true"/>
+                </properties>
+
                 <configuration>
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
 
                 <stimulation-pattern time-base="seconds">
-                    <uniformly-distributed-sequence
-                        iterations="NumberOfStimuli * NumberOfOddballs"
-                        minTperiod="1"
-                        maxTperiod="2"
-                        stimulate="true" />
+                    <sequence>
+                        <sequence 
+                            iterations="1" 
+                            Tperiod="2" 
+                            stimulate="false"/>
+
+                        <uniformly-distributed-sequence
+                            iterations="NumberOfStimuli * NumberOfOddballs"
+                            minTperiod="1"
+                            maxTperiod="2"
+                            stimulate="true" />
+                        </sequence>                   
                 </stimulation-pattern>
+
 
                 <stimuli order="block-random">
                     <stimulus
@@ -249,6 +276,17 @@
             </meta-survey>
         </tests>
         <assets>
+            <file-asset
+                id="TonePresentation"
+                file="TonePresentation.rtf" />
+
+            <file-asset 
+                id="ResponseTask"
+                file="ResponseTask.rtf"/>
+
+            <file-asset 
+                id="CountingTask"
+                file="CountingTask.rtf"/>
         </assets>
     </protocol>
     <post-actions>
