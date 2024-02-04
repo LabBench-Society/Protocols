@@ -14,6 +14,7 @@
                     logic-system="positive"
                     low-byte-voltage-level="unconnected"
                     high-byte-voltage-level="unconnected" />
+                    
                 <response-devices>
                     <audio-trigger
                         id="trigger"
@@ -22,7 +23,14 @@
 
                     <button
                         id="button"
-                        timing-source="response-port01" />
+                        timing-source="response-port01">
+                        <map>
+                            <button-assignment 
+                                code="1" 
+                                button="button-01" 
+                                label="Button 1"/>
+                        </map>
+                    </button>
                 </response-devices>
             </lio>
             <sound id="sound" />
