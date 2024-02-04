@@ -210,7 +210,7 @@
 
                 <stimuli order="block-random">
                     <stimulus
-                        name="Oddball"
+                        name="oddball"
                         count="1">
                         <triggers>
                             <trigger duration="10">
@@ -222,7 +222,7 @@
                     </stimulus>
 
                     <stimulus
-                        name="Normal"
+                        name="normal"
                         count="5">
 
                         <triggers>
