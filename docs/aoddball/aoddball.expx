@@ -1,96 +1,201 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.1.0/experiment.xsd">
-    <description>
-Implementation of an auditory oddball task.
-    </description>
-    <citation>No citation is required when using this protocol.</citation>
-    <subject-validator regex="^S[0-9]{3}$"
-                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.3.0/experiment.xsd">
+    <subject-validator 
+        regex="^S[0-9]{3}$"
+        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup>
         <devices>
-            <lio id="lio"
-                 default-analog-output="0">
-                 <trigger-setup 
-                    logic-system="positive" 
-                    low-byte-voltage-level="5.0V" 
+            <lio 
+                id="lio"
+                default-analog-output="0">
+
+                <trigger-setup
+                    logic-system="positive"
+                    low-byte-voltage-level="5.0V"
                     high-byte-voltage-level="unconnected" />
                 <response-devices>
-                    <audio-trigger id="trigger"
-                                   arming-period="200"
-                                   gain="127"
-                                   threshold="127"
-                                   timing-source="response-port01" />
-                    <button id="button"
-                            timing-source="response-port01" />
+                    <audio-trigger 
+                        id="trigger"
+                        arming-period="200"
+                        timing-source="response-port01" />
+
+                    <button 
+                        id="button"
+                        timing-source="response-port01" />
                 </response-devices>
             </lio>
             <sound id="sound" />
         </devices>
         <device-mapping>
-            <device-assignment test-type="electrophysiology-evoked-potentials"
-                               instrument-name="Response"
-                               device-id="lio.button"/>
-            <device-assignment test-type="electrophysiology-evoked-potentials"
-                               instrument-name="Stimulator"
-                               device-id="sound"/>
-            <device-assignment test-type="electrophysiology-evoked-potentials"
-                               instrument-name="Trigger"
-                               device-id="lio"/>
+            <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Response"
+                device-id="lio.button" />
+
+            <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Stimulator"
+                device-id="sound" />
+
+            <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Trigger"
+                device-id="lio" />
         </device-mapping>
     </experimental-setup>
     <protocol>
+        <properties>
+            <rerun-policy 
+                force-warning="false"                
+                require-reason="false"/>
+        </properties>
         <defines>
-            <define name="NumberOfOddballs" value="40"/>
-        </defines>
+            <define name="NumberOfOddballs" value="40" />
+        </defines>                
         <tests>
-            <electrophysiology-evoked-potentials ID="ODDBALL"
-                                                 name="Auditory Oddball Task"
-                                                 response-collection="yes-no"
-                                                 stimulus-update-rate="44100"
-                                                 trigger-update-rate="20000">
-    
+            <electrophysiology-evoked-potentials 
+                ID="ODDBALLR"
+                name="Auditory Oddball Task (Response Task)"
+                response-collection="yes-no"
+                stimulus-update-rate="44100"
+                trigger-update-rate="20000">
+
                 <configuration>
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
-                
+
                 <stimulation-pattern time-base="seconds">
-                    <uniformly-distributed-sequence iterations="NumberOfStimuli * NumberOfOddballs"
-                                                    minTperiod="1"
-                                                    maxTperiod="2" 
-                                                    stimulate="true"/>                                                                                                
+                    <uniformly-distributed-sequence 
+                        iterations="NumberOfStimuli * NumberOfOddballs"
+                        minTperiod="1"
+                        maxTperiod="2"
+                        stimulate="true" />
                 </stimulation-pattern>
-                
+
                 <stimuli order="block-random">
-                    <stimulus name="Oddball"
-                              count="1"
-                              intensity="80">
+                    <stimulus 
+                        name="Oddball"
+                        count="1"
+                        intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code"
-                                      value="1"/>
+                                <code 
+                                    output="Code"
+                                    value="1" />
                             </trigger>
                         </triggers>
                         <stimulus>
-                            <sine Is="x" Frequency="1000" Ts="200"/>
+                            <sine 
+                                Is="x" 
+                                Frequency="1000" 
+                                Ts="200" />
                         </stimulus>
                     </stimulus>
-    
-                    <stimulus name="Normal"
-                              count="5"
-                              intensity="80">
+
+                    <stimulus 
+                        name="Normal"
+                        count="5"
+                        intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code"
-                                      value="2"/>
+                                <code 
+                                    output="Code"
+                                    value="2" />
                             </trigger>
                         </triggers>
                         <stimulus>
-                            <sine Is="x" Frequency="500" Ts="200"/>
+                            <sine 
+                                Is="x" 
+                                Frequency="500" 
+                                Ts="200" />
                         </stimulus>
                     </stimulus>
                 </stimuli>
-            </electrophysiology-evoked-potentials>                                             
+            </electrophysiology-evoked-potentials>
+            <electrophysiology-evoked-potentials 
+                ID="ODDBALLC"
+                name="Auditory Oddball Task (Counting Task)"
+                response-collection="none"
+                stimulus-update-rate="44100"
+                trigger-update-rate="20000">
+
+                <configuration>
+                    <trigger-generation trigger-source="response-port01" />
+                </configuration>
+
+                <stimulation-pattern time-base="seconds">
+                    <uniformly-distributed-sequence 
+                        iterations="NumberOfStimuli * NumberOfOddballs"
+                        minTperiod="1"
+                        maxTperiod="2"
+                        stimulate="true" />
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus 
+                        name="Oddball"
+                        count="1"
+                        intensity="80">
+                        <triggers>
+                            <trigger duration="10">
+                                <code 
+                                    output="Code"
+                                    value="1" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine 
+                                Is="x" 
+                                Frequency="1000" 
+                                Ts="200" />
+                        </stimulus>
+                    </stimulus>
+
+                    <stimulus 
+                        name="Normal"
+                        count="5"
+                        intensity="80">
+
+                        <triggers>
+                            <trigger duration="10">
+                                <code 
+                                    output="Code"
+                                    value="2" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine 
+                                Is="x" 
+                                Frequency="500" 
+                                Ts="200" />
+                        </stimulus>
+                    </stimulus>
+                </stimuli>
+            </electrophysiology-evoked-potentials>
+
+            <meta-survey 
+                ID="RESPONSE"
+                name="Number of oddballs"
+                control="operator">
+
+                <properties>
+                    <auto-start value="true" />                    
+                </properties>
+
+                <content>
+                    <numeric
+                        id="COUNT"
+                        title="Number of oddballs"
+                        instruction="How many high pitched tones did you count?">
+                        <validation 
+                            max="1000" 
+                            max-included="true" 
+                            min="0" 
+                            min-included="true" />
+                    </numeric>
+                </content>
+            </meta-survey>
         </tests>
         <assets>
         </assets>
