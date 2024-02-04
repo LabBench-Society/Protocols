@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.3.0/experiment.xsd">
-    <subject-validator 
+    <subject-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup>
         <devices>
-            <lio 
+            <lio
                 id="lio"
                 default-analog-output="0">
 
                 <trigger-setup
                     logic-system="positive"
-                    low-byte-voltage-level="5.0V"
+                    low-byte-voltage-level="unconnected"
                     high-byte-voltage-level="unconnected" />
                 <response-devices>
-                    <audio-trigger 
+                    <audio-trigger
                         id="trigger"
                         arming-period="200"
                         timing-source="response-port01" />
 
-                    <button 
+                    <button
                         id="button"
                         timing-source="response-port01" />
                 </response-devices>
@@ -28,17 +28,32 @@
             <sound id="sound" />
         </devices>
         <device-mapping>
-            <device-assignment 
+            <device-assignment
+                test-type="psychophysics-stimulus-presentation"
+                instrument-name="Response"
+                device-id="lio.button" />
+
+            <device-assignment
+                test-type="psychophysics-stimulus-presentation"
+                instrument-name="Stimulator"
+                device-id="sound" />
+
+            <device-assignment
+                test-type="psychophysics-stimulus-presentation"
+                instrument-name="Trigger"
+                device-id="lio" />
+
+            <device-assignment
                 test-type="electrophysiology-evoked-potentials"
                 instrument-name="Response"
                 device-id="lio.button" />
 
-            <device-assignment 
+            <device-assignment
                 test-type="electrophysiology-evoked-potentials"
                 instrument-name="Stimulator"
                 device-id="sound" />
 
-            <device-assignment 
+            <device-assignment
                 test-type="electrophysiology-evoked-potentials"
                 instrument-name="Trigger"
                 device-id="lio" />
@@ -46,15 +61,44 @@
     </experimental-setup>
     <protocol>
         <properties>
-            <rerun-policy 
-                force-warning="false"                
-                require-reason="false"/>
+            <rerun-policy
+                force-warning="false"
+                require-reason="false" />
         </properties>
         <defines>
             <define name="NumberOfOddballs" value="40" />
-        </defines>                
+        </defines>
         <tests>
-            <electrophysiology-evoked-potentials 
+            <psychophysics-stimulus-presentation
+                ID="PRESENTATION"
+                name="Presentation of tones">
+
+                <intensity 
+                    type="array"
+                    value="[1, 2]"/>
+                
+                <responses 
+                    response-collection="yes-no" />
+
+                <triggers>
+                    <trigger duration="10">
+                        <code
+                            output="Code"
+                            value="1" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>
+                        <sine
+                            Is="80"
+                            Frequency="1000 if int(x) == 2 else 500"
+                            Ts="200" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <electrophysiology-evoked-potentials
                 ID="ODDBALLR"
                 name="Auditory Oddball Task (Response Task)"
                 response-collection="yes-no"
@@ -66,54 +110,61 @@
                 </configuration>
 
                 <stimulation-pattern time-base="seconds">
-                    <uniformly-distributed-sequence 
-                        iterations="NumberOfStimuli * NumberOfOddballs"
-                        minTperiod="1"
-                        maxTperiod="2"
-                        stimulate="true" />
+                    <sequence>
+                        <sequence 
+                            iterations="1" 
+                            Tperiod="2" 
+                            stimulate="false"/>
+
+                        <uniformly-distributed-sequence
+                            iterations="NumberOfStimuli * NumberOfOddballs"
+                            minTperiod="1"
+                            maxTperiod="2"
+                            stimulate="true" />
+                        </sequence>                   
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
-                    <stimulus 
+                    <stimulus
                         name="Oddball"
                         count="1"
                         intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code 
+                                <code
                                     output="Code"
                                     value="1" />
                             </trigger>
                         </triggers>
                         <stimulus>
-                            <sine 
-                                Is="x" 
-                                Frequency="1000" 
+                            <sine
+                                Is="x"
+                                Frequency="1000"
                                 Ts="200" />
                         </stimulus>
                     </stimulus>
 
-                    <stimulus 
+                    <stimulus
                         name="Normal"
                         count="5"
                         intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code 
+                                <code
                                     output="Code"
                                     value="2" />
                             </trigger>
                         </triggers>
                         <stimulus>
-                            <sine 
-                                Is="x" 
-                                Frequency="500" 
+                            <sine
+                                Is="x"
+                                Frequency="500"
                                 Ts="200" />
                         </stimulus>
                     </stimulus>
                 </stimuli>
             </electrophysiology-evoked-potentials>
-            <electrophysiology-evoked-potentials 
+            <electrophysiology-evoked-potentials
                 ID="ODDBALLC"
                 name="Auditory Oddball Task (Counting Task)"
                 response-collection="none"
@@ -125,7 +176,7 @@
                 </configuration>
 
                 <stimulation-pattern time-base="seconds">
-                    <uniformly-distributed-sequence 
+                    <uniformly-distributed-sequence
                         iterations="NumberOfStimuli * NumberOfOddballs"
                         minTperiod="1"
                         maxTperiod="2"
@@ -133,54 +184,54 @@
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
-                    <stimulus 
+                    <stimulus
                         name="Oddball"
                         count="1"
                         intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code 
+                                <code
                                     output="Code"
                                     value="1" />
                             </trigger>
                         </triggers>
                         <stimulus>
-                            <sine 
-                                Is="x" 
-                                Frequency="1000" 
+                            <sine
+                                Is="x"
+                                Frequency="1000"
                                 Ts="200" />
                         </stimulus>
                     </stimulus>
 
-                    <stimulus 
+                    <stimulus
                         name="Normal"
                         count="5"
                         intensity="80">
 
                         <triggers>
                             <trigger duration="10">
-                                <code 
+                                <code
                                     output="Code"
                                     value="2" />
                             </trigger>
                         </triggers>
                         <stimulus>
-                            <sine 
-                                Is="x" 
-                                Frequency="500" 
+                            <sine
+                                Is="x"
+                                Frequency="500"
                                 Ts="200" />
                         </stimulus>
                     </stimulus>
                 </stimuli>
             </electrophysiology-evoked-potentials>
 
-            <meta-survey 
+            <meta-survey
                 ID="RESPONSE"
                 name="Number of oddballs"
                 control="operator">
 
                 <properties>
-                    <auto-start value="true" />                    
+                    <auto-start value="true" />
                 </properties>
 
                 <content>
@@ -188,10 +239,10 @@
                         id="COUNT"
                         title="Number of oddballs"
                         instruction="How many high pitched tones did you count?">
-                        <validation 
-                            max="1000" 
-                            max-included="true" 
-                            min="0" 
+                        <validation
+                            max="1000"
+                            max-included="true"
+                            min="0"
                             min-included="true" />
                     </numeric>
                 </content>
