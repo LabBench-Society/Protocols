@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.3.0/experiment.xsd">
+    <subject-validator
+        regex="^S[0-9]{3}$"
+        advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <devices>
+            <lio
+                id="lio"
+                default-analog-output="0">
+
+                <trigger-setup
+                    logic-system="positive"
+                    low-byte-voltage-level="unconnected"
+                    high-byte-voltage-level="unconnected" />
+                    
+                <response-devices>
+                    <visual-trigger 
+                        id="trigger"
+                        arming-period="200"
+                        timing-source="response-port01"/>
+
+                    <button
+                        id="button"
+                        timing-source="response-port01">
+                        <map>
+                            <button-assignment 
+                                code="1" 
+                                button="button-01" 
+                                label="Button 1"/>
+                        </map>
+                    </button>
+                </response-devices>
+            </lio>
+            <display
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32"
+                normative-distance="40"
+                position="fullscreen"
+                screen="secondary">
+
+                <monitor 
+                    diagonal-size="21"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+
+                <configurations>
+                    <image-display 
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>
+            </display>
+        </devices>
+        <device-mapping>
+            <device-assignment
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Response"
+                device-id="lio.button" />
+
+            <device-assignment
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Display"
+                device-id="display.image" />
+
+            <device-assignment
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Trigger"
+                device-id="lio" />
+        </device-mapping>
+    </experimental-setup>
+    <protocol>
+        <properties>
+            <rerun-policy
+                force-warning="false"
+                require-reason="false" />
+        </properties>
+        <defines>
+            <define name="NumberOfOddballs" value="40" />
+        </defines>
+        <tests>
+            <electrophysiology-evoked-potentials
+                ID="ODDBALLR"
+                name="Auditory Oddball Task (Response Task)"
+                response-collection="yes-no"
+                stimulus-update-rate="44100"
+                trigger-update-rate="20000">
+
+                <properties>
+                    <instructions 
+                        default-instructions="ResponseTask"
+                        override-results="true"/>
+                </properties>
+
+                <configuration>
+                    <trigger-generation trigger-source="response-port01" />
+                </configuration>
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence>
+                        <sequence 
+                            iterations="1" 
+                            Tperiod="2" 
+                            stimulate="false"/>
+
+                        <uniformly-distributed-sequence
+                            iterations="NumberOfStimuli * NumberOfOddballs"
+                            minTperiod="1"
+                            maxTperiod="2"
+                            stimulate="true" />
+                        </sequence>                   
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus
+                        name="Oddball"
+                        count="1"
+                        intensity="80">
+                        <triggers>
+                            <trigger duration="10">
+                                <code
+                                    output="Code"
+                                    value="1" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine
+                                Is="x"
+                                Frequency="1000"
+                                Ts="200" />
+                        </stimulus>
+                    </stimulus>
+
+                    <stimulus
+                        name="Normal"
+                        count="5"
+                        intensity="80">
+                        <triggers>
+                            <trigger duration="10">
+                                <code
+                                    output="Code"
+                                    value="2" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine
+                                Is="x"
+                                Frequency="500"
+                                Ts="200" />
+                        </stimulus>
+                    </stimulus>
+                </stimuli>
+            </electrophysiology-evoked-potentials>
+
+            <electrophysiology-evoked-potentials
+                ID="ODDBALLC"
+                name="Auditory Oddball Task (Counting Task)"
+                response-collection="none"
+                stimulus-update-rate="44100"
+                trigger-update-rate="20000">
+
+                <properties>
+                    <instructions 
+                        default-instructions="CountingTask"
+                        override-results="true"/>
+                </properties>
+
+                <configuration>
+                    <trigger-generation trigger-source="response-port01" />
+                </configuration>
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence>
+                        <sequence 
+                            iterations="1" 
+                            Tperiod="2" 
+                            stimulate="false"/>
+
+                        <uniformly-distributed-sequence
+                            iterations="NumberOfStimuli * NumberOfOddballs"
+                            minTperiod="1"
+                            maxTperiod="2"
+                            stimulate="true" />
+                        </sequence>                   
+                </stimulation-pattern>
+
+
+                <stimuli order="block-random">
+                    <stimulus
+                        name="Oddball"
+                        count="1"
+                        intensity="80">
+                        <triggers>
+                            <trigger duration="10">
+                                <code
+                                    output="Code"
+                                    value="1" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine
+                                Is="x"
+                                Frequency="1000"
+                                Ts="200" />
+                        </stimulus>
+                    </stimulus>
+
+                    <stimulus
+                        name="Normal"
+                        count="5"
+                        intensity="80">
+
+                        <triggers>
+                            <trigger duration="10">
+                                <code
+                                    output="Code"
+                                    value="2" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <sine
+                                Is="x"
+                                Frequency="500"
+                                Ts="200" />
+                        </stimulus>
+                    </stimulus>
+                </stimuli>
+            </electrophysiology-evoked-potentials>
+
+            <meta-survey
+                ID="RESPONSE"
+                name="Number of oddballs"
+                control="operator">
+
+                <properties>
+                    <auto-start value="true" />
+                </properties>
+
+                <content>
+                    <numeric
+                        id="COUNT"
+                        title="Number of oddballs"
+                        instruction="How many high pitched tones did you count?">
+                        <validation
+                            max="1000"
+                            max-included="true"
+                            min="0"
+                            min-included="true" />
+                    </numeric>
+                </content>
+            </meta-survey>
+        </tests>
+        <assets>
+            <file-asset
+                id="TonePresentation"
+                file="TonePresentation.rtf" />
+
+            <file-asset 
+                id="ResponseTask"
+                file="ResponseTask.rtf"/>
+
+            <file-asset 
+                id="Script"
+                file="Script.py"/>
+        </assets>
+    </protocol>
+    <post-actions>
+    </post-actions>
+</experiment>
