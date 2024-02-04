@@ -16,10 +16,10 @@
                     high-byte-voltage-level="unconnected" />
                     
                 <response-devices>
-                    <audio-trigger
+                    <visual-trigger 
                         id="trigger"
                         arming-period="200"
-                        timing-source="response-port01" />
+                        timing-source="response-port01"/>
 
                     <button
                         id="button"
@@ -33,33 +33,39 @@
                     </button>
                 </response-devices>
             </lio>
-            <sound id="sound" />
+            <display
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                normative-distance="40"
+                position="upper-right"
+                screen="primary">
+
+                <monitor 
+                    diagonal-size="21"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+
+                <configurations>
+                    <image-display 
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>
+            </display>
         </devices>
         <device-mapping>
             <device-assignment
-                test-type="psychophysics-stimulus-presentation"
-                instrument-name="Response"
-                device-id="lio.button" />
-
-            <device-assignment
-                test-type="psychophysics-stimulus-presentation"
-                instrument-name="Stimulator"
-                device-id="sound" />
-
-            <device-assignment
-                test-type="psychophysics-stimulus-presentation"
-                instrument-name="Trigger"
-                device-id="lio" />
-
-            <device-assignment
                 test-type="electrophysiology-evoked-potentials"
                 instrument-name="Response"
                 device-id="lio.button" />
 
             <device-assignment
                 test-type="electrophysiology-evoked-potentials"
-                instrument-name="Stimulator"
-                device-id="sound" />
+                instrument-name="Display"
+                device-id="display.image" />
 
             <device-assignment
                 test-type="electrophysiology-evoked-potentials"
@@ -74,50 +80,26 @@
                 require-reason="false" />
         </properties>
         <defines>
-            <define name="NumberOfOddballs" value="40" />
+            <define 
+                name="NumberOfOddballs" 
+                value="40" />
+            <define 
+                name="DisplayTime" 
+                value="500"/>
         </defines>
         <tests>
-            <psychophysics-stimulus-presentation
-                ID="PRESENTATION"
-                name="Presentation of tones">
-
-                <properties>
-                    <instructions 
-                        default-instructions="TonePresentation"
-                        override-results="true"/>
-                </properties>
-
-                <intensity 
-                    type="array"
-                    value="[1, 2]"/>
-                
-                <responses 
-                    response-collection="yes-no" />
-
-                <triggers>
-                    <trigger duration="10">
-                        <code
-                            output="Code"
-                            value="1" />
-                    </trigger>
-                </triggers>
-
-                <stimulation>
-                    <stimulus>
-                        <sine
-                            Is="80"
-                            Frequency="1000 if int(x) == 2 else 500"
-                            Ts="200" />
-                    </stimulus>
-                </stimulation>
-            </psychophysics-stimulus-presentation>
-
             <electrophysiology-evoked-potentials
                 ID="ODDBALLR"
-                name="Auditory Oddball Task (Response Task)"
+                name="Visual Oddball Task (Response Task)"
+                experimental-setup-id="image"
                 response-collection="yes-no"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
+
+                <test-events selected="func: Script.ResponseInstructions(tc)">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </test-events>
 
                 <properties>
                     <instructions 
@@ -128,6 +110,14 @@
                 <configuration>
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
+                
+                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </stimulation-scripts>                
 
                 <stimulation-pattern time-base="seconds">
                     <sequence>
@@ -146,9 +136,8 @@
 
                 <stimuli order="block-random">
                     <stimulus
-                        name="Oddball"
-                        count="1"
-                        intensity="80">
+                        name="oddball"
+                        count="1">
                         <triggers>
                             <trigger duration="10">
                                 <code
@@ -156,18 +145,11 @@
                                     value="1" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="1000"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
 
                     <stimulus
-                        name="Normal"
-                        count="5"
-                        intensity="80">
+                        name="normal"
+                        count="5">
                         <triggers>
                             <trigger duration="10">
                                 <code
@@ -175,22 +157,22 @@
                                     value="2" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="500"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
                 </stimuli>
             </electrophysiology-evoked-potentials>
 
             <electrophysiology-evoked-potentials
                 ID="ODDBALLC"
-                name="Auditory Oddball Task (Counting Task)"
+                name="Visual Oddball Task (Counting Task)"
+                experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
+
+                <test-events selected="func: Script.CountingInstructions(tc)">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </test-events>
 
                 <properties>
                     <instructions 
@@ -202,6 +184,14 @@
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
 
+                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </stimulation-scripts>                             
+
                 <stimulation-pattern time-base="seconds">
                     <sequence>
                         <sequence 
@@ -220,9 +210,8 @@
 
                 <stimuli order="block-random">
                     <stimulus
-                        name="Oddball"
-                        count="1"
-                        intensity="80">
+                        name="oddball"
+                        count="1">
                         <triggers>
                             <trigger duration="10">
                                 <code
@@ -230,18 +219,11 @@
                                     value="1" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="1000"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
 
                     <stimulus
-                        name="Normal"
-                        count="5"
-                        intensity="80">
+                        name="normal"
+                        count="5">
 
                         <triggers>
                             <trigger duration="10">
@@ -250,12 +232,6 @@
                                     value="2" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="500"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
                 </stimuli>
             </electrophysiology-evoked-potentials>
@@ -263,6 +239,7 @@
             <meta-survey
                 ID="RESPONSE"
                 name="Number of oddballs"
+                experimental-setup-id="image"
                 control="operator">
 
                 <properties>
@@ -285,16 +262,20 @@
         </tests>
         <assets>
             <file-asset
-                id="TonePresentation"
-                file="TonePresentation.rtf" />
+                id="CountingTask"
+                file="CountingTask.rtf" />
 
             <file-asset 
                 id="ResponseTask"
                 file="ResponseTask.rtf"/>
 
             <file-asset 
-                id="CountingTask"
-                file="CountingTask.rtf"/>
+                id="Script"
+                file="Script.py"/>
+
+            <file-asset 
+                id="Images"
+                file="Images.zip"/>
         </assets>
     </protocol>
     <post-actions>
