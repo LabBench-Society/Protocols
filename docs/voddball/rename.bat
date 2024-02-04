@@ -1,4 +1,4 @@
-cd Stimuli
+cd Images
 
 move Slide1.PNG blank.png
 move Slide2.PNG normal.png

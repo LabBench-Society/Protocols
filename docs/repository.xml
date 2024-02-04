@@ -31,6 +31,10 @@
               name="Auditory Oddball Task"
               labbench-version="4.1.0"
               category="Psychology Research Paradigm;EEG;LabBench I/O" />
+    <protocol id="voddball"
+              name="Visual Oddball Task"
+              labbench-version="4.1.0"
+              category="Psychology Research Paradigm;EEG;LabBench I/O" />
     <protocol id="cpardemo"
               name="Introduction to Cuff Pressure Algometry"
               labbench-version="4.0.2"

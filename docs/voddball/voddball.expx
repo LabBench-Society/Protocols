@@ -37,10 +37,10 @@
                 id="display"
                 active-color="rgb(255,255,255)"
                 background-color="rgb(0,0,0)"
-                inactive-color="rgb(32,32,32"
+                inactive-color="rgb(32,32,32)"
                 normative-distance="40"
-                position="fullscreen"
-                screen="secondary">
+                position="upper-right"
+                screen="primary">
 
                 <monitor 
                     diagonal-size="21"
@@ -80,15 +80,26 @@
                 require-reason="false" />
         </properties>
         <defines>
-            <define name="NumberOfOddballs" value="40" />
+            <define 
+                name="NumberOfOddballs" 
+                value="40" />
+            <define 
+                name="DisplayTime" 
+                value="500"/>
         </defines>
         <tests>
             <electrophysiology-evoked-potentials
                 ID="ODDBALLR"
-                name="Auditory Oddball Task (Response Task)"
+                name="Visual Oddball Task (Response Task)"
+                experimental-setup-id="image"
                 response-collection="yes-no"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
+
+                <test-events selected="func: Script.ResponseInstructions(tc)">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </test-events>
 
                 <properties>
                     <instructions 
@@ -99,6 +110,14 @@
                 <configuration>
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
+                
+                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </stimulation-scripts>                
 
                 <stimulation-pattern time-base="seconds">
                     <sequence>
@@ -117,9 +136,8 @@
 
                 <stimuli order="block-random">
                     <stimulus
-                        name="Oddball"
-                        count="1"
-                        intensity="80">
+                        name="oddball"
+                        count="1">
                         <triggers>
                             <trigger duration="10">
                                 <code
@@ -127,18 +145,11 @@
                                     value="1" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="1000"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
 
                     <stimulus
-                        name="Normal"
-                        count="5"
-                        intensity="80">
+                        name="normal"
+                        count="5">
                         <triggers>
                             <trigger duration="10">
                                 <code
@@ -146,22 +157,22 @@
                                     value="2" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="500"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
                 </stimuli>
             </electrophysiology-evoked-potentials>
 
             <electrophysiology-evoked-potentials
                 ID="ODDBALLC"
-                name="Auditory Oddball Task (Counting Task)"
+                name="Visual Oddball Task (Counting Task)"
+                experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
+
+                <test-events selected="func: Script.CountingInstructions(tc)">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </test-events>
 
                 <properties>
                     <instructions 
@@ -173,6 +184,14 @@
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
 
+                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="Display"
+                                interface="image-display"/>
+                </stimulation-scripts>                             
+
                 <stimulation-pattern time-base="seconds">
                     <sequence>
                         <sequence 
@@ -192,8 +211,7 @@
                 <stimuli order="block-random">
                     <stimulus
                         name="Oddball"
-                        count="1"
-                        intensity="80">
+                        count="1">
                         <triggers>
                             <trigger duration="10">
                                 <code
@@ -201,18 +219,11 @@
                                     value="1" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="1000"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
 
                     <stimulus
                         name="Normal"
-                        count="5"
-                        intensity="80">
+                        count="5">
 
                         <triggers>
                             <trigger duration="10">
@@ -221,12 +232,6 @@
                                     value="2" />
                             </trigger>
                         </triggers>
-                        <stimulus>
-                            <sine
-                                Is="x"
-                                Frequency="500"
-                                Ts="200" />
-                        </stimulus>
                     </stimulus>
                 </stimuli>
             </electrophysiology-evoked-potentials>
@@ -234,6 +239,7 @@
             <meta-survey
                 ID="RESPONSE"
                 name="Number of oddballs"
+                experimental-setup-id="image"
                 control="operator">
 
                 <properties>
@@ -256,8 +262,8 @@
         </tests>
         <assets>
             <file-asset
-                id="TonePresentation"
-                file="TonePresentation.rtf" />
+                id="CountingTask"
+                file="CountingTask.rtf" />
 
             <file-asset 
                 id="ResponseTask"
@@ -266,6 +272,10 @@
             <file-asset 
                 id="Script"
                 file="Script.py"/>
+
+            <file-asset 
+                id="Images"
+                file="Images.zip"/>
         </assets>
     </protocol>
     <post-actions>
