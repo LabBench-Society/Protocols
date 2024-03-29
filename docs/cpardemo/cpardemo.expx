@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
-            name="CPAR Demonstration Experiment"
-            id="cpardemo"
-            protocol="cpardemo@labbench.io">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.0.0/experiment.xsd">
     <description />
     <citation>
         No citation is required when using this protocol.
@@ -29,9 +26,6 @@
                                instrument-name="Algometer"
                                device-id="dev" />
             <device-assignment test-type="algometry-stimulus-rating"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="algometry-static-temporal-summation-rating"
                                instrument-name="Algometer"
                                device-id="dev" />
             <device-assignment test-type="algometry-conditioned-pain-rating"
@@ -60,6 +54,7 @@
       2. name: A human readable name that will be used for the test in the protocol list in LabBench.
     -->
             <meta-survey ID="SURVEY"
+                         control="operator"
                          name="Survey">
                 <!--
         If the parameters of a test depend on the results of a previous test, then these dependencies MUST be declared here. If they are not declared,
@@ -411,38 +406,7 @@
                 <dependencies />
             </algometry-stimulus-rating>
 
-            <!--
-      With the static temporal summation rating the temporal summation of a static pressure is determined with a button instead of the VAS
-      meter. The test can determine the Pain Pressure Threshold (time at which the static pressure becomes painful), Pain Tolerance Threshold 
-      (time at which the static pressure becomes intolerable), or both.
-      
-      How the PDT and/or PTT is determined is controlled by the measurement parameter of the test:
-      
-        PDT  : The static pressure stimulation stops when the subject presses the button. The time at which the subject presses the button is
-               taken as the pain detection threshold (PDT).
-        PTT  : The static pressure stimulation stops when the subject presses the button. The time at which the subject presses the button is
-               taken as the pain tolerance threshold (PTT).
-        BOTH : The time the subject presses the button is taken as the pain detection threshold (PDT). The static pressure stimulatino is 
-               continued as long as the subject presses the button. When the button is released the static pressure stimulation is stopped and
-               this time is taken as the pain tolerance threshold (PTT).      
-               
-      Otherwise, the test is defined by the same parameters as for the static temporal summation test with the exception that it does not
-      include a tail-duration parameter.
-    -->
-            <algometry-static-temporal-summation-rating ID="T08"
-                                                        name="Static Temporal Summation Rating (PDT)"
-                                                        pressure-stimulate="T07.PTT"
-                                                        primary-cuff="1"
-                                                        second-cuff="false"
-                                                        stimulus-duration="10"
-                                                        measurement="PTT">
-                <dependencies>
-                    <dependency ID="T07"/>
-                </dependencies>
-            </algometry-static-temporal-summation-rating>
-
-
-            <!--
+    <!--
       The conditioned pain modulation rating test is anologeous to the conditioned pain modulation test that uses
       a button instead of the VAS to determine pain detection threshold (PDT), pain tolerance threshold (PTT), or both.
       
