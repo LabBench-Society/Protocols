@@ -7,6 +7,10 @@
               name="Introduction to LabBench (Nocitech CPAR)"
               labbench-version="4.0.2"
               category="Psychometrics;Demonstration Protocol;Nocitech CPAR"/>
+    <protocol id="alloknesisDemo"
+              name="Alloknesis"
+              labbench-version="4.4.0"
+              category="Psychometrics;Demonstration Protocol;LabBench I/O"/>
     <protocol id="vstopsignal"
               name="Visual Stop Signal Task (Joystick)"
               labbench-version="4.1.0"
