@@ -11,7 +11,7 @@
                 id="lio"
                 default-analog-output="0">
                 <response-devices>
-                    <visual-analog-scale id="vas">
+                    <visual-analog-scale id="scale">
                         <button-maps>
                             <map>
                                 <button-assignment code="1" button="increase" />
@@ -38,6 +38,25 @@
                     length-unit="cm"/>
 
                 <configurations>
+                    <composite-scale 
+                        id="scale"
+                        experimental-setup-id="scales"
+                        controller-device="lio.scale">
+
+                        <visual-analog-scale 
+                            id="itch"
+                            length="10"
+                            sample-period="200"
+                            timing-source="none">
+
+                            <anchors>
+                                <modality text="" />
+                                <top-anchor text="10/Worst imaginable itch" />
+                                <bottom-anchor text="0/No itch" />
+                            </anchors>
+                        </visual-analog-scale>
+                    </composite-scale>
+
                     <image-display 
                         id="image"
                         experimental-setup-id="image"
@@ -57,7 +76,12 @@
                 instrument-name="SubjectInstructions" />
 
             <device-assignment 
-                device-id="lio.vas"
+                test-type="psychophysics-response-recording"
+                instrument-name="Response"
+                device-id="display.scale" />
+
+            <device-assignment 
+                device-id="lio.scale"
                 test-type="meta-survey"
                 instrument-name="Response"/>
             
@@ -76,6 +100,12 @@
         </defines>
         <templates>
             <content>
+                <psychophysics-response-recording 
+                    ID="ItchCOVAS"
+                    experimental-setup-id="scales"
+                    duration="600"
+                    sample-rate="1" />
+
                 <meta-survey 
                     ID="nrsRating"
                     control="subject"
@@ -86,7 +116,7 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="operatorInstructionsNRS"
+                            default-instructions="operatorHyperknesisInstructionsNRS"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
@@ -167,8 +197,8 @@
         <assets>
             <file-asset id="operatorInstructionsNRS" file="operatorInstructionsNRS.rtf" />
             <file-asset id="operatorInstructionsVAS" file="operatorInstructionsVAS.rtf" />
-            <file-asset id="NRSInstruction" file="NRSInstruction.png" />
-            <file-asset id="VASInstruction" file="VASInstruction.png" />
+            <file-asset id="HyperknesisInstructionNRS" file="HyperknesisInstructionNRS.png" />
+            <file-asset id="HyperknesisInstructionVAS" file="HyperknesisInstructionVAS.png" />
         </assets>
     </protocol>
     <post-actions>
