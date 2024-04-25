@@ -77,7 +77,7 @@
         <templates>
             <content>
                 <meta-survey 
-                    ID="nrsRating"
+                    ID="nrsAlloknesisRating"
                     control="subject"
                     experimental-setup-id="survey">
                     <variables>
@@ -86,11 +86,11 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="operatorInstructionsNRS"
+                            default-instructions="operatorAlloknesisInstructionsNRS"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
-                            default="NRSInstruction" />
+                            default="AlloknesisInstructionNRS" />
                     </properties>
 
                     <templates>
@@ -115,7 +115,7 @@
                     </content>
                 </meta-survey>   
                 <meta-survey 
-                    ID="vasRating"
+                    ID="vasAlloknesisRating"
                     control="subject"
                     experimental-setup-id="survey">
                     <variables>
@@ -124,11 +124,11 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="operatorInstructionsVAS"
+                            default-instructions="operatorAlloknesisInstructionsVAS"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
-                            default="VASInstruction" />
+                            default="AlloknesisInstructionVAS" />
                     </properties>
 
                     <templates>
@@ -157,18 +157,19 @@
             <meta-survey-constructor 
                 ID="NRS" 
                 name="Alloknesis (NRS)" 
-                template="nrsRating" />
+                template="nrsAlloknesisRating" />
 
             <meta-survey-constructor 
                 ID="VAS" 
                 name="Alloknesis (VAS)" 
-                template="vasRating" />
+                template="vasAlloknesisRating" />
         </tests>
         <assets>
-            <file-asset id="operatorInstructionsNRS" file="operatorInstructionsNRS.rtf" />
-            <file-asset id="operatorInstructionsVAS" file="operatorInstructionsVAS.rtf" />
-            <file-asset id="NRSInstruction" file="NRSInstruction.png" />
-            <file-asset id="VASInstruction" file="VASInstruction.png" />
+            <file-asset id="operatorAlloknesisInstructionsNRS" file="operatorAlloknesisInstructionsNRS.rtf" />
+            <file-asset id="AlloknesisInstructionNRS" file="AlloknesisInstructionNRS.png" />
+
+            <file-asset id="operatorAlloknesisInstructionsVAS" file="operatorAlloknesisInstructionsVAS.rtf" />
+            <file-asset id="AlloknesisInstructionVAS" file="AlloknesisInstructionVAS.png" />
         </assets>
     </protocol>
     <post-actions>
