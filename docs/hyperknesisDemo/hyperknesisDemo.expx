@@ -39,7 +39,7 @@
 
                 <configurations>
                     <composite-scale 
-                        id="scale"
+                        id="vas"
                         experimental-setup-id="scales"
                         controller-device="lio.scale">
 
@@ -55,6 +55,25 @@
                                 <bottom-anchor text="0/No itch" />
                             </anchors>
                         </visual-analog-scale>
+                    </composite-scale>
+
+                    <composite-scale 
+                        id="nrs"
+                        experimental-setup-id="scales"
+                        controller-device="lio.scale">
+
+                        <numerical-scale
+                            id="itch"
+                            minimum="0"
+                            maximum="10"
+                            sample-period="200"
+                            timing-source="none">
+                            <anchors>
+                                <modality text="" />
+                                <top-anchor text="10/Worst imaginable itch" />
+                                <bottom-anchor text="0/No itch" />
+                            </anchors>
+                        </numerical-scale>
                     </composite-scale>
 
                     <image-display 
@@ -99,15 +118,63 @@
             
         </defines>
         <templates>
+            <variables>
+            </variables>
             <content>
                 <psychophysics-response-recording 
                     ID="ItchCOVAS"
-                    experimental-setup-id="scales"
+                    experimental-setup-id="vas"
                     duration="600"
-                    sample-rate="1" />
+                    sample-rate="1">
+                </psychophysics-response-recording>
 
                 <meta-survey 
-                    ID="nrsRating"
+                    ID="vasHyperknesisRating"
+                    control="subject"
+                    experimental-setup-id="survey">
+                    <variables>
+                        <strings value="1;2;3" name="Measurements" />                        
+                    </variables>
+
+                    <properties>
+                        <instructions 
+                            default-instructions="var: operatorInstructions"
+                            override-results="true"/>
+                        <subject-instructions 
+                            experimental-setup-id="image"
+                            default="HyperknesisInstructionVAS" />
+                    </properties>
+
+                    <templates>
+                        <visual-analog-scale 
+                            id="vas"
+                            instruction=" "
+                            length="10"
+                            top-anchor="Worst possible itch"
+                            bottom-anchor="No itch"                       
+                            active-color="rgb(255, 0, 0)"
+                            inactive-color="rgb(32, 32, 32)"/>
+                    </templates>
+
+                    <content>
+                        <foreach variable="n" in="Measurements">
+                            <visual-analog-scale
+                                id="var: 'M{n}'.format(n = n)"
+                                template="vas"
+                                title="var: 'Measurement {n}'.format(n = n)"/>
+                        </foreach>
+                    </content>
+                </meta-survey>   
+
+                <psychophysics-response-recording 
+                    ID="ItchCONRS"
+                    experimental-setup-id="nrs"
+                    duration="600"
+                    sample-rate="1">
+                </psychophysics-response-recording>
+
+                <meta-survey 
+                    ID="nrsHyperknesisRating"
                     control="subject"
                     experimental-setup-id="survey">
                     <variables>
@@ -116,11 +183,11 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="operatorHyperknesisInstructionsNRS"
+                            default-instructions="var: operatorInstructions"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
-                            default="NRSInstruction" />
+                            default="HyperknesisInstructionNRS" />
                     </properties>
 
                     <templates>
@@ -144,60 +211,30 @@
                         </foreach>
                     </content>
                 </meta-survey>   
-                <meta-survey 
-                    ID="vasRating"
-                    control="subject"
-                    experimental-setup-id="survey">
-                    <variables>
-                        <strings value="1;2;3" name="Measurements" />
-                    </variables>
-
-                    <properties>
-                        <instructions 
-                            default-instructions="operatorInstructionsVAS"
-                            override-results="true"/>
-                        <subject-instructions 
-                            experimental-setup-id="image"
-                            default="VASInstruction" />
-                    </properties>
-
-                    <templates>
-                        <visual-analog-scale 
-                            id="vas"
-                            instruction=" "
-                            length="10"
-                            top-anchor="Worst possible itch"
-                            bottom-anchor="No itch"                       
-                            active-color="rgb(255, 0, 0)"
-                            inactive-color="rgb(32, 32, 32)"/>
-                    </templates>
-
-                    <content>
-                        <foreach variable="n" in="Measurements">
-                            <visual-analog-scale
-                                id="var: 'M{n}'.format(n = n)"
-                                template="vas"
-                                title="var: 'Measurement {n}'.format(n = n)"/>
-                        </foreach>
-                    </content>
-                </meta-survey>   
             </content>             
         </templates>
         <tests>
             <meta-survey-constructor 
                 ID="NRS" 
                 name="Alloknesis (NRS)" 
-                template="nrsRating" />
+                template="nrsHyperknesisInstructionVASRating" />
 
             <meta-survey-constructor 
                 ID="VAS" 
                 name="Alloknesis (VAS)" 
-                template="vasRating" />
+                template="vasHyperknesisInstructionVASRating" />
         </tests>
         <assets>
-            <file-asset id="operatorInstructionsNRS" file="operatorInstructionsNRS.rtf" />
-            <file-asset id="operatorInstructionsVAS" file="operatorInstructionsVAS.rtf" />
+            <file-asset id="HyperknesisScript" file="HyperknesisScript.py" />
+          
+            <file-asset id="operatorNRSHyperknesisInstructions1p0" file="operatorNRSHyperknesisInstructions1p0.rtf" />
+            <file-asset id="operatorNRSHyperknesisInstructions1p4" file="operatorNRSHyperknesisInstructions1p4.rtf" />
+            <file-asset id="operatorNRSHyperknesisInstructions2p0" file="operatorNRSHyperknesisInstructions2p0.rtf" />
             <file-asset id="HyperknesisInstructionNRS" file="HyperknesisInstructionNRS.png" />
+
+            <file-asset id="operatorVASHyperknesisInstructions1p0" file="operatorVASHyperknesisInstructions1p0.rtf" />
+            <file-asset id="operatorVASHyperknesisInstructions1p4" file="operatorVASHyperknesisInstructions1p4.rtf" />
+            <file-asset id="operatorVASHyperknesisInstructions2p0" file="operatorVASHyperknesisInstructions2p0.rtf" />
             <file-asset id="HyperknesisInstructionVAS" file="HyperknesisInstructionVAS.png" />
         </assets>
     </protocol>
