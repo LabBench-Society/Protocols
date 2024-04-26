@@ -228,11 +228,7 @@
                     </variables>
                     <templates>
                         <numeric id="measurement">
-                            <validation 
-                                max="10" 
-                                max-included="true"
-                                min="0"
-                                min-included="true" />
+                            <validation max="10" max-included="true" min="0" min-included="true" />
                         </numeric>
                     </templates>
                     <content>
