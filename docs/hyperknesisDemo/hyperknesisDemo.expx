@@ -40,7 +40,7 @@
                 <configurations>
                     <composite-scale 
                         id="vas"
-                        experimental-setup-id="scales"
+                        experimental-setup-id="vas"
                         controller-device="lio.scale">
 
                         <visual-analog-scale 
@@ -59,7 +59,7 @@
 
                     <composite-scale 
                         id="nrs"
-                        experimental-setup-id="scales"
+                        experimental-setup-id="nrs"
                         controller-device="lio.scale">
 
                         <numerical-scale
@@ -96,8 +96,15 @@
 
             <device-assignment 
                 test-type="psychophysics-response-recording"
-                instrument-name="Response"
-                device-id="display.scale" />
+                test-id="nrsRecording"
+                device-id="display.nrs" 
+                instrument-name="Response" />
+
+            <device-assignment 
+                test-type="psychophysics-response-recording"
+                test-id="vassRecording"
+                device-id="display.vas" 
+                instrument-name="Response" />
 
             <device-assignment 
                 device-id="lio.scale"
@@ -216,13 +223,21 @@
         <tests>
             <meta-survey-constructor 
                 ID="NRS" 
-                name="Alloknesis (NRS)" 
-                template="nrsHyperknesisInstructionVASRating" />
+                name="NRS: Hyperknesis (1.4g)" 
+                template="nrsHyperknesisRating">
+                <variables>
+                    <string value="operatorNRSHyperknesisInstructions1p0" name="operatorInstructions" />
+                </variables>
+            </meta-survey-constructor>
 
             <meta-survey-constructor 
                 ID="VAS" 
-                name="Alloknesis (VAS)" 
-                template="vasHyperknesisInstructionVASRating" />
+                name="VAS: Hyperknesis (1.0g)" 
+                template="vasHyperknesisRating">
+                <variables>
+                    <string value="operatorVASHyperknesisInstructions1p0" name="operatorInstructions" />
+                </variables>
+            </meta-survey-constructor>
         </tests>
         <assets>
             <file-asset id="HyperknesisScript" file="HyperknesisScript.py" />
