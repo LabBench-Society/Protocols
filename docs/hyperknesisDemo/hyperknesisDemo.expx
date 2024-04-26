@@ -96,13 +96,13 @@
 
             <device-assignment 
                 test-type="psychophysics-response-recording"
-                test-id="nrsRecording"
+                test-id="CONRS"
                 device-id="display.nrs" 
                 instrument-name="Response" />
 
             <device-assignment 
                 test-type="psychophysics-response-recording"
-                test-id="vassRecording"
+                test-id="COVAS"
                 device-id="display.vas" 
                 instrument-name="Response" />
 
@@ -218,12 +218,45 @@
                         </foreach>
                     </content>
                 </meta-survey>   
+
+                <meta-survey 
+                    ID="hyperknesisArea"
+                    control="operator" 
+                    experimental-setup-id="image">
+                    <variables>
+                        <strings value="L1;L2;L3;L4;L5;L6;L7;L8" name="Measurements" />
+                    </variables>
+                    <templates>
+                        <numeric id="measurement">
+                            <validation 
+                                max="10" 
+                                max-included="true"
+                                min="0"
+                                min-included="true" />
+                        </numeric>
+                    </templates>
+                    <content>
+                        <foreach variable="m" in="Measurements">
+                            <numeric 
+                                id="var: m"
+                                title="var: 'Measurement ({m})'.format(m = m)"
+                                instruction="var: 'Enter the extend of the itch sensation on the {m} axis'.format(m = m)"
+                                template="measurement" />
+                        </foreach>
+                    </content>
+
+                </meta-survey>
             </content>             
         </templates>
         <tests>
+            <psychophysics-response-recording-constructor 
+                ID="CONRS" 
+                name="NRS: Itch Assessment" 
+                template="ItchCONRS" />
+
             <meta-survey-constructor 
-                ID="NRS" 
-                name="NRS: Hyperknesis (1.4g)" 
+                ID="NRS10" 
+                name="NRS: Hyperknesis (1.0g)" 
                 template="nrsHyperknesisRating">
                 <variables>
                     <string value="operatorNRSHyperknesisInstructions1p0" name="operatorInstructions" />
@@ -231,13 +264,59 @@
             </meta-survey-constructor>
 
             <meta-survey-constructor 
-                ID="VAS" 
+                ID="NRS14" 
+                name="NRS: Hyperknesis (1.4g)" 
+                template="nrsHyperknesisRating">
+                <variables>
+                    <string value="operatorNRSHyperknesisInstructions1p4" name="operatorInstructions" />
+                </variables>
+            </meta-survey-constructor>
+
+            <meta-survey-constructor 
+                ID="NRS20" 
+                name="NRS: Hyperknesis (2.0g)" 
+                template="nrsHyperknesisRating">
+                <variables>
+                    <string value="operatorNRSHyperknesisInstructions2p0" name="operatorInstructions" />
+                </variables>
+            </meta-survey-constructor>
+
+            <psychophysics-response-recording-constructor 
+                ID="COVAS" 
+                name="VAS: Itch Assessment" 
+                template="ItchCOVAS" />
+
+            <meta-survey-constructor 
+                ID="VAS10" 
                 name="VAS: Hyperknesis (1.0g)" 
                 template="vasHyperknesisRating">
                 <variables>
                     <string value="operatorVASHyperknesisInstructions1p0" name="operatorInstructions" />
                 </variables>
             </meta-survey-constructor>
+
+            <meta-survey-constructor 
+                ID="VAS14" 
+                name="VAS: Hyperknesis (1.4g)" 
+                template="vasHyperknesisRating">
+                <variables>
+                    <string value="operatorVASHyperknesisInstructions1p4" name="operatorInstructions" />
+                </variables>
+            </meta-survey-constructor>
+
+            <meta-survey-constructor 
+                ID="VAS20" 
+                name="VAS: Hyperknesis (2.0g)" 
+                template="vasHyperknesisRating">
+                <variables>
+                    <string value="operatorVASHyperknesisInstructions2p0" name="operatorInstructions" />
+                </variables>
+            </meta-survey-constructor>
+
+            <meta-survey-constructor 
+                ID="AREA" 
+                name="Hyperknesis Area" 
+                template="hyperknesisArea" />
         </tests>
         <assets>
             <file-asset id="HyperknesisScript" file="HyperknesisScript.py" />
