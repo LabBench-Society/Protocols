@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
-            name="Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
-            id="ctscpm"
-            protocol="ctscpmnct@labbench.io">
-  <description />
-    <citation>
-H. B. Vaegter, T. E. Andersen, M. Harvold, P. G. Andersen, and T. Graven-Nielsen, ‘Increased Pain Sensitivity in Accident-related Chronic Pain Patients With Comorbid Posttraum, Clin. J. Pain, vol. 34, no. 4, pp. 313–321, Apr. 2018, doi: 10.1097/AJP.0000000000000543.
-    </citation>
-
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
     <experimental-setup>
-    <description />
     <devices>
         <cpar id="dev" compressor-mode="AUTO"/>
     </devices>
@@ -77,4 +68,3 @@ H. B. Vaegter, T. E. Andersen, M. Harvold, P. G. Andersen, and T. Graven-Nielsen
         </assets>
     </protocol>
 </experiment>
-

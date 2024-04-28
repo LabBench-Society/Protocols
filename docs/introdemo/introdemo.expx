@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd">
-      <description>
-      </description>
-      <citation>No citation is required when using this protocol.</citation>
+      xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
       <subject-validator regex="^S[0-9]{3}$"
             advice="Please enter an ID in the form of SXXX, where X is a digit" />
       <experimental-setup>
-            <description />
             <devices />
             <device-mapping />
       </experimental-setup>
@@ -122,7 +118,7 @@
             <export-to-csv name="Calculate scores and export to CSV"
                   location="C:\CPAR\intro"
                   header="true"
-                  seperator=";"
+                  separator=";"
                   filename="dynamic: '{session}-{time}.csv'.format(session = SESSION_NAME, time = SESSION_TIME)">
                   <item name="Sex" value="SUBJECT['SEX']" default="NA" />
                   <item name="Age" value="SUBJECT['AGE']" default="NA" />

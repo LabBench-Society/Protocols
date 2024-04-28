@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.1.0/experiment.xsd">
-    <description />
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
     <experimental-setup>
-        <description />
         <devices>
             <joystick id="joystick">
                 <map>
@@ -125,8 +123,7 @@
                     selected="func: Script.Instructions(tc)"
                     complete="func: Script.Complete(tc)">
                     <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
+                                interface="image-display"/>
                 </test-events>
 
                 <stimulation-scripts initialize="func: Script.UpDownInitialize(tc)"
@@ -134,11 +131,9 @@
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
                     <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
+                                interface="image-display"/>
                     <instrument name="Response"
-                                interface="button"
-                                required="true"/>
+                                interface="button"/>
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">
@@ -169,8 +164,7 @@
                     selected="func: Script.Instructions(tc)"
                     complete="func: Script.Complete(tc)">
                     <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
+                                interface="image-display"/>
                 </test-events>
 
                 <stimulation-scripts initialize="func: Script.PsiInitialize(tc)"
@@ -178,11 +172,9 @@
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
                     <instrument name="ImageDisplay"
-                                interface="image-display"
-                                required="true"/>
+                                interface="image-display"/>
                     <instrument name="Response"
-                                interface="button"
-                                required="true"/>
+                                interface="button"/>
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">

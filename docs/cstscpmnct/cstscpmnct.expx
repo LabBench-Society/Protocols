@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd"
-            name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
-            id="cstscpmnct"
-            protocol="cstscpmnct@labbench.io">
-  <description />
-    <citation>
-        None required
-    </citation>
-
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
     <experimental-setup>
-    <description />
     <devices>
         <cpar id="dev" compressor-mode="AUTO"/>
     </devices>
@@ -99,4 +90,3 @@
         </assets>
     </protocol>
 </experiment>
-
