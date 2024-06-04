@@ -1,113 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
-    <subject-validator regex="^S[0-9]{3}$"
-                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup>
-        <devices>
-            <display id="display"
-                     active-color="rgb(255,255,255)"
-                     background-color="rgb(0,0,0)"
-                     inactive-color="rgb(32,32,32)"
-                     position="fullscreen"
-                     screen="secondary"
-                     normative-distance="40">
-                
-                <monitor diagonal-size="13"
-                         diagonal-size-unit="inch"
-                         distance="40"
-                         length-unit="cm"/>
+<experiment 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+   <subject-validator 
+      regex="^S[0-9]{3}$"
+      advice="Please enter an ID in the form of SXXX, where X is a digit" />
+   <experimental-setup>
+      <devices>
+         <display 
+            id="display"
+            active-color="rgb(255,255,255)"
+            background-color="rgb(0,0,0)"
+            inactive-color="rgb(32,32,32)"
+            position="fullscreen"
+            screen="secondary"
+            normative-distance="40">
 
-                <configurations>
-                    <image-display id="image"
-                                   experimental-setup-id="image"
-                                   background-color="rgb(0,0,0)" />
-                </configurations>
-            </display>
-            <joystick id="button">
-                <map>
-                    <button-assignment code="1" button="button-01"/>
-                    <button-assignment code="2" button="button-02"/>
-                    <button-assignment code="4" button="button-03"/>
-                    <button-assignment code="8" button="button-04"/>
-                </map>
-            </joystick>
-        </devices>
-        <device-mapping>
-            <device-assignment test-type="electrophysiology-evoked-potentials"
-                               instrument-name="Display"
-                               device-id="display.image"/>
-            <device-assignment test-type="electrophysiology-evoked-potentials"
-                               instrument-name="Response"
-                               device-id="button"/>
-        </device-mapping>
+         <monitor 
+            diagonal-size="13"
+            diagonal-size-unit="inch"
+            distance="40"
+            length-unit="cm"/>
+
+         <configurations>
+            <image-display 
+               id="image"
+               experimental-setup-id="image"
+               background-color="rgb(0,0,0)" />
+            </configurations>
+         </display>
+
+         <joystick id="button">
+            <map>
+               <button-assignment code="1" button="button-01"/>
+               <button-assignment code="2" button="button-02"/>
+               <button-assignment code="4" button="button-03"/>
+               <button-assignment code="8" button="button-04"/>
+            </map>
+         </joystick>
+      </devices>
+      <device-mapping>
+         <device-assignment 
+            test-type="electrophysiology-evoked-potentials"
+            instrument-name="Display"
+            device-id="display.image"/>
+         <device-assignment 
+            test-type="electrophysiology-evoked-potentials"
+            instrument-name="SubjectInstructions"
+            device-id="display.image"/>
+         <device-assignment 
+            test-type="electrophysiology-evoked-potentials"
+            instrument-name="Response"
+            device-id="button"/>
+      </device-mapping>
     </experimental-setup>
     <protocol>
-        <languages>
-            <language code="EN"
-                      name="English"/>
-            <language code="DA"
-                      name="Danish"/>
-        </languages>    
-        <defines>
-            <define name="StimulusRepetitions" value="6"/>
-            <define name="DisplayTime" value="1500"/>
-        </defines>
-        <tests>
-            <electrophysiology-evoked-potentials ID="NSTROOPTrial"
-                                                      name="Neutral Stroop Task (Trial)"
-                                                      experimental-setup-id="image"
-                                                      response-collection="yes-no"
-                                                      stimulus-update-rate="10000">
-                <test-events selected="func: Script.NeutralInstructions(tc)"
-                             complete="func: Script.Evaluate(tc)">
-                    <instrument name="Display"
-                                interface="image-display"/>
-                </test-events>
-                
-                <stimulation-scripts initialize="func: Script.Initialize(tc)"
-                                     stimulate="func: Script.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="Display"
-                                interface="image-display"/>
-                </stimulation-scripts>
+      <languages>
+         <language 
+            code="EN"
+            name="English"/>
+         <language 
+            code="DA"
+            name="Danish"/>
+      </languages>    
+      <defines>
+         <define name="StimulusRepetitions" value="6"/>
+         <define name="DisplayTime" value="1500"/>
+      </defines>
+        <tests>            
+            <electrophysiology-evoked-potentials 
+               ID="NSTROOPTrial"
+               name="Neutral Stroop Task (Trial)"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.Evaluate(tc)" />
+
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="ninstruct"/>
+               </properties>                                                    
+              
+               <stimulation-scripts 
+                  initialize="func: Script.Initialize(tc)"
+                  stimulate="func: Script.Stimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+                  <instrument 
+                     name="Display"
+                     interface="image-display"/>
+               </stimulation-scripts>
     
-                <stimulation-pattern time-base="seconds">
-                    <sequence iterations="1">
-                        <sequence iterations="1" Tperiod="4" stimulate="false" />
+               <stimulation-pattern time-base="seconds">
+                  <sequence iterations="1">
+                     <sequence 
+                        iterations="1" 
+                        Tperiod="4" 
+                        stimulate="false" />
     
-                        <uniformly-distributed-sequence minTperiod="3"
-                                                        maxTperiod="5"
-                                                        iterations="NumberOfStimuli" />
-                    </sequence>
-                </stimulation-pattern>
+                     <uniformly-distributed-sequence 
+                        minTperiod="3"
+                        maxTperiod="5"
+                        iterations="NumberOfStimuli" />
+                  </sequence>
+               </stimulation-pattern>
     
-                <stimuli order="block-random">
-                    <stimulus name="rn" />
-                    <stimulus name="gn" />
-                    <stimulus name="bn" />
-                    <stimulus name="yn" />                
-                </stimuli>
+               <stimuli order="block-random">
+                  <stimulus name="rn" />
+                  <stimulus name="gn" />
+                  <stimulus name="bn" />
+                  <stimulus name="yn" />                
+               </stimuli>
             </electrophysiology-evoked-potentials>
             
-            <electrophysiology-evoked-potentials ID="NSTROOP"
-                                                 name="Neutral Stroop Task"
-                                                 experimental-setup-id="image"
-                                                 response-collection="yes-no"
-                                                 stimulus-update-rate="10000">
-                <test-events complete="func: Script.Evaluate(tc)" />
+            <electrophysiology-evoked-potentials 
+               ID="NSTROOP"
+               name="Neutral Stroop Task"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.Evaluate(tc)" />
                 
-                <dependencies>
-                    <dependency ID="NSTROOPTrial"/>
-                </dependencies>
-                <stimulation-scripts initialize="func: Script.Initialize(tc)"
-                                     stimulate="func: Script.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="Display"
-                                interface="image-display"/>                
-                </stimulation-scripts>
+               <dependencies>
+                  <dependency ID="NSTROOPTrial"/>
+               </dependencies>
+
+               <stimulation-scripts 
+                  initialize="func: Script.Initialize(tc)"
+                  stimulate="func: Script.Stimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+
+                  <instrument 
+                     name="Display"
+                     interface="image-display"/>                
+               </stimulation-scripts>
     
                 <stimulation-pattern time-base="seconds">
                     <sequence iterations="1">
@@ -127,102 +157,127 @@
                 </stimuli>
             </electrophysiology-evoked-potentials>
     
-            <electrophysiology-evoked-potentials ID="STROOPTrial"
-                                              name="Stroop Task (Trial)"
-                                              experimental-setup-id="image"
-                                              response-collection="yes-no"
-                                              stimulus-update-rate="10000">
-                <test-events selected="func: Script.Instructions(tc)"
-                             complete="func: Script.Evaluate(tc)">
-                    <instrument name="Display"
-                                interface="image-display"/>
-                </test-events>
-                
-                <stimulation-scripts initialize="func: Script.Initialize(tc)"
-                                     stimulate="func: Script.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="Display"
-                                interface="image-display"/>
-                </stimulation-scripts>
+            <electrophysiology-evoked-potentials 
+               ID="STROOPTrial"
+               name="Stroop Task (Trial)"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.Evaluate(tc)" />
+
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="instruct"/>
+               </properties>                                                    
+               
+               <stimulation-scripts 
+                  initialize="func: Script.Initialize(tc)"
+                  stimulate="func: Script.Stimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+                  <instrument 
+                     name="Display"
+                     interface="image-display"/>
+               </stimulation-scripts>
     
-                <stimulation-pattern time-base="seconds">
-                    <sequence iterations="1">
-                        <sequence iterations="1" Tperiod="4" stimulate="false" />
+               <stimulation-pattern time-base="seconds">
+                  <sequence iterations="1">
+                     <sequence 
+                        iterations="1" 
+                        Tperiod="4" 
+                        stimulate="false" />
     
-                        <uniformly-distributed-sequence minTperiod="3"
-                                                        maxTperiod="5"
-                                                        iterations="NumberOfStimuli" />
-                    </sequence>
-                </stimulation-pattern>
+                     <uniformly-distributed-sequence 
+                        minTperiod="3"
+                        maxTperiod="5"
+                        iterations="NumberOfStimuli" />
+                  </sequence>
+               </stimulation-pattern>
     
-                <stimuli order="block-random">
-                    <stimulus name="rr" />
-                    <stimulus name="gg" />
-                    <stimulus name="bb" />
-                    <stimulus name="yy" />
-                    <stimulus name="rg" />
-                    <stimulus name="gb" />
-                    <stimulus name="by" />
-                    <stimulus name="yr" />
-                </stimuli>
+               <stimuli order="block-random">
+                  <stimulus name="rr" />
+                  <stimulus name="gg" />
+                  <stimulus name="bb" />
+                  <stimulus name="yy" />
+                  <stimulus name="rg" />
+                  <stimulus name="gb" />
+                  <stimulus name="by" />
+                  <stimulus name="yr" />
+               </stimuli>
             </electrophysiology-evoked-potentials>
     
-            <electrophysiology-evoked-potentials ID="STROOP"
-                                              name="Stroop Task"
-                                              experimental-setup-id="image"
-                                              response-collection="yes-no"
-                                              stimulus-update-rate="10000">
-                <test-events complete="func: Script.Evaluate(tc)" />
+            <electrophysiology-evoked-potentials 
+               ID="STROOP"
+               name="Stroop Task"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.Evaluate(tc)" />
     
-                <dependencies>
-                    <dependency ID="STROOPTrial"/>
-                </dependencies>
-                <stimulation-scripts initialize="func: Script.Initialize(tc)"
-                                     stimulate="func: Script.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="Display"
-                                interface="image-display"/>
-                </stimulation-scripts>
+               <dependencies>
+                  <dependency ID="STROOPTrial"/>
+               </dependencies>
+
+               <stimulation-scripts 
+                  initialize="func: Script.Initialize(tc)"
+                  stimulate="func: Script.Stimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+                  <instrument 
+                     name="Display"
+                     interface="image-display"/>
+               </stimulation-scripts>
     
-                <stimulation-pattern time-base="seconds">
-                    <sequence iterations="1">
-                        <sequence iterations="1" Tperiod="4" stimulate="false" />
+               <stimulation-pattern time-base="seconds">
+                  <sequence iterations="1">
+                     <sequence 
+                        iterations="1" 
+                        Tperiod="4" 
+                        stimulate="false" />
     
-                        <uniformly-distributed-sequence minTperiod="3"
-                                                        maxTperiod="5"
-                                                        iterations="(StimulusRepetitions/3)*NumberOfStimuli" />
-                    </sequence>
-                </stimulation-pattern>
+                     <uniformly-distributed-sequence 
+                        minTperiod="3"
+                        maxTperiod="5"
+                        iterations="(StimulusRepetitions/3)*NumberOfStimuli" />
+                  </sequence>
+               </stimulation-pattern>
     
-                <stimuli order="block-random">
-                    <stimulus name="rr" count="3" />
-                    <stimulus name="rg" />
-                    <stimulus name="rb" />
-                    <stimulus name="ry" />
-                    
-                    <stimulus name="gr" />
-                    <stimulus name="gg" count="3"/>
-                    <stimulus name="gb" />
-                    <stimulus name="gy" />
-                    
-                    <stimulus name="br" />
-                    <stimulus name="bg" />
-                    <stimulus name="bb" count="3"/>
-                    <stimulus name="by" />
-                    
-                    <stimulus name="yr" />
-                    <stimulus name="yb" />
-                    <stimulus name="yg" />
-                    <stimulus name="yy" count="3"/>
-                </stimuli>
+               <stimuli order="block-random">
+                  <stimulus name="rr" count="3" />
+                  <stimulus name="rg" />
+                  <stimulus name="rb" />
+                  <stimulus name="ry" />
+
+                  <stimulus name="gr" />
+                  <stimulus name="gg" count="3"/>
+                  <stimulus name="gb" />
+                  <stimulus name="gy" />
+
+                  <stimulus name="br" />
+                  <stimulus name="bg" />
+                  <stimulus name="bb" count="3"/>
+                  <stimulus name="by" />
+
+                  <stimulus name="yr" />
+                  <stimulus name="yb" />
+                  <stimulus name="yg" />
+                  <stimulus name="yy" count="3"/>
+               </stimuli>
             </electrophysiology-evoked-potentials>        
         </tests>
         <assets>
             <file-asset id="EnglishImages" file="images_en.zip" />
             <file-asset id="DanishImages" file="images_da.zip" />
             <file-asset id="Script" file="Script.py" />
+            <file-asset id="ninstruct" file="ninstruct_EN.png">
+                <language code="DA" file="ninstruct_DA.png" />
+            </file-asset>
+            <file-asset id="instruct" file="instruct_EN.png">
+                <language code="DA" file="instruct_DA.png" />
+            </file-asset>
         </assets>
     </protocol>
     <post-actions>
