@@ -4,9 +4,9 @@
             id="labbench.io">
 
     <protocol id="introdemo"
-              name="Introduction to LabBench (Nocitech CPAR)"
+              name="Introduction to LabBench"
               labbench-version="4.5.0"
-              category="Psychometrics;Demonstration Protocol;Nocitech CPAR"/>
+              category="Psychometrics;Demonstration Protocol;LabBench CPAR+"/>
     <protocol id="hyperknesisDemo"
               name="Hyperknesis"
               labbench-version="4.5.0"
