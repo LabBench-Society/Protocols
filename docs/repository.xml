@@ -32,15 +32,7 @@
               name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
               labbench-version="4.5.0"
               category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
-
-    <protocol id="hyperknesisDemo"
-              name="Hyperknesis"
-              labbench-version="4.5.0"
-              category="Psychometrics;Demonstration Protocol;LabBench I/O"/>
-    <protocol id="alloknesisDemo"
-              name="Alloknesis"
-              labbench-version="4.5.0"
-              category="Psychometrics;Demonstration Protocol;LabBench I/O"/>
+             
     <protocol id="vstopsignal"
               name="Visual Stop Signal Task (Joystick)"
               labbench-version="4.5.0"
@@ -70,6 +62,16 @@
               labbench-version="4.5.0"
               category="Psychology Research Paradigm;EEG;LabBench I/O" />
     
+    <protocol id="hyperknesisDemo"
+              name="Hyperknesis"
+              labbench-version="4.5.0"
+              category="Psychometrics;Demonstration Protocol;LabBench I/O"/>
+
+    <protocol id="alloknesisDemo"
+              name="Alloknesis"
+              labbench-version="4.5.0"
+              category="Psychometrics;Demonstration Protocol;LabBench I/O"/>
+
     <protocols>
         <protocol id="scriptdemo"
                   name="Introduction to Scripting"
