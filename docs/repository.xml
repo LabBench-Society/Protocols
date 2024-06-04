@@ -7,6 +7,32 @@
               name="Introduction to LabBench"
               labbench-version="4.5.0"
               category="Psychometrics;Demonstration Protocol;LabBench CPAR+"/>
+
+    <protocol id="cpardemo"
+              name="Introduction to Cuff Pressure Algometry"
+              labbench-version="4.5.0"
+              category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
+
+    <protocol id="ctscpm"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol" 
+              labbench-version="4.5.0"
+              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
+              
+    <protocol id="ctscpmauto"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
+              labbench-version="4.5.0"
+              category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
+
+    <protocol id="ctscpmnct"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol"
+              labbench-version="4.5.0"
+              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
+
+    <protocol id="cstscpmnct"
+              name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
+              labbench-version="4.5.0"
+              category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
+
     <protocol id="hyperknesisDemo"
               name="Hyperknesis"
               labbench-version="4.5.0"
@@ -43,26 +69,6 @@
               name="Visual Oddball Task"
               labbench-version="4.5.0"
               category="Psychology Research Paradigm;EEG;LabBench I/O" />
-    <protocol id="cpardemo"
-              name="Introduction to Cuff Pressure Algometry"
-              labbench-version="4.5.0"
-              category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
-    <protocol id="cstscpmnct"
-              name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
-              labbench-version="4.5.0"
-              category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
-    <protocol id="ctscpmnct"
-              name="Temporal Summation and Conditioned Pain Modulation Protocol"
-              labbench-version="4.5.0"
-              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
-    <protocol id="ctscpm"
-              name="Temporal Summation and Conditioned Pain Modulation Protocol" 
-              labbench-version="4.5.0"
-              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
-    <protocol id="ctscpmauto"
-              name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
-              labbench-version="4.5.0"
-              category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
     
     <protocols>
         <protocol id="scriptdemo"
