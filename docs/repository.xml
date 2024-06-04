@@ -45,6 +45,10 @@
               name="Stroop Task"
               labbench-version="4.5.0"
               category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+    <protocol id="rstroop"
+              name="Reverse Stroop Task"
+              labbench-version="4.5.0"
+              category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
     <protocol id="flanker"
               name="Flanker Task"
               labbench-version="4.5.0"
