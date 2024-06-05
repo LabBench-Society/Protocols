@@ -30,14 +30,31 @@
             </configurations>
          </display>
 
-         <joystick id="button">
-            <map>
-               <button-assignment code="1" button="button-01"/>
-               <button-assignment code="2" button="button-02"/>
-               <button-assignment code="4" button="button-03"/>
-               <button-assignment code="8" button="button-04"/>
-            </map>
-         </joystick>
+         <lio 
+            id="lio"
+            default-analog-output="0">
+            <trigger-setup 
+               low-byte-voltage-level="unconnected"           
+               high-byte-voltage-level="unconnected"
+               logic-system="positive"/>               
+            <response-devices>
+               <response-pad
+                  id="pad"
+                  timing-source="response-port02"
+                  type="button-4-cross">
+                  <map
+                     experimental-setup-id="image">
+                     <button-assignment code="1" button="button-01" label="blue" />
+                     <button-assignment code="2" button="button-02" label="yellow" />
+                     <button-assignment code="3" button="button-03" label="red" />
+                     <button-assignment code="4" button="button-04" label="green" />
+                  </map>
+               </response-pad>
+               <visual-trigger 
+                  id="trigger"
+                  timing-source="response-port02"/>
+            </response-devices>
+         </lio>
       </devices>
       <device-mapping>
          <device-assignment 
@@ -51,7 +68,11 @@
          <device-assignment 
             test-type="electrophysiology-evoked-potentials"
             instrument-name="Response"
-            device-id="button"/>
+            device-id="lio.pad"/>
+         <device-assignment 
+            test-type="electrophysiology-evoked-potentials"
+            instrument-name="Trigger"
+            device-id="lio"/>
       </device-mapping>
     </experimental-setup>
     <protocol>
@@ -81,7 +102,11 @@
                   <subject-instructions 
                      experimental-setup-id="image" 
                      default="ninstruct"/>
-               </properties>                                                    
+               </properties>                                
+
+               <configuration>
+                  <trigger-generation trigger-source="none" />
+               </configuration>
               
                <stimulation-scripts 
                   initialize="func: Script.Initialize(tc)"
@@ -108,10 +133,34 @@
                </stimulation-pattern>
     
                <stimuli order="block-random">
-                  <stimulus name="rn" />
-                  <stimulus name="gn" />
-                  <stimulus name="bn" />
-                  <stimulus name="yn" />                
+                  <stimulus name="rn">
+                     <triggers>
+                        <trigger duration="10" Tdelay="0">
+                           <code output="Code" value="1" />
+                        </trigger>
+                     </triggers>
+                  </stimulus>
+                  <stimulus name="gn">
+                     <triggers>
+                        <trigger duration="10" Tdelay="0">
+                           <code output="Code" value="2" />
+                        </trigger>
+                     </triggers>
+                  </stimulus>
+                  <stimulus name="bn">
+                     <triggers>
+                        <trigger duration="10" Tdelay="0">
+                           <code output="Code" value="3" />
+                        </trigger>
+                     </triggers>
+                  </stimulus>
+                  <stimulus name="yn">                
+                     <triggers>
+                        <trigger duration="10" Tdelay="0">
+                           <code output="Code" value="4" />
+                        </trigger>
+                     </triggers>
+                  </stimulus>
                </stimuli>
             </electrophysiology-evoked-potentials>
             
