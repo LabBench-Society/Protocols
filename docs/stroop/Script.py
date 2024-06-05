@@ -32,13 +32,13 @@ def Stimulate(tc, x):
 def IsCorrect(result):
     name = result.Stimulus
     
-    if (name[0] == 'r'):
+    if (name[0] == 'b'):
         return 1 if result.Response == 1 else 0
-    elif (name[0] == 'g'):
-        return 1 if result.Response == 2 else 0
-    elif (name[0] == 'b'):
-        return 1 if result.Response == 3 else 0
     elif (name[0] == 'y'):
+        return 1 if result.Response == 2 else 0
+    elif (name[0] == 'r'):
+        return 1 if result.Response == 3 else 0
+    elif (name[0] == 'g'):
         return 1 if result.Response == 4 else 0
     else:
         return 0
