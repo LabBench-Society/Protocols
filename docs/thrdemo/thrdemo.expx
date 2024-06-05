@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+    <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <devices>
+            <!--  Contents omitted for brevity -->
+        </devices>
+        <device-mapping>
+            <!--  Contents omitted for brevity -->
+        </device-mapping>
+    </experimental-setup>
+    <protocol>
+        <languages>
+            <!--  Contents omitted for brevity -->
+        </languages>
+        <defines>
+            <!--  Contents omitted for brevity -->
+        </defines>
+        <tests>
+            <!--  Contents omitted for brevity -->
+        </tests>
+        <assets>
+            <!--  Contents omitted for brevity -->
+        </assets>
+    </protocol>
+    <post-actions>
+        <!--  Contents omitted for brevity -->
+    </post-actions>
+</experiment>
