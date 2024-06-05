@@ -133,34 +133,10 @@
                </stimulation-pattern>
     
                <stimuli order="block-random">
-                  <stimulus name="rn">
-                     <triggers>
-                        <trigger duration="10" Tdelay="0">
-                           <code output="Code" value="1" />
-                        </trigger>
-                     </triggers>
-                  </stimulus>
-                  <stimulus name="gn">
-                     <triggers>
-                        <trigger duration="10" Tdelay="0">
-                           <code output="Code" value="2" />
-                        </trigger>
-                     </triggers>
-                  </stimulus>
-                  <stimulus name="bn">
-                     <triggers>
-                        <trigger duration="10" Tdelay="0">
-                           <code output="Code" value="3" />
-                        </trigger>
-                     </triggers>
-                  </stimulus>
-                  <stimulus name="yn">                
-                     <triggers>
-                        <trigger duration="10" Tdelay="0">
-                           <code output="Code" value="4" />
-                        </trigger>
-                     </triggers>
-                  </stimulus>
+                  <stimulus name="rn" />
+                  <stimulus name="gn" />
+                  <stimulus name="bn" />
+                  <stimulus name="yn" />                
                </stimuli>
             </electrophysiology-evoked-potentials>
             
