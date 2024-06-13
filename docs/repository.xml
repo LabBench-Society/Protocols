@@ -17,6 +17,11 @@
               name="Temporal Summation and Conditioned Pain Modulation Protocol" 
               labbench-version="4.5.0"
               category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
+
+    <protocol id="ctscpmvs"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol (Visual Scale)" 
+              labbench-version="4.5.0"
+              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+;LabBench DISPLAY"/>
               
     <protocol id="ctscpmauto"
               name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
