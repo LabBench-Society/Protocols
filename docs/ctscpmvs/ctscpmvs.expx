@@ -14,27 +14,26 @@
             inactive-color="rgb(16,16,16)"
             normative-distance="40">
 
-        <monitor 
-            diagonal-size="13"
-            diagonal-size-unit="inch"
-            distance="40"
-            length-unit="cm"/>
+            <monitor 
+                diagonal-size="13"
+                diagonal-size-unit="inch"
+                distance="40"
+                length-unit="cm"/>
 
-        <configurations>
-            <visual-analog-scale
-                id="vas"
-                experimental-setup-id="vas"
-                length="10"
-                controller-device="dev">
-                <anchors>
-                    <modality text="" />
-                    <top-anchor text="10/Worst imaginable itch" />
-                    <bottom-anchor text="0/No itch" />
-                </anchors>
-            </visual-analog-scale>
-        </configurations>
-    </display>
-
+            <configurations>
+                <visual-analog-scale
+                    id="vas"
+                    experimental-setup-id="vas"
+                    length="10"
+                    controller-device="dev">
+                    <anchors>
+                        <modality text="" />
+                        <top-anchor text="10/Worst imaginable itch" />
+                        <bottom-anchor text="0/No itch" />
+                    </anchors>
+                </visual-analog-scale>
+            </configurations>
+        </display>
     </devices>
     <device-mapping>
       <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
