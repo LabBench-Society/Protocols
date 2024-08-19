@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/3.2.0/protocol.xsd"
+          name="Temporal summation and Conditioned Pain Modulation"
+          id="cstscpmnct">
+  <description />
+  <defines />
+  <tests>
+      <algometry-stimulus-response ID="TRIAL"
+                             name="Trial of the Stimulus-Response (Cuff 1)"
+                             delta-pressure="1"
+                             pressure-limit="100"
+                             primary-cuff="1"
+                             second-cuff="false"
+                             stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                             vas-pdt="1.0">
+          <dependencies />
+      </algometry-stimulus-response>
+      
+    <algometry-stimulus-response ID="SR01"
+                                 name="Stimulus-Response (Cuff 1)"
+                                 delta-pressure="1"
+                                 pressure-limit="100"
+                                 primary-cuff="1"
+                                 second-cuff="false"
+                                 stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                 vas-pdt="1.0">
+      <dependencies />
+    </algometry-stimulus-response>
+
+    <algometry-stimulus-response ID="SR02"
+                                 name="Stimulus-Response (Cuff 2)"
+                                 delta-pressure="1"
+                                 pressure-limit="100"
+                                 primary-cuff="2"
+                                 second-cuff="false"
+                                 stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                 vas-pdt="1.0">
+      <dependencies />
+    </algometry-stimulus-response>
+
+      <algometry-stimulus-response ID="SpS"
+                                   name="Spatial Summation (Cuff 1 + 2)"
+                                   delta-pressure="1"
+                                   pressure-limit="100"
+                                   primary-cuff="2"
+                                   second-cuff="true"
+                                   stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                   vas-pdt="1.0">
+          <dependencies />
+      </algometry-stimulus-response>
+      
+    <algometry-temporal-summation ID="TS"
+                                  name="Temporal Summation (Cuff 1)"
+                                  no-of-stimuli="10"
+                                  pressure-static="5"
+                                  pressure-stimulate="1.0 * SR01.PTT"
+                                  primary-cuff="1"
+                                  second-cuff="false"
+                                  t-off="1"
+                                  t-on="1">      
+      <dependencies>
+        <dependency ID="SR01"/>
+      </dependencies>
+    </algometry-temporal-summation>
+
+    <algometry-conditioned-pain-modulation ID="CPM"
+                                           name="CPM (Cuff 1)"
+                                           conditional-pressure="0.7 * SR02.PTT"
+                                           delta-conditional-pressure="10"
+                                           delta-pressure="1"
+                                           pressure-limit="100"
+                                           primary-cuff="1"
+                                           stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                           vas-pdt="1.0">
+      <dependencies>
+        <dependency ID="SR02"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation>                                                                                      
+  </tests>
+  <assets>
+  </assets>
+</protocol>

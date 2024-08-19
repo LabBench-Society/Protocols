@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <devices>
+            <cpar-plus id="dev"/>
+        </devices>
+        <device-mapping>
+            <device-assignment test-type="algometry-stimulus-response"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-conditioned-pain-modulation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-temporal-summation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-static-temporal-summation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-stimulus-rating"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-conditioned-pain-rating"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="algometry-arbitrary-temporal-summation"
+                               instrument-name="Algometer"
+                               device-id="dev" />
+            <device-assignment test-type="psychophysics-cold-pressor"
+                               instrument-name="Button"
+                               device-id="dev" />
+        </device-mapping>
+    </experimental-setup>
+
+    <protocol>
+        <defines />
+        <tests>
+            <!-- 
+      Survey tests allow the experimenter to record information about the experimental conditions, subject, or ask the subject a series of questions 
+      that will be recorded and stored together with the data from algometry and psychophysical tests.
+      
+      The test itself has only the two parameters that are common to all LabBench tests, and which MUST be defined for all tests in a protocol:
+      
+      1. ID:   The internal ID of the tests, that can be used to refer to the results of the test from other tests within the protocol, and which
+               will be used when the data is exported from LabBench to 3rd party analysis software.
+      2. name: A human readable name that will be used for the test in the protocol list in LabBench.
+    -->
+            <meta-survey ID="SURVEY"
+                         control="operator"
+                         name="Survey">
+                <!--
+        If the parameters of a test depend on the results of a previous test, then these dependencies MUST be declared here. If they are not declared,
+        then it will be possible to start the test even if the results are not yet available. In that case, LabBench will abort the test with an
+        error message.
+        
+        As this survey test is the first test in the protocol, it cannot depend on other tests, and its <dependencies> section is empty.
+      -->
+                <dependencies />
+                <content>
+                    <!--
+          Number questions allow numerical data to be recorded. This could for example be used to record the age, height, weight of the subject.
+          
+          Number questions have three parameters that are common to and must be defined for all questions in a Survey tests:
+          
+          1. id:          The ID with which the answer to the question can be referred to by other questions within this Survey or by other
+                          tests within the protocol.
+          2. title:       A human readable title for the question that will be shown to the operator.
+          3. instruction: An instruction to the operator on what kind of information that must be recorded for the question.
+        -->
+                    <numeric id="NUMBER"
+                              title="Number Question"
+                              instruction="What number between 0 and 100 would you like to enter?">
+                        <!--
+            The validation element is optional. If present only answers that are valid according to this validation element will be accepted.
+            The operator will not be able to advance in the Survey before a valid answer to question has been entered.
+          -->
+                        <validation max="100" max-included="true" min="0" min-included="true"/>
+                    </numeric>
+
+                    <!--
+           Boolean questions are questions for which there is only two mutually exclusive possible answers. Examples of boolean questions could be:
+           
+              "Is the subject right hanged?" (Yes/No)
+              "What is the sex of the subject?" (Male/Female)
+              
+           Besides the common parameters, the test has two additional parameters, which are the labels that will be used for the true and false answer.
+        -->
+                    <boolean id="BOOLEAN"
+                             title="Boolean Question"
+                             instruction="Do you agree that boolean questions are binary?"
+                             true-label="True"
+                             false-label="False"/>
+
+                    <!--
+          Time questions allow the operator to enter a date and time as an answer to the question. These questions could be used for example to record
+          when was the last time the subject had eaten or taken medication.
+        -->
+                    <time id="TIME"
+                          title="Time Question"
+                          instruction="What time and date would you like to enter?" />
+
+                    <!--
+          Multiple choice questions is used to ask questions for which the answer is one out of a list of mutually exclusive answers. These are displayed as
+          a drop down list from which one and only one answer may be selected.
+        -->
+                    <multiple-choice id="MULTIPLE_CHOICE"
+                                     title="Multiple Choice Question"
+                                     instruction="Multiple choice makes it possible to select between mutually exclusive choices?">
+                        <!--
+            Each choice element defines a possible answer to the question.
+          -->
+                        <choice value="Choice 1"/>
+                        <choice value="Choice 2"/>
+                    </multiple-choice>
+
+                    <!--
+          Text questions can be used to ask questions that can be answered by a free text input up to a given maximal length.
+          
+          This example question also illustrates a general question parameter that can be used with all questions, which are
+          conditions on the question. Conditions are used to skip questions in a survey based on the answer to previous questions.
+          
+          In this case this text question is only asked if the operator agreed that BOOLEAN questions has binary answers.
+        -->
+                    <text id="TEXT"
+                          title="Text Question"
+                          instruction="dynamic: 'How would you describe {choice}?'.format(choice = C['MULTIPLE_CHOICE'])"
+                          maximal-length="40"
+                          condition="C['BOOLEAN']">
+                        <!--
+           Text input can be validated with an optional validation rule that is defined by two parameters:
+           
+           1. A regular expression that is used to validate the text input.
+           2. A help text that can aid the operator in entering a valid answer to the question.
+           -->
+                        <validation regex="^[\w\W]{1,20}$"
+                                    advice="Please limit your description to 20 characters" />
+                    </text>
+
+                    <!--
+          Likert questions are used for rating statements on an ordinal scale. Likert questions can also be used for multiple choice
+          questions in which the operator should be able to see all possible answers simultaneously instead of selecting them from a
+          drop-down list of possible answers.
+        -->
+                    <likert id="LIKERT"
+                            title="Likert Questoins"
+                            instruction="Likert Scales can be used for its intended purpose, or as an alternative to Multiple Choice questons">
+                        <!--
+            Each element in the Likert scale is defined by a choice element with two parameters.
+            
+            1. label: the label that is displayed to the operator/subject
+            2. value: the value of the label. For a Likert scale this must be an increase/decreasing value.
+          -->
+                        <choice label="Choice 1" value="10"/>
+                        <choice label="Choice 2" value="20"/>
+                        <choice label="Choice 3" value="30"/>
+                        <choice label="Choice 4" value="40"/>
+                        <choice label="Choice 5" value="50"/>
+                    </likert>
+
+                    <!--
+          List questions are used to displays a list of true/false questions that are not mutually exclusive, but where from zero all can be 
+          selected as the answer to the question.
+          -->
+                    <list id="LIST"
+                          title="List Question"
+                          instruction="A list of choice where multiple can be selected">
+                        <!--
+            Each possible answer is defined by an item element with two parameters:
+            
+            1. question: The question to the subject/operator that can be answered as True/False.
+            2. id:       The ID by which the answer to the question can be referred to by other questions in the survey or other tests
+                         in the protocol.
+          -->
+                        <item question="Choice 1" id="11"/>
+                        <item question="Choice 2" id="12"/>
+                        <item question="Choice 3" id="13"/>
+                        <item question="Choice 4" id="14"/>
+                        <item question="Choice 5" id="15"/>
+                    </list>
+                </content>
+            </meta-survey>
+
+            <!--
+      Stimulus-Response tests are used to determine the psychophysical rating (VAS Rating) to a linearly increasing pressure stimulus. 
+      From this stimulus-response curve a number of psychophysical parameters can be determined; 1) the Pain Detection Threshold (PDT), 
+      2) the Pain Tolerance Limit (PTL), and 3) the Pain Tolerance Threshold (PTT). Which parameters are determined depends on the 
+      configuration of the test and the instruction to the subject.
+      
+      The test can work in two modes depending on the value of the stop-mode parameter:
+      
+        STOP_CRITERION_ON_BUTTON_VAS:      In this mode the PDT and PTT is determined. The pressure will increase until the subject rates the
+                                           pain to be 10cm on the VAS scale, or (s)he presses the button. The PDT is taken as the pressure applied
+                                           when the VAS reached a predefined distance on the VAS scale. The PTT is taken as the pressure applied
+                                           when the VAS reached 10cm. In this configuration the button on the VAS Meter acts as an emergency stop
+                                           button for the subject. If this button is pressed the test is aborted without data being recorded.
+       STOP_CRITERION_ON_BUTTON_PRESSED  : In these modes the pressure will be linearly increased until the subject either presses or releases
+       STOP_CRITERION_ON_BUTTON_RELEASED   the button on the VAS meter. In this mode scoring 10cm on the VAS scale will not stop the pressure
+                                           stimulation, only pressing/releasing the button will, and it is in this case not considered as an 
+                                           emergency stop. The PDT is taken as the pressure applied when the VAS reached a predefined distance 
+                                           on the VAS scale. The PTT is taken as the applied pressure when the subject presses/releases the button, and
+                                           the PTL is taken as the VAS rating when the subject presses/releases the button.
+                                           
+      The test is defined by the following parameters:
+      
+        delta-pressure: This is the rate of increase [kPa/s] of the applied pressure.
+        pressure-limit: This is the maximal pressure that CPAR device will deliver before it aborts the test.
+                        The maxinmal pressure for the device is 100kPa.
+        primary-cuff:   Determines which cuff will be used for the pressure stimulation.
+        second-cuff:    Will the second cuff be inflated togetger with the primary-cuff. If this parameter is set
+                        to true, the value of the primary-cuff parameter is irrelevant. This can be used for 
+                        studying spatial summation by placing the two cuffs adjacent to each other.
+        stop-mode:      The stop mode of the test as described for the STOP_CRITERION_ON_BUTTON_VAS, STOP_CRITERION_ON_BUTTON_PRESSED,
+                        and STOP_CRITERION_ON_BUTTON_RELEASED above.
+        vas-pdt:        The VAS score that is interpreted as the Pain Detection Threshold (PDT). If the PDT is set to 0cm this value should
+                        be set to 0.1cm to allow for a small deadband in the button on the VAS meter, which is required for not risking that 
+                        noice will accidently trigger an to early determination of the PDT. It can be set to higher than 0.1cm to allow for
+                        non-painful stimulations to be rated by the subject.                                  
+    -->
+            <algometry-stimulus-response ID="T01"
+                                         name="Stimulus Response (Stop on VAS 10) [Cuff 1]"
+                                         delta-pressure="1"
+                                         pressure-limit="100"
+                                         primary-cuff="1"
+                                         second-cuff="false"
+                                         stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                         vas-pdt="0.1">
+                <dependencies />
+            </algometry-stimulus-response>
+
+            <!--
+      This Stimulus-Response test is the same as T01 except that the Cuff 2 will be used instead of Cuff 1.
+    -->
+            <algometry-stimulus-response ID="T02"
+                                         name="Stimulus Response (Stop on VAS 10) [Cuff 2]"
+                                         delta-pressure="1"
+                                         pressure-limit="100"
+                                         primary-cuff="2"
+                                         second-cuff="false"
+                                         stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                         vas-pdt="0.1">
+                <dependencies />
+            </algometry-stimulus-response>
+
+            <!--
+      Illustrates the use of the second-cuff parameter to study spatial summation of pressure stimuli.
+    -->
+            <algometry-stimulus-response ID="T03"
+                                       name="Stimulus Response (Stop on VAS 10) [Cuff 1+2]"
+                                       delta-pressure="1"
+                                       pressure-limit="100"
+                                       primary-cuff="1"
+                                       second-cuff="true"
+                                       stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                       vas-pdt="0.1">
+                <dependencies />
+            </algometry-stimulus-response>
+
+            <!--
+      With the conditioned pain modulation test one cuff is used to apply a static pressure while the other
+      is used to determine a stimulus-response curve. 
+      
+      The parameters of the stimulus-response curve and their meaning are the same as for the stimulus-response
+      test.
+      
+      The conditioned pain modulation test has two additional parameters that is used to define the conditioning 
+      stimulus:
+      
+        conditional-pressure:       This is the pressure that will be applied with the conditioning cuff.
+        delta-confitional-pressure: In order to not shock the subject the conditioning pressure will not go 
+                                    directly to its target value. Instead it is gradually increased with a 
+                                    rate of rise specified by the delta-confitional-pressure parameter. The
+                                    stimulus response curve is first started when the conditioning pressure
+                                    has been reached in the conditioning cuff.
+                                    
+      Many parameters in the protocol can be defined by mathematical expressions in which the results of previously
+      executed tests can be used. For the confitional-pressure it is typically to set it to a fraction of the PTT
+      determined by a previous stimulus-response test.
+      
+      In this test it is set to 100% of the PTT determined by the T02 stimulus-response test with the following
+      expression:
+      
+         conditional-pressure="T02.PTT"
+         
+      Another typical value is 70% of the PTT, in which case the expression would have been:
+      
+         conditional-pressure="0.7 * T02.PTT"
+         
+    -->
+            <algometry-conditioned-pain-modulation ID="T04"
+                                                   name="CPM Test (Stop on VAS 10)"
+                                                   delta-conditional-pressure="10"
+                                                   conditional-pressure="T02.PTT"
+                                                   delta-pressure="1"
+                                                   pressure-limit="100"
+                                                   primary-cuff="1"
+                                                   stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+                                                   vas-pdt="0.1">
+                <!--
+        This element defines dependencies to other tests in the protcol. In this case the conditional-pressure
+        depends on test T02, and a dependency to this test is declared. This will prevent this test from being
+        executed before the results of test T02 is available.
+      -->
+                <dependencies>
+                    <dependency ID="T02"/>
+                </dependencies>
+
+            </algometry-conditioned-pain-modulation>
+
+            <!--
+    With the temporal summation test a series of retangular pressure stimuli is applied to one or both cuffs.
+    The subject is asked to rate the pain sensation of these stimuli on the VAS meter as soon as possible after
+    the cessatation of a pressure stimulus. The VAS rating for a stimulus is recorded just before the next stimulus
+    is given or would have been given if it had not been the last stimulus in the series.
+    
+    The test is defined by the following parameters:
+    
+      no-of-stimuli:      This is the number of pressure stimuli that will be applied during the test.
+      pressure-static:    This is the pressure that will be applied in between the pressure stimuli. This value
+                          is included as a small static pressure in between the stimuli can prevent the cuff
+                          from shifting during the test.
+      pressure-stimulate: This is the pressure that will be applied during the rectangular pressure stimuli.
+      primary-cuff:       This is the cuff that will be used for applying the stimuli.
+      second-cuff:        If this parameter is true then the stimuli will be applied to both cuffs, which can be
+                          used to study spatial summation. If it is true then the value of the primary-cuff is
+                          irrelevant but must nevertheless be defined.
+      t-on:               This is the duration of the rectangular stimuli.
+      t-off:              This is the pause between the stimuli in the series.
+      
+  -->
+            <algometry-temporal-summation ID="T05"
+                                          name="Temporal Summation"
+                                          no-of-stimuli="10"
+                                          pressure-static="0"
+                                          pressure-stimulate="T01.PTT"
+                                          primary-cuff="1"
+                                          second-cuff="false"
+                                          t-on="1"
+                                          t-off="1">
+                <!--
+      In this test the pressure-stimuli depends on the PTT determined in test T01. A dependency to this test is
+      therefore defined in the dependencies element.
+    -->
+                <dependencies>
+                    <dependency ID="T01"/>
+                </dependencies>
+            </algometry-temporal-summation>
+
+            <!--
+      The static temporal summation applies a constant pressure for a specified duration of time instead of a series
+      of stimuli in order to determine the temporal summation of pressure stimulaton.
+      
+      During this pressure stimulation and for a period after the test will record the VAS score of the subject as
+      the result of the test.
+      
+      The test is defined by the following parameters:
+      
+        pressure-stimulate: The pressure that is applied during the static pressure stimulation.
+        primary-cuff:       Which cuff the pressure is applied to.
+        second-cuff:        Is the pressure applied in one (false) or both cuffs (true).
+        stimulus-duration:  The duration [s] of the constant pressure stimulation.
+        tail-duration:      The duration after the cessatation of the pressure stimulation in which the VAS score
+                            is recorded.
+    -->
+            <algometry-static-temporal-summation ID="T06"
+                                                 name="Static Temporal Summation"
+                                                 pressure-stimulate="T01.PTT"
+                                                 primary-cuff="1"
+                                                 second-cuff="false"
+                                                 stimulus-duration="10"
+                                                 tail-duration="5">
+                <dependencies>
+                    <dependency ID="T01"/>
+                </dependencies>
+            </algometry-static-temporal-summation>
+
+            <!--
+      The stimulus rating test provides a way to determine the Pain Detection Threshold (PDT), the Pain Tolerance Threshold (PTT), or both 
+      without the use of the VAS meter. but with only an attached button.
+      
+      The test is executed in the same way as the stimulus-response test and is defined by the same parameters, with the exception that it
+      does not have a stop-mode parameter, but instead has a measurement parameter.
+      
+      The value of the measurement parameter controls how button presses are interpreted by the test and can be used to determine the PDT, PTT,
+      or both. The measurement parameter can have the following values:
+      
+        PDT:  In this case the stimulation will stop when the button is pressed and the pressure given at this moment is taken as the PDT.
+        PTT:  In this case the stimulation will stop when the button is pressed and the pressure given at this moment is taken as the PTT.
+        BOTH: In this case the pressure when the button is pressed is taken as the PDT. The pressure will continue as long as the subject
+              keeps pressing the button. The pressure when the subject releases the button is taken as the PTT.
+    -->
+            <algometry-stimulus-rating ID="T07"
+                                       name="Stimulus Rating (PTL)"
+                                       delta-pressure="1"
+                                       pressure-limit="100"
+                                       second-cuff="false"
+                                       primary-cuff="1"
+                                       measurement="PTT">
+                <dependencies />
+            </algometry-stimulus-rating>
+
+    <!--
+      The conditioned pain modulation rating test is anologeous to the conditioned pain modulation test that uses
+      a button instead of the VAS to determine pain detection threshold (PDT), pain tolerance threshold (PTT), or both.
+      
+      The test is defined by the same parameters as the conditioned pain modulation test with the addition of the measurement
+      parameter.
+      
+      The measurement parameter is used to define how the button is used to determine PDT, PTT, or both in the same manner 
+      as it is used for the stimulus-rating test.
+    -->
+            <algometry-conditioned-pain-modulation-rating ID="T09"
+                                                          name="Conditioned Pain Modulation Rating (PDT)"
+                                                          conditional-pressure="T07.PTT"
+                                                          delta-conditional-pressure="10"
+                                                          delta-pressure="1"
+                                                          pressure-limit="100"
+                                                          primary-cuff="2"
+                                                          measurement="PDT">
+                <dependencies>
+                    <dependency ID="T07"/>
+                </dependencies>
+            </algometry-conditioned-pain-modulation-rating>
+
+            <algometry-arbitrary-temporal-summation ID="T12"
+                                                    name="Arbitrary Temporal Summation"
+                                                    pressure-static="0"
+                                                    primary-cuff="1"
+                                                    second-cuff="false">
+                <dependencies>
+                    <dependency ID="T01"/>
+                </dependencies>
+                <stimuli>
+                    <stimulus pressure="0.2 * T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="0.4 * T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="0.6 * T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="0.8 * T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
+                    <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
+                </stimuli>
+            </algometry-arbitrary-temporal-summation>
+
+            <!--
+      The cold pressor test is used to determine the cold pain detection threshold (CPD), cold pain tolerance threshold (CPT), or both
+      to pain that is evoked by placing a hand or foot in ice water.
+      
+      The test uses a button that can either be provided by the CPAR device or a National Instrument DAQmx card to record responses 
+      from the subject. These responses can either be collected by the subject directly pressing the button accordingly to previous
+      instructions from the operator or by the operator listening to and observing the subject.
+      
+      The test is defined by the following parameters:
+         
+        time-limit:         The maximal time that the subject will be asked to place the hand or foot in the ice water. If this time
+                            is exceeded the subject will be marked as a non-responder to the cold pressor test.
+        button:             Which button on the device that is used for the test. For the CPAR device this must be button-01 as this
+                            is the only button the CPAR device has.
+        measurement:        Specifies which thresholds are determined in the test.
+        subject-controlled: Is used to record whether the subject or the operator operates the button.
+        
+      The test is performed by:
+        
+          1. The operator starts the test, the test will be in PENDING mode ready to start timing the cold pressor stimulation.
+          2. When the subject places the hand/foot in the ice water the button is pressed. This will start the time.
+          
+          Depending on the value of the measurement parameter the test will proceed as:
+          
+          "PDT": When the subject/operator presses the button the time will be marked as the CPD threshold and the test is concluded.
+          "PTT": When the subject/operator presses the button the time will be marked as the CPT threshold and the test is concluded.
+          "BOTH": The first time the subject/operator presses the button the time will be marked as the CPD threshold, the second
+                  time the button is pressed this will be marked as the CPT threshold and the test is concluded.
+    -->
+            <psychophysics-cold-pressor ID="T20"
+                                        name="Cold Pressor (PDT)"
+                                        time-limit="20"
+                                        button="button-01"
+                                        measurement="PDT"
+                                        subject-controlled="false">
+                <dependencies />
+            </psychophysics-cold-pressor>
+
+            <psychophysics-cold-pressor ID="T21"
+                                        name="Cold Pressor (PTT)"
+                                        time-limit="20"
+                                        button="button-01"
+                                        measurement="PTT"
+                                        subject-controlled="false">
+                <dependencies />
+            </psychophysics-cold-pressor>
+
+            <psychophysics-cold-pressor ID="T22"
+                                          name="Cold Pressor (BOTH)"
+                                          time-limit="20"
+                                          button="button-01"
+                                          measurement="BOTH"
+                                          subject-controlled="false">
+                <dependencies />
+            </psychophysics-cold-pressor>
+
+            <psychophysics-cold-pressor ID="T23"
+                                          name="Cold Pressor (BOTH, SUBJECT)"
+                                          time-limit="20"
+                                          button="button-01"
+                                          measurement="BOTH"
+                                          subject-controlled="true">
+                <dependencies />
+            </psychophysics-cold-pressor>
+        </tests>
+
+        <assets>
+        </assets>
+    </protocol>
+</experiment>

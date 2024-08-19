@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<experiment 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+<subject-validator 
+        regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+        advice="Must be SXXX or TESTXXX, where X is a digit"/>
+    <experimental-setup>
+        <devices>
+            <lio
+                id="lio"
+                default-analog-output="0">
+                <response-devices>
+                    <visual-analog-scale id="vas">
+                        <button-maps>
+                            <map>
+                                <button-assignment code="1" button="increase" />
+                                <button-assignment code="2" button="decrease" />
+                            </map>
+                        </button-maps>
+                    </visual-analog-scale>
+                </response-devices>
+            </lio>
+
+            <display
+                id="display"
+                screen="secondary"
+                position="fullscreen"
+                active-color="rgb(255,0,0)"
+                background-color="rgb(255,255,255)"
+                inactive-color="rgb(16,16,16)"
+                normative-distance="40">
+
+                <monitor 
+                    diagonal-size="13"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+
+                <configurations>
+                    <image-display 
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(255,255,255)"/>
+
+                    <survey 
+                        id="survey"
+                        experimental-setup-id="survey"
+                        background-color="rgb(255,255,255)" />                        
+                </configurations>
+            </display>
+        </devices>
+        <device-mapping>
+            <device-assignment 
+                device-id="display.image" 
+                test-type="meta-survey" 
+                instrument-name="SubjectInstructions" />
+
+            <device-assignment 
+                device-id="lio.vas"
+                test-type="meta-survey"
+                instrument-name="Response"/>
+            
+            <device-assignment 
+                device-id="display.survey" 
+                test-type="meta-survey"
+                instrument-name="Display" />
+        </device-mapping>        
+    </experimental-setup>
+    <protocol>
+        <languages>
+            
+        </languages>
+        <defines>
+            
+        </defines>
+        <templates>
+            <content>
+                <meta-survey 
+                    ID="nrsAlloknesisRating"
+                    control="subject"
+                    experimental-setup-id="survey">
+                    <variables>
+                        <strings value="1;2;3" name="Measurements" />
+                    </variables>
+
+                    <properties>
+                        <instructions 
+                            default-instructions="operatorAlloknesisInstructionsNRS"
+                            override-results="true"/>
+                        <subject-instructions 
+                            experimental-setup-id="image"
+                            default="AlloknesisInstructionNRS" />
+                    </properties>
+
+                    <templates>
+                        <numerical-scale 
+                            id="nrs"
+                            instruction=" "
+                            minimum="0"
+                            maximum="10"
+                            top-anchor="10/Worst possible itch"
+                            bottom-anchor="0/No itch"                       
+                            active-color="rgb(255, 0, 0)"
+                            inactive-color="rgb(32, 32, 32)"/>
+                    </templates>
+
+                    <content>
+                        <foreach variable="n" in="Measurements">
+                            <numerical-scale 
+                                id="var: 'M{n}'.format(n = n)"
+                                template="nrs"
+                                title="var: 'Measurement {n}'.format(n = n)"/>
+                        </foreach>
+                    </content>
+                </meta-survey>   
+                <meta-survey 
+                    ID="vasAlloknesisRating"
+                    control="subject"
+                    experimental-setup-id="survey">
+                    <variables>
+                        <strings value="1;2;3" name="Measurements" />
+                    </variables>
+
+                    <properties>
+                        <instructions 
+                            default-instructions="operatorAlloknesisInstructionsVAS"
+                            override-results="true"/>
+                        <subject-instructions 
+                            experimental-setup-id="image"
+                            default="AlloknesisInstructionVAS" />
+                    </properties>
+
+                    <templates>
+                        <visual-analog-scale 
+                            id="vas"
+                            instruction=" "
+                            length="10"
+                            top-anchor="Worst possible itch"
+                            bottom-anchor="No itch"                       
+                            active-color="rgb(255, 0, 0)"
+                            inactive-color="rgb(32, 32, 32)"/>
+                    </templates>
+
+                    <content>
+                        <foreach variable="n" in="Measurements">
+                            <visual-analog-scale
+                                id="var: 'M{n}'.format(n = n)"
+                                template="vas"
+                                title="var: 'Measurement {n}'.format(n = n)"/>
+                        </foreach>
+                    </content>
+                </meta-survey>   
+            </content>             
+        </templates>
+        <tests>
+            <meta-survey-constructor 
+                ID="NRS" 
+                name="Alloknesis (NRS)" 
+                template="nrsAlloknesisRating" />
+
+            <meta-survey-constructor 
+                ID="VAS" 
+                name="Alloknesis (VAS)" 
+                template="vasAlloknesisRating" />
+        </tests>
+        <assets>
+            <file-asset id="operatorAlloknesisInstructionsNRS" file="operatorAlloknesisInstructionsNRS.rtf" />
+            <file-asset id="AlloknesisInstructionNRS" file="AlloknesisInstructionNRS.png" />
+
+            <file-asset id="operatorAlloknesisInstructionsVAS" file="operatorAlloknesisInstructionsVAS.rtf" />
+            <file-asset id="AlloknesisInstructionVAS" file="AlloknesisInstructionVAS.png" />
+        </assets>
+    </protocol>
+    <post-actions>
+        
+    </post-actions>
+</experiment>
