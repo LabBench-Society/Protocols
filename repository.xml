@@ -14,8 +14,8 @@
               category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
 
     <protocol id="ctscpm"
-              name="Temporal Summation and Conditioned Pain Modulation Protocol" 
-              labbench-version="4.5.0"
+              name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
+              labbench-version="4.8.0"
               category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
 
     <protocol id="ctscpmvs"

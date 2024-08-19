@@ -1,16 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
-  <experimental-setup>
-    <devices>
-        <cpar-plus id="dev"/>
-    </devices>
-    <device-mapping>
-      <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
-      <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
-      <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
-    </device-mapping>
-  </experimental-setup>
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
+<experimental-setup-variants>
+    <experimental-setup name="LabBench CPAR+">
+        <devices>
+            <cpar-plus id="dev"/>
+        </devices>
+        <device-mapping>
+          <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
+        </device-mapping>
+      </experimental-setup>        
+      <experimental-setup name="LabBench CPAR+ (Scale on secondary monitor)">
+        <devices>
+            <cpar-plus id="dev"/>
+    
+            <display
+                id="display"
+                screen="secondary"
+                position="fullscreen"
+                active-color="rgb(255,0,0)"
+                background-color="rgb(255,255,255)"
+                inactive-color="rgb(16,16,16)"
+                normative-distance="40">
+    
+                <monitor 
+                    diagonal-size="13"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+    
+                <configurations>
+                    <visual-analog-scale
+                        id="vas"
+                        experimental-setup-id="vas"
+                        length="10"
+                        controller-device="dev">
+                        <anchors>
+                            <modality text="" />
+                            <top-anchor text="10/Worst imaginable itch" />
+                            <bottom-anchor text="0/No itch" />
+                        </anchors>
+                    </visual-analog-scale>
+                </configurations>
+            </display>
+        </devices>
+        <device-mapping>
+          <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
+        </device-mapping>
+      </experimental-setup>    
+      <experimental-setup name="Nocitech CPAR">
+        <devices>
+            <cpar id="dev" compressor-mode="AUTO"/>
+        </devices>
+        <device-mapping>
+          <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
+        </device-mapping>
+      </experimental-setup>
+      <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)">
+        <devices>
+            <cpar id="dev" compressor-mode="AUTO"/>
+
+            <display
+                id="display"
+                screen="secondary"
+                position="fullscreen"
+                active-color="rgb(255,0,0)"
+                background-color="rgb(255,255,255)"
+                inactive-color="rgb(16,16,16)"
+                normative-distance="40">
+    
+                <monitor 
+                    diagonal-size="13"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+    
+                <configurations>
+                    <visual-analog-scale
+                        id="vas"
+                        experimental-setup-id="vas"
+                        length="10"
+                        controller-device="dev">
+                        <anchors>
+                            <modality text="" />
+                            <top-anchor text="10/Worst imaginable itch" />
+                            <bottom-anchor text="0/No itch" />
+                        </anchors>
+                    </visual-analog-scale>
+                </configurations>
+            </display>
+        </devices>
+        <device-mapping>
+          <device-assignment test-type="algometry-stimulus-response" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-temporal-summation" instrument-name="Algometer" device-id="dev" />
+          <device-assignment test-type="algometry-conditioned-pain-modulation" instrument-name="Algometer" device-id="dev" />
+        </device-mapping>
+      </experimental-setup>    
+</experimental-setup-variants>
     <protocol>
         <defines />
         <tests>
