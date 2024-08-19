@@ -6,7 +6,7 @@
     <protocol id="introdemo"
               name="Introduction to LabBench"
               labbench-version="4.8.0"
-              category="Psychometrics;Demonstration Protocol;LabBench CPAR+"/>
+              category="Psychometrics;Demonstration Protocol"/>
 
     <protocol id="cpardemo"
               name="Introduction to Cuff Pressure Algometry"
