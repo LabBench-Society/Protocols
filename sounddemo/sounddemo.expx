@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/dev/experiment.xsd"
+            name="Sound Demonstration Protocol"
+            id="sounddemo"
+            protocol="sounddemo@example.labbench.io">
+    <description>This protocol is intended to demonstrate how a generic sound card and joystick can be used to determine the hearing threshold for a pure 1000kHz tone.</description>
+    <citation>No citation is required when using this protocol.</citation>
+    <experimental-setup>
+        <description />
+        <devices>
+            <joystick id="joystick" />
+            <sound id="sound" />
+        </devices>
+        <device-mapping>
+            <device-assignment test-type="psychophysics-threshold-estimation"
+                               instrument-name="Button"
+                               device-id="joystick" />
+            <device-assignment test-type="psychophysics-threshold-estimation"
+                               instrument-name="Stimulator"
+                               device-id="sound" />
+        </device-mapping>
+    </experimental-setup>
+</experiment>

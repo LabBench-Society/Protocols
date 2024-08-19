@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
+   <experimental-setup-variants>
+    <experimental-setup name="Joystick">
+        <devices>
+            <joystick id="joystick">
+                <map>
+                    <button-assignment code="32" button="left" label="left"/> <!-- number: 5-->
+                    <button-assignment code="128" button="right" label="right"/> <!--  number: 7 -->
+                </map>
+            </joystick>
+
+            <display
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                normative-distance="40"
+                position="fullscreen"
+                screen="secondary">
+
+                <monitor
+                    diagonal-size="13.3"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+
+                <configurations>
+                    <image-display
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>                
+            </display>         
+        </devices>
+        <device-mapping>
+            <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                device-id="joystick"
+                instrument-name="Response" />
+
+            <device-assignment
+                test-type="electrophysiology-evoked-potentials"
+                device-id="display.image"
+                instrument-name="ImageDisplay"/>
+        </device-mapping>        
+    </experimental-setup>
+    <experimental-setup name="LabBench I/O">
+        <devices>
+            <lio
+                id="lio" 
+                default-analog-output="0">
+                <response-devices>
+                    <response-pad
+                        id="pad" 
+                        type="button-4-cross" 
+                        timing-source="response-port02">
+                        <map>
+                            <button-assignment code="6" button="left" label="left" />
+                            <button-assignment code="5" button="right" label="right" />
+                        </map>
+                    </response-pad>
+                    <visual-trigger 
+                        id="vtrig"
+                        arming-period="200" 
+                        timing-source="response-port02" />
+                </response-devices>
+            </lio>
+
+            <display
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                normative-distance="40"
+                position="fullscreen"
+                screen="secondary">
+
+                <monitor
+                    diagonal-size="13.3"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+
+                <configurations>
+                    <image-display
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>                
+            </display>         
+        </devices>
+        <device-mapping>
+            <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                device-id="lio.pad"
+                instrument-name="Response" />
+
+            <device-assignment
+                test-type="electrophysiology-evoked-potentials"
+                device-id="display.image"
+                instrument-name="ImageDisplay"/>
+        </device-mapping>        
+    </experimental-setup>
+   </experimental-setup-variants>                    
+    <protocol>
+        <languages>
+            
+        </languages>
+        <defines>
+            <define
+                name="Images"
+                value="func: Script.CreateImages(tc)"/>
+                <define 
+                name="TrainingStopSignals" 
+                value="4"/> 
+            <define 
+                name="NumberOfStopSignals" 
+                value="30"/> 
+            <define
+                name="LowDelayLimit"
+                value="50"/>
+            <define
+                name="HighDelayLimit"
+                value="750"/>
+            <define
+                name="FixationDelay"
+                value="500"/>
+            <define
+                name="ResponseTimeout"
+                value="1000"/>
+            <define 
+                name="FeedbackDelay"
+                value="1000"/>            
+            <define
+                name="FeedbackTime"
+                value="1000"/>
+            <define
+                name="Pause"
+                value="1000"/>
+            <define
+                name="Period"
+                value="(FixationDelay + ResponseTimeout + FeedbackDelay + FeedbackTime + Pause)/1000"/>
+            <define 
+                name="Trials"
+                value="30"/>
+            <define 
+                name="AlphaX0"
+                value="0.0"/>
+            <define 
+                name="AlphaN"
+                value="200"/>
+            <define
+                name="BetaX0"
+                value="-2"/> <!--  Old value: -1.2041 -->
+            <define
+                name="BetaX1"
+                value="2"/> <!--  Old value: 1.2041 -->
+            <define
+                name="BetaN"
+                value="50"/>
+            <define 
+                name="IntensityX0"
+                value="0.0"/>
+            <define 
+                name="IntensityN"
+                value="50"/>
+            <define
+                name="ConfidenceLevel"
+                value="0.95"/>
+        </defines>
+        <tests>
+            <electrophysiology-evoked-potentials 
+                ID="T01"
+                name="Stop Signal Task (Training Task)"
+                experimental-setup-id="image"
+                response-collection="none"
+                stimulus-update-rate="44100">
+
+                <test-events 
+                    selected="func: Script.Instructions(tc)"
+                    complete="func: Script.Complete(tc)">
+                    <instrument name="ImageDisplay"
+                                interface="image-display"/>
+                </test-events>
+
+                <stimulation-scripts initialize="func: Script.UpDownInitialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="ImageDisplay"
+                                interface="image-display"/>
+                    <instrument name="Response"
+                                interface="button"/>
+                </stimulation-scripts>
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence
+                        Tperiod="Period"
+                        iterations="NumberOfStimuli * TrainingStopSignals" />                        
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus 
+                        name="GO" 
+                        count="3" />
+                    <stimulus 
+                        name="STOP" 
+                        count="1"/>
+                </stimuli>
+
+            </electrophysiology-evoked-potentials>
+
+            <electrophysiology-evoked-potentials
+                ID="T02"
+                name="Stop Signal Task"
+                experimental-setup-id="image"
+                response-collection="none"
+                stimulus-update-rate="44100">
+
+                <test-events
+                    selected="func: Script.Instructions(tc)"
+                    complete="func: Script.Complete(tc)">
+                    <instrument name="ImageDisplay"
+                                interface="image-display"/>
+                </test-events>
+
+                <stimulation-scripts initialize="func: Script.PsiInitialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="ImageDisplay"
+                                interface="image-display"/>
+                    <instrument name="Response"
+                                interface="button"/>
+                </stimulation-scripts>
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence
+                        Tperiod="Period"
+                        iterations="NumberOfStimuli * NumberOfStopSignals" />
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus
+                        name="GO"
+                        count="3" />                        
+                    <stimulus
+                        name="STOP"
+                        count="1"/>
+                </stimuli>
+            </electrophysiology-evoked-potentials>    
+        </tests>
+        <assets>
+            <file-asset id="Images" file="Images.zip" />
+            <file-asset id="Script" file="Script.py" />
+        </assets>
+    </protocol>
+    <post-actions>
+        
+    </post-actions>
+</experiment>
