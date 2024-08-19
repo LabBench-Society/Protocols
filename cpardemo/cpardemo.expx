@@ -1,40 +1,182 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup>
-        <devices>
-            <cpar-plus id="dev"/>
-        </devices>
-        <device-mapping>
-            <device-assignment test-type="algometry-stimulus-response"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="algometry-conditioned-pain-modulation"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="algometry-temporal-summation"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="algometry-static-temporal-summation"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="algometry-stimulus-rating"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="algometry-conditioned-pain-rating"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="algometry-arbitrary-temporal-summation"
-                               instrument-name="Algometer"
-                               device-id="dev" />
-            <device-assignment test-type="psychophysics-cold-pressor"
-                               instrument-name="Button"
-                               device-id="dev" />
-        </device-mapping>
-    </experimental-setup>
-
+    <experimental-setup-variants>
+                        <experimental-setup name="LabBench CPAR+">
+                            <devices>
+                                <cpar-plus id="dev"/>
+                            </devices>
+                            <device-mapping>
+                              <device-assignment test-type="algometry-stimulus-response"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-modulation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-static-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-stimulus-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-arbitrary-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                            </device-mapping>
+                          </experimental-setup>        
+                          <experimental-setup name="LabBench CPAR+ (Scale on secondary monitor)">
+                            <devices>
+                                <cpar-plus id="dev"/>
+                        
+                                <display
+                                    id="display"
+                                    screen="secondary"
+                                    position="fullscreen"
+                                    active-color="rgb(255,0,0)"
+                                    background-color="rgb(255,255,255)"
+                                    inactive-color="rgb(16,16,16)"
+                                    normative-distance="40">
+                        
+                                    <monitor 
+                                        diagonal-size="13"
+                                        diagonal-size-unit="inch"
+                                        distance="40"
+                                        length-unit="cm"/>
+                        
+                                    <configurations>
+                                        <visual-analog-scale
+                                            id="vas"
+                                            experimental-setup-id="vas"
+                                            length="10"
+                                            controller-device="dev">
+                                            <anchors>
+                                                <modality text="" />
+                                                <top-anchor text="10/Worst imaginable itch" />
+                                                <bottom-anchor text="0/No itch" />
+                                            </anchors>
+                                        </visual-analog-scale>
+                                    </configurations>
+                                </display>
+                            </devices>
+                            <device-mapping>
+                              <device-assignment test-type="algometry-stimulus-response"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-modulation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-static-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-stimulus-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-arbitrary-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                            </device-mapping>
+                          </experimental-setup>    
+                          <experimental-setup name="Nocitech CPAR">
+                            <devices>
+                                <cpar id="dev" compressor-mode="AUTO"/>
+                            </devices>
+                            <device-mapping>
+                              <device-assignment test-type="algometry-stimulus-response"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-modulation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-static-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-stimulus-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-arbitrary-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                            </device-mapping>
+                          </experimental-setup>
+                          <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)">
+                            <devices>
+                                <cpar id="dev" compressor-mode="AUTO"/>
+                    
+                                <display
+                                    id="display"
+                                    screen="secondary"
+                                    position="fullscreen"
+                                    active-color="rgb(255,0,0)"
+                                    background-color="rgb(255,255,255)"
+                                    inactive-color="rgb(16,16,16)"
+                                    normative-distance="40">
+                        
+                                    <monitor 
+                                        diagonal-size="13"
+                                        diagonal-size-unit="inch"
+                                        distance="40"
+                                        length-unit="cm"/>
+                        
+                                    <configurations>
+                                        <visual-analog-scale
+                                            id="vas"
+                                            experimental-setup-id="vas"
+                                            length="10"
+                                            controller-device="dev">
+                                            <anchors>
+                                                <modality text="" />
+                                                <top-anchor text="10/Worst imaginable itch" />
+                                                <bottom-anchor text="0/No itch" />
+                                            </anchors>
+                                        </visual-analog-scale>
+                                    </configurations>
+                                </display>
+                            </devices>
+                            <device-mapping>
+                              <device-assignment test-type="algometry-stimulus-response"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-modulation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-static-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-stimulus-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-conditioned-pain-rating"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                              <device-assignment test-type="algometry-arbitrary-temporal-summation"
+                                                instrument-name="Algometer"
+                                                device-id="dev" />
+                            </device-mapping>
+                          </experimental-setup>    
+                    </experimental-setup-variants>
     <protocol>
         <defines />
         <tests>
@@ -444,73 +586,7 @@
                     <stimulus pressure="T01.PTT" t-on="1" t-off="1"/>
                 </stimuli>
             </algometry-arbitrary-temporal-summation>
-
-            <!--
-      The cold pressor test is used to determine the cold pain detection threshold (CPD), cold pain tolerance threshold (CPT), or both
-      to pain that is evoked by placing a hand or foot in ice water.
-      
-      The test uses a button that can either be provided by the CPAR device or a National Instrument DAQmx card to record responses 
-      from the subject. These responses can either be collected by the subject directly pressing the button accordingly to previous
-      instructions from the operator or by the operator listening to and observing the subject.
-      
-      The test is defined by the following parameters:
-         
-        time-limit:         The maximal time that the subject will be asked to place the hand or foot in the ice water. If this time
-                            is exceeded the subject will be marked as a non-responder to the cold pressor test.
-        button:             Which button on the device that is used for the test. For the CPAR device this must be button-01 as this
-                            is the only button the CPAR device has.
-        measurement:        Specifies which thresholds are determined in the test.
-        subject-controlled: Is used to record whether the subject or the operator operates the button.
-        
-      The test is performed by:
-        
-          1. The operator starts the test, the test will be in PENDING mode ready to start timing the cold pressor stimulation.
-          2. When the subject places the hand/foot in the ice water the button is pressed. This will start the time.
-          
-          Depending on the value of the measurement parameter the test will proceed as:
-          
-          "PDT": When the subject/operator presses the button the time will be marked as the CPD threshold and the test is concluded.
-          "PTT": When the subject/operator presses the button the time will be marked as the CPT threshold and the test is concluded.
-          "BOTH": The first time the subject/operator presses the button the time will be marked as the CPD threshold, the second
-                  time the button is pressed this will be marked as the CPT threshold and the test is concluded.
-    -->
-            <psychophysics-cold-pressor ID="T20"
-                                        name="Cold Pressor (PDT)"
-                                        time-limit="20"
-                                        button="button-01"
-                                        measurement="PDT"
-                                        subject-controlled="false">
-                <dependencies />
-            </psychophysics-cold-pressor>
-
-            <psychophysics-cold-pressor ID="T21"
-                                        name="Cold Pressor (PTT)"
-                                        time-limit="20"
-                                        button="button-01"
-                                        measurement="PTT"
-                                        subject-controlled="false">
-                <dependencies />
-            </psychophysics-cold-pressor>
-
-            <psychophysics-cold-pressor ID="T22"
-                                          name="Cold Pressor (BOTH)"
-                                          time-limit="20"
-                                          button="button-01"
-                                          measurement="BOTH"
-                                          subject-controlled="false">
-                <dependencies />
-            </psychophysics-cold-pressor>
-
-            <psychophysics-cold-pressor ID="T23"
-                                          name="Cold Pressor (BOTH, SUBJECT)"
-                                          time-limit="20"
-                                          button="button-01"
-                                          measurement="BOTH"
-                                          subject-controlled="true">
-                <dependencies />
-            </psychophysics-cold-pressor>
         </tests>
-
         <assets>
         </assets>
     </protocol>
