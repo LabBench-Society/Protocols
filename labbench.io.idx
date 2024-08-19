@@ -23,11 +23,9 @@
   <item name="labbench.io@introdemo@SubjectInstructionTS_EN.png" checksum="241742e8104eaaf2828fb145176685ea" />
   <item name="labbench.io@introdemo@SubjectInstructionTS_DA.png" checksum="fefdf18204cb98f1f15a52168dc80103" />
   <item name="labbench.io@cpardemo@cpardemo.expx" checksum="1c6126eccf793e912618c01c794c7a8d" />
-  <item name="labbench.io@ctscpm@ctscpm.expx" checksum="c6f19a569825f14e691ed2efb8d40ebe" />
-  <item name="labbench.io@ctscpmvs@ctscpmvs.expx" checksum="017122e3b153719e2ed42169155a29fe" />
+  <item name="labbench.io@ctscpm@ctscpm.expx" checksum="2f28a00e77f1fc436e4f73444db75bc8" />
+  <item name="labbench.io@cstscpm@cstscpm.expx" checksum="ab90badd5e8aac54b5e4b12cc4b57ad9" />
   <item name="labbench.io@ctscpmauto@ctscpmauto.expx" checksum="7e6e13e1b415b0932ab68b5548e66221" />
-  <item name="labbench.io@ctscpmnct@ctscpmnct.expx" checksum="a529e3398dd4647ddac5c2b351f2107c" />
-  <item name="labbench.io@cstscpmnct@cstscpmnct.expx" checksum="f8ea73e642308fa94730db9b7d552c72" />
   <item name="labbench.io@vstopsignal@vstopsignal.expx" checksum="1e44c130916a68ec43bfbb2025959b34" />
   <item name="labbench.io@vstopsignal@Images.zip" checksum="f6848f7780e4bd68589d44061182f341" />
   <item name="labbench.io@vstopsignal@Script.py" checksum="3db1ca8e6a7b8a5dd61f2c3f2e7bb06c" />
