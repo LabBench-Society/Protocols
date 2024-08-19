@@ -1,2 +1,0 @@
-﻿# CPAR Demonstration Protocol (```cpardemo```)
-
