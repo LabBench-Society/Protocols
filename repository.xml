@@ -29,76 +29,42 @@
               category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
              
     <protocol id="vstopsignal"
-              name="Visual Stop Signal Task (Joystick)"
+              name="Visual Stop Signal Task"
               labbench-version="4.5.0"
-              category="Psychology Research Paradigm;Cognitive Inhibition Task"/>      
+              category="Cognitive Task"/>      
 
-    <protocol id="vstopsignallio"
-              name="Visual Stop Signal Task (LabBench I/O)"
-              labbench-version="4.5.0"
-              category="Psychology Research Paradigm;Cognitive Inhibition Task;LabBench I/O"/>              
     <protocol id="stroop"
               name="Stroop Task"
               labbench-version="4.5.0"
-              category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+              category="Cognitive Task"/>
     <protocol id="rstroop"
               name="Reverse Stroop Task"
               labbench-version="4.5.0"
-              category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+              category="Cognitive Task"/>
     <protocol id="flanker"
               name="Flanker Task"
               labbench-version="4.5.0"
-              category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+              category="Cognitive Task"/>
     <protocol id="gonogo"
               name="Go/Nogo Task"
               labbench-version="4.5.0"
-              category="Psychology Research Paradigm;Cognitive Inhibition Task"/>
+              category="Cognitive Task"/>
     <protocol id="aoddball"
               name="Auditory Oddball Task"
               labbench-version="4.5.0"
-              category="Psychology Research Paradigm;EEG;LabBench I/O" />
+              category="EEG" />
     <protocol id="voddball"
               name="Visual Oddball Task"
               labbench-version="4.5.0"
-              category="Psychology Research Paradigm;EEG;LabBench I/O" />
+              category="EEG" />
     
     <protocol id="hyperknesisDemo"
               name="Hyperknesis"
               labbench-version="4.5.0"
-              category="Psychometrics;Demonstration Protocol;LabBench I/O"/>
+              category="Psychometrics;Demonstration Protocol"/>
 
     <protocol id="alloknesisDemo"
               name="Alloknesis"
               labbench-version="4.5.0"
-              category="Psychometrics;Demonstration Protocol;LabBench I/O"/>
-
-    <protocols>
-        <protocol id="scriptdemo"
-                  name="Introduction to Scripting"
-                  category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
-        <protocol id="sounddemo"
-                  name="Introduction to Audiometry"
-                  category="Audiometry;Demonstration Protocol;Generic Sound Card;Generic Joystick"/>
-        <protocol id="tactiledemo"
-                  name="Introduction to Tactile Sensitivity Testing"
-                  category="Tactile sensitivity;Demonstration Protocol;Two-Point-Discrimination;von Frey hairs"/>
-        <protocol id="pttdemo"
-                  name="Introduction to Perception Threshold Tracking"
-                  category="Perception Threshold Tracking;Demonstration Protocol;DAQmx"/>
-        <protocol id="cpardemo"
-                  name="Introduction to Cuff Pressure Algometry" 
-                  category="Pressure Algometry;Demonstration Protocol;Nocitech CPAR"/>
-        <protocol id="cstscpmnct"
-                  name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (Nocitech CPAR)"
-                  category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
-        <protocol id="ctscpmnct"
-                  name="Temporal Summation and Conditioned Pain Modulation Protocol"
-                  category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;Nocitech CPAR"/>
-        <protocol id="ctscpm"
-                  name="Temporal Summation and Conditioned Pain Modulation Protocol" 
-                  category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation;LabBench CPAR+"/>
-        <protocol id="ctscpmauto"
-                  name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
-                  category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
-    </protocols>
+              category="Psychometrics;Demonstration Protocol"/>
 </repository>
