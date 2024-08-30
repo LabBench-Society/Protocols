@@ -1,80 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
    <subject-validator 
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
-   <experimental-setup>
-      <devices>
-         <display 
-            id="display"
-            active-color="rgb(255,255,255)"
-            background-color="rgb(0,0,0)"
-            inactive-color="rgb(32,32,32)"
-            position="fullscreen"
-            screen="secondary"
-            normative-distance="40">
-
-         <monitor 
-            diagonal-size="13"
-            diagonal-size-unit="inch"
-            distance="40"
-            length-unit="cm"/>
-
-         <configurations>
-            <image-display 
-               id="image"
-               experimental-setup-id="image"
-               background-color="rgb(0,0,0)" />
-            </configurations>
-         </display>
-
-         <lio 
-            id="lio"
-            default-analog-output="0">
-            <trigger-setup 
-               low-byte-voltage-level="unconnected"           
-               high-byte-voltage-level="unconnected"
-               logic-system="positive"/>               
-            <response-devices>
-               <response-pad
-                  id="pad"
-                  timing-source="response-port02"
-                  type="button-4-cross">
-                  <map
-                     experimental-setup-id="image">
-                     <button-assignment code="1" button="button-01" label="blue" />
-                     <button-assignment code="2" button="button-02" label="yellow" />
-                     <button-assignment code="3" button="button-03" label="red" />
-                     <button-assignment code="4" button="button-04" label="green" />
-                  </map>
-               </response-pad>
-               <visual-trigger 
-                  id="trigger"
-                  timing-source="response-port02"/>
-            </response-devices>
-         </lio>
-      </devices>
-      <device-mapping>
-         <device-assignment 
-            test-type="electrophysiology-evoked-potentials"
-            instrument-name="Display"
-            device-id="display.image"/>
-         <device-assignment 
-            test-type="electrophysiology-evoked-potentials"
-            instrument-name="SubjectInstructions"
-            device-id="display.image"/>
-         <device-assignment 
-            test-type="electrophysiology-evoked-potentials"
-            instrument-name="Response"
-            device-id="lio.pad"/>
-         <device-assignment 
-            test-type="electrophysiology-evoked-potentials"
-            instrument-name="Trigger"
-            device-id="lio"/>
-      </device-mapping>
-    </experimental-setup>
+      <experimental-setup-variants>
+         
+         <experimental-setup name="LabBench I/O">
+            <devices>
+             <display 
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                position="fullscreen"
+                screen="secondary"
+                normative-distance="40">
+    
+             <monitor 
+                diagonal-size="13"
+                diagonal-size-unit="inch"
+                distance="40"
+                length-unit="cm"/>
+    
+             <configurations>
+                <image-display 
+                   id="image"
+                   experimental-setup-id="image"
+                   background-color="rgb(0,0,0)" />
+                </configurations>
+             </display>
+    
+             <lio 
+                id="lio"
+                default-analog-output="0">
+                <trigger-setup 
+                   low-byte-voltage-level="unconnected"           
+                   high-byte-voltage-level="unconnected"
+                   logic-system="positive"/>               
+                <response-devices>
+                   <response-pad
+                      id="pad"
+                      timing-source="response-port02"
+                      type="button-4-cross">
+                      <map experimental-setup-id="image">
+                         <button-assignment code="1" button="button-01" label="blue" />
+                         <button-assignment code="2" button="button-02" label="yellow" />
+                         <button-assignment code="3" button="button-03" label="red" />
+                         <button-assignment code="4" button="button-04" label="green" />
+                      </map>
+                   </response-pad>
+                   <visual-trigger 
+                      id="trigger"
+                      timing-source="response-port02"/>
+                </response-devices>
+             </lio>
+          </devices>
+          <device-mapping>
+             <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Display"
+                device-id="display.image"/>
+             <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="SubjectInstructions"
+                device-id="display.image"/>
+             <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="Response"
+                device-id="lio.pad"/>
+             
+          </device-mapping>
+        </experimental-setup>
+        
+         <experimental-setup name="Joystick">
+            <devices>
+                <joystick id="joystick">
+                    <map experimental-setup-id="image">
+                     <button-assignment code="4" button="button-01" label="blue" />
+                     <button-assignment code="1" button="button-02" label="yellow" />
+                     <button-assignment code="2" button="button-03" label="red" />
+                     <button-assignment code="8" button="button-04" label="green" />
+                </map>
+                </joystick>
+    
+                <display
+                    id="display"
+                    active-color="rgb(255,255,255)"
+                    background-color="rgb(0,0,0)"
+                    inactive-color="rgb(32,32,32)"
+                    normative-distance="40"
+                    position="fullscreen"
+                    screen="secondary">
+    
+                    <monitor
+                        diagonal-size="13.3"
+                        diagonal-size-unit="inch"
+                        distance="40"
+                        length-unit="cm"/>
+    
+                    <configurations>
+                        <image-display
+                            id="image"
+                            experimental-setup-id="image"
+                            background-color="rgb(0,0,0)" />
+                    </configurations>                
+                </display>         
+            </devices>
+            <device-mapping>
+                <device-assignment 
+                    test-type="electrophysiology-evoked-potentials"
+                    device-id="joystick"
+                    instrument-name="Response" />
+             <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                instrument-name="SubjectInstructions"
+                device-id="display.image"/>
+    
+                <device-assignment
+                    test-type="electrophysiology-evoked-potentials"
+                    device-id="display.image"
+                    instrument-name="Display"/>
+            </device-mapping>        
+        </experimental-setup>
+    
+         </experimental-setup-variants>
+   
     <protocol>
       <languages>
          <language 
