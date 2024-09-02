@@ -2,50 +2,6 @@
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
    <experimental-setup-variants>
-    <experimental-setup name="Joystick">
-        <devices>
-            <joystick id="joystick">
-                <map>
-                    <button-assignment code="32" button="left" label="left"/> <!-- number: 5-->
-                    <button-assignment code="128" button="right" label="right"/> <!--  number: 7 -->
-                </map>
-            </joystick>
-
-            <display
-                id="display"
-                active-color="rgb(255,255,255)"
-                background-color="rgb(0,0,0)"
-                inactive-color="rgb(32,32,32)"
-                normative-distance="40"
-                position="fullscreen"
-                screen="secondary">
-
-                <monitor
-                    diagonal-size="13.3"
-                    diagonal-size-unit="inch"
-                    distance="40"
-                    length-unit="cm"/>
-
-                <configurations>
-                    <image-display
-                        id="image"
-                        experimental-setup-id="image"
-                        background-color="rgb(0,0,0)" />
-                </configurations>                
-            </display>         
-        </devices>
-        <device-mapping>
-            <device-assignment 
-                test-type="electrophysiology-evoked-potentials"
-                device-id="joystick"
-                instrument-name="Response" />
-
-            <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                device-id="display.image"
-                instrument-name="ImageDisplay"/>
-        </device-mapping>        
-    </experimental-setup>
     <experimental-setup name="LabBench I/O">
         <devices>
             <lio
@@ -103,6 +59,51 @@
                 instrument-name="ImageDisplay"/>
         </device-mapping>        
     </experimental-setup>
+    <experimental-setup name="Joystick">
+        <devices>
+            <joystick id="joystick">
+                <map>
+                    <button-assignment code="32" button="left" label="left"/> <!-- number: 5-->
+                    <button-assignment code="128" button="right" label="right"/> <!--  number: 7 -->
+                </map>
+            </joystick>
+
+            <display
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                normative-distance="40"
+                position="fullscreen"
+                screen="secondary">
+
+                <monitor
+                    diagonal-size="13.3"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+
+                <configurations>
+                    <image-display
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>                
+            </display>         
+        </devices>
+        <device-mapping>
+            <device-assignment 
+                test-type="electrophysiology-evoked-potentials"
+                device-id="joystick"
+                instrument-name="Response" />
+
+            <device-assignment
+                test-type="electrophysiology-evoked-potentials"
+                device-id="display.image"
+                instrument-name="ImageDisplay"/>
+        </device-mapping>        
+    </experimental-setup>
+    
    </experimental-setup-variants>                    
     <protocol>
         <languages>
