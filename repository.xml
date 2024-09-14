@@ -3,68 +3,74 @@
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.0.0/repository.xsd"
             id="labbench.io">
 
-    <protocol id="introdemo"
-              name="Introduction to LabBench"
-              labbench-version="4.8.0"
-              category="Psychometrics;Demonstration Protocol"/>
-
-    <protocol id="cpardemo"
-              name="Introduction to Cuff Pressure Algometry"
-              labbench-version="4.8.0"
-              category="Pressure Algometry;Demonstration Protocol"/>
-
-    <protocol id="ctscpm"
-              name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
-              labbench-version="4.8.0"
-              category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
-
-    <protocol id="cstscpm"
-              name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
-              labbench-version="4.8.0"
-              category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>
-              
-    <protocol id="ctscpmauto"
-              name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
-              labbench-version="4.8.0"
-              category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>
-             
-    <protocol id="vstopsignal"
-              name="Visual Stop Signal Task"
-              labbench-version="4.5.0"
-              category="Cognitive Task"/>      
-
-    <protocol id="stroop"
-              name="Stroop Task"
-              labbench-version="4.5.0"
-              category="Cognitive Task"/>
-    <protocol id="rstroop"
-              name="Reverse Stroop Task"
-              labbench-version="4.5.0"
-              category="Cognitive Task"/>
-    <protocol id="flanker"
-              name="Flanker Task"
-              labbench-version="4.5.0"
-              category="Cognitive Task"/>
-    <protocol id="gonogo"
-              name="Go/Nogo Task"
-              labbench-version="4.5.0"
-              category="Cognitive Task"/>
-    <protocol id="aoddball"
-              name="Auditory Oddball Task"
-              labbench-version="4.5.0"
-              category="EEG" />
-    <protocol id="voddball"
-              name="Visual Oddball Task"
-              labbench-version="4.5.0"
-              category="EEG" />
-    
-    <protocol id="hyperknesisDemo"
-              name="Hyperknesis"
-              labbench-version="4.5.0"
-              category="Psychometrics;Demonstration Protocol"/>
-
-    <protocol id="alloknesisDemo"
-              name="Alloknesis"
-              labbench-version="4.5.0"
-              category="Psychometrics;Demonstration Protocol"/>
+    <protocol 
+        id="introdemo"
+        name="Introduction to LabBench"
+        labbench-version="5.0"
+        category="Psychometrics;Demonstration Protocol"/>
+    <protocol 
+        id="cpardemo"
+        name="Introduction to Cuff Pressure Algometry"
+        labbench-version="5.0"
+        category="Pressure Algometry;Demonstration Protocol"/>
+    <protocol 
+        id="ctscpm"
+        name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
+        labbench-version="5.0"
+        category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
+    <protocol 
+        id="ctscpmauto"
+        name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
+        labbench-version="5.0"
+        category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>             
+    <protocol 
+        id="cstscpm"
+        name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
+        labbench-version="5.0"
+        category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>              
+    <protocol 
+        id="vstopsignal"
+        name="Visual Stop Signal Task"
+        labbench-version="5.0"
+        category="Cognitive Task"/>      
+    <protocol 
+        id="stroop"
+        name="Stroop Task"
+        labbench-version="5.0"
+        category="Cognitive Task"/>
+    <protocol 
+        id="rstroop"
+        name="Reverse Stroop Task"
+        labbench-version="5.0"
+        category="Cognitive Task"/>
+    <protocol 
+        id="flanker"
+        name="Flanker Task"
+        labbench-version="5.0"
+        category="Cognitive Task"/>
+    <protocol 
+        id="gonogo"
+        name="Go/Nogo Task"
+        labbench-version="5.0"
+        category="Cognitive Task"/>
+    <protocol 
+        id="aoddball"
+        name="Auditory Oddball Task"
+        labbench-version="5.0"
+        category="EEG" />
+    <protocol 
+        id="voddball"
+        name="Visual Oddball Task"
+        labbench-version="5.0"
+        category="EEG" />    
+    <protocol 
+        id="hyperknesisDemo"
+        name="Hyperknesis"
+        labbench-version="5.0"
+        category="Psychometrics;Demonstration Protocol"/>
+    <protocol 
+        id="alloknesisDemo"
+        name="Alloknesis"
+        labbench-version="5.0"
+        category="Psychometrics;Demonstration Protocol"/>
 </repository>

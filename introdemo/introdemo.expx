@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
+   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
    
    <subject-validator 
       regex="^S[0-9]{3}$"
@@ -87,17 +87,17 @@
                   instrument-name="SubjectInstructions" />
       
                <device-assignment 
-                  test-type="meta-survey"
+                  test-type="questionnaire"
                   device-id="display.survey"
                   instrument-name="Display"/>
       
                <device-assignment 
                   device-id="display.image" 
-                  test-type="meta-survey" 
+                  test-type="questionnaire" 
                   instrument-name="SubjectInstructions" />
       
                <device-assignment 
-                  test-type="meta-survey"
+                  test-type="questionnaire"
                   device-id="joystick"
                   instrument-name="Response"/>                        
             </device-mapping>
@@ -182,17 +182,17 @@
                   instrument-name="SubjectInstructions" />
       
                <device-assignment 
-                  test-type="meta-survey"
+                  test-type="questionnaire"
                   device-id="display.survey"
                   instrument-name="Display"/>
       
                <device-assignment 
                   device-id="display.image" 
-                  test-type="meta-survey" 
+                  test-type="questionnaire" 
                   instrument-name="SubjectInstructions" />
       
                <device-assignment 
-                  test-type="meta-survey"
+                  test-type="questionnaire"
                   device-id="joystick"
                   instrument-name="Response"/>                        
             </device-mapping>
@@ -207,8 +207,8 @@
             <define name="Text" value="func: TEXT.CreateText" />
       </defines>
       <tests>
-         <meta-survey 
-            ID="SUBJECT"
+         <questionnaire 
+            id="SUBJECT"
             name="Subject"
             experimental-setup-id="image">
             <dependencies />
@@ -241,10 +241,10 @@
                   <choice value="2" label="Any, I don't care"/>
               </likert>                    
             </content>
-         </meta-survey>
+         </questionnaire>
 
-         <meta-survey 
-            ID="DASS"
+         <questionnaire 
+            id="DASS"
             experimental-setup-id="survey"
             control="subject"
             name="Depression, Anxietry and Stress Scale (DASS)">
@@ -257,7 +257,7 @@
                   default="SubjectInstructionDASS" />
             </properties>
             <dependencies>
-               <dependency ID="SUBJECT" virtual="true"/>
+               <dependency id="SUBJECT" virtual="true"/>
             </dependencies>
             <templates>
                <likert 
@@ -313,28 +313,28 @@
                <likert id="I41" template="LIKERT" instruction="dynamic: Text['I41']" />
                <likert id="I42" template="LIKERT" instruction="dynamic: Text['I42']" />
             </content>
-         </meta-survey>
+         </questionnaire>
 
-         <meta-survey
-            ID="PREPARATION"
+         <questionnaire
+            id="PREPARATION"
             name="Preparing for Cuff Pressure Algometry"
             experimental-setup-id="image"
             control="operator">      
          
             <dependencies>
-               <dependency ID="SUBJECT" virtual="true"/>
+               <dependency id="SUBJECT" virtual="true"/>
             </dependencies>
 
             <content>
                   <instruction 
                      id="CUFFS"
-                     title="Place the cuffs on the lefs of the subject"
+                     title="Place the cuffs on the legs of the subject"
                      instruction="dynamic: 'LeftHandedCuffs' if SUBJECT['HANDEDNESS'] == 1 else 'RightHandedCuffs'"/>
             </content>
-         </meta-survey>
+         </questionnaire>
   
          <algometry-stimulus-response 
-            ID="SR01"
+            id="SR01"
             name="Stimulus-Response (Cuff 1)"
             delta-pressure="1"
             pressure-limit="100"
