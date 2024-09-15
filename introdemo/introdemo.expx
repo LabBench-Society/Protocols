@@ -56,50 +56,10 @@
                <cpar-plus id="cpar" />
             </devices>
             <device-mapping>
-               <device-assignment 
-                  test-type="algometry-stimulus-response" 
-                  instrument-name="Algometer" 
-                  device-id="cpar" />
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="algometry-stimulus-response" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="algometry-temporal-summation" 
-                  instrument-name="Algometer" 
-                  device-id="cpar" />
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="algometry-temporal-summation" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="algometry-conditioned-pain-modulation" 
-                  instrument-name="Algometer" 
-                  device-id="cpar" />     
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="algometry-conditioned-pain-modulation" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="questionnaire"
-                  device-id="display.survey"
-                  instrument-name="Display"/>
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="questionnaire" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="questionnaire"
-                  device-id="joystick"
-                  instrument-name="Response"/>                        
+               <device-assignment instrument-name="PressureAlgometer" device-id="cpar" />
+               <device-assignment instrument-name="ImageDisplay" device-id="display.image" />      
+               <device-assignment instrument-name="Questionnaire" device-id="display.survey"/>            
+               <device-assignment instrument-name="Button" device-id="joystick"/>                        
             </device-mapping>
          </experimental-setup>
          <experimental-setup name="Nocitech CPAR">
@@ -151,50 +111,10 @@
                <cpar id="cpar" compressor-mode="AUTO"/>
             </devices>
             <device-mapping>
-               <device-assignment 
-                  test-type="algometry-stimulus-response" 
-                  instrument-name="Algometer" 
-                  device-id="cpar" />
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="algometry-stimulus-response" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="algometry-temporal-summation" 
-                  instrument-name="Algometer" 
-                  device-id="cpar" />
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="algometry-temporal-summation" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="algometry-conditioned-pain-modulation" 
-                  instrument-name="Algometer" 
-                  device-id="cpar" />     
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="algometry-conditioned-pain-modulation" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="questionnaire"
-                  device-id="display.survey"
-                  instrument-name="Display"/>
-      
-               <device-assignment 
-                  device-id="display.image" 
-                  test-type="questionnaire" 
-                  instrument-name="SubjectInstructions" />
-      
-               <device-assignment 
-                  test-type="questionnaire"
-                  device-id="joystick"
-                  instrument-name="Response"/>                        
+               <device-assignment instrument-name="PressureAlgometer" device-id="cpar" />
+               <device-assignment instrument-name="ImageDisplay" device-id="display.image" />      
+               <device-assignment instrument-name="Questionnaire" device-id="display.survey"/>            
+               <device-assignment instrument-name="Button" device-id="joystick"/>                        
             </device-mapping>
          </experimental-setup>            
       </experimental-setup-variants>
@@ -250,7 +170,7 @@
             name="Depression, Anxietry and Stress Scale (DASS)">
             <properties>
                <instructions 
-                  default-instructions="INSTRUCTIONS"
+                  default="INSTRUCTIONS"
                   override-results="true" />
                <subject-instructions 
                   experimental-setup-id="image"
@@ -259,7 +179,9 @@
             <dependencies>
                <dependency id="SUBJECT" virtual="true"/>
             </dependencies>
-            <templates>
+
+            <!-- 
+            <templates>              
                <likert 
                   id="LIKERT"
                   title="dynamic: Text['QUESTION']">
@@ -313,6 +235,7 @@
                <likert id="I41" template="LIKERT" instruction="dynamic: Text['I41']" />
                <likert id="I42" template="LIKERT" instruction="dynamic: Text['I42']" />
             </content>
+            -->
          </questionnaire>
 
          <questionnaire
@@ -323,14 +246,14 @@
          
             <dependencies>
                <dependency id="SUBJECT" virtual="true"/>
-            </dependencies>
+            </dependencies>            
 
             <content>
                   <instruction 
                      id="CUFFS"
                      title="Place the cuffs on the legs of the subject"
                      instruction="dynamic: 'LeftHandedCuffs' if SUBJECT['HANDEDNESS'] == 1 else 'RightHandedCuffs'"/>
-            </content>
+            </content>            
          </questionnaire>
   
          <algometry-stimulus-response 
