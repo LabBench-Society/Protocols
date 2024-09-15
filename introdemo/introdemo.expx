@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+   xsi:noNamespaceSchemaLocation="..\experiment.xsd">
    
    <subject-validator 
       regex="^S[0-9]{3}$"
@@ -56,10 +56,18 @@
                <cpar-plus id="cpar" />
             </devices>
             <device-mapping>
-               <device-assignment instrument-name="PressureAlgometer" device-id="cpar" />
-               <device-assignment instrument-name="ImageDisplay" device-id="display.image" />      
-               <device-assignment instrument-name="Questionnaire" device-id="display.survey"/>            
-               <device-assignment instrument-name="Button" device-id="joystick"/>                        
+               <device-assignment 
+                  device-id="cpar"
+                  instrument-name="PressureAlgometer" />      
+               <device-assignment 
+                  device-id="display.image" 
+                  instrument-name="ImageDisplay" />                   
+               <device-assignment 
+                  device-id="display.survey"
+                  instrument-name="Questionnaire"/>           
+               <device-assignment 
+                  device-id="joystick"
+                  instrument-name="Button"/>                        
             </device-mapping>
          </experimental-setup>
          <experimental-setup name="Nocitech CPAR">
@@ -111,10 +119,18 @@
                <cpar id="cpar" compressor-mode="AUTO"/>
             </devices>
             <device-mapping>
-               <device-assignment instrument-name="PressureAlgometer" device-id="cpar" />
-               <device-assignment instrument-name="ImageDisplay" device-id="display.image" />      
-               <device-assignment instrument-name="Questionnaire" device-id="display.survey"/>            
-               <device-assignment instrument-name="Button" device-id="joystick"/>                        
+               <device-assignment 
+                  device-id="cpar"
+                  instrument-name="PressureAlgometer" />      
+               <device-assignment 
+                  device-id="display.image" 
+                  instrument-name="ImageDisplay" />                   
+               <device-assignment 
+                  device-id="display.survey"
+                  instrument-name="Questionnaire"/>           
+               <device-assignment 
+                  device-id="joystick"
+                  instrument-name="Button"/>                        
             </device-mapping>
          </experimental-setup>            
       </experimental-setup-variants>
@@ -126,6 +142,42 @@
       <defines>
             <define name="Text" value="func: TEXT.CreateText" />
       </defines>
+      <templates>
+         <content>
+            <questionnaire 
+               id="DASS"
+               experimental-setup-id="survey"
+               control="subject">
+            <variables>
+               <strings name="QuestionIDs" value="I01;I02;I03;I04;I05;I06;I07;I08;I09;I10;I11;I12;I13;I14;I15;I16;I17;I18;I19;I20;I31;I32;I33;I34;I35;I36;I37;I38;I39;I40;I41;I42" />
+            </variables>
+            <properties>
+               <subject-instructions 
+                  experimental-setup-id="image"
+                  default="Instructions.DASS" />
+            </properties>
+            <dependencies>
+               <dependency id="SUBJECT" virtual="true"/>
+            </dependencies>
+            <templates>               
+               <likert 
+                  id="LIKERT"
+                  title="dynamic: Text['QUESTION']"
+                  instruction="var: 'dynamic: Text[\'{q}\']'.format(q = id)">
+                  <choice value="0" label="var: 'dynamic: Text[\'{q}\']'.format(q = id)" />
+                  <choice value="1" label="var: 'dynamic: Text[\'{q}\']'.format(q = id)" />
+                  <choice value="2" label="var: 'dynamic: Text[\'{q}\']'.format(q = id)" />
+                  <choice value="3" label="var: 'dynamic: Text[\'{q}\']'.format(q = id)" />
+               </likert>
+            </templates>
+            <content>
+               <foreach variable="id" in="QuestionIDs">
+                  <likert id="var: id" template="LIKERT"></likert>
+               </foreach>
+            </content>
+         </questionnaire>
+         </content>
+      </templates>
       <tests>
          <questionnaire 
             id="SUBJECT"
@@ -163,80 +215,7 @@
             </content>
          </questionnaire>
 
-         <questionnaire 
-            id="DASS"
-            experimental-setup-id="survey"
-            control="subject"
-            name="Depression, Anxietry and Stress Scale (DASS)">
-            <properties>
-               <instructions 
-                  default="INSTRUCTIONS"
-                  override-results="true" />
-               <subject-instructions 
-                  experimental-setup-id="image"
-                  default="SubjectInstructionDASS" />
-            </properties>
-            <dependencies>
-               <dependency id="SUBJECT" virtual="true"/>
-            </dependencies>
-
-            <!-- 
-            <templates>              
-               <likert 
-                  id="LIKERT"
-                  title="dynamic: Text['QUESTION']">
-                  <choice value="0" label="dynamic: Text['L0']" />
-                  <choice value="1" label="dynamic: Text['L1']" />
-                  <choice value="2" label="dynamic: Text['L2']" />
-                  <choice value="3" label="dynamic: Text['L3']" />
-               </likert>
-            </templates>
-            <content>
-               <likert id="I01" template="LIKERT" instruction="dynamic: Text['I01']" />
-               <likert id="I02" template="LIKERT" instruction="dynamic: Text['I02']" />
-               <likert id="I03" template="LIKERT" instruction="dynamic: Text['I03']" />
-               <likert id="I04" template="LIKERT" instruction="dynamic: Text['I04']" />
-               <likert id="I05" template="LIKERT" instruction="dynamic: Text['I05']" />
-               <likert id="I06" template="LIKERT" instruction="dynamic: Text['I06']" />
-               <likert id="I07" template="LIKERT" instruction="dynamic: Text['I07']" />
-               <likert id="I08" template="LIKERT" instruction="dynamic: Text['I08']" />
-               <likert id="I09" template="LIKERT" instruction="dynamic: Text['I09']" />
-               <likert id="I10" template="LIKERT" instruction="dynamic: Text['I10']" />
-               <likert id="I11" template="LIKERT" instruction="dynamic: Text['I11']" />
-               <likert id="I12" template="LIKERT" instruction="dynamic: Text['I12']" />
-               <likert id="I13" template="LIKERT" instruction="dynamic: Text['I13']" />
-               <likert id="I14" template="LIKERT" instruction="dynamic: Text['I14']" />
-               <likert id="I15" template="LIKERT" instruction="dynamic: Text['I15']" />
-               <likert id="I16" template="LIKERT" instruction="dynamic: Text['I16']" />
-               <likert id="I17" template="LIKERT" instruction="dynamic: Text['I17']" />
-               <likert id="I18" template="LIKERT" instruction="dynamic: Text['I18']" />
-               <likert id="I19" template="LIKERT" instruction="dynamic: Text['I19']" />
-               <likert id="I20" template="LIKERT" instruction="dynamic: Text['I20']" />
-               <likert id="I21" template="LIKERT" instruction="dynamic: Text['I21']" />
-               <likert id="I22" template="LIKERT" instruction="dynamic: Text['I22']" />
-               <likert id="I23" template="LIKERT" instruction="dynamic: Text['I23']" />
-               <likert id="I24" template="LIKERT" instruction="dynamic: Text['I24']" />
-               <likert id="I25" template="LIKERT" instruction="dynamic: Text['I25']" />
-               <likert id="I26" template="LIKERT" instruction="dynamic: Text['I26']" />
-               <likert id="I27" template="LIKERT" instruction="dynamic: Text['I27']" />
-               <likert id="I28" template="LIKERT" instruction="dynamic: Text['I28']" />
-               <likert id="I29" template="LIKERT" instruction="dynamic: Text['I29']" />
-               <likert id="I30" template="LIKERT" instruction="dynamic: Text['I30']" />
-               <likert id="I31" template="LIKERT" instruction="dynamic: Text['I31']" />
-               <likert id="I32" template="LIKERT" instruction="dynamic: Text['I32']" />
-               <likert id="I33" template="LIKERT" instruction="dynamic: Text['I33']" />
-               <likert id="I34" template="LIKERT" instruction="dynamic: Text['I34']" />
-               <likert id="I35" template="LIKERT" instruction="dynamic: Text['I35']" />
-               <likert id="I36" template="LIKERT" instruction="dynamic: Text['I36']" />
-               <likert id="I37" template="LIKERT" instruction="dynamic: Text['I37']" />
-               <likert id="I38" template="LIKERT" instruction="dynamic: Text['I38']" />
-               <likert id="I39" template="LIKERT" instruction="dynamic: Text['I39']" />
-               <likert id="I40" template="LIKERT" instruction="dynamic: Text['I40']" />
-               <likert id="I41" template="LIKERT" instruction="dynamic: Text['I41']" />
-               <likert id="I42" template="LIKERT" instruction="dynamic: Text['I42']" />
-            </content>
-            -->
-         </questionnaire>
+         <questionnaire-constructor id="DASS" name="Depression, Anxietry and Stress Scale (DASS)" template="DASS" />
 
          <questionnaire
             id="PREPARATION"
@@ -246,14 +225,14 @@
          
             <dependencies>
                <dependency id="SUBJECT" virtual="true"/>
-            </dependencies>            
+            </dependencies>
 
             <content>
                   <instruction 
                      id="CUFFS"
                      title="Place the cuffs on the legs of the subject"
                      instruction="dynamic: 'LeftHandedCuffs' if SUBJECT['HANDEDNESS'] == 1 else 'RightHandedCuffs'"/>
-            </content>            
+            </content>
          </questionnaire>
   
          <algometry-stimulus-response 
@@ -269,7 +248,7 @@
   
             <properties>
                <instructions 
-                  default-instructions="InstructionSR1"
+                  default="InstructionSR1"
                   override-results="false"/>
                <subject-instructions 
                   experimental-setup-id="image" 
@@ -277,12 +256,12 @@
             </properties>
   
             <dependencies>
-               <dependency ID="SUBJECT" virtual="true"/>
+               <dependency id="SUBJECT" virtual="true"/>
             </dependencies>
          </algometry-stimulus-response>
   
          <algometry-stimulus-response 
-            ID="SR02"
+            id="SR02"
             name="Stimulus-Response (Cuff 2)"
             delta-pressure="1"
             pressure-limit="100"
@@ -294,7 +273,7 @@
   
             <properties>
                <instructions 
-                  default-instructions="InstructionSR2"
+                  default="InstructionSR2"
                   override-results="false"/>
                <subject-instructions 
                   experimental-setup-id="image" 
@@ -302,12 +281,12 @@
             </properties>
   
             <dependencies>
-               <dependency ID="SUBJECT" virtual="true"/>
+               <dependency id="SUBJECT" virtual="true"/>
             </dependencies>
          </algometry-stimulus-response>
   
          <algometry-temporal-summation 
-            ID="TS"
+            id="TS"
             name="Temporal Summation (Cuff 1)"
             no-of-stimuli="10"
             pressure-static="5"
@@ -320,7 +299,7 @@
   
             <properties>
                <instructions 
-                  default-instructions="InstructionTS"
+                  default="InstructionTS"
                   override-results="false"/>
                <subject-instructions 
                   experimental-setup-id="image" 
@@ -328,13 +307,13 @@
             </properties>
   
             <dependencies>
-               <dependency ID="SUBJECT" virtual="true"/>
-               <dependency ID="SR01" virtual="false"/>
+               <dependency id="SUBJECT" virtual="true"/>
+               <dependency id="SR01" virtual="false"/>
             </dependencies>
          </algometry-temporal-summation>
   
          <algometry-conditioned-pain-modulation 
-            ID="CPM"
+            id="CPM"
             name="CPM (Cuff 1)"
             conditional-pressure="0.7 * SR02.PTT"
             delta-conditional-pressure="10"
@@ -347,7 +326,7 @@
 
             <properties>
                <instructions 
-                  default-instructions="InstructionCPM"
+                  default="InstructionCPM"
                   override-results="false"/>
                <subject-instructions 
                   experimental-setup-id="image" 
@@ -355,8 +334,8 @@
             </properties>
 
             <dependencies>
-               <dependency ID="SUBJECT" virtual="true"/>
-               <dependency ID="SR02" virtual="false"/>
+               <dependency id="SUBJECT" virtual="true"/>
+               <dependency id="SR02" virtual="false"/>
             </dependencies>
          </algometry-conditioned-pain-modulation>                   
       </tests>
@@ -365,36 +344,10 @@
             <language code="DA" file="TEXT_DA.py" />
          </file-asset>
          <file-asset id="CALCULATIONS" file="Calculations.py" />
-         <file-asset id="INSTRUCTIONS" file="DASS_EN.rtf">
-            <language code="DA" file="DASS_DA.rtf" />
+         <file-asset id="Instructions" file="Images_EN.zip">
+            <language code="DA" file="Images_DA.zip" />
          </file-asset>
-
-         <!-- Preparation of Cuff Pressure Algometry -->
-         <file-asset id="RightHandedCuffs" file="RightHandedCuffs.rtf" />
-         <file-asset id="LeftHandedCuffs" file="LeftHandedCuffs.rtf" />
-
-         <!-- Instructions for the operator -->
-         <file-asset id="InstructionCPM" file="InstructionCPM.rtf" />
-         <file-asset id="InstructionSR1" file="InstructionSR1.rtf" />
-         <file-asset id="InstructionSR2" file="InstructionSR2.rtf" />
-         <file-asset id="InstructionTS" file="InstructionTS.rtf" />
-
-         <!-- Instructions for the subject -->
-         <file-asset id="SubjectInstructionDASS" file="SubjectInstructionDASS_EN.png">
-            <language code="DA" file="SubjectInstructionDASS_DA.png"/>
-         </file-asset>
-         <file-asset id="SubjectInstructionCPM" file="SubjectInstructionCPM_EN.png">
-            <language code="DA" file="SubjectInstructionCPM_DA.png"/>
-         </file-asset>
-         <file-asset id="SubjectInstructionSR01" file="SubjectInstructionSR01_EN.png">
-            <language code="DA" file="SubjectInstructionSR01_DA.png"/>
-         </file-asset>
-         <file-asset id="SubjectInstructionSR02" file="SubjectInstructionSR02_EN.png">
-            <language code="DA" file="SubjectInstructionSR02_DA.png"/>
-         </file-asset>            
-         <file-asset id="SubjectInstructionTS" file="SubjectInstructionTS_EN.png">
-            <language code="DA" file="SubjectInstructionTS_DA.png"/>
-         </file-asset>
+         <file-asset id="OperatorInstructions" file="OperatorInstructions.zip" />
       </assets>
    </protocol>
    <post-actions>
@@ -402,7 +355,7 @@
             location="C:\CPAR\intro"
             header="true"
             separator=";"
-            filename="dynamic: '{session}-{time}.csv'.format(session = SESSION_NAME, time = SESSION_TIME)">
+            filename="dynamic: '{session}.csv'.format(session = SESSION_NAME)">
             <item name="Sex" value="SUBJECT['SEX']" default="NA" />
             <item name="Age" value="SUBJECT['AGE']" default="NA" />
             <item name="Stess" value="func: CALCULATIONS.Stess" default="NA" />
