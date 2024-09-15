@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
 <subject-validator 
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Must be SXXX or TESTXXX, where X is a digit"/>
@@ -81,7 +81,7 @@
                         experimental-setup-id="image"
                         background-color="rgb(255,255,255)"/>
 
-                    <survey 
+                    <questionnaire 
                         id="survey"
                         experimental-setup-id="survey"
                         background-color="rgb(255,255,255)" />                        
@@ -89,32 +89,29 @@
             </display>
         </devices>
         <device-mapping>
-            <device-assignment 
-                device-id="display.image" 
-                test-type="meta-survey" 
-                instrument-name="SubjectInstructions" />
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
 
             <device-assignment 
                 test-type="psychophysics-response-recording"
                 test-id="CONRS"
                 device-id="display.nrs" 
-                instrument-name="Response" />
+                instrument-name="Scales" />
 
             <device-assignment 
                 test-type="psychophysics-response-recording"
                 test-id="COVAS"
                 device-id="display.vas" 
-                instrument-name="Response" />
+                instrument-name="Scales" />
 
             <device-assignment 
                 device-id="lio.scale"
-                test-type="meta-survey"
-                instrument-name="Response"/>
+                test-type="questionnaire"
+                instrument-name="Button"/>
             
             <device-assignment 
                 device-id="display.survey" 
-                test-type="meta-survey"
-                instrument-name="Display" />
+                test-type="questionnaire"
+                instrument-name="Questionnaire" />
         </device-mapping>        
     </experimental-setup>
     <protocol>
@@ -129,14 +126,14 @@
             </variables>
             <content>
                 <psychophysics-response-recording 
-                    ID="ItchCOVAS"
+                    id="ItchCOVAS"
                     experimental-setup-id="vas"
                     duration="600"
                     sample-rate="1">
                 </psychophysics-response-recording>
 
-                <meta-survey 
-                    ID="vasHyperknesisRating"
+                <questionnaire
+                    id="vasHyperknesisRating"
                     control="subject"
                     experimental-setup-id="survey">
                     <variables>
@@ -145,7 +142,7 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="var: operatorInstructions"
+                            default="var: operatorInstructions"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
@@ -171,17 +168,17 @@
                                 title="var: 'Measurement {n}'.format(n = n)"/>
                         </foreach>
                     </content>
-                </meta-survey>   
+                </questionnaire>   
 
                 <psychophysics-response-recording 
-                    ID="ItchCONRS"
+                    id="ItchCONRS"
                     experimental-setup-id="nrs"
                     duration="600"
                     sample-rate="1">
                 </psychophysics-response-recording>
 
-                <meta-survey 
-                    ID="nrsHyperknesisRating"
+                <questionnaire 
+                    id="nrsHyperknesisRating"
                     control="subject"
                     experimental-setup-id="survey">
                     <variables>
@@ -190,7 +187,7 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="var: operatorInstructions"
+                            default="var: operatorInstructions"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
@@ -217,10 +214,10 @@
                                 title="var: 'Measurement {n}'.format(n = n)"/>
                         </foreach>
                     </content>
-                </meta-survey>   
+                </questionnaire>   
 
-                <meta-survey 
-                    ID="hyperknesisArea"
+                <questionnaire 
+                    id="hyperknesisArea"
                     control="operator" 
                     experimental-setup-id="image">
                     <variables>
@@ -241,76 +238,76 @@
                         </foreach>
                     </content>
 
-                </meta-survey>
+                </questionnaire>
             </content>             
         </templates>
         <tests>
             <psychophysics-response-recording-constructor 
-                ID="CONRS" 
+                id="CONRS" 
                 name="NRS: Itch Assessment" 
                 template="ItchCONRS" />
 
-            <meta-survey-constructor 
-                ID="NRS10" 
+            <questionnaire-constructor
+                id="NRS10" 
                 name="NRS: Hyperknesis (1.0g)" 
                 template="nrsHyperknesisRating">
                 <variables>
                     <string value="operatorNRSHyperknesisInstructions1p0" name="operatorInstructions" />
                 </variables>
-            </meta-survey-constructor>
+            </questionnaire-constructor>
 
-            <meta-survey-constructor 
-                ID="NRS14" 
+            <questionnaire-constructor
+                id="NRS14" 
                 name="NRS: Hyperknesis (1.4g)" 
                 template="nrsHyperknesisRating">
                 <variables>
                     <string value="operatorNRSHyperknesisInstructions1p4" name="operatorInstructions" />
                 </variables>
-            </meta-survey-constructor>
+            </questionnaire-constructor>
 
-            <meta-survey-constructor 
-                ID="NRS20" 
+            <questionnaire-constructor
+                id="NRS20" 
                 name="NRS: Hyperknesis (2.0g)" 
                 template="nrsHyperknesisRating">
                 <variables>
                     <string value="operatorNRSHyperknesisInstructions2p0" name="operatorInstructions" />
                 </variables>
-            </meta-survey-constructor>
+            </questionnaire-constructor>
 
             <psychophysics-response-recording-constructor 
-                ID="COVAS" 
+                id="COVAS" 
                 name="VAS: Itch Assessment" 
                 template="ItchCOVAS" />
 
-            <meta-survey-constructor 
-                ID="VAS10" 
+            <questionnaire-constructor
+                id="VAS10" 
                 name="VAS: Hyperknesis (1.0g)" 
                 template="vasHyperknesisRating">
                 <variables>
                     <string value="operatorVASHyperknesisInstructions1p0" name="operatorInstructions" />
                 </variables>
-            </meta-survey-constructor>
+            </questionnaire-constructor>
 
-            <meta-survey-constructor 
-                ID="VAS14" 
+            <questionnaire-constructor
+                id="VAS14" 
                 name="VAS: Hyperknesis (1.4g)" 
                 template="vasHyperknesisRating">
                 <variables>
                     <string value="operatorVASHyperknesisInstructions1p4" name="operatorInstructions" />
                 </variables>
-            </meta-survey-constructor>
+            </questionnaire-constructor>
 
-            <meta-survey-constructor 
-                ID="VAS20" 
+            <questionnaire-constructor
+                id="VAS20" 
                 name="VAS: Hyperknesis (2.0g)" 
                 template="vasHyperknesisRating">
                 <variables>
                     <string value="operatorVASHyperknesisInstructions2p0" name="operatorInstructions" />
                 </variables>
-            </meta-survey-constructor>
+            </questionnaire-constructor>
 
-            <meta-survey-constructor 
-                ID="AREA" 
+            <questionnaire-constructor
+                id="AREA" 
                 name="Hyperknesis Area" 
                 template="hyperknesisArea" />
         </tests>

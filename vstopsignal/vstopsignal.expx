@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
    <experimental-setup-variants>
     <experimental-setup name="LabBench I/O">
         <devices>
@@ -48,15 +48,8 @@
             </display>         
         </devices>
         <device-mapping>
-            <device-assignment 
-                test-type="electrophysiology-evoked-potentials"
-                device-id="lio.pad"
-                instrument-name="Response" />
-
-            <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                device-id="display.image"
-                instrument-name="ImageDisplay"/>
+            <device-assignment device-id="lio.pad" instrument-name="Button" />
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
         </device-mapping>        
     </experimental-setup>
     <experimental-setup name="Joystick">
@@ -92,15 +85,8 @@
             </display>         
         </devices>
         <device-mapping>
-            <device-assignment 
-                test-type="electrophysiology-evoked-potentials"
-                device-id="joystick"
-                instrument-name="Response" />
-
-            <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                device-id="display.image"
-                instrument-name="ImageDisplay"/>
+            <device-assignment device-id="lio.pad" instrument-name="Button" />
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
         </device-mapping>        
     </experimental-setup>
     
@@ -172,8 +158,8 @@
                 value="0.95"/>
         </defines>
         <tests>
-            <electrophysiology-evoked-potentials 
-                ID="T01"
+            <stimulation-sequence 
+                id="T01"
                 name="Stop Signal Task (Training Task)"
                 experimental-setup-id="image"
                 response-collection="none"
@@ -211,10 +197,10 @@
                         count="1"/>
                 </stimuli>
 
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
 
-            <electrophysiology-evoked-potentials
-                ID="T02"
+            <stimulation-sequence
+                id="T02"
                 name="Stop Signal Task"
                 experimental-setup-id="image"
                 response-collection="none"
@@ -251,7 +237,7 @@
                         name="STOP"
                         count="1"/>
                 </stimuli>
-            </electrophysiology-evoked-potentials>    
+            </stimulation-sequence>    
         </tests>
         <assets>
             <file-asset id="Images" file="Images.zip" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
     <subject-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
@@ -36,35 +36,9 @@
             <sound id="sound" />
         </devices>
         <device-mapping>
-            <device-assignment
-                test-type="psychophysics-stimulus-presentation"
-                instrument-name="Response"
-                device-id="lio.button" />
-
-            <device-assignment
-                test-type="psychophysics-stimulus-presentation"
-                instrument-name="Stimulator"
-                device-id="sound" />
-
-            <device-assignment
-                test-type="psychophysics-stimulus-presentation"
-                instrument-name="Trigger"
-                device-id="lio" />
-
-            <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Response"
-                device-id="lio.button" />
-
-            <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Stimulator"
-                device-id="sound" />
-
-            <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Trigger"
-                device-id="lio" />
+            <device-assignment instrument-name="Button" device-id="lio.button" />
+            <device-assignment instrument-name="Stimulator" device-id="sound" />
+            <device-assignment instrument-name="TriggerGenerator" device-id="lio" />
         </device-mapping>
     </experimental-setup>
     <protocol>
@@ -78,13 +52,13 @@
         </defines>
         <tests>
             <psychophysics-stimulus-presentation
-                ID="PRESENTATION"
+                id="PRESENTATION"
                 name="Presentation of tones"
                 stimulus-update-rate="44100">
 
                 <properties>
                     <instructions 
-                        default-instructions="TonePresentation"
+                        default="Assets.TonePresentation"
                         override-results="true"/>
                 </properties>
 
@@ -112,9 +86,10 @@
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
+            
 
-            <electrophysiology-evoked-potentials
-                ID="ODDBALLR"
+            <stimulation-sequence
+                id="ODDBALLR"
                 name="Auditory Oddball Task (Response Task)"
                 response-collection="yes-no"
                 stimulus-update-rate="44100"
@@ -122,7 +97,7 @@
 
                 <properties>
                     <instructions 
-                        default-instructions="ResponseTask"
+                        default="Assets.ResponseTask"
                         override-results="true"/>
                 </properties>
 
@@ -184,10 +159,10 @@
                         </stimulus>
                     </stimulus>
                 </stimuli>
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
 
-            <electrophysiology-evoked-potentials
-                ID="ODDBALLC"
+            <stimulation-sequence
+                id="ODDBALLC"
                 name="Auditory Oddball Task (Counting Task)"
                 response-collection="none"
                 stimulus-update-rate="44100"
@@ -195,7 +170,7 @@
 
                 <properties>
                     <instructions 
-                        default-instructions="CountingTask"
+                        default="Assets.CountingTask"
                         override-results="true"/>
                 </properties>
 
@@ -259,10 +234,10 @@
                         </stimulus>
                     </stimulus>
                 </stimuli>
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
 
-            <meta-survey
-                ID="RESPONSE"
+            <questionnaire
+                id="RESPONSE"
                 name="Number of oddballs"
                 control="operator">
 
@@ -282,7 +257,7 @@
                             min-included="true" />
                     </numeric>
                 </content>
-            </meta-survey>
+            </questionnaire>
         </tests>
         <assets>
             <file-asset

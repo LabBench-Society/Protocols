@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.8.0/experiment.xsd">
+   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
    <subject-validator 
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
@@ -58,22 +58,10 @@
              </lio>
           </devices>
           <device-mapping>
-             <device-assignment 
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Display"
-                device-id="display.image"/>
-             <device-assignment 
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="SubjectInstructions"
-                device-id="display.image"/>
-             <device-assignment 
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Response"
-                device-id="lio.pad"/>
-             
+             <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
+             <device-assignment instrument-name="Button" device-id="lio.pad"/>             
           </device-mapping>
-        </experimental-setup>
-        
+        </experimental-setup>        
          <experimental-setup name="Joystick">
             <devices>
                 <joystick id="joystick">
@@ -109,19 +97,8 @@
                 </display>         
             </devices>
             <device-mapping>
-                <device-assignment 
-                    test-type="electrophysiology-evoked-potentials"
-                    device-id="joystick"
-                    instrument-name="Response" />
-             <device-assignment 
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="SubjectInstructions"
-                device-id="display.image"/>
-    
-                <device-assignment
-                    test-type="electrophysiology-evoked-potentials"
-                    device-id="display.image"
-                    instrument-name="Display"/>
+                <device-assignment device-id="joystick" instrument-name="Button" />
+               <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
             </device-mapping>        
         </experimental-setup>
     
@@ -141,8 +118,8 @@
          <define name="DisplayTime" value="1500"/>
       </defines>
         <tests>            
-            <electrophysiology-evoked-potentials 
-               ID="NSTROOPTrial"
+            <stimulation-sequence
+               id="NSTROOPTrial"
                name="Neutral Stroop Task (Trial)"
                experimental-setup-id="image"
                response-collection="yes-no"
@@ -190,10 +167,10 @@
                   <stimulus name="bn" />
                   <stimulus name="yn" />                
                </stimuli>
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
             
-            <electrophysiology-evoked-potentials 
-               ID="NSTROOP"
+            <stimulation-sequence 
+               id="NSTROOP"
                name="Neutral Stroop Task"
                experimental-setup-id="image"
                response-collection="yes-no"
@@ -202,7 +179,7 @@
                <test-events complete="func: Script.Evaluate(tc)" />
                 
                <dependencies>
-                  <dependency ID="NSTROOPTrial"/>
+                  <dependency id="NSTROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
@@ -232,10 +209,10 @@
                     <stimulus name="bn" />
                     <stimulus name="yn" />
                 </stimuli>
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
     
-            <electrophysiology-evoked-potentials 
-               ID="STROOPTrial"
+            <stimulation-sequence 
+               id="STROOPTrial"
                name="Stroop Task (Trial)"
                experimental-setup-id="image"
                response-collection="yes-no"
@@ -283,10 +260,10 @@
                   <stimulus name="by" />
                   <stimulus name="yr" />
                </stimuli>
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
     
-            <electrophysiology-evoked-potentials 
-               ID="STROOP"
+            <stimulation-sequence 
+               id="STROOP"
                name="Stroop Task"
                experimental-setup-id="image"
                response-collection="yes-no"
@@ -295,7 +272,7 @@
                <test-events complete="func: Script.Evaluate(tc)" />
     
                <dependencies>
-                  <dependency ID="STROOPTrial"/>
+                  <dependency id="STROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
@@ -343,7 +320,7 @@
                   <stimulus name="yg" />
                   <stimulus name="yy" count="3"/>
                </stimuli>
-            </electrophysiology-evoked-potentials>        
+            </stimulation-sequence>        
         </tests>
         <assets>
             <file-asset id="EnglishImages" file="images_en.zip" />

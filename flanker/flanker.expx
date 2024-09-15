@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup>
@@ -32,12 +32,8 @@
             </joystick>
         </devices>
         <device-mapping>
-            <device-assignment test-type="electrophysiology-evoked-potentials"
-                               instrument-name="Display"
-                               device-id="display.image"/>
-            <device-assignment test-type="electrophysiology-evoked-potentials"
-                               instrument-name="Response"
-                               device-id="button"/>
+            <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
+            <device-assignment instrument-name="Button" device-id="button"/>
         </device-mapping>
     </experimental-setup>
     <protocol>
@@ -46,15 +42,18 @@
             <define name="DisplayTime" value="1000"/>
         </defines>
         <tests>
-            <electrophysiology-evoked-potentials ID="FLANKER"
-                                                 name="Flanker Task"
-                                                 experimental-setup-id="image"
-                                                 response-collection="yes-no"
-                                                 stimulus-update-rate="10000">
-                <test-events selected="func: Script.Instructions(tc)"
-                             complete="func: Script.Evaluate(tc)">
-                    <instrument name="Display"
-                                interface="image-display"/>
+            <stimulation-sequence 
+                id="FLANKER"
+                name="Flanker Task"
+                experimental-setup-id="image"
+                response-collection="yes-no"
+                stimulus-update-rate="10000">
+                <test-events 
+                    selected="func: Script.Instructions(tc)"
+                    complete="func: Script.Evaluate(tc)">
+                    <instrument 
+                        name="ImageDisplay"
+                        interface="image-display"/>
                 </test-events>
                 
                 <stimulation-scripts initialize="func: Script.Initialize(tc)"
@@ -92,7 +91,7 @@
                     <stimulus name="sh" />
                     <stimulus name="sk" />
                 </stimuli>
-            </electrophysiology-evoked-potentials>        
+            </stimulation-sequence>        
         </tests>
         <assets>
             <file-asset id="EnglishImages" file="images_en.zip" />

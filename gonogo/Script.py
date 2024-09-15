@@ -6,18 +6,18 @@ def getImages(tc):
     return tc.Assets.EnglishImages
    
 def Instructions(tc):
-    display = tc.Devices.Display
+    display = tc.Devices.ImageDisplay
     display.Display(getImages(tc).GetAsset("instruct.png").Data)
     return True
 
 def Initialize(tc):
-    display = tc.Devices.Display
+    display = tc.Devices.ImageDisplay
     display.Display(getImages(tc).GetAsset("blank.png").Data)
     return True
 
 def Stimulate(tc, x):
     key = "{name}.png".format(name = tc.StimulusName)   
-    display = tc.Devices.Display
+    display = tc.Devices.ImageDisplay
     display.Display(getImages(tc).GetAsset(key).Data, tc.DisplayTime)       
     return True
 
