@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.3.0/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
     <subject-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
@@ -58,18 +58,15 @@
         </devices>
         <device-mapping>
             <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Response"
+                instrument-name="Button"
                 device-id="lio.button" />
 
             <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Display"
+                instrument-name="ImageDisplay"
                 device-id="display.image" />
 
             <device-assignment
-                test-type="electrophysiology-evoked-potentials"
-                instrument-name="Trigger"
+                instrument-name="TriggerGenerator"
                 device-id="lio" />
         </device-mapping>
     </experimental-setup>
@@ -88,8 +85,8 @@
                 value="500"/>
         </defines>
         <tests>
-            <electrophysiology-evoked-potentials
-                ID="ODDBALLR"
+            <stimulation-sequence
+                id="ODDBALLR"
                 name="Visual Oddball Task (Response Task)"
                 experimental-setup-id="image"
                 response-collection="yes-no"
@@ -103,7 +100,7 @@
 
                 <properties>
                     <instructions 
-                        default-instructions="ResponseTask"
+                        default="Assets.ResponseTask"
                         override-results="true"/>
                 </properties>
 
@@ -159,10 +156,10 @@
                         </triggers>
                     </stimulus>
                 </stimuli>
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
 
-            <electrophysiology-evoked-potentials
-                ID="ODDBALLC"
+            <stimulation-sequence
+                id="ODDBALLC"
                 name="Visual Oddball Task (Counting Task)"
                 experimental-setup-id="image"
                 response-collection="none"
@@ -176,7 +173,7 @@
 
                 <properties>
                     <instructions 
-                        default-instructions="CountingTask"
+                        default="Assets.CountingTask"
                         override-results="true"/>
                 </properties>
 
@@ -234,10 +231,10 @@
                         </triggers>
                     </stimulus>
                 </stimuli>
-            </electrophysiology-evoked-potentials>
+            </stimulation-sequence>
 
-            <meta-survey
-                ID="RESPONSE"
+            <questionnaire
+                id="RESPONSE"
                 name="Number of oddballs"
                 experimental-setup-id="image"
                 control="operator">
@@ -258,7 +255,7 @@
                             min-included="true" />
                     </numeric>
                 </content>
-            </meta-survey>
+            </questionnaire>
         </tests>
         <assets>
             <file-asset

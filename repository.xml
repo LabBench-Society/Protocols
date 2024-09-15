@@ -35,7 +35,7 @@
         category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>              
     <protocol 
         id="vstopsignal"
-        name="Visual Stop Signal Task"
+        name="Stop Signal Task (Visual)"
         labbench-version="5.0"
         category="Cognitive Task"/>      
     <protocol 
@@ -60,12 +60,12 @@
         category="Cognitive Task"/>
     <protocol 
         id="aoddball"
-        name="Auditory Oddball Task"
+        name="Oddball Task (Auditory)"
         labbench-version="5.0"
         category="EEG" />
     <protocol 
         id="voddball"
-        name="Visual Oddball Task"
+        name="Oddball Task (Visual)"
         labbench-version="5.0"
         category="EEG" />    
     <protocol 
