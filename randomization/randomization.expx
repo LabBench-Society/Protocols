@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+<subject-validator 
+      regex="^PILOT[0-9]{3}$|^S[0-9]{3}$|^TEST[0-9]+$"
+      advice="Please enter an ID in the form of SXXX or PILOTXXX, or TESTX..X, where X is a digit" />
+   <experimental-setup>
+     <devices>
+         <lio 
+             id="lio"
+             default-analog-output="0">
+             <response-devices>
+                 <visual-analog-scale 
+                     id="scale"
+                     length="10"
+                     sample-period="200"
+                     timing-source="none">
+                     <anchors>
+                         <modality text=" " />
+                         <top-anchor text="10/Worst Possible Itch" />
+                         <bottom-anchor text="0/No Itch" />
+                     </anchors>
+                     <button-maps>
+                         <map>
+                             <button-assignment 
+                                 code="1" 
+                                 button="increase" 
+                                 label="Increase"/>
+                             <button-assignment 
+                                 code="2" 
+                                 button="decrease" 
+                                 label="Decrease"/>
+                         </map>
+                     </button-maps>
+                 </visual-analog-scale>
+             </response-devices>
+         </lio>
+         <display 
+             id="display"
+             screen="secondary"
+             position="fullscreen"
+             inactive-color="rgb(183, 184, 189)"
+             active-color="rgb(255, 0, 0)"
+             background-color="#FFFFFF"
+             normative-distance="40">
+
+             <monitor 
+                 diagonal-size="59.8"
+                 diagonal-size-unit="cm"
+                 distance="60"
+                 length-unit="cm"/>
+
+             <configurations>
+                 <composite-scale 
+                     id="scales"
+                     experimental-setup-id="vas"
+                     controller-device="lio.scale">
+                     <visual-analog-scale 
+                         id="itch"
+                         length="10"
+                         sample-period="200"
+                         timing-source="none">
+                         <anchors>
+                             <modality text="" />
+                             <top-anchor text="10/Værst tænkelig kløe" />
+                             <bottom-anchor text="0/Ingen Kløe" />
+                         </anchors>
+                     </visual-analog-scale>
+                 </composite-scale>
+
+                 <image-display 
+                     background-color="rgb(255, 255, 255)"
+                     experimental-setup-id="image"
+                     id="image"/>
+
+                 <questionnaire 
+                     id="survey"
+                     experimental-setup-id="survey"
+                     background-color="rgb(255,255,255)" />
+             </configurations>
+         </display>
+     </devices>
+      <device-mapping>
+            <device-assignment instrument-name="Scales" device-id="display.scales" />
+            <device-assignment instrument-name="ImageDisplay" device-id="display.image" />                
+            <device-assignment instrument-name="Button" device-id="lio.scale" />
+            <device-assignment instrument-name="Questionnaire" device-id="display.survey" />                 
+      </device-mapping>
+   </experimental-setup>
+   <protocol>
+        <sessions>
+            <session id="SES01" name="Session 1" />
+            <session id="SES02" name="Session 2" />
+        </sessions>
+        <randomizations>
+            <integers value="func: Script.GenerateCreamSequence(tc)" name="CreamSequence" />
+            <integers value="func: Script.GenerateLocationSequence(tc)" name="LocationSequence" />
+        </randomizations>
+        <defines>
+        </defines>
+        <templates>
+            <variables>
+                <strings value="SES01;SES02" name="Sessions" />
+
+                <structs name="TimeSlots">
+                    <struct>
+                        <string value="SLOT01" name="ID" />
+                        <string value="" name="Previous" />
+                        <string value="" name="TestSite" />
+                        <string value="0" name="TimeConstraint" />
+                    </struct>
+                    <struct>
+                        <string value="SLOT02" name="ID" />
+                        <string value="SLOT01" name="Previous" />
+                        <string value="" name="TestSite" />
+                        <string value="func: Script.GetTimeSlotDuration(tc)" name="TimeConstraint" />
+                    </struct>
+                    <struct>
+                        <string value="SLOT03" name="ID" />
+                        <string value="SLOT02" name="Previous" />
+                        <string value="SITE01" name="TestSite" />
+                        <string value="func: Script.GetTimeSlotDuration(tc)" name="TimeConstraint" />
+                    </struct>
+                    <struct>
+                        <string value="SLOT04" name="ID" />
+                        <string value="SLOT03" name="Previous" />
+                        <string value="SITE02" name="TestSite" />
+                        <string value="func: Script.GetTimeSlotDuration(tc)" name="TimeConstraint" />
+                    </struct>
+                    <struct>
+                        <string value="SLOT05" name="ID" />
+                        <string value="SLOT04" name="Previous" />
+                        <string value="SITE03" name="TestSite" />
+                        <string value="func: Script.GetTimeSlotDuration(tc)" name="TimeConstraint" />
+                    </struct>
+                    <struct>
+                        <string value="SLOT06" name="ID" />
+                        <string value="SLOT05" name="Previous" />
+                        <string value="SITE04" name="TestSite" />
+                        <string value="func: Script.GetTimeSlotDuration(tc)" name="TimeConstraint" />
+                    </struct>
+                </structs>
+            </variables>
+            <content>          
+                <questionnaire 
+                    id="prepareTimeSlot"
+                    experimental-setup-id="image"
+                    control="operator">
+                    <test-events
+                        start="func: Script.DisplayTimeSlotInstruction(tc)">
+                        <instrument name="SubjectInstructions" interface="image-display" />
+                    </test-events>
+                    <properties>
+                        <time-constraint 
+                            test-id="var: Previous" 
+                            time-reference="end"
+                            min="var: Slot.TimeConstraint"
+                            notification="true"/>
+                        <instructions 
+                            default="func: Script.TimeSlotInstruction(tc)"
+                            override-results="true"/>
+                    </properties>
+                    <templates>
+                        <likert 
+                            id="APPLICATION" 
+                            title="Cream application"
+                            instruction="dynamic: func: Script.Application(tc)"
+                            condition="func: Script.ApplicationEnabled(tc)">
+                            <choice value="1" label="I have applied the cream" />
+                        </likert>
+                        <likert 
+                            id="REMOVAL" 
+                            title="Cream removal"
+                            instruction="Remove the cream"
+                            condition="func: Script.RemovalEnabled(tc)">
+                            <choice value="1" label="I have removed the cream" />
+                        </likert>                    
+                    </templates>
+            
+                    <content>
+                        <likert id="APPLICATION" template="APPLICATION" />
+                        <likert id="REMOVAL" template="REMOVAL" />
+                    </content>
+                </questionnaire>
+
+                <questionnaire id="application" 
+                    control="operator"
+                    experimental-setup-id="blank">
+                    <test-events start="func:Script.Annotate(tc)"/>
+                    <properties>
+                        <instructions 
+                           default="func: Script.PruritogenApplication(tc)"
+                           override-results="true"/>
+                        <annotations>
+                            <integers name="protocolIntegers">
+                                <number value="1" />
+                                <number value="2" />
+                                <number value="3" />
+                            </integers>
+                        </annotations>
+                    </properties>
+                    <dependencies>
+                        <dependency id="var: '{s}{slot}PREP'.format(s = Session, slot = Slot.ID)" />
+                    </dependencies>
+                    <templates>
+                        <boolean 
+                            id="CONFIRM"
+                            title="Apply the pruritogen"
+                            instruction="Have you applied the pruritogen?"
+                            true-label="Yes"
+                            false-label="No"/>
+                    </templates>
+                    <content>
+                        <boolean id="CONFIRM" template="CONFIRM" />
+                    </content>
+                </questionnaire>
+
+                <psychophysics-response-recording id="COVAS"                    
+                    experimental-setup-id="vas"
+                    duration="func: Script.GetCOVASDuration(tc)"
+                    sample-rate="1">
+                    <properties>
+                     <auto-start value="true"/>
+                    </properties>
+                    <dependencies>
+                        <dependency id="var: Dependency" virtual="false" />
+                   </dependencies>
+                </psychophysics-response-recording>
+
+                <questionnaire id="removal" 
+                    control="operator"
+                    experimental-setup-id="blank">
+                   <properties>
+                     <instructions 
+                        default="func: Script.PruritogenRemoval(tc)"
+                        override-results="true"/>
+                   </properties>
+                    <dependencies>
+                         <dependency 
+                            id="var: Dependency" 
+                            virtual="false" />
+                   </dependencies>
+                   <templates>
+                        <boolean 
+                            id="CONFIRM"
+                            title="Remove the pruritogen"
+                            instruction="Have you removed the puritogen?"
+                            true-label="Yes"
+                            false-label="No"/>
+                   </templates>
+                    <content>
+                        <boolean id="CONFIRM" template="CONFIRM" />
+                    </content>
+                </questionnaire>              
+            </content>             
+        </templates>
+        <tests>           
+            <foreach variable="Session" in="Sessions">
+                <foreach variable="Slot" in="TimeSlots">                    
+                    <questionnaire-constructor
+                        id="var: '{s}{slot}PREP'.format(s = Session, slot = Slot.ID)" 
+                        name="var: 'AREA PREPARATION ({slot})'.format(slot = Slot.ID)" 
+                        session="var: Session"
+                        template="prepareTimeSlot">
+                        <variables>
+                            <string value="var: '{s}{slot}PREP'.format(s = Session, slot = Slot.Previous) if Slot.Previous != '' else ''" name="Previous" />
+                        </variables>
+                    </questionnaire-constructor>
+
+                    <if condition="Slot.TestSite != ''">
+                        <questionnaire-constructor 
+                            id="var: '{s}{a}APPLICATION'.format(s = Session, a = Slot.TestSite)" 
+                            name="var: '{a} Pruritogen (Application)'.format(a = Slot.TestSite)" 
+                            session="var: Session"
+                            template="application" />
+
+                        <psychophysics-response-recording-constructor
+                            id="var: '{s}{a}COVAS'.format(s = Session, a = Slot.TestSite)" 
+                            name="var: '{a} COVAS (10min)'.format(a = Slot.TestSite)" 
+                            session="var: Session"
+                            template="COVAS">
+                            <variables>
+                                <string name="Dependency" value="var: '{s}{a}APPLICATION'.format(s = Session, a = Slot.TestSite)" />
+                            </variables>                        
+                        </psychophysics-response-recording-constructor>
+
+                        <questionnaire-constructor 
+                            id="var: '{s}{a}REMOVAL'.format(s = Session, a = Slot.TestSite)" 
+                            name="var: '{a} Pruritogen (Removal)'.format(a = Slot.TestSite)" 
+                            session="var: Session"
+                            template="removal">
+                            <variables>
+                                <string name="Dependency" value="var: '{s}{a}APPLICATION'.format(s = Session, a = Slot.TestSite)" />
+                            </variables>                        
+                        </questionnaire-constructor>
+                    </if>
+                </foreach>
+            </foreach>
+        </tests>
+        <assets>
+            <file-asset id="Script" file="Script.py" />
+            <file-asset id="Sequence" file="Sequence.zip"/>
+        </assets>
+    </protocol>
+    <post-actions>
+    </post-actions>
+</experiment>

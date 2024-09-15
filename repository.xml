@@ -9,6 +9,11 @@
         labbench-version="5.0"
         category="Psychometrics;Demonstration Protocol"/>
     <protocol 
+        id="randomization"
+        name="Introduction to Randomization and Templating"
+        labbench-version="5.0"
+        category="Randomization;Templating;Demonstration Protocol"/>
+    <protocol 
         id="cpardemo"
         name="Introduction to Cuff Pressure Algometry"
         labbench-version="5.0"
