@@ -14,7 +14,12 @@
         labbench-version="5.0"
         category="Pressure Algometry;Demonstration Protocol"/>
     <protocol 
-        id="ctscpm"
+        id="ctscpm2ap"
+        name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
+        labbench-version="5.0"
+        category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
+    <protocol 
+        id="ctscpm3ap"
         name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
         labbench-version="5.0"
         category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
@@ -24,7 +29,7 @@
         labbench-version="5.0"
         category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>             
     <protocol 
-        id="cstscpm"
+        id="cstscpm3ap"
         name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
         labbench-version="5.0"
         category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>              
