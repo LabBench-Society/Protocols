@@ -6,8 +6,7 @@
             <cpar-plus id="dev"/>
         </devices>
         <device-mapping>
-            <device-assignment instrument-name="PressureAlgometer"
-                               device-id="dev" />
+            <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
         </device-mapping>
     </experimental-setup>
     <protocol>
