@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
 <subject-validator 
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Must be SXXX or TESTXXX, where X is a digit"/>
@@ -43,7 +43,7 @@
                         experimental-setup-id="image"
                         background-color="rgb(255,255,255)"/>
 
-                    <survey 
+                    <questionnaire 
                         id="survey"
                         experimental-setup-id="survey"
                         background-color="rgb(255,255,255)" />                        
@@ -51,20 +51,10 @@
             </display>
         </devices>
         <device-mapping>
-            <device-assignment 
-                device-id="display.image" 
-                test-type="meta-survey" 
-                instrument-name="SubjectInstructions" />
-
-            <device-assignment 
-                device-id="lio.vas"
-                test-type="meta-survey"
-                instrument-name="Response"/>
-            
-            <device-assignment 
-                device-id="display.survey" 
-                test-type="meta-survey"
-                instrument-name="Display" />
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
+            <device-assignment device-id="lio.vas" instrument-name="RatioScale"/>            
+            <device-assignment device-id="lio.vas" instrument-name="Button"/>            
+            <device-assignment device-id="display.survey" instrument-name="Questionnaire" />
         </device-mapping>        
     </experimental-setup>
     <protocol>
@@ -76,8 +66,8 @@
         </defines>
         <templates>
             <content>
-                <meta-survey 
-                    ID="nrsAlloknesisRating"
+                <questionnaire
+                    id="nrsAlloknesisRating"
                     control="subject"
                     experimental-setup-id="survey">
                     <variables>
@@ -86,11 +76,11 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="operatorAlloknesisInstructionsNRS"
+                            default="Assets.operatorAlloknesisInstructionsNRS"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
-                            default="AlloknesisInstructionNRS" />
+                            default="Assets.AlloknesisInstructionNRS" />
                     </properties>
 
                     <templates>
@@ -113,9 +103,9 @@
                                 title="var: 'Measurement {n}'.format(n = n)"/>
                         </foreach>
                     </content>
-                </meta-survey>   
-                <meta-survey 
-                    ID="vasAlloknesisRating"
+                </questionnaire>   
+                <questionnaire
+                    id="vasAlloknesisRating"
                     control="subject"
                     experimental-setup-id="survey">
                     <variables>
@@ -124,11 +114,11 @@
 
                     <properties>
                         <instructions 
-                            default-instructions="operatorAlloknesisInstructionsVAS"
+                            default="Assets.operatorAlloknesisInstructionsVAS"
                             override-results="true"/>
                         <subject-instructions 
                             experimental-setup-id="image"
-                            default="AlloknesisInstructionVAS" />
+                            default="Assets.AlloknesisInstructionVAS" />
                     </properties>
 
                     <templates>
@@ -150,19 +140,12 @@
                                 title="var: 'Measurement {n}'.format(n = n)"/>
                         </foreach>
                     </content>
-                </meta-survey>   
+                </questionnaire>   
             </content>             
         </templates>
         <tests>
-            <meta-survey-constructor 
-                ID="NRS" 
-                name="Alloknesis (NRS)" 
-                template="nrsAlloknesisRating" />
-
-            <meta-survey-constructor 
-                ID="VAS" 
-                name="Alloknesis (VAS)" 
-                template="vasAlloknesisRating" />
+            <questionnaire-constructor id="NRS" name="Alloknesis (NRS)" template="nrsAlloknesisRating" />
+            <questionnaire-constructor id="VAS" name="Alloknesis (VAS)" template="vasAlloknesisRating" />
         </tests>
         <assets>
             <file-asset id="operatorAlloknesisInstructionsNRS" file="operatorAlloknesisInstructionsNRS.rtf" />
