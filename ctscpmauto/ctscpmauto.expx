@@ -18,7 +18,7 @@
                 pressure-limit="100"
                 primary-cuff="1"
                 second-cuff="false"
-                stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
+                stop-mode="stop-when-button-pressed"
                 vas-pdt="0.1">
                 <properties>
                     <auto-start value="true"/>
@@ -33,7 +33,7 @@
                 pressure-limit="100"
                 primary-cuff="2"
                 second-cuff="false"
-                stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
+                stop-mode="stop-when-button-pressed"
                 vas-pdt="0.1">
                 <properties>
                     <auto-start value="true"/>
@@ -67,7 +67,7 @@
                 delta-pressure="1"
                 pressure-limit="100"
                 primary-cuff="1"
-                stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
+                stop-mode="stop-when-button-pressed"
                 vas-pdt="0.1">
                 <properties>
                     <auto-start value="true"/>

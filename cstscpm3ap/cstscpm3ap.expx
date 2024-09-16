@@ -105,7 +105,7 @@
                 pressure-limit="100"
                 primary-cuff="1"
                 second-cuff="false"
-                stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
+                stop-mode="stop-when-button-pressed"
                 vas-pdt="1.0">
                 <dependencies />
             </algometry-stimulus-response>
@@ -117,7 +117,7 @@
                 pressure-limit="100"
                 primary-cuff="2"
                 second-cuff="false"
-                stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
+                stop-mode="stop-when-button-pressed"
                 vas-pdt="1.0">
                 <dependencies />
             </algometry-stimulus-response>
@@ -129,7 +129,7 @@
                 pressure-limit="100"
                 primary-cuff="2"
                 second-cuff="true"
-                stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
+                stop-mode="stop-when-button-pressed"
                 vas-pdt="1.0">
                 <dependencies />
             </algometry-stimulus-response>
@@ -157,7 +157,7 @@
                 delta-pressure="1"
                 pressure-limit="100"
                 primary-cuff="1"
-                stop-mode="STOP_CRITERION_ON_BUTTON_PRESSED"
+                stop-mode="stop-when-button-pressed"
                 vas-pdt="1.0">
                 <dependencies>
                     <dependency id="SR02"/>
