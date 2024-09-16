@@ -143,32 +143,33 @@
       pressure-limit="100"
       primary-cuff="1"
       second-cuff="false"
-      stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+      stop-mode="stop-on-maximal-rating"
       vas-pdt="0.1" />
 
             <!--
       This Stimulus-Response test is the same as T01 except that the Cuff 2 will be used instead of Cuff 1.
     -->
-    <algometry-stimulus-response id="T02"
-                                  name="Stimulus Response (Stop on VAS 10) [Cuff 2]"
-                                  delta-pressure="1"
-                                  pressure-limit="100"
-                                  primary-cuff="2"
-                                  second-cuff="false"
-                                  stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
-                                  vas-pdt="0.1" />
+    <algometry-stimulus-response 
+      id="T02"
+      name="Stimulus Response (Stop on VAS 10) [Cuff 2]"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="2"
+      second-cuff="false"
+      stop-mode="stop-on-maximal-rating"
+      vas-pdt="0.1" />
 
   <!--
       Illustrates the use of the second-cuff parameter to study spatial summation of pressure stimuli.
     -->
     <algometry-stimulus-response 
       id="T03"
-      name="Stimulus Response (Stop on VAS 10) [Cuff 1+2]"
+      name="Stimulus Response (Stop on button) [Cuff 1+2]"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="1"
       second-cuff="true"
-      stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+      stop-mode="stop-when-button-pressed"
       vas-pdt="0.1" />
 
             <!--
@@ -210,7 +211,7 @@
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="1"
-      stop-mode="STOP_CRITERION_ON_BUTTON_VAS"
+      stop-mode="stop-on-maximal-rating"
       vas-pdt="0.1">
     <!--
         This element defines dependencies to other tests in the protcol. In this case the conditional-pressure
