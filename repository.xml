@@ -9,6 +9,11 @@
         labbench-version="5.0"
         category="Psychometrics;Demonstration Protocol"/>
     <protocol 
+        id="thrEstimation"
+        name="Introduction to Estimation of Thresholds and Psychometric Functions"
+        labbench-version="5.0"
+        category="Thresholds;Psychopmetric Functions;Demonstration Protocol"/>
+    <protocol 
         id="randomization"
         name="Introduction to Randomization and Templating"
         labbench-version="5.0"

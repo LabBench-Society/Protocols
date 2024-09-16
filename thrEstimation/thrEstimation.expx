@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="..\experiment.xsd">
-    <subject-validator 
+<experiment 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+ <subject-validator 
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Must be SXXX or TESTXXX, where X is a digit"/>
     <experimental-setup>
@@ -119,19 +120,19 @@
                 device-id="display.nrs" 
                 test-type="psychophysics-threshold-estimation" 
                 test-id="NRS"
-                instrument-name="Scale" />
+                instrument-name="IntervalScale" />
 
             <device-assignment 
                 device-id="display.crs" 
                 test-type="psychophysics-threshold-estimation" 
                 test-id="CRS"
-                instrument-name="Scale" />
+                instrument-name="OrdinalScale" />
 
             <device-assignment 
                 device-id="display.vas" 
                 test-type="psychophysics-threshold-estimation" 
                 test-id="VAS"
-                instrument-name="Scale" />
+                instrument-name="RatioScale" />
 
 
             </device-mapping>        
