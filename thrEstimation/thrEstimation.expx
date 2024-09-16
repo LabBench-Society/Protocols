@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="..\experiment.xsd">
+    <subject-validator 
+        regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+        advice="Must be SXXX or TESTXXX, where X is a digit"/>
+    <experimental-setup>
+        <devices>
+            <joystick
+                id="joystick">
+                <map experimental-setup-id="image">
+                    <button-assignment code="16" button="button-01" label="Button 1"/>
+                    <button-assignment code="32" button="button-01" label="Button 1"/>
+
+                    <button-assignment code="1" button="button-01" label="Button 1"/>
+                    <button-assignment code="2" button="button-02" label="Button 1"/>
+                    <button-assignment code="4" button="button-04" label="Button 1"/>
+                    <button-assignment code="8" button="button-03" label="Button 1"/>
+                </map>
+                <map experimental-setup-id="crs">
+                    <button-assignment code="16" button="decrease" label="Decrease"/>
+                    <button-assignment code="32" button="increase" label="Increase"/>
+                </map>
+                <map experimental-setup-id="nrs">
+                    <button-assignment code="16" button="decrease" label="Decrease"/>
+                    <button-assignment code="32" button="increase" label="Increase"/>
+                </map>
+                <map experimental-setup-id="vas">
+                    <button-assignment code="16" button="decrease" label="Decrease"/>
+                    <button-assignment code="32" button="increase" label="Increase"/>
+                </map>
+            </joystick>
+
+            <display
+                id="display"
+                screen="secondary"
+                position="fullscreen"
+                normative-distance="40"
+                active-color="rgb(255,0,0)"
+                background-color="rgb(255,255,255)"
+                inactive-color="rgb(16,16,16)">
+
+                <monitor 
+                    diagonal-size="13.3"
+                    diagonal-size-unit="inch"
+                    distance="40"
+                    length-unit="cm"/>
+                
+                <configurations>
+                    <image-display 
+                        background-color="rgb(0,0,0)"
+                        id="image"
+                        experimental-setup-id="image"/>
+
+                    <categorical-scale
+                        id="crs"
+                        experimental-setup-id="crs"
+                        controller-device="joystick">
+                        <anchors>
+                            <top-anchor text="Maximal Sound" />                                
+                            <bottom-anchor text="Minimal Sound" />
+                        </anchors>
+                        <categories>
+                            <category text="No Sound" />
+                            <category text="Slight Sound" />
+                            <category text="Moderate Sound" />
+                            <category text="Strong Sound" />
+                            <category text="Intense Sound" />
+                        </categories>
+                    </categorical-scale>
+
+                    <numerical-scale
+                        id="nrs"
+                        experimental-setup-id="nrs"
+                        controller-device="joystick">
+                        <anchors>
+                            <top-anchor text="Maximal Sound" />                                
+                            <bottom-anchor text="Minimal Sound" />
+                        </anchors>
+                    </numerical-scale>
+
+                    <visual-analog-scale
+                        id="vas"
+                        experimental-setup-id="vas"
+                        controller-device="joystick"
+                        length="10">
+                        <anchors>
+                            <top-anchor text="Maximal Sound" />
+                            <bottom-anchor text="Minimal Sound" />
+                        </anchors>
+                    </visual-analog-scale>
+                </configurations>
+            </display>
+
+            <sound id="sound" />
+        </devices>
+        <device-mapping>
+            <device-assignment 
+                device-id="joystick" 
+                test-type="psychophysics-threshold-estimation" 
+                instrument-name="Button" />
+
+            <device-assignment 
+                device-id="display.image" 
+                test-type="psychophysics-threshold-estimation" 
+                instrument-name="ImageDisplay" />
+
+                <device-assignment 
+                device-id="display.image" 
+                test-type="psychophysics-threshold-estimation" 
+                instrument-name="SubjectInstructions" />
+
+            <device-assignment 
+                device-id="sound" 
+                test-type="psychophysics-threshold-estimation" 
+                instrument-name="Stimulator" />
+
+            <device-assignment 
+                device-id="display.nrs" 
+                test-type="psychophysics-threshold-estimation" 
+                test-id="NRS"
+                instrument-name="Scale" />
+
+            <device-assignment 
+                device-id="display.crs" 
+                test-type="psychophysics-threshold-estimation" 
+                test-id="CRS"
+                instrument-name="Scale" />
+
+            <device-assignment 
+                device-id="display.vas" 
+                test-type="psychophysics-threshold-estimation" 
+                test-id="VAS"
+                instrument-name="Scale" />
+
+
+            </device-mapping>        
+    </experimental-setup>
+    <protocol>
+        <languages>
+            
+        </languages>
+        <defines>
+            
+        </defines>
+        <tests>
+            <psychophysics-threshold-estimation 
+                id="yesNo"
+                name="Yes/No Response Task"
+                experimental-setup-id="image"
+                stimulus-update-rate="44100">
+
+                <update-rate-deterministic value="2000" />
+                
+                <yes-no-task />
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Beep">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation 
+                id="manualYesNo"
+                name="Manual Yes/No Response Task"
+                experimental-setup-id="image"
+                stimulus-update-rate="44100">
+
+                <manual-yes-no-task />
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Beep">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation 
+                id="CRS"
+                name="CRS Response Task"
+                experimental-setup-id="crs"
+                stimulus-update-rate="44100">
+
+                <update-rate-deterministic value="4000" />
+                
+                <categorical-rating-task 
+                    target="1 if ChannelID == 'CH01' else 2" />
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Category 1">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                    <channel
+                        id="CH02"
+                        name="Category 2">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="400" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation 
+                id="manualCRS"
+                name="Manual CRS Response Task"
+                experimental-setup-id="image"
+                stimulus-update-rate="44100">
+
+                <manual-categorical-rating-task
+                    target="1 if ChannelID == 'CH01' else 2">
+                    <category text="No Sound" />
+                    <category text="Slight Sound" />
+                    <category text="Moderate Sound" />
+                    <category text="Strong Sound" />
+                    <category text="Intense Sound" />
+                </manual-categorical-rating-task>              
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Category 1">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                    <channel
+                        id="CH02"
+                        name="Category 2">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="400" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+
+            <psychophysics-threshold-estimation 
+                id="NRS"
+                name="NRS Response Task"
+                experimental-setup-id="nrs"
+                stimulus-update-rate="44100">
+
+                <update-rate-deterministic value="1000" />
+                
+                <interval-rating-task 
+                    target="1 if ChannelID == 'CH01' else 2"/>
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Category 1">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                    <channel
+                        id="CH02"
+                        name="Category 2">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="400" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation 
+                id="manualNRS"
+                name="Manual NRS Response Task"
+                experimental-setup-id="image"
+                stimulus-update-rate="44100">
+
+                <manual-interval-rating-task 
+                    instruction="What is the sound level"
+                    minimum="0"
+                    maximum="10"
+                    target="1 if ChannelID == 'CH01' else 2"/>
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Category 1">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                    <channel
+                        id="CH02"
+                        name="Category 2">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="400" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation 
+                id="VAS"
+                name="VAS Response Task"
+                experimental-setup-id="vas"
+                stimulus-update-rate="44100">
+
+                <update-rate-deterministic value="1000" />
+
+                <ratio-rating-task 
+                    target="1 if ChannelID == 'CH01' else 2"/>
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Category 1">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                    <channel
+                        id="CH02"
+                        name="Category 2">
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine Is="x" Ts="400" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation 
+                id="afc"
+                name="AFC Response Task"
+                experimental-setup-id="image"
+                stimulus-update-rate="44100">
+
+                <properties>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="InstructionAFC"/>
+                </properties>
+
+                <alternative-forced-choice-task 
+                    probe="Assets.ProbeAFC"
+                    cue="Assets.CueAFC"
+                    display-duration="2000"
+                    display-interval="3000"
+                    pause="1000">
+
+                    <alternative id="A" button="button-01" />
+                    <alternative id="B" button="button-02" />
+                    <alternative id="C" button="button-03" />
+                </alternative-forced-choice-task>
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Beep"
+                        Imin="0"
+                        Imax="10">
+
+                        <up-down-method 
+                            start-intensity="5"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <combined>
+                                <sine 
+                                    Is="50 + x if StimulusAlternative == 'A' else 50"
+                                    Ts="500" 
+                                    Tdelay="0"
+                                    Frequency="1000" />
+
+                                <sine 
+                                    Is="50 + x if StimulusAlternative == 'B' else 50"
+                                    Ts="500" 
+                                    Tdelay="1000"
+                                    Frequency="1000" />
+
+                                <sine 
+                                    Is="50 + x if StimulusAlternative == 'C' else 50"
+                                    Ts="500" 
+                                    Tdelay="2000"
+                                    Frequency="1000" />
+                            </combined>
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation 
+                id="ifc"
+                name="IFC Response Task"
+                experimental-setup-id="image"
+                stimulus-update-rate="44100">
+
+                <properties>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="InstructionIFC"/>
+                </properties>
+
+                <interval-forced-choice-task 
+                    probe="Assets.ProbeIFC"
+                    display-duration="750"
+                    display-interval="1000"
+                    pause="1000">
+
+                    <interval id="A" image="Assets.Cue01" button="button-01" />
+                    <interval id="B" image="Assets.Cue02" button="button-02" />
+                    <interval id="C" image="Assets.Cue03" button="button-03" />
+                    <interval id="D" image="Assets.Cue04" button="button-04" />
+                </interval-forced-choice-task>
+
+                <channels>
+                    <channel
+                        id="CH01"
+                        name="Beep"
+                        Imin="Stimulator.Imin"
+                        Imax="Stimulator.Imax">
+
+                        <up-down-method 
+                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
+                            initial-direction="decreasing"/>
+
+                        <stimulus>
+                            <sine 
+                                Is="x"
+                                Ts="500" 
+                                Tdelay="0"
+                                Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+            
+        </tests>
+        <assets>
+            <file-asset id="CueAFC" file="CueAFC.png"></file-asset>
+            <file-asset id="ProbeAFC" file="ProbeAFC.png"></file-asset>
+            <file-asset id="InstructionAFC" file="InstructionAFC.png"></file-asset>
+
+            <file-asset id="Cue01" file="Cue01.png"></file-asset>
+            <file-asset id="Cue02" file="Cue02.png"></file-asset>
+            <file-asset id="Cue03" file="Cue03.png"></file-asset>
+            <file-asset id="Cue04" file="Cue04.png"></file-asset>
+            <file-asset id="ProbeIFC" file="ProbeIFC.png"></file-asset>
+            <file-asset id="InstructionIFC" file="InstructionIFC.png"></file-asset>
+        </assets>
+    </protocol>
+    <post-actions>
+        
+    </post-actions>
+</experiment>
