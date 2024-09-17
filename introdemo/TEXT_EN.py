@@ -1,4 +1,4 @@
-def CreateText():
+def CreateText(tc):
    	return {
 		"QUESTION": "How much do the statement apply to you over the past week?",
 		"I01": "I found myself getting upset by quite trivial things",

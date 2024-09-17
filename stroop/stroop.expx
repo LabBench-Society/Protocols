@@ -18,12 +18,10 @@
                 screen="secondary"
                 normative-distance="40">
     
-             <monitor 
-                diagonal-size="13"
-                diagonal-size-unit="inch"
-                distance="40"
-                length-unit="cm"/>
-    
+             <monitor
+                diagonal-size="53.34"
+                distance="40" />
+
              <configurations>
                 <image-display 
                    id="image"
@@ -83,11 +81,9 @@
                     screen="secondary">
     
                     <monitor
-                        diagonal-size="13.3"
-                        diagonal-size-unit="inch"
-                        distance="40"
-                        length-unit="cm"/>
-    
+                     diagonal-size="53.34"
+                     distance="40" />
+
                     <configurations>
                         <image-display
                             id="image"

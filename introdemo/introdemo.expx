@@ -33,10 +33,8 @@
                   screen="secondary">
             
                   <monitor
-                     diagonal-size="13.3"
-                     diagonal-size-unit="inch"
-                     distance="40"
-                     length-unit="cm"/>
+                     diagonal-size="53.34"
+                     distance="40" />
       
                   <configurations>
                      <image-display
@@ -96,10 +94,8 @@
                   screen="secondary">
             
                   <monitor
-                     diagonal-size="13.3"
-                     diagonal-size-unit="inch"
-                     distance="40"
-                     length-unit="cm"/>
+                     diagonal-size="53.34"
+                     distance="40" />
       
                   <configurations>
                      <image-display
@@ -139,7 +135,7 @@
             <language code="DA" name="Danish" />
       </languages>
       <defines>
-            <define name="Text" value="func: TEXT.CreateText" />
+            <define name="Text" value="func: TEXT.CreateText(tc)" />
       </defines>
       <templates>
          <content>

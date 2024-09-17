@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="..\experiment.xsd">
+    <subject-validator 
+        regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+        advice="Must be SXXX or TESTXXX, where X is a digit"/>
+    <experimental-setup>
+        <devices>
+            <display
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                normative-distance="40"
+                position="fullscreen"
+                screen="secondary"
+                fiducial-position="lower-right">
+
+                <monitor diagonal-size="35.5" distance="40" />
+                <fiducial x="17" y="17" size="10"/>
+
+                <configurations>
+                    <image-display 
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>
+            </display>
+        </devices>
+        <device-mapping>
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
+        </device-mapping>        
+    </experimental-setup>
+    <protocol>
+        <languages>
+            
+        </languages>
+        <defines>
+            
+        </defines>
+        <templates>
+            
+        </templates>
+        <tests>
+            <questionnaire id="FIDUCIAL" 
+                name="Verify fiducial"
+                experimental-setup-id="image"
+                control="operator">
+                <test-events
+                    start="func: Script.Start(tc)">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                </test-events>
+                <properties>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.Instruction"/>
+                </properties>                
+
+                <content>
+                    <boolean id="POSITION"
+                        title="Fiducial position"
+                        instruction="Is the fiducial in the correct position"
+                        true-label="Yes" 
+                        false-label="No"  />
+                </content>
+            </questionnaire>
+        </tests>
+        <assets>
+            <file-asset id="Images" file="Images.zip" />
+            <file-asset id="Script" file="Script.py"></file-asset>
+        </assets>
+    </protocol>
+    <post-actions>
+        
+    </post-actions>
+</experiment>

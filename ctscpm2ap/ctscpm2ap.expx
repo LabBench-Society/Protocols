@@ -23,12 +23,10 @@
                 inactive-color="rgb(16,16,16)"
                 normative-distance="40">
     
-                <monitor 
-                    diagonal-size="13"
-                    diagonal-size-unit="inch"
-                    distance="40"
-                    length-unit="cm"/>
-    
+                <monitor
+                    diagonal-size="53.34"
+                    distance="40" />
+
                 <configurations>
                     <visual-analog-scale
                         id="vas"
@@ -69,12 +67,10 @@
                 inactive-color="rgb(16,16,16)"
                 normative-distance="40">
     
-                <monitor 
-                    diagonal-size="13"
-                    diagonal-size-unit="inch"
-                    distance="40"
-                    length-unit="cm"/>
-    
+                <monitor
+                    diagonal-size="53.34"
+                    distance="40" />
+
                 <configurations>
                     <visual-analog-scale
                         id="vas"

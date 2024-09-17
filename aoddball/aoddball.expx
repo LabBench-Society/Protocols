@@ -54,7 +54,8 @@
             <psychophysics-stimulus-presentation
                 id="PRESENTATION"
                 name="Presentation of tones"
-                stimulus-update-rate="44100">
+                stimulus-update-rate="44100"
+                trigger-update-rate="1000">
 
                 <properties>
                     <instructions 
@@ -93,7 +94,7 @@
                 name="Auditory Oddball Task (Response Task)"
                 response-collection="yes-no"
                 stimulus-update-rate="44100"
-                trigger-update-rate="20000">
+                trigger-update-rate="1000">
 
                 <properties>
                     <instructions 
@@ -166,7 +167,7 @@
                 name="Auditory Oddball Task (Counting Task)"
                 response-collection="none"
                 stimulus-update-rate="44100"
-                trigger-update-rate="20000">
+                trigger-update-rate="1000">
 
                 <properties>
                     <instructions 

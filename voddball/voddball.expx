@@ -42,11 +42,9 @@
                 position="upper-right"
                 screen="primary">
 
-                <monitor 
-                    diagonal-size="21"
-                    diagonal-size-unit="inch"
-                    distance="40"
-                    length-unit="cm"/>
+                <monitor
+                    diagonal-size="53.34"
+                    distance="40" />
 
                 <configurations>
                     <image-display 

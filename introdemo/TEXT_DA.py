@@ -1,4 +1,4 @@
-def CreateText():
+def CreateText(tc):
    	return {
 		"QUESTION": "Hvor godt du føler udsagnet har passet på dig i den seneste uge?",
 		"I01": "Jeg blev bragt ud af ligevægt af ret ligegyldige ting",
