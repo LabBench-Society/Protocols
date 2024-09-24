@@ -1,6 +1,5 @@
 ﻿from Serilog import Log
 from LabBench.Interface.Instruments.Response import ButtonID
-from LabBench.Interface.Waveforms import Waveform
 import random
 
 class UpDownAlgorithm:
