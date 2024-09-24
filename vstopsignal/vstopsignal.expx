@@ -2,6 +2,41 @@
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
    <experimental-setup-variants>
+    <experimental-setup name="Joystick">
+        <devices>
+            <joystick id="joystick">
+                <map>
+                    <button-assignment code="32" button="left" label="Left"/> <!-- number: 5-->
+                    <button-assignment code="128" button="right" label="Right"/> <!--  number: 7 -->
+                </map>
+            </joystick>
+
+            <display
+                id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                normative-distance="40"
+                position="fullscreen"
+                screen="secondary">
+
+                <monitor
+                    diagonal-size="53.34"
+                    distance="40" />
+
+                <configurations>
+                    <image-display
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>                
+            </display>         
+        </devices>
+        <device-mapping>
+            <device-assignment device-id="joystick" instrument-name="Button" />
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
+        </device-mapping>        
+    </experimental-setup>    
     <experimental-setup name="LabBench I/O">
         <devices>
             <lio
@@ -13,8 +48,8 @@
                         type="button-4-cross" 
                         timing-source="response-port02">
                         <map>
-                            <button-assignment code="5" button="left" label="left" />
-                            <button-assignment code="6" button="right" label="right" />
+                            <button-assignment code="5" button="left" label="Left" />
+                            <button-assignment code="6" button="right" label="Right" />
                         </map>
                     </response-pad>
                     <visual-trigger 
@@ -50,52 +85,13 @@
             <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
         </device-mapping>        
     </experimental-setup>
-    <experimental-setup name="Joystick">
-        <devices>
-            <joystick id="joystick">
-                <map>
-                    <button-assignment code="32" button="left" label="left"/> <!-- number: 5-->
-                    <button-assignment code="128" button="right" label="right"/> <!--  number: 7 -->
-                </map>
-            </joystick>
-
-            <display
-                id="display"
-                active-color="rgb(255,255,255)"
-                background-color="rgb(0,0,0)"
-                inactive-color="rgb(32,32,32)"
-                normative-distance="40"
-                position="fullscreen"
-                screen="secondary">
-
-                <monitor
-                    diagonal-size="53.34"
-                    distance="40" />
-
-                <configurations>
-                    <image-display
-                        id="image"
-                        experimental-setup-id="image"
-                        background-color="rgb(0,0,0)" />
-                </configurations>                
-            </display>         
-        </devices>
-        <device-mapping>
-            <device-assignment device-id="lio.pad" instrument-name="Button" />
-            <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
-        </device-mapping>        
-    </experimental-setup>
-    
    </experimental-setup-variants>                    
     <protocol>
         <languages>
             
         </languages>
         <defines>
-            <define
-                name="Images"
-                value="func: Script.CreateImages(tc)"/>
-                <define 
+            <define 
                 name="TrainingStopSignals" 
                 value="4"/> 
             <define 
@@ -160,22 +156,20 @@
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100">
+                <test-events complete="func: Script.Complete(tc)" />
 
-                <test-events 
-                    selected="func: Script.Instructions(tc)"
-                    complete="func: Script.Complete(tc)">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"/>
-                </test-events>
+                <properties>
+                    <subject-instructions 
+                        experimental-setup-id="image"
+                        default="Assets.Images.Instructions" />
+                </properties>
 
                 <stimulation-scripts initialize="func: Script.UpDownInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"/>
-                    <instrument name="Response"
-                                interface="button"/>
+                    <instrument name="ImageDisplay" interface="image-display"/>
+                    <instrument name="Button" interface="button"/>
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">
@@ -202,21 +196,21 @@
                 response-collection="none"
                 stimulus-update-rate="44100">
 
-                <test-events
-                    selected="func: Script.Instructions(tc)"
-                    complete="func: Script.Complete(tc)">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"/>
-                </test-events>
+                <test-events complete="func: Script.Complete(tc)" />
+
+                <properties>
+                    <subject-instructions 
+                        experimental-setup-id="image"
+                        default="Assets.Images.Instructions" />
+                </properties>
+
 
                 <stimulation-scripts initialize="func: Script.PsiInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
-                    <instrument name="ImageDisplay"
-                                interface="image-display"/>
-                    <instrument name="Response"
-                                interface="button"/>
+                    <instrument name="ImageDisplay" interface="image-display"/>
+                    <instrument name="Button" interface="button"/>
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">

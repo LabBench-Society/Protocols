@@ -1,15 +1,15 @@
 cd Images
 
-move Slide1.PNG right.png
-move Slide2.PNG left.png
-move Slide3.PNG stopRight.png
-move Slide4.PNG stopLeft.png
-move Slide5.PNG correct.png
-move Slide6.PNG wrong.png
-move Slide7.PNG instructions.png
-move Slide8.PNG clear.png
-move Slide9.PNG fixation.png
-move Slide10.PNG goInstructions.png
+move Slide1.PNG Right.png
+move Slide2.PNG Left.png
+move Slide3.PNG StopRight.png
+move Slide4.PNG StopLeft.png
+move Slide5.PNG Correct.png
+move Slide6.PNG Wrong.png
+move Slide7.PNG Instructions.png
+move Slide8.PNG Clear.png
+move Slide9.PNG FixationCross.png
+move Slide10.PNG GoInstruction.png
 
 cd ..
 pause

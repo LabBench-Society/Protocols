@@ -1,22 +1,7 @@
 ﻿from Serilog import Log
 from LabBench.Interface.Instruments.Response import ButtonID
 from LabBench.Interface.Waveforms import Waveform
-import traceback
 import random
-
-class ImageRepository:
-    def __init__(self, tc):
-        images = tc.Assets.Images
-
-        self.Left = images.GetImageFromArchive("left.png")
-        self.Right = images.GetImageFromArchive("right.png")
-        self.StopLeft = images.GetImageFromArchive("stopLeft.png")
-        self.StopRight = images.GetImageFromArchive("stopRight.png")
-        self.Correct = images.GetImageFromArchive("correct.png")
-        self.Wrong = images.GetImageFromArchive("wrong.png")
-        self.Instruction = images.GetImageFromArchive("instructions.png")        
-        self.GoInstruction = images.GetImageFromArchive("goInstructions.png")        
-        self.FixationCross = images.GetImageFromArchive("fixation.png")
 
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
@@ -98,8 +83,8 @@ class PsiAlgorithm:
 class StopSignalTask:
     def __init__(self, tc, algorithm):
         self.display = tc.Devices.ImageDisplay
-        self.response = tc.Devices.Response
-        self.images = tc.Images
+        self.response = tc.Devices.Button
+        self.images = tc.Assets.Images
         self.algorithm = algorithm
         self.feedbackTime = tc.FeedbackTime
         self.responseTimeout = tc.ResponseTimeout
@@ -168,8 +153,8 @@ class GoSignalTask:
     def __init__(self, tc):       
         self.tc = tc
         self.display = tc.Devices.ImageDisplay
-        self.response = tc.Devices.Response
-        self.images = tc.Images
+        self.response = tc.Devices.Button
+        self.images = tc.Assets.Images
 
         self.goDelay = tc.HighDelayLimit
         self.goSignals = [] # 0: left, 1: right
@@ -233,17 +218,6 @@ class GoSignalTask:
 
         return self.feedbackTime
  
-def CreateImages(tc):
-    return ImageRepository(tc)
-
-def GoInstructions(tc):
-    tc.Devices.ImageDisplay.Display(tc.Images.GoInstruction)
-    return True
-
-def Instructions(tc):
-    tc.Devices.ImageDisplay.Display(tc.Images.Instruction)
-    return True
-
 def GoInitialize(tc):
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
@@ -258,41 +232,28 @@ def PsiInitialize(tc):
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
-def GoComplete(tc):
-    tc.GoTask.Complete()
-    return True
-
 def Complete(tc):
     tc.StopTask.Complete()
     tc.GoTask.Complete()
     return True
-
-def Go(task):
-    return task.Go()
-    
-def Stop(task):
-    return task.Stop()
-    
-def Feedback(task):
-    return task.Feedback()
-    
+   
 def Stimulate(tc, x):   
     display = tc.Devices.ImageDisplay
     
     if tc.StimulusName == "STOP":
         display.Run(display.Sequence(tc.StopTask)
-                    .Display(tc.Images.FixationCross, tc.FixationDelay)
-                    .Run(Go)
-                    .Run(Stop)
-                    .Display(tc.Images.FixationCross, tc.FeedbackDelay)
-                    .Run(Feedback))
+                    .Display(tc.Assets.Images.FixationCross, tc.FixationDelay)
+                    .Run(lambda task: task.Go())
+                    .Run(lambda task: task.Stop())
+                    .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
+                    .Run(lambda task: task.Feedback))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
-                    .Display(tc.Images.FixationCross, tc.FixationDelay)
-                    .Run(Go)
-                    .Display(tc.Images.FixationCross, tc.FeedbackDelay)
-                    .Run(Feedback))
+                    .Display(tc.Assets.Images.FixationCross, tc.FixationDelay)
+                    .Run(lambda task: task.Go())
+                    .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
+                    .Run(lambda task: task.Feedback()))
     else:
         Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
 
