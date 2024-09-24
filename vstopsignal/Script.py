@@ -245,7 +245,7 @@ def Stimulate(tc, x):
                     .Run(lambda task: task.Go())
                     .Run(lambda task: task.Stop())
                     .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
-                    .Run(lambda task: task.Feedback))
+                    .Run(lambda task: task.Feedback()))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
