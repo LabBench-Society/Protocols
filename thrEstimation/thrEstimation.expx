@@ -4,7 +4,7 @@
     xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
  <subject-validator 
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
-        advice="Must be SXXX or TESTXXX, where X is a digit"/>
+        advice="Must be SXXX or TESTXXX, where X is a digit"/>    
     <experimental-setup>
         <devices>
             <joystick

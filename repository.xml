@@ -24,6 +24,11 @@
         labbench-version="5.0"
         category="Pressure Algometry;Demonstration Protocol"/>
     <protocol 
+        id="imageGeneration"
+        name="Image Generation"
+        labbench-version="5.0"
+        category="Demonstration Protocol"/>
+    <protocol 
         id="ctscpm2ap"
         name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
         labbench-version="5.0"
