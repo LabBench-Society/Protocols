@@ -24,9 +24,12 @@
                inactive-color="rgb(32,32,32)"
                normative-distance="40"
                position="fullscreen"
+               fiducial-position="upper-right"
                screen="secondary">
     
                <monitor diagonal-size="53.34" distance="40" />
+
+               <fiducial size="10" x="17" y="17"/>
 
                <configurations>
                   <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
@@ -46,9 +49,12 @@
                inactive-color="rgb(32,32,32)"
                position="fullscreen"
                screen="secondary"
+               fiducial-position="upper-right"
                normative-distance="40">
 
                <monitor diagonal-size="53.34" distance="40" />
+
+               <fiducial size="10" x="17" y="17"/>
 
                <configurations>
                   <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
@@ -81,6 +87,8 @@
       <defines>
          <define name="StimulusRepetitions" value="6"/>
          <define name="DisplayTime" value="1500"/>
+         <define name="Colors" value="func: Script.GetColors(tc)"/>
+         <define name="Words" value="func: Script.GetWords(tc)"/>
       </defines>
         <tests>            
             <stimulation-sequence id="NSTROOPTrial"
@@ -261,6 +269,187 @@
                   <stimulus name="yy" count="3"/>
                </stimuli>
             </stimulation-sequence>        
+
+
+            <stimulation-sequence id="NRSTROOPTrial"
+               name="Neutral Reverse Stroop Task (Trial)"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
+
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.NeutralReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.NeutralReverseStroopPAD"/>
+               </properties>                                
+
+               <configuration>
+                  <trigger-generation trigger-source="none" />
+               </configuration>
+              
+               <stimulation-scripts 
+                  initialize="True"
+                  stimulate="func: Script.ReverseStroopNeutralStimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+                  <instrument name="ImageDisplay" interface="image-display"/>
+               </stimulation-scripts>
+    
+               <stimulation-pattern time-base="seconds">
+                  <sequence iterations="1">
+                     <sequence iterations="1" Tperiod="4" stimulate="false" />    
+                     <uniformly-distributed-sequence minTperiod="3" maxTperiod="5" iterations="NumberOfStimuli" />
+                  </sequence>
+               </stimulation-pattern>
+    
+               <stimuli order="block-random">
+                  <stimulus name="rn" />
+                  <stimulus name="gn" />
+                  <stimulus name="bn" />
+                  <stimulus name="yn" />                
+               </stimuli>
+            </stimulation-sequence>
+            
+            <stimulation-sequence id="NRSTROOP"
+               name="Neutral Reverse Stroop Task"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
+                
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.NeutralReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.NeutralReverseStroopPAD"/>
+               </properties>                                
+
+               <dependencies>
+                  <dependency id="NSTROOPTrial"/>
+               </dependencies>
+
+               <stimulation-scripts 
+                  initialize="True"
+                  stimulate="func: Script.StroopReverseNeutralStimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+                  <instrument name="ImageDisplay" interface="image-display"/>
+               </stimulation-scripts>
+    
+                <stimulation-pattern time-base="seconds">
+                    <sequence iterations="1">
+                        <sequence iterations="1" Tperiod="4" stimulate="false" />                        
+                        <uniformly-distributed-sequence minTperiod="3" maxTperiod="5" iterations="StimulusRepetitions * NumberOfStimuli" />
+                    </sequence>
+                </stimulation-pattern>
+    
+                <stimuli order="block-random">
+                    <stimulus name="rn" />
+                    <stimulus name="gn" />
+                    <stimulus name="bn" />
+                    <stimulus name="yn" />
+                </stimuli>
+            </stimulation-sequence>
+    
+            <stimulation-sequence id="RSTROOPTrial"
+               name="Reverse Stroop Task (Trial)"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
+
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.ReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.ReverseStroopPAD"/>
+               </properties>                                                    
+               
+               <stimulation-scripts 
+                  initialize="True"
+                  stimulate="func: Script.ReverseStroopStimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+                  <instrument name="ImageDisplay" interface="image-display"/>
+               </stimulation-scripts>
+    
+               <stimulation-pattern time-base="seconds">
+                  <sequence iterations="1">
+                     <sequence iterations="1" Tperiod="4" stimulate="false" />    
+                     <uniformly-distributed-sequence minTperiod="3" maxTperiod="5" iterations="NumberOfStimuli" />
+                  </sequence>
+               </stimulation-pattern>
+    
+               <stimuli order="block-random">
+                  <stimulus name="rr" />
+                  <stimulus name="gg" />
+                  <stimulus name="bb" />
+                  <stimulus name="yy" />
+                  <stimulus name="rg" />
+                  <stimulus name="gb" />
+                  <stimulus name="by" />
+                  <stimulus name="yr" />
+               </stimuli>
+            </stimulation-sequence>
+    
+            <stimulation-sequence id="RSTROOP"
+               name="Reverse Stroop Task"
+               experimental-setup-id="image"
+               response-collection="yes-no"
+               stimulus-update-rate="10000">
+
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
+    
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.ReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.ReverseStroopPAD"/>
+               </properties>                                                    
+
+               <dependencies>
+                  <dependency id="STROOPTrial"/>
+               </dependencies>
+
+               <stimulation-scripts 
+                  initialize="True"
+                  stimulate="func: Script.ReverseStroopStimulate(tc,x)"
+                  stimulus-description="Image"
+                  stimulus-unit="N/A">
+                  <instrument name="ImageDisplay" interface="image-display"/>
+               </stimulation-scripts>
+    
+               <stimulation-pattern time-base="seconds">
+                  <sequence iterations="1">
+                     <sequence iterations="1" Tperiod="4" stimulate="false" />
+                     <uniformly-distributed-sequence minTperiod="3" maxTperiod="5" iterations="(StimulusRepetitions/3)*NumberOfStimuli" />
+                  </sequence>
+               </stimulation-pattern>
+    
+               <stimuli order="block-random">
+                  <stimulus name="rr" count="3" />
+                  <stimulus name="rg" />
+                  <stimulus name="rb" />
+                  <stimulus name="ry" />
+
+                  <stimulus name="gr" />
+                  <stimulus name="gg" count="3"/>
+                  <stimulus name="gb" />
+                  <stimulus name="gy" />
+
+                  <stimulus name="br" />
+                  <stimulus name="bg" />
+                  <stimulus name="bb" count="3"/>
+                  <stimulus name="by" />
+
+                  <stimulus name="yr" />
+                  <stimulus name="yb" />
+                  <stimulus name="yg" />
+                  <stimulus name="yy" count="3"/>
+               </stimuli>
+            </stimulation-sequence>        
+
         </tests>
         <assets>
             <file-asset id="Instructions" file="Instructions.zip"/>

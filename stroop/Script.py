@@ -1,22 +1,29 @@
 ﻿import random
 
+def GetColors(tc):
+    return {
+        'b': '#0000FF',
+        'y': '#FFFF00',
+        'r': '#FF0000',
+        'g': '#00FF00'
+    }
+
+def GetWords(tc):
+    return {
+        'b': 'BLUE',
+        'y': 'YELLOW',
+        'r': 'RED',
+        'g': 'GREEN'
+    }
+
 def StroopNeutralStimulate(tc, x):
     display = tc.Devices.ImageDisplay
     name =  tc.StimulusName
     with tc.Image.GetCanvas(display) as canvas:
-        if (name[0] == 'b'):
-            canvas.Color("#0000FF")
-        elif (name[0] == 'y'):
-            canvas.Color("#FFFF00")
-        elif (name[0] == 'r'):
-            canvas.Color("#FF0000")
-        elif (name[0] == 'g'):
-            canvas.Color("#00FF00")
-        else:
-            return False
-
         canvas.Fill(True)
+        canvas.Color(tc.Colors[name[0]])
         canvas.Circle(display.Width/2, display.Height/2, display.Height/8)
+
         display.Display(canvas, tc.DisplayTime, True)
         
     return True
@@ -25,36 +32,75 @@ def StroopStimulate(tc, x):
     display = tc.Devices.ImageDisplay
     name =  tc.StimulusName
     with tc.Image.GetCanvas(display) as canvas:
-        if (name[0] == 'b'):
-            canvas.Color("#0000FF")
-        elif (name[0] == 'y'):
-            canvas.Color("#FFFF00")
-        elif (name[0] == 'r'):
-            canvas.Color("#FF0000")
-        elif (name[0] == 'g'):
-            canvas.Color("#00FF00")
-        else:
-            return False
-
         canvas.AlignCenter()
         canvas.AlignMiddle()
         canvas.Font("Roboto")
         canvas.TextSize(200)
 
-        if (name[1] == 'b'):
-            canvas.Write(display.Width/2, display.Height/2, "BLUE")
-        elif (name[1] == 'y'):
-            canvas.Write(display.Width/2, display.Height/2, "YELLOW")
-        elif (name[1] == 'r'):
-            canvas.Write(display.Width/2, display.Height/2, "RED")
-        elif (name[1] == 'g'):
-            canvas.Write(display.Width/2, display.Height/2, "GREEN")
-        else:
-            return False
+        canvas.Color(tc.Colors[name[0]])
+        canvas.Write(display.Width/2, display.Height/2, tc.Words[name[1]])
 
         display.Display(canvas, tc.DisplayTime, True)
         
     return True
+
+class Position:
+    def __init__(self, display):
+        self.Size = display.Height/12
+        self.Y1 = display.Height/6
+        self.Y2 = display.Height/2
+        self.Y3 = display.Height - self.Y1
+
+        self.X1 = display.Width/2 - (self.Y2 - self.Y1)
+        self.X2 = display.Width/2
+        self.X3 = display.Width/2 + (self.Y2 - self.Y1)
+
+def DrawResponses(tc, position, canvas):
+    canvas.Color(tc.Colors['r'])
+    canvas.Circle(position.X2, position.Y1, position.Size)
+    canvas.Color(tc.Colors['g'])
+    canvas.Circle(position.X3, position.Y2, position.Size)
+    canvas.Color(tc.Colors['b'])
+    canvas.Circle(position.X2, position.Y3, position.Size)
+    canvas.Color(tc.Colors['y'])
+    canvas.Circle(position.X1, position.Y2, position.Size)
+
+def ReverseStroopNeutralStimulate(tc, x):
+    display = tc.Devices.ImageDisplay
+    name =  tc.StimulusName
+    position = Position(display)
+
+    with tc.Image.GetCanvas(display) as canvas:
+        canvas.Fill(True)
+        DrawResponses(tc, position, canvas)
+
+        canvas.Color(tc.Colors[name[0]])
+        canvas.Rectangle(position.X2 - position.Size, position.Y2 - position.Size,position.X2 + position.Size, position.Y2 + position.Size)
+
+        display.Display(canvas, tc.DisplayTime, True)
+        
+    return True
+
+def ReverseStroopStimulate(tc, x):
+    display = tc.Devices.ImageDisplay
+    name =  tc.StimulusName
+    position = Position(display)
+
+    with tc.Image.GetCanvas(display) as canvas:
+        canvas.Fill(True)
+        DrawResponses(tc, position, canvas)
+        canvas.AlignCenter()
+        canvas.AlignMiddle()
+        canvas.Font("Roboto")
+        canvas.TextSize(100)
+
+        canvas.Color(tc.Colors[name[1]])
+        canvas.Write(display.Width/2, display.Height/2, tc.Words[name[0]])
+
+        display.Display(canvas, tc.DisplayTime, True)
+
+    return True
+
 
 def IsCorrect(tc, result):
     name = result.Stimulus
