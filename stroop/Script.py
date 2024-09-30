@@ -1,50 +1,122 @@
-﻿from Serilog import Log
-import traceback
-import random
+﻿import random
 
-def getImages(tc):
-    if tc.Language == "DA":
-        return tc.Assets.DanishImages
-    else:
-        return tc.Assets.EnglishImages
+def GetColors(tc):
+    return {
+        'b': '#0000FF',
+        'y': '#FFFF00',
+        'r': '#FF0000',
+        'g': '#00FF00'
+    }
 
-def NeutralInstructions(tc):
-    display = tc.Devices.Display
-    display.Display(getImages(tc).GetAsset("ninstruct.png").Data)
+def GetWords(tc):
+    return {
+        'b': 'BLUE',
+        'y': 'YELLOW',
+        'r': 'RED',
+        'g': 'GREEN'
+    }
+
+def StroopNeutralStimulate(tc, x):
+    display = tc.Devices.ImageDisplay
+    name =  tc.StimulusName
+    with tc.Image.GetCanvas(display) as canvas:
+        canvas.Fill(True)
+        canvas.Color(tc.Colors[name[0]])
+        canvas.Circle(display.Width/2, display.Height/2, display.Height/8)
+
+        display.Display(canvas, tc.DisplayTime, True)
+        
     return True
-    
-def Instructions(tc):
-    display = tc.Devices.Display
-    display.Display(getImages(tc).GetAsset("instruct.png").Data)
+
+def StroopStimulate(tc, x):
+    display = tc.Devices.ImageDisplay
+    name =  tc.StimulusName
+    with tc.Image.GetCanvas(display) as canvas:
+        canvas.AlignCenter()
+        canvas.AlignMiddle()
+        canvas.Font("Roboto")
+        canvas.TextSize(200)
+
+        canvas.Color(tc.Colors[name[0]])
+        canvas.Write(display.Width/2, display.Height/2, tc.Words[name[1]])
+
+        display.Display(canvas, tc.DisplayTime, True)
+        
     return True
 
-def Initialize(tc):
-    display = tc.Devices.Display
-    display.Display(getImages(tc).GetAsset("blank.png").Data)
+class Position:
+    def __init__(self, display):
+        self.Size = display.Height/12
+        self.Y1 = display.Height/6
+        self.Y2 = display.Height/2
+        self.Y3 = display.Height - self.Y1
+
+        self.X1 = display.Width/2 - (self.Y2 - self.Y1)
+        self.X2 = display.Width/2
+        self.X3 = display.Width/2 + (self.Y2 - self.Y1)
+
+def DrawResponses(tc, position, canvas):
+    canvas.Color(tc.Colors['r'])
+    canvas.Circle(position.X2, position.Y1, position.Size)
+    canvas.Color(tc.Colors['g'])
+    canvas.Circle(position.X3, position.Y2, position.Size)
+    canvas.Color(tc.Colors['b'])
+    canvas.Circle(position.X2, position.Y3, position.Size)
+    canvas.Color(tc.Colors['y'])
+    canvas.Circle(position.X1, position.Y2, position.Size)
+
+def ReverseStroopNeutralStimulate(tc, x):
+    display = tc.Devices.ImageDisplay
+    name =  tc.StimulusName
+    position = Position(display)
+
+    with tc.Image.GetCanvas(display) as canvas:
+        canvas.Fill(True)
+        DrawResponses(tc, position, canvas)
+
+        canvas.Color(tc.Colors[name[0]])
+        canvas.Rectangle(position.X2 - position.Size, position.Y2 - position.Size,position.X2 + position.Size, position.Y2 + position.Size)
+
+        display.Display(canvas, tc.DisplayTime, True)
+        
     return True
 
-def Stimulate(tc, x):
-    key = "{name}.png".format(name = tc.StimulusName)   
-    display = tc.Devices.Display
-    display.Display(getImages(tc).GetAsset(key).Data, tc.DisplayTime)       
+def ReverseStroopStimulate(tc, x):
+    display = tc.Devices.ImageDisplay
+    name =  tc.StimulusName
+    position = Position(display)
+
+    with tc.Image.GetCanvas(display) as canvas:
+        canvas.Fill(True)
+        DrawResponses(tc, position, canvas)
+        canvas.AlignCenter()
+        canvas.AlignMiddle()
+        canvas.Font("Roboto")
+        canvas.TextSize(100)
+
+        canvas.Color(tc.Colors[name[1]])
+        canvas.Write(display.Width/2, display.Height/2, tc.Words[name[0]])
+
+        display.Display(canvas, tc.DisplayTime, True)
+
     return True
 
-def IsCorrect(result):
+
+def IsCorrect(tc, result):
     name = result.Stimulus
     
     if (name[0] == 'b'):
-        return 1 if result.Response == 1 else 0
+        return True if result.Response == 1 else False
     elif (name[0] == 'y'):
-        return 1 if result.Response == 2 else 0
+        return True if result.Response == 2 else False
     elif (name[0] == 'r'):
-        return 1 if result.Response == 3 else 0
+        return True if result.Response == 3 else False
     elif (name[0] == 'g'):
-        return 1 if result.Response == 4 else 0
+        return True if result.Response == 4 else False
     else:
-        return 0
+        tc.Log.Error("Invalid stimulus name: " + name)
+        return False
     
-def Evaluate(tc):
-    result = tc.Current
-    tc.Current.Annotations.Add("correct", [IsCorrect(s) for s in result.Stimulations])
-    
+def StroopEvaluate(tc):
+    tc.Current.Annotations.SetBools("correct", [IsCorrect(tc, s) for s in tc.Current.Stimulations])   
     return True
