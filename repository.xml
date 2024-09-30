@@ -25,7 +25,7 @@
         category="Pressure Algometry;Demonstration Protocol"/>
     <protocol 
         id="imageGeneration"
-        name="Image Generation"
+        name="Introduction to Image Generation"
         labbench-version="5.0"
         category="Demonstration Protocol"/>
     <protocol 
