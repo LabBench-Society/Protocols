@@ -7,7 +7,38 @@
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
 
    <experimental-setup-variants>         
-      <experimental-setup name="LabBench I/O">
+      <experimental-setup name="Joystick" id="JOYSTICK">
+         <devices>
+            <joystick id="joystick">
+               <map experimental-setup-id="image">
+                  <button-assignment code="4" button="button-01" label="blue" />
+                  <button-assignment code="8" button="button-02" label="yellow" />
+                  <button-assignment code="1" button="button-03" label="red" />
+                  <button-assignment code="2" button="button-04" label="green" />
+               </map>
+            </joystick>
+    
+            <display id="display"
+               active-color="rgb(255,255,255)"
+               background-color="rgb(0,0,0)"
+               inactive-color="rgb(32,32,32)"
+               normative-distance="40"
+               position="fullscreen"
+               screen="secondary">
+    
+               <monitor diagonal-size="53.34" distance="40" />
+
+               <configurations>
+                  <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
+               </configurations>                
+            </display>         
+         </devices>
+         <device-mapping>
+            <device-assignment device-id="joystick" instrument-name="Button" />
+            <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
+         </device-mapping>        
+      </experimental-setup>    
+      <experimental-setup name="LabBench I/O" id="LIO">
          <devices>
             <display id="display"
                active-color="rgb(255,255,255)"
@@ -44,37 +75,6 @@
             <device-assignment instrument-name="Button" device-id="lio.pad"/>             
          </device-mapping>
       </experimental-setup>        
-      <experimental-setup name="Joystick">
-         <devices>
-            <joystick id="joystick">
-               <map experimental-setup-id="image">
-                  <button-assignment code="4" button="button-01" label="blue" />
-                  <button-assignment code="1" button="button-02" label="yellow" />
-                  <button-assignment code="2" button="button-03" label="red" />
-                  <button-assignment code="8" button="button-04" label="green" />
-               </map>
-            </joystick>
-    
-            <display id="display"
-               active-color="rgb(255,255,255)"
-               background-color="rgb(0,0,0)"
-               inactive-color="rgb(32,32,32)"
-               normative-distance="40"
-               position="fullscreen"
-               screen="secondary">
-    
-               <monitor diagonal-size="53.34" distance="40" />
-
-               <configurations>
-                  <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
-               </configurations>                
-            </display>         
-         </devices>
-         <device-mapping>
-            <device-assignment device-id="joystick" instrument-name="Button" />
-            <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
-         </device-mapping>        
-      </experimental-setup>    
    </experimental-setup-variants>
    
    <protocol>
@@ -89,10 +89,12 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: Script.Evaluate(tc)" />
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
 
                <properties>
-                  <subject-instructions experimental-setup-id="image" default="Assets.Instructions.NeutralStroop"/>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.NeutralStroopPAD"/>
                </properties>                                
 
                <configuration>
@@ -100,11 +102,11 @@
                </configuration>
               
                <stimulation-scripts 
-                  initialize="func: Script.Initialize(tc)"
-                  stimulate="func: Script.Stimulate(tc,x)"
+                  initialize="True"
+                  stimulate="func: Script.StroopNeutralStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
-                  <instrument name="Display" interface="image-display"/>
+                  <instrument name="ImageDisplay" interface="image-display"/>
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
@@ -128,19 +130,24 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: Script.Evaluate(tc)" />
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
                 
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.NeutralStroopPAD"/>
+               </properties>                                
+
                <dependencies>
                   <dependency id="NSTROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
-                  initialize="func: Script.Initialize(tc)"
-                  stimulate="func: Script.Stimulate(tc,x)"
+                  initialize="True"
+                  stimulate="func: Script.StroopNeutralStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
-
-                  <instrument name="Display" interface="image-display"/>                
+                  <instrument name="ImageDisplay" interface="image-display"/>
                </stimulation-scripts>
     
                 <stimulation-pattern time-base="seconds">
@@ -164,18 +171,20 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: Script.Evaluate(tc)" />
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
 
                <properties>
-                  <subject-instructions experimental-setup-id="image" default="Assets.Instructions.Stroop"/>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.StroopPAD"/>
                </properties>                                                    
                
                <stimulation-scripts 
-                  initialize="func: Script.Initialize(tc)"
-                  stimulate="func: Script.Stimulate(tc,x)"
+                  initialize="True"
+                  stimulate="func: Script.StroopStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
-                  <instrument name="Display" interface="image-display"/>
+                  <instrument name="ImageDisplay" interface="image-display"/>
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
@@ -203,18 +212,24 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: Script.Evaluate(tc)" />
+               <test-events complete="func: Script.StroopEvaluate(tc)" />
     
+               <properties>
+                  <subject-instructions 
+                     experimental-setup-id="image" 
+                     default="Assets.Instructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.StroopPAD"/>
+               </properties>                                                    
+
                <dependencies>
                   <dependency id="STROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
-                  initialize="func: Script.Initialize(tc)"
-                  stimulate="func: Script.Stimulate(tc,x)"
+                  initialize="True"
+                  stimulate="func: Script.StroopStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
-                  <instrument name="Display" interface="image-display"/>
+                  <instrument name="ImageDisplay" interface="image-display"/>
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
@@ -250,6 +265,7 @@
         <assets>
             <file-asset id="Instructions" file="Instructions.zip"/>
             <file-asset id="Script" file="Script.py" />
+            <file-asset id="Roboto" file="Roboto-Regular.ttf"/>
         </assets>
     </protocol>
     <post-actions>
