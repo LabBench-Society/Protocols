@@ -1,4 +1,5 @@
 ﻿import random
+import math
 
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
@@ -211,7 +212,7 @@ class GoSignalTask:
                          self.answer[-1],
                          self.time[-1])
 
-        self.feedback.GoFeedback(self.answer[-1] == 1)
+        self.feedback.GoFeedback(self.answer[-1] == 1, self.time[-1])
 
         return self.feedbackTime
  
@@ -220,7 +221,10 @@ class TaskFeedback:
         self.images = tc.Assets.Images
         self.display = tc.Devices.ImageDisplay
 
-    def GoFeedback(self, answer):
+    def Complete(self):
+        pass
+
+    def GoFeedback(self, answer, time):
         if answer:
             self.display.Display(self.images.Correct)
         else:
@@ -232,19 +236,83 @@ class TaskFeedback:
         else:
             self.display.Display(self.images.Wrong)
 
+class GameFeedback:
+    def __init__(self, tc):
+        self.images = tc.Assets.Images
+        self.tc = tc
+        self.display = tc.Devices.ImageDisplay
+        self.score = 0
+        self.levels = []
+        self.level = 1
+        self.result = tc.Current
 
-def GoInitialize(tc):
-    tc.Defines.Set("GoTask", GoSignalTask(tc))
-    return True
+    def Complete(self):
+        self.result.Annotations.SetInteger("score", int(self.score))
+        self.result.Annotations.SetIntegers("levels", self.levels)
+
+    def GoFeedback(self, answer, time):        
+        display = self.display
+        with self.tc.Image.GetCanvas(self.display) as canvas:
+            canvas.AlignCenter()
+            canvas.AlignMiddle()
+            canvas.Font("Roboto")
+            canvas.TextSize(120)
+            distance = display.Height/12
+
+            if answer:
+                levelIncease = math.ceil((self.tc.ResponseTimeout - time)/10)
+                self.score = int(self.score + self.level)
+                self.level = int(self.level + levelIncease)
+                canvas.Color("#00FF00")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "{score} points! (Level: +{level})".format(level = levelIncease, score = self.score))
+            else:
+                canvas.Color("#FF0000")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU LOOSE")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "NO POINTS!")
+
+            self.levels.append(self.level)
+            self.display.Display(canvas)
+
+    def StopFeedback(self, answer):
+        display = self.display
+        with self.tc.Image.GetCanvas(self.display) as canvas:
+            canvas.AlignCenter()
+            canvas.AlignMiddle()
+            canvas.Font("Roboto")
+            canvas.TextSize(120)
+            distance = display.Height/12
+
+            if answer:
+                canvas.Color("#00FF00")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
+            else:
+                self.level = 1
+                canvas.Color("#FF0000")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU LOOSE")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
+
+            self.levels.append(self.level)
+            self.display.Display(canvas)
 
 def UpDownInitialize(tc):
     feedback = TaskFeedback(tc)
+    tc.Defines.Set("Feedback", feedback)
     tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150), feedback))
     tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
     return True
 
 def PsiInitialize(tc):
     feedback = TaskFeedback(tc)
+    tc.Defines.Set("Feedback", feedback)
+    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
+    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
+    return True
+
+def PsiGameInitialize(tc):
+    feedback = GameFeedback(tc)
+    tc.Defines.Set("Feedback", feedback)
     tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
     tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
     return True
@@ -252,8 +320,20 @@ def PsiInitialize(tc):
 def Complete(tc):
     tc.StopTask.Complete()
     tc.GoTask.Complete()
+    tc.Feedback.Complete()
     return True
-   
+
+def DisplayScore(tc):
+    with tc.Image.GetCanvas(tc.DisplayWidth, tc.DisplayHeight) as canvas:
+        canvas.AlignCenter()
+        canvas.AlignMiddle()
+        canvas.Font("Roboto")
+        canvas.TextSize(72)
+        canvas.Color("#FFFFFF")
+        canvas.Write(tc.DisplayWidth/2, tc.DisplayHeight/2, "Final Score: {points} points".format(points = int(tc.Current.Annotations.score)))
+        return canvas.GetAsset()
+
+
 def Stimulate(tc, x):   
     display = tc.Devices.ImageDisplay
     
