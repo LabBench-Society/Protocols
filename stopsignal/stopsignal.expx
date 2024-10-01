@@ -89,7 +89,7 @@
     <protocol>
         <defines>
             <define name="TrainingStopSignals" value="4"/> 
-            <define name="NumberOfStopSignals" value="30"/> 
+            <define name="NumberOfStopSignals" value="5"/> <!-- Intended value: 30 -->
             <define name="LowDelayLimit" value="50"/>
             <define name="HighDelayLimit" value="750"/>
             <define name="FixationDelay"  value="500"/>

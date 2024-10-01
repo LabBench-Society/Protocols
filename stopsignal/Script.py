@@ -256,20 +256,20 @@ class GameFeedback:
             canvas.AlignCenter()
             canvas.AlignMiddle()
             canvas.Font("Roboto")
-            canvas.TextSize(120)
-            distance = display.Height/12
+            canvas.TextSize(98)
+            distance = display.Height/14
 
             if answer:
                 levelIncease = math.ceil((self.tc.ResponseTimeout - time)/10)
+                levelIncease = levelIncease if levelIncease > 0 else 1
                 self.score = int(self.score + self.level)
                 self.level = int(self.level + levelIncease)
                 canvas.Color("#00FF00")
                 canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "{score} points! (Level: +{level})".format(level = levelIncease, score = self.score))
+                canvas.Write(display.Width/2, display.Height/2 + distance, "{score} points".format(score = self.score))
             else:
                 canvas.Color("#FF0000")
-                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU LOOSE")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "NO POINTS!")
+                canvas.Write(display.Width/2 , display.Height/2, "YOU LOOSE")
 
             self.levels.append(self.level)
             self.display.Display(canvas)
@@ -280,8 +280,8 @@ class GameFeedback:
             canvas.AlignCenter()
             canvas.AlignMiddle()
             canvas.Font("Roboto")
-            canvas.TextSize(120)
-            distance = display.Height/12
+            canvas.TextSize(98)
+            distance = display.Height/14
 
             if answer:
                 canvas.Color("#00FF00")
