@@ -14,15 +14,15 @@ def GetImages(tc):
         'CH': GenerateImage(tc, 'CH'),
         'CK': GenerateImage(tc, 'CK'),
         'CS': GenerateImage(tc, 'CS'),
-        'HH': GenerateImage(tc, 'HH'),
+        'HC': GenerateImage(tc, 'HC'),
         'HK': GenerateImage(tc, 'HK'),
         'HS': GenerateImage(tc, 'HS'),
+        'KC': GenerateImage(tc, 'KC'),
         'KH': GenerateImage(tc, 'KH'),
-        'KK': GenerateImage(tc, 'KK'),
         'KS': GenerateImage(tc, 'KS'),
+        'SC': GenerateImage(tc, 'SC'),
         'SH': GenerateImage(tc, 'SH'),
-        'SK': GenerateImage(tc, 'SK'),
-        'SS': GenerateImage(tc, 'SS')
+        'SK': GenerateImage(tc, 'SK')
     }
     
 def Stimulate(tc, x):
