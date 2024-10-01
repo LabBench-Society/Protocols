@@ -1,6 +1,5 @@
-﻿from Serilog import Log
-from LabBench.Interface.Instruments.Response import ButtonID
-import random
+﻿import random
+import math
 
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
@@ -80,7 +79,10 @@ class PsiAlgorithm:
         
 
 class StopSignalTask:
-    def __init__(self, tc, algorithm):
+    def __init__(self, tc, algorithm, feedback):
+        self.Log = tc.Log
+        self.feedback = feedback
+        self.Buttons = tc.Response.Buttons
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
         self.images = tc.Assets.Images
@@ -95,14 +97,14 @@ class StopSignalTask:
         
         self.result = tc.Current
             
-        Log.Information("Stop Signal Task [ CREATED ]")
+        self.Log.Information("Stop Signal Task [ CREATED ]")
     
     def Complete(self):
         self.result.Annotations.Add("sstGoSignals", self.goSignals)
         self.result.Annotations.Add("sstAnswer", self.answer)
         self.result.Annotations.Add("sstTime", self.time)
         self.algorithm.Complete(self.result)
-        Log.Information("Stop Signal Task [ SAVED ]")
+        self.Log.Information("Stop Signal Task [ SAVED ]")
 
     def Go(self):
         self.response.Reset()
@@ -114,7 +116,7 @@ class StopSignalTask:
         else:
             self.display.Display(self.images.Right)                      
        
-        Log.Information("STOP-SIGNAL TESTING DELAY [ Delay: {delay} ]".format(delay = self.algorithm.delay))
+        self.Log.Information("STOP-SIGNAL TESTING DELAY [ Delay: {delay} ]".format(delay = self.algorithm.delay))
 
         return self.algorithm.delay
         
@@ -127,7 +129,7 @@ class StopSignalTask:
         return self.responseTimeout - self.algorithm.delay
             
     def Feedback(self):
-        if self.response.LatchedActive != ButtonID.BUTTON_NONE:
+        if self.response.LatchedActive != self.Buttons.NoResponse:
             self.answer.append(0)
             self.time.append(self.response.ReactionTime)
         else:           
@@ -136,20 +138,20 @@ class StopSignalTask:
 
         self.algorithm.Iterate(True if self.answer[-1] == 1 else False)
 
-        Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay}, New Delay: {delay} ]", 
+        self.Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay}, New Delay: {delay} ]", 
                         self.answer[-1], 
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
 
-        if self.answer[-1] == 1:
-            self.display.Display(self.images.Correct)
-        else:
-            self.display.Display(self.images.Wrong)
+        self.feedback.StopFeedback(self.answer[-1] == 1)
 
         return self.feedbackTime
 
 class GoSignalTask:
-    def __init__(self, tc):       
+    def __init__(self, tc, feedback):   
+        self.Log = tc.Log    
+        self.Buttons = tc.Response.Buttons
+        self.feedback = feedback
         self.tc = tc
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
@@ -166,7 +168,7 @@ class GoSignalTask:
         
         self.result = tc.Current
             
-        Log.Information("Go Signal Task Created")
+        self.Log.Information("Go Signal Task Created")
         
     def Complete(self):
         self.result.Annotations.Add("gtSignals", self.goSignals)
@@ -189,53 +191,149 @@ class GoSignalTask:
         button = self.response.LatchedActive
         self.time.append(self.response.ReactionTime)
         
-        if button == ButtonID.BUTTON_NONE:
+        if button == self.Buttons.NoResponse:
             self.answer.append(0)
         else:         
             if self.signal == 0: # Left
-                if button == ButtonID.LEFT: # Correct
+                if button == self.Buttons.Left: # Correct
                     self.answer.append(1)
                 else: # wrong
                     self.answer.append(0)
                     
             else: # Right
-                if button == ButtonID.RIGHT: # Correct
+                if button == self.Buttons.Right: # Correct
                     self.answer.append(1)
                 else: # wrong
                     self.answer.append(0)
                         
-        Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
+        self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 
                          "left" if self.signal == 0 else "right", 
                          self.answer[-1],
                          self.time[-1])
 
-        if self.answer[-1] == 1:
+        self.feedback.GoFeedback(self.answer[-1] == 1, self.time[-1])
+
+        return self.feedbackTime
+ 
+class TaskFeedback:
+    def __init__(self, tc):
+        self.images = tc.Assets.Images
+        self.display = tc.Devices.ImageDisplay
+
+    def Complete(self):
+        pass
+
+    def GoFeedback(self, answer, time):
+        if answer:
             self.display.Display(self.images.Correct)
         else:
             self.display.Display(self.images.Wrong)
 
-        return self.feedbackTime
- 
-def GoInitialize(tc):
-    tc.Defines.Set("GoTask", GoSignalTask(tc))
-    return True
+    def StopFeedback(self, answer):
+        if answer:
+            self.display.Display(self.images.Correct)
+        else:
+            self.display.Display(self.images.Wrong)
+
+class GameFeedback:
+    def __init__(self, tc):
+        self.images = tc.Assets.Images
+        self.tc = tc
+        self.display = tc.Devices.ImageDisplay
+        self.score = 0
+        self.levels = []
+        self.level = 1
+        self.result = tc.Current
+
+    def Complete(self):
+        self.result.Annotations.SetInteger("score", int(self.score))
+        self.result.Annotations.SetIntegers("levels", self.levels)
+
+    def GoFeedback(self, answer, time):        
+        display = self.display
+        with self.tc.Image.GetCanvas(self.display) as canvas:
+            canvas.AlignCenter()
+            canvas.AlignMiddle()
+            canvas.Font("Roboto")
+            canvas.TextSize(120)
+            distance = display.Height/12
+
+            if answer:
+                levelIncease = math.ceil((self.tc.ResponseTimeout - time)/10)
+                self.score = int(self.score + self.level)
+                self.level = int(self.level + levelIncease)
+                canvas.Color("#00FF00")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "{score} points! (Level: +{level})".format(level = levelIncease, score = self.score))
+            else:
+                canvas.Color("#FF0000")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU LOOSE")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "NO POINTS!")
+
+            self.levels.append(self.level)
+            self.display.Display(canvas)
+
+    def StopFeedback(self, answer):
+        display = self.display
+        with self.tc.Image.GetCanvas(self.display) as canvas:
+            canvas.AlignCenter()
+            canvas.AlignMiddle()
+            canvas.Font("Roboto")
+            canvas.TextSize(120)
+            distance = display.Height/12
+
+            if answer:
+                canvas.Color("#00FF00")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
+            else:
+                self.level = 1
+                canvas.Color("#FF0000")
+                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU LOOSE")
+                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
+
+            self.levels.append(self.level)
+            self.display.Display(canvas)
 
 def UpDownInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150)))
-    tc.Defines.Set("GoTask", GoSignalTask(tc))
+    feedback = TaskFeedback(tc)
+    tc.Defines.Set("Feedback", feedback)
+    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150), feedback))
+    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
     return True
 
 def PsiInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc)))
-    tc.Defines.Set("GoTask", GoSignalTask(tc))
+    feedback = TaskFeedback(tc)
+    tc.Defines.Set("Feedback", feedback)
+    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
+    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
+    return True
+
+def PsiGameInitialize(tc):
+    feedback = GameFeedback(tc)
+    tc.Defines.Set("Feedback", feedback)
+    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
+    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
     return True
 
 def Complete(tc):
     tc.StopTask.Complete()
     tc.GoTask.Complete()
+    tc.Feedback.Complete()
     return True
-   
+
+def DisplayScore(tc):
+    with tc.Image.GetCanvas(tc.DisplayWidth, tc.DisplayHeight) as canvas:
+        canvas.AlignCenter()
+        canvas.AlignMiddle()
+        canvas.Font("Roboto")
+        canvas.TextSize(72)
+        canvas.Color("#FFFFFF")
+        canvas.Write(tc.DisplayWidth/2, tc.DisplayHeight/2, "Final Score: {points} points".format(points = int(tc.Current.Annotations.score)))
+        return canvas.GetAsset()
+
+
 def Stimulate(tc, x):   
     display = tc.Devices.ImageDisplay
     
@@ -254,7 +352,7 @@ def Stimulate(tc, x):
                     .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
                     .Run(lambda task: task.Feedback()))
     else:
-        Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
+        tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
 
     return True
 

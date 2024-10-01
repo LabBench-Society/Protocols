@@ -54,7 +54,7 @@
         labbench-version="5.0"
         category="Visual Stimuli;Validation Protocol"/>
     <protocol 
-        id="vstopsignal"
+        id="stopsignal"
         name="Stop Signal Task"
         labbench-version="5.0"
         category="Cognitive Task"/>      

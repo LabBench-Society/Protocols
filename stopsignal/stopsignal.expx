@@ -2,12 +2,12 @@
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
    <experimental-setup-variants>
-    <experimental-setup name="Joystick">
+    <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
                 <map>
-                    <button-assignment code="32" button="left" label="Left"/> <!-- number: 5-->
-                    <button-assignment code="128" button="right" label="Right"/> <!--  number: 7 -->
+                    <button-assignment code="80" button="left" label="Left"/> <!-- number: 5-->
+                    <button-assignment code="160" button="right" label="Right"/> <!--  number: 7 -->
                 </map>
             </joystick>
 
@@ -37,7 +37,7 @@
             <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
         </device-mapping>        
     </experimental-setup>    
-    <experimental-setup name="LabBench I/O">
+    <experimental-setup name="LabBench I/O" id="LIO">
         <devices>
             <lio
                 id="lio" 
@@ -87,71 +87,29 @@
     </experimental-setup>
    </experimental-setup-variants>                    
     <protocol>
-        <languages>
-            
-        </languages>
         <defines>
-            <define 
-                name="TrainingStopSignals" 
-                value="4"/> 
-            <define 
-                name="NumberOfStopSignals" 
-                value="30"/> 
-            <define
-                name="LowDelayLimit"
-                value="50"/>
-            <define
-                name="HighDelayLimit"
-                value="750"/>
-            <define
-                name="FixationDelay"
-                value="500"/>
-            <define
-                name="ResponseTimeout"
-                value="1000"/>
-            <define 
-                name="FeedbackDelay"
-                value="1000"/>            
-            <define
-                name="FeedbackTime"
-                value="1000"/>
-            <define
-                name="Pause"
-                value="1000"/>
-            <define
-                name="Period"
-                value="(FixationDelay + ResponseTimeout + FeedbackDelay + FeedbackTime + Pause)/1000"/>
-            <define 
-                name="Trials"
-                value="30"/>
-            <define 
-                name="AlphaX0"
-                value="0.0"/>
-            <define 
-                name="AlphaN"
-                value="200"/>
-            <define
-                name="BetaX0"
-                value="-2"/> <!--  Old value: -1.2041 -->
-            <define
-                name="BetaX1"
-                value="2"/> <!--  Old value: 1.2041 -->
-            <define
-                name="BetaN"
-                value="50"/>
-            <define 
-                name="IntensityX0"
-                value="0.0"/>
-            <define 
-                name="IntensityN"
-                value="50"/>
-            <define
-                name="ConfidenceLevel"
-                value="0.95"/>
+            <define name="TrainingStopSignals" value="4"/> 
+            <define name="NumberOfStopSignals" value="30"/> 
+            <define name="LowDelayLimit" value="50"/>
+            <define name="HighDelayLimit" value="750"/>
+            <define name="FixationDelay"  value="500"/>
+            <define name="ResponseTimeout"  value="1000"/>
+            <define name="FeedbackDelay" value="1000"/>            
+            <define name="FeedbackTime" value="1000"/>
+            <define name="Pause" value="1000"/>
+            <define name="Period" value="(FixationDelay + ResponseTimeout + FeedbackDelay + FeedbackTime + Pause)/1000"/>
+            <define name="Trials" value="30"/>
+            <define name="AlphaX0" value="0.0"/>
+            <define name="AlphaN" value="200"/>
+            <define name="BetaX0" value="-2"/> <!--  Old value: -1.2041 -->
+            <define name="BetaX1" value="2"/> <!--  Old value: 1.2041 -->
+            <define name="BetaN" value="50"/>
+            <define name="IntensityX0" value="0.0"/>
+            <define name="IntensityN" value="50"/>
+            <define name="ConfidenceLevel" value="0.95"/>
         </defines>
         <tests>
-            <stimulation-sequence 
-                id="T01"
+            <stimulation-sequence id="T01"
                 name="Stop Signal Task (Training Task)"
                 experimental-setup-id="image"
                 response-collection="none"
@@ -159,8 +117,7 @@
                 <test-events complete="func: Script.Complete(tc)" />
 
                 <properties>
-                    <subject-instructions 
-                        experimental-setup-id="image"
+                    <subject-instructions experimental-setup-id="image"
                         default="Assets.Images.Instructions" />
                 </properties>
 
@@ -173,24 +130,17 @@
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">
-                    <sequence
-                        Tperiod="Period"
-                        iterations="NumberOfStimuli * TrainingStopSignals" />                        
+                    <sequence Tperiod="Period" iterations="NumberOfStimuli * TrainingStopSignals" />                        
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
-                    <stimulus 
-                        name="GO" 
-                        count="3" />
-                    <stimulus 
-                        name="STOP" 
-                        count="1"/>
+                    <stimulus name="GO" count="3" />
+                    <stimulus name="STOP" count="1"/>
                 </stimuli>
 
             </stimulation-sequence>
 
-            <stimulation-sequence
-                id="T02"
+            <stimulation-sequence id="T02"
                 name="Stop Signal Task"
                 experimental-setup-id="image"
                 response-collection="none"
@@ -199,11 +149,9 @@
                 <test-events complete="func: Script.Complete(tc)" />
 
                 <properties>
-                    <subject-instructions 
-                        experimental-setup-id="image"
+                    <subject-instructions experimental-setup-id="image"
                         default="Assets.Images.Instructions" />
                 </properties>
-
 
                 <stimulation-scripts initialize="func: Script.PsiInitialize(tc)"
                                      stimulate="func: Script.Stimulate(tc,x)"
@@ -214,24 +162,51 @@
                 </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">
-                    <sequence
-                        Tperiod="Period"
-                        iterations="NumberOfStimuli * NumberOfStopSignals" />
+                    <sequence Tperiod="Period" iterations="NumberOfStimuli * NumberOfStopSignals" />
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
-                    <stimulus
-                        name="GO"
-                        count="3" />                        
-                    <stimulus
-                        name="STOP"
-                        count="1"/>
+                    <stimulus name="GO" count="3" />                        
+                    <stimulus name="STOP" count="1"/>
+                </stimuli>
+            </stimulation-sequence>    
+
+            <stimulation-sequence id="T03"
+                name="Stop Signal Game"
+                experimental-setup-id="image"
+                response-collection="none"
+                stimulus-update-rate="44100">
+
+                <test-events complete="func: Script.Complete(tc)" />
+
+                <properties>
+                    <subject-instructions experimental-setup-id="image"
+                        default="Assets.Images.Instructions" 
+                        completed="func: Script.DisplayScore(tc)"/>
+                </properties>
+
+                <stimulation-scripts initialize="func: Script.PsiGameInitialize(tc)"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="ImageDisplay" interface="image-display"/>
+                    <instrument name="Button" interface="button"/>
+                </stimulation-scripts>
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence Tperiod="Period" iterations="NumberOfStimuli * NumberOfStopSignals" />
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus name="GO" count="3" />                        
+                    <stimulus name="STOP" count="1"/>
                 </stimuli>
             </stimulation-sequence>    
         </tests>
         <assets>
             <file-asset id="Images" file="Images.zip" />
             <file-asset id="Script" file="Script.py" />
+            <file-asset id="Roboto" file="Roboto-Regular.ttf" />
         </assets>
     </protocol>
     <post-actions>
