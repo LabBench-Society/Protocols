@@ -1,42 +1,38 @@
-﻿from Serilog import Log
-import traceback
-import random
+﻿
+def GenerateImage(tc, name):
+    with tc.Image.GetCanvas(1920,1080) as canvas:
+        canvas.Font('Roboto')
+        canvas.TextSize(200)
+        canvas.Color("#FFFFFF")
+        canvas.AlignCenter()
+        canvas.AlignMiddle()
+        canvas.Write(1920/2, 1080/2, (3*name [1]) + name[0] + (3*name[1]))
+        return canvas.GetImage()
 
-def getImages(tc):
-    return tc.Assets.EnglishImages
-   
-def Instructions(tc):
-    display = tc.Devices.ImageDisplay
-    display.Display(getImages(tc).GetAsset("instruct.png").Data)
-    return True
-
-def Initialize(tc):
-    display = tc.Devices.ImageDisplay
-    display.Display(getImages(tc).GetAsset("blank.png").Data)
-    return True
-
-def Stimulate(tc, x):
-    key = "{name}.png".format(name = tc.StimulusName)   
-    display = tc.Devices.ImageDisplay
-    display.Display(getImages(tc).GetAsset(key).Data, tc.DisplayTime)       
-    return True
-
-def IsCorrect(result):
-    name = result.Stimulus
+def GetImages(tc):
+    return {
+        'CH': GenerateImage(tc, 'CH'),
+        'CK': GenerateImage(tc, 'CK'),
+        'CS': GenerateImage(tc, 'CS'),
+        'HH': GenerateImage(tc, 'HH'),
+        'HK': GenerateImage(tc, 'HK'),
+        'HS': GenerateImage(tc, 'HS'),
+        'KH': GenerateImage(tc, 'KH'),
+        'KK': GenerateImage(tc, 'KK'),
+        'KS': GenerateImage(tc, 'KS'),
+        'SH': GenerateImage(tc, 'SH'),
+        'SK': GenerateImage(tc, 'SK'),
+        'SS': GenerateImage(tc, 'SS')
+    }
     
-    if (name[0] == 'h'):
-        return 1 if result.Response == 2 else 0
-    elif (name[0] == 'k'):
-        return 1 if result.Response == 2 else 0
-    elif (name[0] == 's'):
-        return 1 if result.Response == 4 else 0
-    elif (name[0] == 'c'):
-        return 1 if result.Response == 4 else 0
-    else:
-        return 0
+def Stimulate(tc, x):
+    tc.Devices.ImageDisplay.Display(tc.Stimuli[tc.StimulusName], tc.DisplayTime, False)       
+    return True
+
+def IsCorrect(tc, result):
+    name = result.Stimulus
+    return result.Response == tc.Response.Buttons.Left if name[0] == 'H' or name[0] == 'K' else result.Response == tc.Response.Buttons.Right
     
 def Evaluate(tc):
-    result = tc.Current
-    tc.Current.Annotations.Add("correct", [IsCorrect(s) for s in result.Stimulations])
-    
+    tc.Current.Annotations.SetBools("correct", [IsCorrect(tc, s) for s in tc.Current.Stimulations])    
     return True
