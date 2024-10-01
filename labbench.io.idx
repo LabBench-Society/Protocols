@@ -52,9 +52,13 @@
   <item name="labbench.io@screenCalibration@Images.zip" checksum="d27fb5615e6ece82de69a1ec451eb3dd" />
   <item name="labbench.io@screenCalibration@screenCalibration.expx" checksum="a9370218c2c196daac4b12f07ab0a396" />
   <item name="labbench.io@screenCalibration@Script.py" checksum="4f4afeb02a0ffb0e89c75c975211083d" />
+  <item name="labbench.io@stopsignal@Images.zip" checksum="2639a93bccbc0b312abe316287dba121" />
+  <item name="labbench.io@stopsignal@Script.py" checksum="58649ef264ee4fe3569ae92a4d0ea151" />
+  <item name="labbench.io@stopsignal@stopsignal.expx" checksum="ca0e71deb5e62cd7f18eda3b467535bd" />
+  <item name="labbench.io@stopsignal@stopsignal.xps" checksum="58d8b5112234ce9d663c3b6510207f3b" />
   <item name="labbench.io@stroop@Instructions.zip" checksum="40d9b95984bb2bc735ea612d9cb29bd2" />
   <item name="labbench.io@stroop@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
-  <item name="labbench.io@stroop@Script.py" checksum="bbb87bba1549fb1e128512c7ef2bc62c" />
+  <item name="labbench.io@stroop@Script.py" checksum="e25afd57a20cd548ce4f6078cf0f3b7e" />
   <item name="labbench.io@stroop@stroop.expx" checksum="d0495f6162657b371286c30427c3fdf9" />
   <item name="labbench.io@thrEstimation@Cue01.png" checksum="a8a2baf48e184c733189573235886681" />
   <item name="labbench.io@thrEstimation@Cue02.png" checksum="a0f6d5a4aa33cc23145d4f08734df19a" />
@@ -72,8 +76,4 @@
   <item name="labbench.io@voddball@ResponseTask.rtf" checksum="7bde75535e49add506278cd22eda2df8" />
   <item name="labbench.io@voddball@Script.py" checksum="807ed063b8735f0c9400b6e8f58d693f" />
   <item name="labbench.io@voddball@voddball.expx" checksum="58b00c65388da9fc231c7d379fed4c9c" />
-  <item name="labbench.io@vstopsignal@Images.zip" checksum="2639a93bccbc0b312abe316287dba121" />
-  <item name="labbench.io@vstopsignal@Script.py" checksum="58649ef264ee4fe3569ae92a4d0ea151" />
-  <item name="labbench.io@vstopsignal@vstopsignal.expx" checksum="1e609c661b7ce9463ad1a4af7e3044d1" />
-  <item name="labbench.io@vstopsignal@vstopsignal.xps" checksum="58d8b5112234ce9d663c3b6510207f3b" />
 </index>
