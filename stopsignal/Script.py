@@ -1,5 +1,4 @@
-﻿from Serilog import Log
-from LabBench.Interface.Instruments.Response import ButtonID
+﻿from LabBench.Interface.Instruments.Response import ButtonID
 import random
 
 class UpDownAlgorithm:
@@ -81,6 +80,7 @@ class PsiAlgorithm:
 
 class StopSignalTask:
     def __init__(self, tc, algorithm):
+        self.Log = tc.Log
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
         self.images = tc.Assets.Images
@@ -95,14 +95,14 @@ class StopSignalTask:
         
         self.result = tc.Current
             
-        Log.Information("Stop Signal Task [ CREATED ]")
+        self.Log.Information("Stop Signal Task [ CREATED ]")
     
     def Complete(self):
         self.result.Annotations.Add("sstGoSignals", self.goSignals)
         self.result.Annotations.Add("sstAnswer", self.answer)
         self.result.Annotations.Add("sstTime", self.time)
         self.algorithm.Complete(self.result)
-        Log.Information("Stop Signal Task [ SAVED ]")
+        self.Log.Information("Stop Signal Task [ SAVED ]")
 
     def Go(self):
         self.response.Reset()
@@ -114,7 +114,7 @@ class StopSignalTask:
         else:
             self.display.Display(self.images.Right)                      
        
-        Log.Information("STOP-SIGNAL TESTING DELAY [ Delay: {delay} ]".format(delay = self.algorithm.delay))
+        self.Log.Information("STOP-SIGNAL TESTING DELAY [ Delay: {delay} ]".format(delay = self.algorithm.delay))
 
         return self.algorithm.delay
         
@@ -136,7 +136,7 @@ class StopSignalTask:
 
         self.algorithm.Iterate(True if self.answer[-1] == 1 else False)
 
-        Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay}, New Delay: {delay} ]", 
+        self.Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay}, New Delay: {delay} ]", 
                         self.answer[-1], 
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
@@ -149,7 +149,8 @@ class StopSignalTask:
         return self.feedbackTime
 
 class GoSignalTask:
-    def __init__(self, tc):       
+    def __init__(self, tc):   
+        self.Log = tc.Log    
         self.tc = tc
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
@@ -166,7 +167,7 @@ class GoSignalTask:
         
         self.result = tc.Current
             
-        Log.Information("Go Signal Task Created")
+        self.Log.Information("Go Signal Task Created")
         
     def Complete(self):
         self.result.Annotations.Add("gtSignals", self.goSignals)
@@ -204,7 +205,7 @@ class GoSignalTask:
                 else: # wrong
                     self.answer.append(0)
                         
-        Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
+        self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 
                          "left" if self.signal == 0 else "right", 
                          self.answer[-1],
@@ -254,7 +255,7 @@ def Stimulate(tc, x):
                     .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
                     .Run(lambda task: task.Feedback()))
     else:
-        Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
+        tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
 
     return True
 
