@@ -1,5 +1,4 @@
-﻿from LabBench.Interface.Instruments.Response import ButtonID
-import random
+﻿import random
 
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
@@ -79,8 +78,10 @@ class PsiAlgorithm:
         
 
 class StopSignalTask:
-    def __init__(self, tc, algorithm):
+    def __init__(self, tc, algorithm, feedback):
         self.Log = tc.Log
+        self.feedback = feedback
+        self.Buttons = tc.Response.Buttons
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
         self.images = tc.Assets.Images
@@ -127,7 +128,7 @@ class StopSignalTask:
         return self.responseTimeout - self.algorithm.delay
             
     def Feedback(self):
-        if self.response.LatchedActive != ButtonID.BUTTON_NONE:
+        if self.response.LatchedActive != self.Buttons.NoResponse:
             self.answer.append(0)
             self.time.append(self.response.ReactionTime)
         else:           
@@ -141,16 +142,15 @@ class StopSignalTask:
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
 
-        if self.answer[-1] == 1:
-            self.display.Display(self.images.Correct)
-        else:
-            self.display.Display(self.images.Wrong)
+        self.feedback.StopFeedback(self.answer[-1] == 1)
 
         return self.feedbackTime
 
 class GoSignalTask:
-    def __init__(self, tc):   
+    def __init__(self, tc, feedback):   
         self.Log = tc.Log    
+        self.Buttons = tc.Response.Buttons
+        self.feedback = feedback
         self.tc = tc
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
@@ -190,17 +190,17 @@ class GoSignalTask:
         button = self.response.LatchedActive
         self.time.append(self.response.ReactionTime)
         
-        if button == ButtonID.BUTTON_NONE:
+        if button == self.Buttons.NoResponse:
             self.answer.append(0)
         else:         
             if self.signal == 0: # Left
-                if button == ButtonID.LEFT: # Correct
+                if button == self.Buttons.Left: # Correct
                     self.answer.append(1)
                 else: # wrong
                     self.answer.append(0)
                     
             else: # Right
-                if button == ButtonID.RIGHT: # Correct
+                if button == self.Buttons.Right: # Correct
                     self.answer.append(1)
                 else: # wrong
                     self.answer.append(0)
@@ -211,25 +211,42 @@ class GoSignalTask:
                          self.answer[-1],
                          self.time[-1])
 
-        if self.answer[-1] == 1:
+        self.feedback.GoFeedback(self.answer[-1] == 1)
+
+        return self.feedbackTime
+ 
+class TaskFeedback:
+    def __init__(self, tc):
+        self.images = tc.Assets.Images
+        self.display = tc.Devices.ImageDisplay
+
+    def GoFeedback(self, answer):
+        if answer:
             self.display.Display(self.images.Correct)
         else:
             self.display.Display(self.images.Wrong)
 
-        return self.feedbackTime
- 
+    def StopFeedback(self, answer):
+        if answer:
+            self.display.Display(self.images.Correct)
+        else:
+            self.display.Display(self.images.Wrong)
+
+
 def GoInitialize(tc):
     tc.Defines.Set("GoTask", GoSignalTask(tc))
     return True
 
 def UpDownInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150)))
-    tc.Defines.Set("GoTask", GoSignalTask(tc))
+    feedback = TaskFeedback(tc)
+    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150), feedback))
+    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
     return True
 
 def PsiInitialize(tc):
-    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc)))
-    tc.Defines.Set("GoTask", GoSignalTask(tc))
+    feedback = TaskFeedback(tc)
+    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
+    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
     return True
 
 def Complete(tc):
