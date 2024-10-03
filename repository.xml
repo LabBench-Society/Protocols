@@ -49,8 +49,8 @@
         labbench-version="5.0"
         category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>       
     <protocol 
-        id="screenCalibration"
-        name="Screen Calibration Protocol"
+        id="scCalibration"
+        name="Screen and Fiducial Calibration Protocol"
         labbench-version="5.0"
         category="Visual Stimuli;Validation Protocol"/>
     <protocol 
