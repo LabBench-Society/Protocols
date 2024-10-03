@@ -15,9 +15,10 @@
   <item name="labbench.io@ctscpm2ap@ctscpm2ap.expx" checksum="568c2c848ed1810b2fadff63e71c6f28" />
   <item name="labbench.io@ctscpm3ap@ctscpm3ap.expx" checksum="e671e98e9dc1fe41b5f5b0def3897d1e" />
   <item name="labbench.io@ctscpmauto@ctscpmauto.expx" checksum="127a5e65689d1b9e8f244449c2e06790" />
-  <item name="labbench.io@flanker@flanker.expx" checksum="c3f56f1ac495846e657bf0adf8d4b8e9" />
-  <item name="labbench.io@flanker@images_en.zip" checksum="d2bb42385969996834ef3f7c71a22180" />
-  <item name="labbench.io@flanker@Script.py" checksum="6b13a4b43d101c7b9198ecaeb9ecda50" />
+  <item name="labbench.io@flanker@flanker.expx" checksum="11847fa0722b12574c719e8803a77e0e" />
+  <item name="labbench.io@flanker@Instruction.png" checksum="c7db4f25a13c70c5fb406eb240c003fc" />
+  <item name="labbench.io@flanker@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
+  <item name="labbench.io@flanker@Script.py" checksum="edc573c33d6367fc6df9fd167c6fc609" />
   <item name="labbench.io@gonogo@gonogo.expx" checksum="4bc023053b2106f31c9f87b95343754e" />
   <item name="labbench.io@gonogo@images_en.zip" checksum="5d9dbc99574614ffee9561f975286b6c" />
   <item name="labbench.io@gonogo@Script.py" checksum="3ca315bff259e8f719740c56dfda67f1" />

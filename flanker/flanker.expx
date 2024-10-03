@@ -9,8 +9,8 @@
                      active-color="rgb(255,255,255)"
                      background-color="rgb(0,0,0)"
                      inactive-color="rgb(32,32,32)"
-                     position="upper-right"
-                     screen="primary"
+                     position="fullscreen"
+                     screen="secondary"
                      normative-distance="40">
                 
                 <monitor
@@ -25,8 +25,8 @@
             </display>
             <joystick id="button">
                 <map>
-                    <button-assignment code="2" button="button-02"/>
-                    <button-assignment code="4" button="button-03"/>
+                    <button-assignment code="16" button="left" label="H and K"/>
+                    <button-assignment code="32" button="right" label="S and C"/>
                 </map>
             </joystick>
         </devices>
@@ -39,6 +39,7 @@
         <defines>
             <define name="StimulusRepetitions" value="3"/>
             <define name="DisplayTime" value="1000"/>
+            <define name="Stimuli" value="func: Script.GetImages(tc)"/>
         </defines>
         <tests>
             <stimulation-sequence 
@@ -47,19 +48,18 @@
                 experimental-setup-id="image"
                 response-collection="yes-no"
                 stimulus-update-rate="10000">
-                <test-events 
-                    selected="func: Script.Instructions(tc)"
-                    complete="func: Script.Evaluate(tc)">
-                    <instrument 
-                        name="ImageDisplay"
-                        interface="image-display"/>
-                </test-events>
+
+                <test-events complete="func: Script.Evaluate(tc)" />
+
+                <properties>
+                    <subject-instructions experimental-setup-id="image" default="Assets.Instruction"/>
+                </properties>
                 
-                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                <stimulation-scripts initialize="True"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
-                    <instrument name="Display"
+                    <instrument name="ImageDisplay"
                                 interface="image-display"/>
                 </stimulation-scripts>
     
@@ -74,27 +74,28 @@
                 </stimulation-pattern>
     
                 <stimuli order="block-random">
-                    <stimulus name="ch" count="2" />
-                    <stimulus name="ck" />
-                    <stimulus name="cs" />
+                    <stimulus name="CH" count="2" />
+                    <stimulus name="CK" />
+                    <stimulus name="CS" />
     
-                    <stimulus name="hc" count="2" />
-                    <stimulus name="hk" />
-                    <stimulus name="hs" />
+                    <stimulus name="HC" count="2" />
+                    <stimulus name="HK" />
+                    <stimulus name="HS" />
     
-                    <stimulus name="kc" count="2" />
-                    <stimulus name="kh" />
-                    <stimulus name="ks" />
+                    <stimulus name="KC" count="2" />
+                    <stimulus name="KH" />
+                    <stimulus name="KS" />
     
-                    <stimulus name="sc" count="2" />
-                    <stimulus name="sh" />
-                    <stimulus name="sk" />
+                    <stimulus name="SC" count="2" />
+                    <stimulus name="SH" />
+                    <stimulus name="SK" />
                 </stimuli>
             </stimulation-sequence>        
         </tests>
         <assets>
-            <file-asset id="EnglishImages" file="images_en.zip" />
             <file-asset id="Script" file="Script.py" />
+            <file-asset id="Roboto" file="Roboto-Regular.ttf" />
+            <file-asset id="Instruction" file="Instruction.png"/>
         </assets>
     </protocol>    
     <post-actions>
