@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
-<experimental-setup-variants>
-    <experimental-setup name="LabBench CPAR+">
+<experimental-setup-variants default="CPARDisplay">
+    <experimental-setup name="LabBench CPAR+" id="CPARPlus">
         <devices>
             <cpar-plus id="dev"/>
         </devices>
@@ -10,7 +10,7 @@
           <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
         </device-mapping>
       </experimental-setup>        
-      <experimental-setup name="LabBench CPAR+ (Scale on secondary monitor)">
+      <experimental-setup name="LabBench CPAR+ (Scale on secondary monitor)" id="CPARPlusDisplay">
         <devices>
             <cpar-plus id="dev"/>
     
@@ -46,7 +46,7 @@
             <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
         </device-mapping>
       </experimental-setup>    
-      <experimental-setup name="Nocitech CPAR">
+      <experimental-setup name="Nocitech CPAR" id="CPAR">
         <devices>
             <cpar id="dev" compressor-mode="AUTO"/>
         </devices>
@@ -54,7 +54,7 @@
             <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
         </device-mapping>
       </experimental-setup>
-      <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)">
+      <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)" id="CPARDisplay">
         <devices>
             <cpar id="dev" compressor-mode="AUTO"/>
 
@@ -68,7 +68,7 @@
                 normative-distance="40">
     
                 <monitor
-                    diagonal-size="53.34"
+                    diagonal-size="35"
                     distance="40" />
 
                 <configurations>
@@ -97,6 +97,7 @@
             <algometry-stimulus-response 
                 id="SR01"
                 name="Stimulus-Response (Cuff 1)"
+                experimental-setup-id="vas"
                 delta-pressure="1"
                 pressure-limit="100"
                 primary-cuff="1"
@@ -108,6 +109,7 @@
             <algometry-stimulus-response 
                 id="SR02"
                 name="Stimulus-Response (Cuff 2)"
+                experimental-setup-id="vas"
                 delta-pressure="1"
                 pressure-limit="100"
                 primary-cuff="2"
@@ -120,6 +122,7 @@
             <algometry-temporal-summation 
                 id="TS"
                 name="Temporal Summation (Cuff 1)"
+                experimental-setup-id="vas"
                 no-of-stimuli="10"
                 pressure-static="5"
                 pressure-stimulate="1.0 * SR01.PTT"
@@ -135,6 +138,7 @@
             <algometry-conditioned-pain-modulation 
                 id="CPM"
                 name="CPM (Cuff 1)"
+                experimental-setup-id="vas"
                 conditional-pressure="0.7 * SR02.PTT"
                 delta-conditional-pressure="10"
                 delta-pressure="1"
