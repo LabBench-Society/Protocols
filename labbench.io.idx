@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-16"?>
 <index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <item name="labbench.io@alloknesisDemo@alloknesisDemo.expx" checksum="3bfbc2ba575c1676d9639d4fd410ba41" />
   <item name="labbench.io@alloknesisDemo@alloknesisDemo.xps" checksum="e98feadfd27b0699621bc1b3a28e76e5" />
-  <item name="labbench.io@alloknesisDemo@AlloknesisInstructionNRS.png" checksum="ed6be5304c1cc187a5f01f44dc3b4f2e" />
-  <item name="labbench.io@alloknesisDemo@AlloknesisInstructionVAS.png" checksum="424c5c9240a72f715edd6e884f96f2b2" />
-  <item name="labbench.io@alloknesisDemo@operatorAlloknesisInstructionsNRS.rtf" checksum="edbf20282cf2473cac999f368e54e460" />
-  <item name="labbench.io@alloknesisDemo@operatorAlloknesisInstructionsVAS.rtf" checksum="6b3e347ca59fa2a83748c51d40bede5d" />
   <item name="labbench.io@aoddball@aoddball.expx" checksum="d66d6929232bbdc71d8949b77a9427a0" />
   <item name="labbench.io@aoddball@CountingTask.rtf" checksum="f1390735f0f68d991629e353fa71d6ae" />
   <item name="labbench.io@aoddball@ResponseTask.rtf" checksum="7bde75535e49add506278cd22eda2df8" />
@@ -51,7 +46,7 @@
   <item name="labbench.io@randomization@Script.py" checksum="5c8de03c93f6d4bfe9838641bdbab7cb" />
   <item name="labbench.io@randomization@Sequence.zip" checksum="0e909f54d0fb3deff779888663878d06" />
   <item name="labbench.io@scCalibration@Images.zip" checksum="d27fb5615e6ece82de69a1ec451eb3dd" />
-  <item name="labbench.io@scCalibration@scCalibration.expx" checksum="a9370218c2c196daac4b12f07ab0a396" />
+  <item name="labbench.io@scCalibration@scCalibration.expx" checksum="1761d365f87ec76b7b8397346c93eb5d" />
   <item name="labbench.io@scCalibration@Script.py" checksum="4f4afeb02a0ffb0e89c75c975211083d" />
   <item name="labbench.io@stopsignal@Images.zip" checksum="2639a93bccbc0b312abe316287dba121" />
   <item name="labbench.io@stopsignal@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
