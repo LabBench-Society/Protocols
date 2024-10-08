@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
-            <experimental-setup-variants default="CPARDisplay">
+            <experimental-setup-variants default="CPARPlus">
                 <experimental-setup name="LabBench CPAR+" id="CPARPlus">
                     <devices>
                         <cpar-plus id="dev"/>
