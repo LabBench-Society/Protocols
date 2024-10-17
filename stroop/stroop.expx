@@ -327,7 +327,7 @@
                </properties>                                
 
                <dependencies>
-                  <dependency id="NSTROOPTrial"/>
+                  <dependency id="NRSTROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
@@ -409,7 +409,7 @@
                </properties>                                                    
 
                <dependencies>
-                  <dependency id="STROOPTrial"/>
+                  <dependency id="RSTROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
