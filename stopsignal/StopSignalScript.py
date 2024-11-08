@@ -3,8 +3,8 @@ import math
 
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
-        self.lowerLimit = tc.LowDelayLimit
-        self.highLimit = tc.HighDelayLimit
+        self.lowerLimit = tc.StopSignalLowDelayLimit
+        self.highLimit = tc.StopSignalHighDelayLimit
         self.delay = initialDelay
         self.stopSignalDelay = []
         self.stepsize = stepsize
@@ -31,15 +31,15 @@ class UpDownAlgorithm:
 
 class PsiAlgorithm:
     def __init__(self, tc):
-        self.lowerLimit = tc.LowDelayLimit
-        self.highLimit = tc.HighDelayLimit
+        self.lowerLimit = tc.StopSignalLowDelayLimit
+        self.highLimit = tc.StopSignalHighDelayLimit
         self.delays = []
         self.method = tc.Create(tc.Psychophysics.PsiMethod()
-                                                .NumberOfTrials(tc.Trials)
+                                                .NumberOfTrials(tc.StopSignalTrials)
                                                 .Function(tc.Psychophysics.Functions.Quick(Beta=1, Lambda=0.02, Gamma=0))
-                                                .Alpha(X0=tc.AlphaX0,X1=1.0,N = tc.AlphaN)
-                                                .Beta(X0=tc.BetaX0,X1=tc.BetaX1,N = tc.BetaN)
-                                                .Intensity(X0 = tc.IntensityX0,X1 = 1.0,N = tc.IntensityN))
+                                                .Alpha(X0=tc.StopSignalAlphaX0,X1=1.0,N = tc.StopSignalAlphaN)
+                                                .Beta(X0=tc.StopSignalBetaX0,X1=tc.StopSignalBetaX1,N = tc.StopSignalBetaN)
+                                                .Intensity(X0 = tc.StopSignalIntensityX0,X1 = 1.0,N = tc.StopSignalIntensityN))
         
         self.delay = self.Transform(self.method.Setup())     
         self.alpha = []
@@ -73,8 +73,8 @@ class PsiAlgorithm:
         alpha = self.method.EstimateAlpha()
         self.alpha.append(alpha)
         self.beta.append(self.method.EstimateBeta())
-        self.alphaConfidence.append(self.method.EstimateAlphaConfidenceInterval(self.ConfidenceLevel))
-        self.betaConfidence.append(self.method.EstimateBetaConfidenceInterval(self.ConfidenceLevel))
+        self.alphaConfidence.append(self.method.EstimateAlphaConfidenceInterval(self.StopSignalConfidenceLevel))
+        self.betaConfidence.append(self.method.EstimateBetaConfidenceInterval(self.StopSignalConfidenceLevel))
         self.stopSignalDelay.append(self.Transform(alpha))
         
 
@@ -87,9 +87,9 @@ class StopSignalTask:
         self.response = tc.Devices.Button
         self.images = tc.Assets.Images
         self.algorithm = algorithm
-        self.feedbackTime = tc.FeedbackTime
-        self.responseTimeout = tc.ResponseTimeout
-        self.feedbackDelay = tc.FeedbackDelay
+        self.feedbackTime = tc.StopSignalFeedbackTime
+        self.responseTimeout = tc.StopSignalResponseTimeout
+        self.feedbackDelay = tc.StopSignalFeedbackDelay
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -157,14 +157,14 @@ class GoSignalTask:
         self.response = tc.Devices.Button
         self.images = tc.Assets.Images
 
-        self.goDelay = tc.HighDelayLimit
+        self.goDelay = tc.StopSignalHighDelayLimit
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
         self.time = []
         
-        self.feedbackTime = tc.FeedbackTime
-        self.responseTimeout = tc.ResponseTimeout
-        self.feedbackDelay = tc.FeedbackDelay
+        self.feedbackTime = tc.StopSignalFeedbackTime
+        self.responseTimeout = tc.StopSignalResponseTimeout
+        self.feedbackDelay = tc.StopSignalFeedbackDelay
         
         self.result = tc.Current
             
@@ -236,66 +236,6 @@ class TaskFeedback:
         else:
             self.display.Display(self.images.Wrong)
 
-class GameFeedback:
-    def __init__(self, tc):
-        self.images = tc.Assets.Images
-        self.tc = tc
-        self.display = tc.Devices.ImageDisplay
-        self.score = 0
-        self.levels = []
-        self.level = 1
-        self.result = tc.Current
-
-    def Complete(self):
-        self.result.Annotations.SetInteger("score", int(self.score))
-        self.result.Annotations.SetIntegers("levels", self.levels)
-
-    def GoFeedback(self, answer, time):        
-        display = self.display
-        with self.tc.Image.GetCanvas(self.display) as canvas:
-            canvas.AlignCenter()
-            canvas.AlignMiddle()
-            canvas.Font("Roboto")
-            canvas.TextSize(98)
-            distance = display.Height/14
-
-            if answer:
-                levelIncease = math.ceil((self.tc.ResponseTimeout - time)/10)
-                levelIncease = levelIncease if levelIncease > 0 else 1
-                self.score = int(self.score + self.level)
-                self.level = int(self.level + levelIncease)
-                canvas.Color("#00FF00")
-                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "{score} points".format(score = self.score))
-            else:
-                canvas.Color("#FF0000")
-                canvas.Write(display.Width/2 , display.Height/2, "YOU LOOSE")
-
-            self.levels.append(self.level)
-            self.display.Display(canvas)
-
-    def StopFeedback(self, answer):
-        display = self.display
-        with self.tc.Image.GetCanvas(self.display) as canvas:
-            canvas.AlignCenter()
-            canvas.AlignMiddle()
-            canvas.Font("Roboto")
-            canvas.TextSize(98)
-            distance = display.Height/14
-
-            if answer:
-                canvas.Color("#00FF00")
-                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
-            else:
-                self.level = 1
-                canvas.Color("#FF0000")
-                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU LOOSE")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
-
-            self.levels.append(self.level)
-            self.display.Display(canvas)
-
 def UpDownInitialize(tc):
     feedback = TaskFeedback(tc)
     tc.Defines.Set("Feedback", feedback)
@@ -305,13 +245,6 @@ def UpDownInitialize(tc):
 
 def PsiInitialize(tc):
     feedback = TaskFeedback(tc)
-    tc.Defines.Set("Feedback", feedback)
-    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
-    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
-    return True
-
-def PsiGameInitialize(tc):
-    feedback = GameFeedback(tc)
     tc.Defines.Set("Feedback", feedback)
     tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
     tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))

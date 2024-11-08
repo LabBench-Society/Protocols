@@ -1,4 +1,4 @@
-cd Images
+cd StopSignalImages
 
 move Slide1.PNG Right.png
 move Slide2.PNG Left.png
