@@ -85,7 +85,7 @@ class StopSignalTask:
         self.Buttons = tc.Response.Buttons
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
-        self.images = tc.Assets.Images
+        self.images = tc.Assets.StopSignalImages
         self.algorithm = algorithm
         self.feedbackTime = tc.StopSignalFeedbackTime
         self.responseTimeout = tc.StopSignalResponseTimeout
@@ -155,7 +155,7 @@ class GoSignalTask:
         self.tc = tc
         self.display = tc.Devices.ImageDisplay
         self.response = tc.Devices.Button
-        self.images = tc.Assets.Images
+        self.images = tc.Assets.StopSignalImages
 
         self.goDelay = tc.StopSignalHighDelayLimit
         self.goSignals = [] # 0: left, 1: right
@@ -218,7 +218,7 @@ class GoSignalTask:
  
 class TaskFeedback:
     def __init__(self, tc):
-        self.images = tc.Assets.Images
+        self.images = tc.Assets.StopSignalImages
         self.display = tc.Devices.ImageDisplay
 
     def Complete(self):
@@ -256,33 +256,22 @@ def Complete(tc):
     tc.Feedback.Complete()
     return True
 
-def DisplayScore(tc):
-    with tc.Image.GetCanvas(tc.DisplayWidth, tc.DisplayHeight) as canvas:
-        canvas.AlignCenter()
-        canvas.AlignMiddle()
-        canvas.Font("Roboto")
-        canvas.TextSize(72)
-        canvas.Color("#FFFFFF")
-        canvas.Write(tc.DisplayWidth/2, tc.DisplayHeight/2, "Final Score: {points} points".format(points = int(tc.Current.Annotations.score)))
-        return canvas.GetAsset()
-
-
 def Stimulate(tc, x):   
     display = tc.Devices.ImageDisplay
     
     if tc.StimulusName == "STOP":
         display.Run(display.Sequence(tc.StopTask)
-                    .Display(tc.Assets.Images.FixationCross, tc.FixationDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FixationDelay)
                     .Run(lambda task: task.Go())
                     .Run(lambda task: task.Stop())
-                    .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FeedbackDelay)
                     .Run(lambda task: task.Feedback()))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
-                    .Display(tc.Assets.Images.FixationCross, tc.FixationDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FixationDelay)
                     .Run(lambda task: task.Go())
-                    .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FeedbackDelay)
                     .Run(lambda task: task.Feedback()))
     else:
         tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
