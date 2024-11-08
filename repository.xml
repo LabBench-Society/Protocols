@@ -59,6 +59,10 @@
             name="Stroop Task"
             labbench-version="5.0"
             category="Cognitive Task"/>
+        <protocol id="stroopReverse"
+            name="Reverse Stroop Task"
+            labbench-version="5.0"
+            category="Cognitive Task"/>
         <protocol id="flanker"
             name="Flanker Task"
             labbench-version="5.0"
