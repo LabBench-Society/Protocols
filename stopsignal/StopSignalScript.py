@@ -12,8 +12,8 @@ class UpDownAlgorithm:
         self.delays = []
 
     def Complete(self, result):
-        result.Annotations.Add("sstDelays", self.delays)
-        result.Annotations.Add("sstStopSignalDelay", self.stopSignalDelay)
+        result.Annotations.SetIntegers("sstDelays", self.delays)
+        result.Annotations.SetIntegers("sstStopSignalDelay", self.stopSignalDelay)
 
     def Iterate(self, answer):
         if answer:
@@ -54,16 +54,16 @@ class PsiAlgorithm:
         return (self.highLimit - self.lowerLimit) * (1 - x) + self.lowerLimit
     
     def Complete(self, result):
-        result.Annotations.Add("sstLowerLimit", self.lowerLimit)
-        result.Annotations.Add("sstHighLimit", self.highLimit)
-        result.Annotations.Add("sstDelays", self.delays)
-        result.Annotations.Add("sstStopSignalDelay", self.stopSignalDelay)
-        result.Annotations.Add("sstAlpha", self.alpha)        
-        result.Annotations.Add("sstAlphaLower", [x[0] for x in self.alphaConfidence])        
-        result.Annotations.Add("sstAlphaUpper", [x[1] for x in self.alphaConfidence])        
-        result.Annotations.Add("sstBeta", self.beta)   
-        result.Annotations.Add("sstBetaLower", [x[0] for x in self.betaConfidence])        
-        result.Annotations.Add("sstBetaUpper", [x[1] for x in self.betaConfidence])                
+        result.Annotations.SetNumber("sstLowerLimit", self.lowerLimit)
+        result.Annotations.SetNumber("sstHighLimit", self.highLimit)
+        result.Annotations.SetNumbers("sstDelays", self.delays)
+        result.Annotations.SetNumbers("sstStopSignalDelay", self.stopSignalDelay)
+        result.Annotations.SetNumbers("sstAlpha", self.alpha)        
+        result.Annotations.SetNumbers("sstAlphaLower", [x[0] for x in self.alphaConfidence])        
+        result.Annotations.SetNumbers("sstAlphaUpper", [x[1] for x in self.alphaConfidence])        
+        result.Annotations.SetNumbers("sstBeta", self.beta)   
+        result.Annotations.SetNumbers("sstBetaLower", [x[0] for x in self.betaConfidence])        
+        result.Annotations.SetNumbers("sstBetaUpper", [x[1] for x in self.betaConfidence])                
 
     def Iterate(self, answer):
         self.delays.append(self.delay)
@@ -100,9 +100,9 @@ class StopSignalTask:
         self.Log.Information("Stop Signal Task [ CREATED ]")
     
     def Complete(self):
-        self.result.Annotations.Add("sstGoSignals", self.goSignals)
-        self.result.Annotations.Add("sstAnswer", self.answer)
-        self.result.Annotations.Add("sstTime", self.time)
+        self.result.Annotations.SetIntegers("sstGoSignals", self.goSignals)
+        self.result.Annotations.SetBools("sstAnswer", self.answer)
+        self.result.Annotations.SetIntegers("sstTime", self.time)
         self.algorithm.Complete(self.result)
         self.Log.Information("Stop Signal Task [ SAVED ]")
 
@@ -130,20 +130,20 @@ class StopSignalTask:
             
     def Feedback(self):
         if self.response.LatchedActive != self.Buttons.NoResponse:
-            self.answer.append(0)
-            self.time.append(self.response.ReactionTime)
+            self.answer.append(False)
+            self.time.append(int(self.response.ReactionTime))
         else:           
-            self.answer.append(1)
-            self.time.append(-1)
+            self.answer.append(True)
+            self.time.append(int(-1))
 
-        self.algorithm.Iterate(True if self.answer[-1] == 1 else False)
+        self.algorithm.Iterate(self.answer[-1])
 
         self.Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay}, New Delay: {delay} ]", 
                         self.answer[-1], 
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
 
-        self.feedback.StopFeedback(self.answer[-1] == 1)
+        self.feedback.StopFeedback(self.answer[-1])
 
         return self.feedbackTime
 
@@ -153,8 +153,8 @@ class GoSignalTask:
         self.Buttons = tc.Response.Buttons
         self.feedback = feedback
         self.tc = tc
-        self.display = tc.Devices.ImageDisplay
-        self.response = tc.Devices.Button
+        self.display = tc.Instruments.ImageDisplay
+        self.response = tc.Instruments.Button
         self.images = tc.Assets.StopSignalImages
 
         self.goDelay = tc.StopSignalHighDelayLimit
@@ -171,9 +171,9 @@ class GoSignalTask:
         self.Log.Information("Go Signal Task Created")
         
     def Complete(self):
-        self.result.Annotations.Add("gtSignals", self.goSignals)
-        self.result.Annotations.Add("gtAnswer", self.answer)
-        self.result.Annotations.Add("gtTime", self.time)
+        self.result.Annotations.SetIntegers("gtSignals", self.goSignals)
+        self.result.Annotations.SetBools("gtAnswer", self.answer)
+        self.result.Annotations.SetNumbers("gtTime", self.time)
     
     def Go(self):
         self.response.Reset()        
@@ -192,19 +192,19 @@ class GoSignalTask:
         self.time.append(self.response.ReactionTime)
         
         if button == self.Buttons.NoResponse:
-            self.answer.append(0)
+            self.answer.append(False)
         else:         
             if self.signal == 0: # Left
                 if button == self.Buttons.Left: # Correct
-                    self.answer.append(1)
+                    self.answer.append(True)
                 else: # wrong
-                    self.answer.append(0)
+                    self.answer.append(False)
                     
             else: # Right
                 if button == self.Buttons.Right: # Correct
-                    self.answer.append(1)
+                    self.answer.append(True)
                 else: # wrong
-                    self.answer.append(0)
+                    self.answer.append(False)
                         
         self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 
@@ -212,14 +212,14 @@ class GoSignalTask:
                          self.answer[-1],
                          self.time[-1])
 
-        self.feedback.GoFeedback(self.answer[-1] == 1, self.time[-1])
+        self.feedback.GoFeedback(self.answer[-1], self.time[-1])
 
         return self.feedbackTime
  
 class TaskFeedback:
     def __init__(self, tc):
         self.images = tc.Assets.StopSignalImages
-        self.display = tc.Devices.ImageDisplay
+        self.display = tc.Instruments.ImageDisplay
 
     def Complete(self):
         pass
@@ -257,7 +257,7 @@ def Complete(tc):
     return True
 
 def Stimulate(tc, x):   
-    display = tc.Devices.ImageDisplay
+    display = tc.Instruments.ImageDisplay
     
     if tc.StimulusName == "STOP":
         display.Run(display.Sequence(tc.StopTask)
