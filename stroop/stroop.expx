@@ -87,8 +87,8 @@
       <defines>
          <define name="StroopStimulusRepetitions" value="6"/>
          <define name="StroopDisplayTime" value="1500"/>
-         <define name="StroopColors" value="func: StroopScript.GetColors(tc)"/>
-         <define name="StroopWords" value="func: StroopScript.GetWords(tc)"/>
+         <define name="StroopColors" value="{'b': '#0000FF','y': '#FFFF00','r': '#FF0000','g': '#00FF00'}"/>
+         <define name="StroopWords" value="{'b': 'BLUE','y': 'YELLOW','r': 'RED','g': 'GREEN'}"/>
       </defines>
       <templates>
          <content>
