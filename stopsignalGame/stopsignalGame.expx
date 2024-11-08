@@ -149,7 +149,7 @@
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
-                            default="Assets.StopSignalGameImages.Instructions" 
+                            default="Assets.StopSignalGameImages.GameInstructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 

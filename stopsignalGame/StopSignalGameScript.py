@@ -31,11 +31,11 @@ class UpDownAlgorithm:
 
 class PsiAlgorithm:
     def __init__(self, tc):
-        self.lowerLimit = tc.StopLowDelayLimit
-        self.highLimit = tc.StopHighDelayLimit
+        self.lowerLimit = tc.StopSignalLowDelayLimit
+        self.highLimit = tc.StopSignalHighDelayLimit
         self.delays = []
         self.method = tc.Create(tc.Psychophysics.PsiMethod()
-                                                .NumberOfTrials(tc.Trials)
+                                                .NumberOfTrials(tc.StopSignalTrials)
                                                 .Function(tc.Psychophysics.Functions.Quick(Beta=1, Lambda=0.02, Gamma=0))
                                                 .Alpha(X0=tc.StopSignalAlphaX0,X1=1.0,N = tc.StopSignalAlphaN)
                                                 .Beta(X0=tc.StopSignalBetaX0,X1=tc.StopSignalBetaX1,N = tc.StopSignalBetaN)
@@ -131,10 +131,10 @@ class StopSignalTask:
     def Feedback(self):
         if self.response.LatchedActive != self.Buttons.NoResponse:
             self.answer.append(False)
-            self.time.append(self.response.ReactionTime)
+            self.time.append(int(self.response.ReactionTime))
         else:           
             self.answer.append(True)
-            self.time.append(-1)
+            self.time.append(int(-1))
 
         self.algorithm.Iterate(self.answer[-1])
 
