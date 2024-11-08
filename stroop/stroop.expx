@@ -92,12 +92,7 @@
       </defines>
       <templates>
          <content>
-
-         </content>
-      </templates>
-        <tests>            
             <stimulation-sequence id="NSTROOPTrial"
-               name="Neutral Stroop Task (Trial)"
                experimental-setup-id="stroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -136,9 +131,8 @@
                   <stimulus name="yn" />                
                </stimuli>
             </stimulation-sequence>
-            
+
             <stimulation-sequence id="NSTROOP"
-               name="Neutral Stroop Task"
                experimental-setup-id="stroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -148,7 +142,7 @@
                <properties>
                   <subject-instructions 
                      experimental-setup-id="stroopSetup" 
-                     default="Assets.Instructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.NeutralStroopPAD"/>
+                     default="Assets.StroopInstructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.NeutralStroopPAD"/>
                </properties>                                
 
                <dependencies>
@@ -177,9 +171,8 @@
                     <stimulus name="yn" />
                 </stimuli>
             </stimulation-sequence>
-    
+
             <stimulation-sequence id="STROOPTrial"
-               name="Stroop Task (Trial)"
                experimental-setup-id="stroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -189,7 +182,7 @@
                <properties>
                   <subject-instructions 
                      experimental-setup-id="stroopSetup" 
-                     default="Assets.Instructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.Instructions.StroopPAD"/>
+                     default="Assets.StroopInstructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.StroopPAD"/>
                </properties>                                                    
                
                <stimulation-scripts 
@@ -218,9 +211,8 @@
                   <stimulus name="yr" />
                </stimuli>
             </stimulation-sequence>
-    
+
             <stimulation-sequence id="STROOP"
-               name="Stroop Task"
                experimental-setup-id="stroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -274,9 +266,28 @@
                   <stimulus name="yy" count="3"/>
                </stimuli>
             </stimulation-sequence>        
+         </content>
+      </templates>
+        <tests>
+            <stimulation-sequence-constructor id="NSTROOPTrial" 
+               name="Neutral Stroop Task (Trial)"
+               template="NSTROOPTrial"/>        
+            
+            <stimulation-sequence-constructor id="NSTROOP" 
+               name="Neutral Stroop Task"
+               template="NSTROOP"/>
+
+            <stimulation-sequence-constructor id="STROOPTrial" 
+               name="Stroop Task (Trial)"
+               template="STROOPTrial"/>
+            
+   
+            <stimulation-sequence-constructor id="STROOP" 
+            name="Stroop Task"
+            template="STROOP"/>
         </tests>
         <assets>
-            <file-asset id="StoopInstructions" file="StoopInstructions.zip"/>
+            <file-asset id="StroopInstructions" file="StroopInstructions.zip"/>
             <file-asset id="StroopScript" file="StroopScript.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf"/>
         </assets>
