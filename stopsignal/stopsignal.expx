@@ -98,7 +98,7 @@
             <define name="StopSignalFeedbackDelay" value="1000"/>            
             <define name="StopSignalFeedbackTime" value="1000"/>
             <define name="StopSignalPause" value="1000"/>
-            <define name="StopSignalPeriod" value="(FixationDelay + ResponseTimeout + FeedbackDelay + FeedbackTime + Pause)/1000"/>
+            <define name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
 
             <define name="StopSignalTrials" value="30"/>
             <define name="StopSignalAlphaX0" value="0.0"/>
@@ -112,71 +112,74 @@
         </defines>
         <templates>
             <content>
+                <stimulation-sequence id="StopSignalTaskTraining"
+                    experimental-setup-id="sstSetup"
+                    response-collection="none"
+                    stimulus-update-rate="44100">
+                    <test-events complete="func: StopSignalScript.Complete(tc)" />
 
+                    <properties>
+                        <subject-instructions experimental-setup-id="sstSetup"
+                            default="Assets.StopSignalImages.Instructions" />
+                    </properties>
+
+                    <stimulation-scripts initialize="func: StopSignalScript.UpDownInitialize(tc)"
+                                        stimulate="func: StopSignalScript.Stimulate(tc,x)"
+                                        stimulus-description="Image"
+                                        stimulus-unit="N/A">
+                        <instrument name="ImageDisplay" interface="image-display"/>
+                        <instrument name="Button" interface="button"/>
+                    </stimulation-scripts>
+
+                    <stimulation-pattern time-base="seconds">
+                        <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
+                    </stimulation-pattern>
+
+                    <stimuli order="block-random">
+                        <stimulus name="GO" count="3" />
+                        <stimulus name="STOP" count="1"/>
+                    </stimuli>
+                </stimulation-sequence>
+
+                <stimulation-sequence id="StopSignalTask"
+                    experimental-setup-id="sstSetup"
+                    response-collection="none"
+                    stimulus-update-rate="44100">
+
+                    <test-events complete="func: StopSignalScript.Complete(tc)" />
+
+                    <properties>
+                        <subject-instructions experimental-setup-id="sstSetup"
+                            default="Assets.StopSignalImages.Instructions" />
+                    </properties>
+
+                    <stimulation-scripts initialize="func: StopSignalScript.PsiInitialize(tc)"
+                                        stimulate="func: StopSignalScript.Stimulate(tc,x)"
+                                        stimulus-description="Image"
+                                        stimulus-unit="N/A">
+                        <instrument name="ImageDisplay" interface="image-display"/>
+                        <instrument name="Button" interface="button"/>
+                    </stimulation-scripts>
+
+                    <stimulation-pattern time-base="seconds">
+                        <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
+                    </stimulation-pattern>
+
+                    <stimuli order="block-random">
+                        <stimulus name="GO" count="3" />                        
+                        <stimulus name="STOP" count="1"/>
+                    </stimuli>
+                </stimulation-sequence>    
             </content>
         </templates>
         <tests>
-            <stimulation-sequence id="StopSignalTaskTraining"
+            <stimulation-sequence-constructor id="StopSignalTaskTraining" 
                 name="Stop Signal Task (Training Task)"
-                experimental-setup-id="sstSetup"
-                response-collection="none"
-                stimulus-update-rate="44100">
-                <test-events complete="func: StopSignalScript.Complete(tc)" />
+                template="StopSignalTaskTraining" />
 
-                <properties>
-                    <subject-instructions experimental-setup-id="image"
-                        default="Assets.StopSignalImages.Instructions" />
-                </properties>
-
-                <stimulation-scripts initialize="func: StopSignalScript.UpDownInitialize(tc)"
-                                     stimulate="func: StopSignalScript.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="ImageDisplay" interface="image-display"/>
-                    <instrument name="Button" interface="button"/>
-                </stimulation-scripts>
-
-                <stimulation-pattern time-base="seconds">
-                    <sequence Tperiod="StopSignalScriptPeriod" iterations="StopSignalScriptNumberOfStimuli * StopSignalScriptTrainingStopSignals" />                        
-                </stimulation-pattern>
-
-                <stimuli order="block-random">
-                    <stimulus name="GO" count="3" />
-                    <stimulus name="STOP" count="1"/>
-                </stimuli>
-
-            </stimulation-sequence>
-
-            <stimulation-sequence id="StopSignalTask"
+            <stimulation-sequence-constructor id="StopSignalTask" 
                 name="Stop Signal Task"
-                experimental-setup-id="sstSetup"
-                response-collection="none"
-                stimulus-update-rate="44100">
-
-                <test-events complete="func: StopSignalScript.Complete(tc)" />
-
-                <properties>
-                    <subject-instructions experimental-setup-id="image"
-                        default="Assets.StopSignalImages.Instructions" />
-                </properties>
-
-                <stimulation-scripts initialize="func: StopSignalScript.PsiInitialize(tc)"
-                                     stimulate="func: StopSignalScript.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="ImageDisplay" interface="image-display"/>
-                    <instrument name="Button" interface="button"/>
-                </stimulation-scripts>
-
-                <stimulation-pattern time-base="seconds">
-                    <sequence Tperiod="Period" iterations="NumberOfStimuli * NumberOfStopSignals" />
-                </stimulation-pattern>
-
-                <stimuli order="block-random">
-                    <stimulus name="GO" count="3" />                        
-                    <stimulus name="STOP" count="1"/>
-                </stimuli>
-            </stimulation-sequence>    
+                template="StopSignalTask"/>
         </tests>
         <assets>
             <file-asset id="StopSignalImages" file="StopSignalImages.zip" />

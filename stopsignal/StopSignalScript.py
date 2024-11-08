@@ -44,7 +44,7 @@ class PsiAlgorithm:
         self.delay = self.Transform(self.method.Setup())     
         self.alpha = []
         self.beta = []
-        self.ConfidenceLevel = tc.ConfidenceLevel
+        self.ConfidenceLevel = tc.StopSignalConfidenceLevel
         self.alphaConfidence = []
         self.betaConfidence = []
         self.stopSignalDelay = []
@@ -73,8 +73,8 @@ class PsiAlgorithm:
         alpha = self.method.EstimateAlpha()
         self.alpha.append(alpha)
         self.beta.append(self.method.EstimateBeta())
-        self.alphaConfidence.append(self.method.EstimateAlphaConfidenceInterval(self.StopSignalConfidenceLevel))
-        self.betaConfidence.append(self.method.EstimateBetaConfidenceInterval(self.StopSignalConfidenceLevel))
+        self.alphaConfidence.append(self.method.EstimateAlphaConfidenceInterval(self.ConfidenceLevel))
+        self.betaConfidence.append(self.method.EstimateBetaConfidenceInterval(self.ConfidenceLevel))
         self.stopSignalDelay.append(self.Transform(alpha))
         
 
@@ -261,17 +261,17 @@ def Stimulate(tc, x):
     
     if tc.StimulusName == "STOP":
         display.Run(display.Sequence(tc.StopTask)
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FixationDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
                     .Run(lambda task: task.Go())
                     .Run(lambda task: task.Stop())
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FeedbackDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
                     .Run(lambda task: task.Feedback()))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FixationDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
                     .Run(lambda task: task.Go())
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.FeedbackDelay)
+                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
                     .Run(lambda task: task.Feedback()))
     else:
         tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
