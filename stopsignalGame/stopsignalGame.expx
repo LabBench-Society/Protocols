@@ -89,8 +89,8 @@
     <protocol>
         <defines>
             <!-- Stop Signal Game Defines -->
-            <define name="StopSignalTrainingStopSignals" value="4"/> 
-            <define name="StopSignalNumberOfStopSignals" value="5"/> <!-- Intended value: 30 -->
+            <define name="StopSignalTrainingStopSignals" value="1"/> <!-- Intended value 5 -->
+            <define name="StopSignalNumberOfStopSignals" value="2"/> <!-- Intended value: 30 -->
             <define name="StopSignalLowDelayLimit" value="50"/>
             <define name="StopSignalHighDelayLimit" value="750"/>
             <define name="StopSignalFixationDelay"  value="500"/>
@@ -141,14 +141,14 @@
                 </stimulation-sequence>
 
                 <stimulation-sequence id="StopSignalGame"
-                    experimental-setup-id="image"
+                    experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
 
                     <test-events complete="func: StopSignalGameScript.Complete(tc)" />
 
                     <properties>
-                        <subject-instructions experimental-setup-id="image"
+                        <subject-instructions experimental-setup-id="sstSetup"
                             default="Assets.StopSignalGameImages.Instructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
