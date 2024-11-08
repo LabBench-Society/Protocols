@@ -26,7 +26,7 @@
             labbench-version="5.0"
             category="Demonstration Protocol"/>
     </category>
-    
+
     <category name="Cuff Pressure Algometry" id="cpaCategory">
         <protocol id="ctscpm2ap"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
@@ -51,8 +51,16 @@
             name="Stop Signal Task"
             labbench-version="5.0"
             category="Cognitive Task"/>      
+        <protocol id="stopsignalGame"
+            name="Stop Signal Task (Reward/Punishment)"
+            labbench-version="5.0"
+            category="Cognitive Task"/>      
         <protocol id="stroop"
             name="Stroop Task"
+            labbench-version="5.0"
+            category="Cognitive Task"/>
+        <protocol id="stroopReverse"
+            name="Reverse Stroop Task"
             labbench-version="5.0"
             category="Cognitive Task"/>
         <protocol id="flanker"
