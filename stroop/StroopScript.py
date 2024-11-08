@@ -1,11 +1,5 @@
 ﻿import random
 
-def GetColors(tc):
-    return {'b': '#0000FF','y': '#FFFF00','r': '#FF0000','g': '#00FF00'}
-
-def GetWords(tc):
-    return {'b': 'BLUE','y': 'YELLOW','r': 'RED','g': 'GREEN'}
-
 def StroopNeutralStimulate(tc, x):
     display = tc.Instruments.ImageDisplay
     name =  tc.StimulusName
