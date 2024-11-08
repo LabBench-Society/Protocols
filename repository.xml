@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.0.0/repository.xsd"
-            id="labbench.io">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/repository.xsd"
+            id="labbench.io"
+            name="LabBench Protocol Repository">
 
-    <protocol 
-        id="introdemo"
-        name="Introduction to LabBench"
-        labbench-version="5.0"
-        category="Psychometrics;Demonstration Protocol"/>
-    <protocol 
-        id="thrEstimation"
-        name="Introduction to Estimation of Thresholds and Psychometric Functions"
-        labbench-version="5.0"
-        category="Thresholds;Psychopmetric Functions;Demonstration Protocol"/>
-    <protocol 
-        id="randomization"
-        name="Introduction to Randomization and Templating"
-        labbench-version="5.0"
-        category="Randomization;Templating;Demonstration Protocol"/>
-    <protocol 
-        id="cpardemo"
-        name="Introduction to Cuff Pressure Algometry"
-        labbench-version="5.0"
-        category="Pressure Algometry;Demonstration Protocol"/>
-    <protocol 
-        id="imageGeneration"
-        name="Introduction to Image Generation"
-        labbench-version="5.0"
-        category="Demonstration Protocol"/>
-    <protocol 
-        id="ctscpm2ap"
-        name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
-        labbench-version="5.0"
-        category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
-    <protocol 
-        id="ctscpm3ap"
-        name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
-        labbench-version="5.0"
-        category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
-    <protocol 
-        id="ctscpmauto"
-        name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
-        labbench-version="5.0"
-        category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>             
-    <protocol 
-        id="cstscpm3ap"
-        name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
-        labbench-version="5.0"
-        category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>       
-    <protocol 
-        id="scCalibration"
-        name="Screen and Fiducial Calibration Protocol"
-        labbench-version="5.0"
-        category="Visual Stimuli;Validation Protocol"/>
-    <protocol 
-        id="stopsignal"
-        name="Stop Signal Task"
-        labbench-version="5.0"
-        category="Cognitive Task"/>      
-    <protocol 
-        id="stroop"
-        name="Stroop Task"
-        labbench-version="5.0"
-        category="Cognitive Task"/>
-    <protocol 
-        id="flanker"
-        name="Flanker Task"
-        labbench-version="5.0"
-        category="Cognitive Task"/>
-    <protocol 
-        id="gonogo"
-        name="Go/Nogo Task"
-        labbench-version="5.0"
-        category="Cognitive Task"/>
-    <protocol 
-        id="aoddball"
-        name="Oddball Task (Auditory)"
-        labbench-version="5.0"
-        category="EEG" />
-    <protocol 
-        id="voddball"
-        name="Oddball Task (Visual)"
-        labbench-version="5.0"
-        category="EEG" />    
-    <protocol 
-        id="hyperknesisDemo"
-        name="Hyperknesis"
-        labbench-version="5.0"
-        category="Psychometrics;Demonstration Protocol"/>
-    <protocol 
-        id="alloknesisDemo"
-        name="Alloknesis"
-        labbench-version="5.0"
-        category="Psychometrics;Demonstration Protocol"/>
+    <category name="Introductions" id="introductionsCategory">
+        <protocol id="introdemo"
+            name="Introduction to LabBench"
+            labbench-version="5.0"
+            category="Psychometrics;Demonstration Protocol"/>
+        <protocol id="thrEstimation"
+            name="Introduction to Estimation of Thresholds and Psychometric Functions"
+            labbench-version="5.0"
+            category="Thresholds;Psychopmetric Functions;Demonstration Protocol"/>
+        <protocol id="randomization"
+            name="Introduction to Randomization and Templating"
+            labbench-version="5.0"
+            category="Randomization;Templating;Demonstration Protocol"/>
+        <protocol id="cpardemo"
+            name="Introduction to Cuff Pressure Algometry"
+            labbench-version="5.0"
+            category="Pressure Algometry;Demonstration Protocol"/>
+        <protocol id="imageGeneration"
+            name="Introduction to Image Generation"
+            labbench-version="5.0"
+            category="Demonstration Protocol"/>
+    </category>
+    
+    <category name="Cuff Pressure Algometry" id="cpaCategory">
+        <protocol id="ctscpm2ap"
+            name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
+            labbench-version="5.0"
+            category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
+        <protocol id="ctscpm3ap"
+            name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
+            labbench-version="5.0"
+            category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
+        <protocol id="ctscpmauto"
+            name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
+            labbench-version="5.0"
+            category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>             
+        <protocol id="cstscpm3ap"
+            name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
+            labbench-version="5.0"
+            category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>       
+    </category>
+
+    <category name="Cognitive Tasks" id="cogniCategory">
+        <protocol id="stopsignal"
+            name="Stop Signal Task"
+            labbench-version="5.0"
+            category="Cognitive Task"/>      
+        <protocol id="stroop"
+            name="Stroop Task"
+            labbench-version="5.0"
+            category="Cognitive Task"/>
+        <protocol id="flanker"
+            name="Flanker Task"
+            labbench-version="5.0"
+            category="Cognitive Task"/>
+        <protocol id="gonogo"
+            name="Go/Nogo Task"
+            labbench-version="5.0"
+            category="Cognitive Task"/>
+    </category>
+
+    <category name="Electroencephalography" id="eegCategory">
+        <protocol id="aoddball"
+            name="Oddball Task (Auditory)"
+            labbench-version="5.0"
+            category="EEG" />
+        <protocol id="voddball"
+            name="Oddball Task (Visual)"
+            labbench-version="5.0"
+            category="EEG" />    
+    </category>
+
+    <category name="Itch Assessment" id="itchCategory">
+        <protocol id="hyperknesisDemo"
+            name="Hyperknesis"
+            labbench-version="5.0"
+            category="Psychometrics;Demonstration Protocol"/>
+        <protocol id="alloknesisDemo"
+            name="Alloknesis"
+            labbench-version="5.0"
+            category="Psychometrics;Demonstration Protocol"/>
+    </category>
+
+    <category name="Calivbration" id="Calibration">
+        <protocol id="scCalibration"
+            name="Screen and Fiducial Calibration Protocol"
+            labbench-version="5.0"
+            category="Visual Stimuli;Validation Protocol"/>
+    </category>
 </repository>
