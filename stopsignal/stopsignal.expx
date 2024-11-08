@@ -184,7 +184,6 @@
         <assets>
             <file-asset id="StopSignalImages" file="StopSignalImages.zip" />
             <file-asset id="StopSignalScript" file="StopSignalScript.py" />
-            <file-asset id="Roboto" file="Roboto-Regular.ttf" />
         </assets>
     </protocol>
     <post-actions>
