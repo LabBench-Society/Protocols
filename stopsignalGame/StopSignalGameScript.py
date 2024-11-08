@@ -3,8 +3,8 @@ import math
 
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
-        self.lowerLimit = tc.LowDelayLimit
-        self.highLimit = tc.HighDelayLimit
+        self.lowerLimit = tc.StopSignalLowDelayLimit
+        self.highLimit = tc.StopSignalHighDelayLimit
         self.delay = initialDelay
         self.stopSignalDelay = []
         self.stepsize = stepsize
@@ -31,20 +31,20 @@ class UpDownAlgorithm:
 
 class PsiAlgorithm:
     def __init__(self, tc):
-        self.lowerLimit = tc.LowDelayLimit
-        self.highLimit = tc.HighDelayLimit
+        self.lowerLimit = tc.StopLowDelayLimit
+        self.highLimit = tc.StopHighDelayLimit
         self.delays = []
         self.method = tc.Create(tc.Psychophysics.PsiMethod()
                                                 .NumberOfTrials(tc.Trials)
                                                 .Function(tc.Psychophysics.Functions.Quick(Beta=1, Lambda=0.02, Gamma=0))
-                                                .Alpha(X0=tc.AlphaX0,X1=1.0,N = tc.AlphaN)
-                                                .Beta(X0=tc.BetaX0,X1=tc.BetaX1,N = tc.BetaN)
-                                                .Intensity(X0 = tc.IntensityX0,X1 = 1.0,N = tc.IntensityN))
+                                                .Alpha(X0=tc.StopSignalAlphaX0,X1=1.0,N = tc.StopSignalAlphaN)
+                                                .Beta(X0=tc.StopSignalBetaX0,X1=tc.StopSignalBetaX1,N = tc.StopSignalBetaN)
+                                                .Intensity(X0 = tc.StopSignalIntensityX0,X1 = 1.0,N = tc.StopSignalIntensityN))
         
         self.delay = self.Transform(self.method.Setup())     
         self.alpha = []
         self.beta = []
-        self.ConfidenceLevel = tc.ConfidenceLevel
+        self.ConfidenceLevel = tc.StopSignalConfidenceLevel
         self.alphaConfidence = []
         self.betaConfidence = []
         self.stopSignalDelay = []
@@ -83,13 +83,13 @@ class StopSignalTask:
         self.Log = tc.Log
         self.feedback = feedback
         self.Buttons = tc.Response.Buttons
-        self.display = tc.Devices.ImageDisplay
-        self.response = tc.Devices.Button
-        self.images = tc.Assets.Images
+        self.display = tc.Instruments.ImageDisplay
+        self.response = tc.Instruments.Button
+        self.images = tc.Assets.StopSignalGameImages
         self.algorithm = algorithm
-        self.feedbackTime = tc.FeedbackTime
-        self.responseTimeout = tc.ResponseTimeout
-        self.feedbackDelay = tc.FeedbackDelay
+        self.feedbackTime = tc.StopSignalFeedbackTime
+        self.responseTimeout = tc.StopSignalResponseTimeout
+        self.feedbackDelay = tc.StopSignalFeedbackDelay
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -153,18 +153,18 @@ class GoSignalTask:
         self.Buttons = tc.Response.Buttons
         self.feedback = feedback
         self.tc = tc
-        self.display = tc.Devices.ImageDisplay
-        self.response = tc.Devices.Button
-        self.images = tc.Assets.Images
+        self.display = tc.Instruments.ImageDisplay
+        self.response = tc.Instruments.Button
+        self.images = tc.Assets.StopSignalGameImages
 
-        self.goDelay = tc.HighDelayLimit
+        self.goDelay = tc.StopSignalHighDelayLimit
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
         self.time = []
         
-        self.feedbackTime = tc.FeedbackTime
-        self.responseTimeout = tc.ResponseTimeout
-        self.feedbackDelay = tc.FeedbackDelay
+        self.feedbackTime = tc.StopSignalFeedbackTime
+        self.responseTimeout = tc.StopSignalResponseTimeout
+        self.feedbackDelay = tc.StopSignalFeedbackDelay
         
         self.result = tc.Current
             
@@ -219,7 +219,7 @@ class GoSignalTask:
 class TaskFeedback:
     def __init__(self, tc):
         self.images = tc.Assets.Images
-        self.display = tc.Devices.ImageDisplay
+        self.display = tc.Instruments.ImageDisplay
 
     def Complete(self):
         pass
@@ -238,9 +238,9 @@ class TaskFeedback:
 
 class GameFeedback:
     def __init__(self, tc):
-        self.images = tc.Assets.Images
+        self.images = tc.Assets.StopSignalGameImages
         self.tc = tc
-        self.display = tc.Devices.ImageDisplay
+        self.display = tc.Instruments.ImageDisplay
         self.score = 0
         self.levels = []
         self.level = 1
@@ -260,7 +260,7 @@ class GameFeedback:
             distance = display.Height/14
 
             if answer:
-                levelIncease = math.ceil((self.tc.ResponseTimeout - time)/10)
+                levelIncease = math.ceil((self.tc.StopSignalResponseTimeout - time)/10)
                 levelIncease = levelIncease if levelIncease > 0 else 1
                 self.score = int(self.score + self.level)
                 self.level = int(self.level + levelIncease)
@@ -335,21 +335,21 @@ def DisplayScore(tc):
 
 
 def Stimulate(tc, x):   
-    display = tc.Devices.ImageDisplay
+    display = tc.Instruments.ImageDisplay
     
     if tc.StimulusName == "STOP":
         display.Run(display.Sequence(tc.StopTask)
-                    .Display(tc.Assets.Images.FixationCross, tc.FixationDelay)
+                    .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFixationDelay)
                     .Run(lambda task: task.Go())
                     .Run(lambda task: task.Stop())
-                    .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
+                    .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFeedbackDelay)
                     .Run(lambda task: task.Feedback()))
         
     elif tc.StimulusName == "GO":
         display.Run(display.Sequence(tc.GoTask)
-                    .Display(tc.Assets.Images.FixationCross, tc.FixationDelay)
+                    .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFixationDelay)
                     .Run(lambda task: task.Go())
-                    .Display(tc.Assets.Images.FixationCross, tc.FeedbackDelay)
+                    .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFeedbackDelay)
                     .Run(lambda task: task.Feedback()))
     else:
         tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
