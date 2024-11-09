@@ -88,9 +88,9 @@
    </experimental-setup-variants>                    
     <protocol>
         <defines>
-            <!-- Defines for the Stop-Signal Task -->
-            <define name="StopSignalTrainingStopSignals" value="4"/> 
-            <define name="StopSignalNumberOfStopSignals" value="5"/> <!-- Intended value: 30 -->
+            <!-- Stop Signal Game Defines -->
+            <define name="StopSignalTrainingStopSignals" value="1"/> <!-- Intended value 5 -->
+            <define name="StopSignalNumberOfStopSignals" value="2"/> <!-- Intended value: 30 -->
             <define name="StopSignalLowDelayLimit" value="50"/>
             <define name="StopSignalHighDelayLimit" value="750"/>
             <define name="StopSignalFixationDelay"  value="500"/>
@@ -99,12 +99,11 @@
             <define name="StopSignalFeedbackTime" value="1000"/>
             <define name="StopSignalPause" value="1000"/>
             <define name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
-
             <define name="StopSignalTrials" value="30"/>
             <define name="StopSignalAlphaX0" value="0.0"/>
             <define name="StopSignalAlphaN" value="200"/>
-            <define name="StopSignalBetaX0" value="-2"/> 
-            <define name="StopSignalBetaX1" value="2"/> 
+            <define name="StopSignalBetaX0" value="-2"/> <!--  Old value: -1.2041 -->
+            <define name="StopSignalBetaX1" value="2"/> <!--  Old value: 1.2041 -->
             <define name="StopSignalBetaN" value="50"/>
             <define name="StopSignalIntensityX0" value="0.0"/>
             <define name="StopSignalIntensityN" value="50"/>
@@ -112,19 +111,19 @@
         </defines>
         <templates>
             <content>
-                <stimulation-sequence id="StopSignalTaskTraining"
+                <stimulation-sequence id="StopSignalTraining"
                     experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
-                    <test-events complete="func: StopSignalScript.Complete(tc)" />
+                    <test-events complete="func: StopSignalGameScript.Complete(tc)" />
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
-                            default="Assets.StopSignalImages.Instructions" />
+                            default="Assets.StopSignalGameImages.Instructions" />
                     </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalScript.UpDownInitialize(tc)"
-                                        stimulate="func: StopSignalScript.Stimulate(tc,x)"
+                    <stimulation-scripts initialize="func: StopSignalGameScript.UpDownInitialize(tc)"
+                                        stimulate="func: StopSignalGameScript.Stimulate(tc,x)"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
@@ -141,20 +140,21 @@
                     </stimuli>
                 </stimulation-sequence>
 
-                <stimulation-sequence id="StopSignalTask"
+                <stimulation-sequence id="StopSignalGame"
                     experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
 
-                    <test-events complete="func: StopSignalScript.Complete(tc)" />
+                    <test-events complete="func: StopSignalGameScript.Complete(tc)" />
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
-                            default="Assets.StopSignalImages.Instructions" />
+                            default="Assets.StopSignalGameImages.GameInstructions" 
+                            completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalScript.PsiInitialize(tc)"
-                                        stimulate="func: StopSignalScript.Stimulate(tc,x)"
+                    <stimulation-scripts initialize="func: StopSignalGameScript.PsiGameInitialize(tc)"
+                                        stimulate="func: StopSignalGameScript.Stimulate(tc,x)"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
@@ -173,17 +173,18 @@
             </content>
         </templates>
         <tests>
-            <stimulation-sequence-constructor id="StopSignalTaskTraining" 
+            <stimulation-sequence-constructor id="StopSignalTraining" 
                 name="Stop Signal Task (Training Task)"
-                template="StopSignalTaskTraining" />
+                template="StopSignalTraining"/>
 
-            <stimulation-sequence-constructor id="StopSignalTask" 
-                name="Stop Signal Task"
-                template="StopSignalTask"/>
+            <stimulation-sequence-constructor id="StopSignalGame" 
+                name="Stop Signal Game"
+                template="StopSignalGame"/>
         </tests>
         <assets>
-            <file-asset id="StopSignalImages" file="StopSignalImages.zip" />
-            <file-asset id="StopSignalScript" file="StopSignalScript.py" />
+            <file-asset id="StopSignalGameImages" file="StopSignalGameImages.zip" />
+            <file-asset id="StopSignalGameScript" file="StopSignalGameScript.py" />
+            <file-asset id="Roboto" file="Roboto-Regular.ttf" />
         </assets>
     </protocol>
     <post-actions>

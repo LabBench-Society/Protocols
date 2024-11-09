@@ -10,7 +10,7 @@
       <experimental-setup name="Joystick" id="JOYSTICK">
          <devices>
             <joystick id="joystick">
-               <map experimental-setup-id="stroopSetup">
+               <map experimental-setup-id="reverseStroopSetup">
                   <button-assignment code="4" button="button-01" label="blue" />
                   <button-assignment code="8" button="button-02" label="yellow" />
                   <button-assignment code="1" button="button-03" label="red" />
@@ -32,7 +32,7 @@
                <fiducial size="10" x="17" y="17"/>
 
                <configurations>
-                  <image-display id="image" experimental-setup-id="stroopSetup" background-color="rgb(0,0,0)" />
+                  <image-display id="image" experimental-setup-id="reverseStroopSetup" background-color="rgb(0,0,0)" />
                </configurations>                
             </display>         
          </devices>
@@ -57,7 +57,7 @@
                <fiducial size="10" x="17" y="17"/>
 
                <configurations>
-                  <image-display id="image" experimental-setup-id="stroopSetup" background-color="rgb(0,0,0)" />
+                  <image-display id="image" experimental-setup-id="reverseStroopSetup" background-color="rgb(0,0,0)" />
                </configurations>
             </display>
 
@@ -65,7 +65,7 @@
                <trigger-setup low-byte-voltage-level="unconnected" high-byte-voltage-level="unconnected" logic-system="positive"/>               
                <response-devices>
                   <response-pad id="pad" timing-source="response-port02" type="button-4-cross">
-                     <map experimental-setup-id="stroopSetup">
+                     <map experimental-setup-id="reverseStroopSetup">
                         <button-assignment code="1" button="button-01" label="blue" />
                         <button-assignment code="2" button="button-02" label="yellow" />
                         <button-assignment code="3" button="button-03" label="red" />
@@ -90,19 +90,19 @@
          <define name="StroopColors" value="{'b': '#0000FF','y': '#FFFF00','r': '#FF0000','g': '#00FF00'}"/>
          <define name="StroopWords" value="{'b': 'BLUE','y': 'YELLOW','r': 'RED','g': 'GREEN'}"/>
       </defines>
-      <templates>
-         <content>
-            <stimulation-sequence id="NSTROOPTrial"
-               experimental-setup-id="stroopSetup"
+        <tests>            
+            <stimulation-sequence id="NRSTROOPTrial"
+               name="Neutral Reverse Stroop Task (Trial)"
+               experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
 
                <properties>
                   <subject-instructions 
-                     experimental-setup-id="stroopSetup" 
-                     default="Assets.StroopInstructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.NeutralStroopPAD"/>
+                     experimental-setup-id="reverseStroopSetup" 
+                     default="Assets.StroopReverseInstructions.NeutralReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.NeutralReverseStroopPAD"/>
                </properties>                                
 
                <configuration>
@@ -111,7 +111,7 @@
               
                <stimulation-scripts 
                   initialize="True"
-                  stimulate="func: StroopScript.StroopNeutralStimulate(tc,x)"
+                  stimulate="func: StroopReverseScript.ReverseStroopNeutralStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
@@ -131,27 +131,28 @@
                   <stimulus name="yn" />                
                </stimuli>
             </stimulation-sequence>
-
-            <stimulation-sequence id="NSTROOP"
-               experimental-setup-id="stroopSetup"
+            
+            <stimulation-sequence id="NRSTROOP"
+               name="Neutral Reverse Stroop Task"
+               experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
                 
                <properties>
                   <subject-instructions 
-                     experimental-setup-id="stroopSetup" 
-                     default="Assets.StroopInstructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.NeutralStroopPAD"/>
+                     experimental-setup-id="reverseStroopSetup" 
+                     default="Assets.StroopReverseInstructions.NeutralReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.NeutralReverseStroopPAD"/>
                </properties>                                
 
                <dependencies>
-                  <dependency id="NSTROOPTrial"/>
+                  <dependency id="NRSTROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
                   initialize="True"
-                  stimulate="func: StroopScript.StroopNeutralStimulate(tc,x)"
+                  stimulate="func: StroopReverseScript.ReverseStroopNeutralStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
@@ -171,23 +172,24 @@
                     <stimulus name="yn" />
                 </stimuli>
             </stimulation-sequence>
-
-            <stimulation-sequence id="STROOPTrial"
-               experimental-setup-id="stroopSetup"
+    
+            <stimulation-sequence id="RSTROOPTrial"
+               name="Reverse Stroop Task (Trial)"
+               experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
 
                <properties>
                   <subject-instructions 
-                     experimental-setup-id="stroopSetup" 
-                     default="Assets.StroopInstructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.StroopPAD"/>
+                     experimental-setup-id="reverseStroopSetup" 
+                     default="Assets.StroopReverseInstructions.ReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.ReverseStroopPAD"/>
                </properties>                                                    
                
                <stimulation-scripts 
                   initialize="True"
-                  stimulate="func: StroopScript.StroopStimulate(tc,x)"
+                  stimulate="func: StroopReverseScript.ReverseStroopStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
@@ -211,27 +213,28 @@
                   <stimulus name="yr" />
                </stimuli>
             </stimulation-sequence>
-
-            <stimulation-sequence id="STROOP"
-               experimental-setup-id="stroopSetup"
+    
+            <stimulation-sequence id="RSTROOP"
+               name="Reverse Stroop Task"
+               experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
     
                <properties>
                   <subject-instructions 
-                     experimental-setup-id="stroopSetup" 
-                     default="Assets.StroopInstructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.StroopPAD"/>
+                     experimental-setup-id="reverseStroopSetup" 
+                     default="Assets.StroopReverseInstructions.ReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.ReverseStroopPAD"/>
                </properties>                                                    
 
                <dependencies>
-                  <dependency id="STROOPTrial"/>
+                  <dependency id="RSTROOPTrial"/>
                </dependencies>
 
                <stimulation-scripts 
                   initialize="True"
-                  stimulate="func: StroopScript.StroopStimulate(tc,x)"
+                  stimulate="func: StroopReverseScript.ReverseStroopStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
@@ -266,29 +269,11 @@
                   <stimulus name="yy" count="3"/>
                </stimuli>
             </stimulation-sequence>        
-         </content>
-      </templates>
-        <tests>
-            <stimulation-sequence-constructor id="NSTROOPTrial" 
-               name="Neutral Stroop Task (Trial)"
-               template="NSTROOPTrial"/>        
-            
-            <stimulation-sequence-constructor id="NSTROOP" 
-               name="Neutral Stroop Task"
-               template="NSTROOP"/>
 
-            <stimulation-sequence-constructor id="STROOPTrial" 
-               name="Stroop Task (Trial)"
-               template="STROOPTrial"/>
-            
-   
-            <stimulation-sequence-constructor id="STROOP" 
-            name="Stroop Task"
-            template="STROOP"/>
         </tests>
         <assets>
-            <file-asset id="StroopInstructions" file="StroopInstructions.zip"/>
-            <file-asset id="StroopScript" file="StroopScript.py" />
+            <file-asset id="StroopReverseInstructions" file="StroopReverseInstructions.zip"/>
+            <file-asset id="StroopReverseScript" file="StroopReverseScript.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf"/>
         </assets>
     </protocol>
