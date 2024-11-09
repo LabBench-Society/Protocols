@@ -90,9 +90,9 @@
          <define name="StroopColors" value="{'b': '#0000FF','y': '#FFFF00','r': '#FF0000','g': '#00FF00'}"/>
          <define name="StroopWords" value="{'b': 'BLUE','y': 'YELLOW','r': 'RED','g': 'GREEN'}"/>
       </defines>
-        <tests>            
+      <templates>
+         <content>
             <stimulation-sequence id="NRSTROOPTrial"
-               name="Neutral Reverse Stroop Task (Trial)"
                experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -131,9 +131,8 @@
                   <stimulus name="yn" />                
                </stimuli>
             </stimulation-sequence>
-            
+
             <stimulation-sequence id="NRSTROOP"
-               name="Neutral Reverse Stroop Task"
                experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -172,9 +171,8 @@
                     <stimulus name="yn" />
                 </stimuli>
             </stimulation-sequence>
-    
+
             <stimulation-sequence id="RSTROOPTrial"
-               name="Reverse Stroop Task (Trial)"
                experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -213,9 +211,8 @@
                   <stimulus name="yr" />
                </stimuli>
             </stimulation-sequence>
-    
+
             <stimulation-sequence id="RSTROOP"
-               name="Reverse Stroop Task"
                experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
                stimulus-update-rate="10000">
@@ -269,7 +266,24 @@
                   <stimulus name="yy" count="3"/>
                </stimuli>
             </stimulation-sequence>        
+         </content>
+      </templates>
+        <tests>            
+            <stimulation-sequence-constructor id="NRSTROOPTrial" 
+               name="Neutral Reverse Stroop Task (Trial)"
+               template="NRSTROOPTrial"/>
 
+            <stimulation-sequence-constructor id="NRSTROOP" 
+               name="Neutral Reverse Stroop Task"
+               template="NRSTROOP"/>
+
+            <stimulation-sequence-constructor id="RSTROOPTrial" 
+               name="Reverse Stroop Task (Trial)"
+               template="RSTROOPTrial"/>
+
+            <stimulation-sequence-constructor id="RSTROOP" 
+               name="Reverse Stroop Task"
+               template="RSTROOP"/>
         </tests>
         <assets>
             <file-asset id="StroopReverseInstructions" file="StroopReverseInstructions.zip"/>
