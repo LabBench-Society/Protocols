@@ -152,7 +152,7 @@
 
                <stimulation-scripts 
                   initialize="True"
-                  stimulate="func: StroopReverseScript.StroopReverseNeutralStimulate(tc,x)"
+                  stimulate="func: StroopReverseScript.ReverseStroopNeutralStimulate(tc,x)"
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
