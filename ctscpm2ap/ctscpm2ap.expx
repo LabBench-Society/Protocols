@@ -93,65 +93,92 @@
 </experimental-setup-variants>
     <protocol>
         <defines />
+        <templates>
+            <content>
+                <algometry-stimulus-response 
+                    id="SR01"
+                    experimental-setup-id="vas"
+                    delta-pressure="1"
+                    pressure-limit="100"
+                    primary-cuff="1"
+                    second-cuff="false"
+                    stop-mode="stop-on-maximal-rating"
+                    vas-pdt="0.1">
+                    <properties>
+                        <instructions default="Assets.CPAInstructions.SR01" override-results="false"/>
+                    </properties>
+                </algometry-stimulus-response>
+
+                <algometry-stimulus-response 
+                    id="SR02"
+                    experimental-setup-id="vas"
+                    delta-pressure="1"
+                    pressure-limit="100"
+                    primary-cuff="2"
+                    second-cuff="false"
+                    stop-mode="stop-on-maximal-rating"
+                    vas-pdt="0.1">
+                    <properties>
+                        <instructions default="Assets.CPAInstructions.SR02" override-results="false"/>
+                    </properties>
+                </algometry-stimulus-response>
+
+                <algometry-temporal-summation 
+                    id="TS"
+                    experimental-setup-id="vas"
+                    no-of-stimuli="10"
+                    pressure-static="5"
+                    pressure-stimulate="1.0 * SR01.PTT"
+                    primary-cuff="1"
+                    second-cuff="false"
+                    t-off="1"
+                    t-on="1">
+                    <properties>
+                        <instructions default="Assets.CPAInstructions.TS" override-results="false"/>
+                    </properties>
+                    <dependencies>
+                        <dependency id="SR01"/>
+                    </dependencies>
+                </algometry-temporal-summation>
+
+                <algometry-conditioned-pain-modulation 
+                    id="CPM"
+                    experimental-setup-id="vas"
+                    conditional-pressure="0.7 * SR02.PTT"
+                    delta-conditional-pressure="10"
+                    delta-pressure="1"
+                    pressure-limit="100"
+                    primary-cuff="1"
+                    stop-mode="stop-on-maximal-rating"
+                    vas-pdt="0.1">
+                    <properties>
+                        <instructions default="Assets.CPAInstructions.CPM" override-results="false"/>
+                    </properties>
+                    <dependencies>
+                        <dependency id="SR02"/>
+                    </dependencies>
+                </algometry-conditioned-pain-modulation>
+            </content>
+        </templates>
         <tests>
-            <algometry-stimulus-response 
-                id="SR01"
+            <algometry-stimulus-response-constructor id="SR01" 
                 name="Stimulus-Response (Cuff 1)"
-                experimental-setup-id="vas"
-                delta-pressure="1"
-                pressure-limit="100"
-                primary-cuff="1"
-                second-cuff="false"
-                stop-mode="stop-on-maximal-rating"
-                vas-pdt="0.1">
-            </algometry-stimulus-response>
+                template="SR01"/>
 
-            <algometry-stimulus-response 
-                id="SR02"
+            <algometry-stimulus-response-constructor id="SR02" 
                 name="Stimulus-Response (Cuff 2)"
-                experimental-setup-id="vas"
-                delta-pressure="1"
-                pressure-limit="100"
-                primary-cuff="2"
-                second-cuff="false"
-                stop-mode="stop-on-maximal-rating"
-                vas-pdt="0.1">
-                <dependencies />
-            </algometry-stimulus-response>
+                template="SR02"/>
 
-            <algometry-temporal-summation 
-                id="TS"
+            <algometry-temporal-summation-constructor id="TS" 
                 name="Temporal Summation (Cuff 1)"
-                experimental-setup-id="vas"
-                no-of-stimuli="10"
-                pressure-static="5"
-                pressure-stimulate="1.0 * SR01.PTT"
-                primary-cuff="1"
-                second-cuff="false"
-                t-off="1"
-                t-on="1">
-                <dependencies>
-                    <dependency id="SR01"/>
-                </dependencies>
-            </algometry-temporal-summation>
+                template="TS"/>
 
-            <algometry-conditioned-pain-modulation 
-                id="CPM"
+            <algometry-conditioned-pain-modulation-constructor id="CPM" 
                 name="CPM (Cuff 1)"
-                experimental-setup-id="vas"
-                conditional-pressure="0.7 * SR02.PTT"
-                delta-conditional-pressure="10"
-                delta-pressure="1"
-                pressure-limit="100"
-                primary-cuff="1"
-                stop-mode="stop-on-maximal-rating"
-                vas-pdt="0.1">
-                <dependencies>
-                    <dependency id="SR02"/>
-                </dependencies>
-            </algometry-conditioned-pain-modulation>
+                template="CPM"/>
         </tests>
         <assets>
+            <file-asset id="CPAInstructions" file="CPAInstructions.zip"></file-asset>
         </assets>
     </protocol>
 </experiment>
