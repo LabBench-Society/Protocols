@@ -17,8 +17,13 @@
                     screen="secondary"
                     fiducial-position="upper-right">
     
-                    <monitor diagonal-size="35.5" distance="40" />
-                    <fiducial x="17" y="17" size="10"/>
+                    <monitor 
+                        diagonal-size="35.5" 
+                        distance="40" />
+                    <fiducial 
+                        x="17" 
+                        y="17" 
+                        size="10"/>
     
                     <configurations>
                         <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
