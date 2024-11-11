@@ -16,7 +16,7 @@
     
                     <monitor 
                         diagonal-size="35.5" 
-                        distance="40" />
+                        distance="55" />
                     <fiducial 
                         x="17" 
                         y="17" 
@@ -73,9 +73,10 @@
                     <instrument name="ImageDisplay" interface="image-display" />
                 </test-events>
                 <properties>
+                    <instructions default="Assets.Images.ScreenSizeInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
-                        default="Assets.Images.ScreenSizeInstruction"/>
+                        default="Assets.Images.ScreenSizeInstruction"/>                    
                 </properties>                
 
                 <content>
@@ -96,6 +97,7 @@
                     <instrument name="ImageDisplay" interface="image-display" />
                 </test-events>
                 <properties>
+                    <instructions default="Assets.Images.ScreenPositionInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.ScreenPositionInstruction"/>
@@ -119,6 +121,7 @@
                     <instrument name="ImageDisplay" interface="image-display" />
                 </test-events>
                 <properties>
+                    <instructions default="Assets.Images.PositionInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.PositionInstruction"/>
@@ -147,6 +150,7 @@
                     <instrument name="ImageDisplay" interface="image-display" />
                 </test-events>
                 <properties>
+                    <instructions default="Assets.Images.UpdateInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.UpdateInstruction"/>
@@ -170,6 +174,7 @@
                     <instrument name="ImageDisplay" interface="image-display" />
                 </test-events>
                 <properties>
+                    <instructions default="Assets.Images.FiducialInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.FiducialInstruction"/>
@@ -195,6 +200,7 @@
                     <instrument name="TriggerDetector" interface="trigger-detector" />
                 </test-events>
                 <properties>
+                    <instructions default="Assets.Images.DetectorInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.DetectorInstruction"/>
