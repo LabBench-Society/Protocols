@@ -67,10 +67,13 @@
             name="Flanker Task"
             labbench-version="5.0"
             category="Cognitive Task"/>
+
+        <!-- 
         <protocol id="gonogo"
             name="Go/Nogo Task"
             labbench-version="5.0"
-            category="Cognitive Task"/>
+            category="Cognitive Task"/>        
+        -->
     </category>
 
     <category name="Electroencephalography" id="eegCategory">
