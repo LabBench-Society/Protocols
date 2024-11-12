@@ -6,7 +6,7 @@
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
 
-   <experimental-setup-variants>         
+   <experimental-setup-variants default="LIO">         
       <experimental-setup name="Joystick" id="JOYSTICK">
          <devices>
             <joystick id="joystick">
@@ -27,9 +27,8 @@
                fiducial-position="upper-right"
                screen="secondary">
     
-               <monitor diagonal-size="53.34" distance="40" />
-
-               <fiducial size="10" x="17" y="17"/>
+               <monitor diagonal-size="35.5" distance="40" />
+               <fiducial x="17" y="17" size="10"/>
 
                <configurations>
                   <image-display id="image" experimental-setup-id="reverseStroopSetup" background-color="rgb(0,0,0)" />

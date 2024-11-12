@@ -33,7 +33,7 @@ def ReverseStroopNeutralStimulate(tc, x):
         canvas.Color(tc.StroopColors[name[0]])
         canvas.Rectangle(position.X2 - position.Size, position.Y2 - position.Size,position.X2 + position.Size, position.Y2 + position.Size)
 
-        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup == 'LIO')
+        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup != 'JOYSTICK')
         
     return True
 
@@ -53,7 +53,7 @@ def ReverseStroopStimulate(tc, x):
         canvas.Color(tc.StroopColors[name[1]])
         canvas.Write(display.Width/2, display.Height/2, tc.StroopWords[name[0]])
 
-        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup == 'LIO')
+        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup != 'JOYSTICK')
 
     return True
 
