@@ -56,16 +56,20 @@
                                        background-color="rgb(0,0,0)" />
                     </configurations>
                 </display>
-                <lio id="lio" default-analog-output="0">
-                    <trigger-setup low-byte-voltage-level="unconnected" high-byte-voltage-level="unconnected" logic-system="positive"/>               
+                <lio id="lio">
+                    <trigger-setup 
+                        low-byte-voltage-level="unconnected" 
+                        high-byte-voltage-level="unconnected" 
+                        logic-system="positive"/>               
+                        
                     <response-devices>
-                       <response-pad id="pad" timing-source="response-port02" type="button-4-cross">
-                          <map>
+                        <response-pad id="pad" timing-source="response-port02" type="button-4-cross">
+                            <map>
                             <button-assignment code="5" button="left" label="H and K"/>
                             <button-assignment code="6" button="right" label="S and C"/>
-                          </map>
-                       </response-pad>
-                       <visual-trigger id="trigger" timing-source="response-port02"/>
+                            </map>
+                        </response-pad>
+                        <visual-trigger id="trigger" timing-source="response-port02"/>
                     </response-devices>
                 </lio>
             </devices>
