@@ -66,8 +66,8 @@
                           </map>
                        </response-pad>
                        <visual-trigger id="trigger" timing-source="response-port02"/>
-                       </response-devices>
-                 </lio>
+                    </response-devices>
+                </lio>
             </devices>
             <device-mapping>
                 <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
