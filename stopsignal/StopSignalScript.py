@@ -90,6 +90,7 @@ class StopSignalTask:
         self.feedbackTime = tc.StopSignalFeedbackTime
         self.responseTimeout = tc.StopSignalResponseTimeout
         self.feedbackDelay = tc.StopSignalFeedbackDelay
+        self.Fiducials = tc.ExperimentalSetup != "JOYSTICK"
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -112,9 +113,9 @@ class StopSignalTask:
         self.goSignals.append(self.signal)
         
         if self.signal == 0:
-            self.display.Display(self.images.Left)
+            self.display.Display(self.images.Left, self.Fiducials)
         else:
-            self.display.Display(self.images.Right)                      
+            self.display.Display(self.images.Right, self.Fiducials)                      
        
         self.Log.Information("STOP-SIGNAL TESTING DELAY [ Delay: {delay} ]".format(delay = self.algorithm.delay))
 
@@ -167,6 +168,7 @@ class GoSignalTask:
         self.feedbackDelay = tc.StopSignalFeedbackDelay
         
         self.result = tc.Current
+        self.Fiducials = tc.ExperimentalSetup != "JOYSTICK"
             
         self.Log.Information("Go Signal Task Created")
         
@@ -181,9 +183,9 @@ class GoSignalTask:
         self.goSignals.append(self.signal)
         
         if self.signal == 0:
-            self.display.Display(self.images.Left)
+            self.display.Display(self.images.Left, self.Fiducials)
         else:
-            self.display.Display(self.images.Right)                      
+            self.display.Display(self.images.Right, self.Fiducials)                      
        
         return self.responseTimeout
                   

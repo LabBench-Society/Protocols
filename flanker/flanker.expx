@@ -3,38 +3,78 @@
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup>
-        <devices>
-            <display id="display"
-                     active-color="rgb(255,255,255)"
-                     background-color="rgb(0,0,0)"
-                     inactive-color="rgb(32,32,32)"
-                     position="fullscreen"
-                     screen="secondary"
-                     normative-distance="40">
-                
-                <monitor
-                     diagonal-size="53.34"
-                     distance="40" />
-
-                <configurations>
-                    <image-display id="image"
-                                   experimental-setup-id="image"
-                                   background-color="rgb(0,0,0)" />
-                </configurations>
-            </display>
-            <joystick id="button">
-                <map>
-                    <button-assignment code="16" button="left" label="H and K"/>
-                    <button-assignment code="32" button="right" label="S and C"/>
-                </map>
-            </joystick>
-        </devices>
-        <device-mapping>
-            <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
-            <device-assignment instrument-name="Button" device-id="button"/>
-        </device-mapping>
-    </experimental-setup>
+    <experimental-setup-variants default="LIO">
+        <experimental-setup name="Joystick" id="JOYSTICK">
+            <devices>
+                <display id="display"
+                         active-color="rgb(255,255,255)"
+                         background-color="rgb(0,0,0)"
+                         inactive-color="rgb(32,32,32)"
+                         position="fullscreen"
+                         screen="secondary"
+                         normative-distance="40">
+                    
+                    <monitor
+                         diagonal-size="53.34"
+                         distance="40" />
+    
+                    <configurations>
+                        <image-display id="image"
+                                       experimental-setup-id="image"
+                                       background-color="rgb(0,0,0)" />
+                    </configurations>
+                </display>
+                <joystick id="button">
+                    <map>
+                        <button-assignment code="16" button="left" label="H and K"/>
+                        <button-assignment code="32" button="right" label="S and C"/>
+                    </map>
+                </joystick>
+            </devices>
+            <device-mapping>
+                <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
+                <device-assignment instrument-name="Button" device-id="button"/>
+            </device-mapping>
+        </experimental-setup>    
+        <experimental-setup name="LabBench I/O" id="LIO">
+            <devices>
+                <display id="display"
+                    active-color="rgb(255,255,255)"
+                    background-color="rgb(0,0,0)"
+                    inactive-color="rgb(32,32,32)"
+                    position="fullscreen"
+                    screen="secondary"
+                    normative-distance="40"
+                    fiducial-position="upper-right">
+            
+                    <monitor diagonal-size="53.34" distance="40" />
+                    <fiducial size="10" x="17" y="17"/>
+              
+                    <configurations>
+                        <image-display id="image"
+                                       experimental-setup-id="image"
+                                       background-color="rgb(0,0,0)" />
+                    </configurations>
+                </display>
+                <lio id="lio" default-analog-output="0">
+                    <trigger-setup low-byte-voltage-level="unconnected" high-byte-voltage-level="unconnected" logic-system="positive"/>               
+                    <response-devices>
+                       <response-pad id="pad" timing-source="response-port02" type="button-4-cross">
+                          <map>
+                            <button-assignment code="5" button="left" label="H and K"/>
+                            <button-assignment code="6" button="right" label="S and C"/>
+                          </map>
+                       </response-pad>
+                       <visual-trigger id="trigger" timing-source="response-port02"/>
+                       </response-devices>
+                 </lio>
+            </devices>
+            <device-mapping>
+                <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
+                <device-assignment instrument-name="Button" device-id="lio.pad"/>
+            </device-mapping>
+        </experimental-setup>    
+    </experimental-setup-variants>
     <protocol>
         <defines>
             <define name="StimulusRepetitions" value="3"/>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
-   <experimental-setup-variants default="JOYSTICK">
+   <experimental-setup-variants default="LIO">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
@@ -68,9 +68,13 @@
                 position="fullscreen"
                 screen="secondary">
 
-                <monitor
-                    diagonal-size="53.34"
+                <monitor 
+                    diagonal-size="35.5" 
                     distance="40" />
+                <fiducial 
+                    x="17" 
+                    y="17" 
+                    size="10"/>
 
                 <configurations>
                     <image-display
@@ -89,8 +93,8 @@
     <protocol>
         <defines>
             <!-- Stop Signal Game Defines -->
-            <define name="StopSignalTrainingStopSignals" value="1"/> <!-- Intended value 5 -->
-            <define name="StopSignalNumberOfStopSignals" value="2"/> <!-- Intended value: 30 -->
+            <define name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value 5 -->
+            <define name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
             <define name="StopSignalLowDelayLimit" value="50"/>
             <define name="StopSignalHighDelayLimit" value="750"/>
             <define name="StopSignalFixationDelay"  value="500"/>

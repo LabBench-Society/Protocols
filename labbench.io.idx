@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-16"?>
 <index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <item name="labbench.io@alloknesisDemo@alloknesisDemo.expx" checksum="3bfbc2ba575c1676d9639d4fd410ba41" />
   <item name="labbench.io@alloknesisDemo@alloknesisDemo.xps" checksum="e98feadfd27b0699621bc1b3a28e76e5" />
+  <item name="labbench.io@alloknesisDemo@AlloknesisInstructionNRS.png" checksum="ed6be5304c1cc187a5f01f44dc3b4f2e" />
+  <item name="labbench.io@alloknesisDemo@AlloknesisInstructionVAS.png" checksum="424c5c9240a72f715edd6e884f96f2b2" />
+  <item name="labbench.io@alloknesisDemo@operatorAlloknesisInstructionsNRS.rtf" checksum="edbf20282cf2473cac999f368e54e460" />
+  <item name="labbench.io@alloknesisDemo@operatorAlloknesisInstructionsVAS.rtf" checksum="6b3e347ca59fa2a83748c51d40bede5d" />
   <item name="labbench.io@aoddball@aoddball.expx" checksum="d66d6929232bbdc71d8949b77a9427a0" />
   <item name="labbench.io@aoddball@CountingTask.rtf" checksum="f1390735f0f68d991629e353fa71d6ae" />
   <item name="labbench.io@aoddball@ResponseTask.rtf" checksum="7bde75535e49add506278cd22eda2df8" />
   <item name="labbench.io@aoddball@TonePresentation.rtf" checksum="d60a079bf0b3f6f312d9186b427d58dc" />
   <item name="labbench.io@cpardemo@cpardemo.expx" checksum="6a5d432e3184226e7404c4f6797b2cba" />
   <item name="labbench.io@cstscpm3ap@cstscpm3ap.expx" checksum="da4522c8c8fff9f680e51abf997e3ed9" />
-  <item name="labbench.io@ctscpm2ap@ctscpm2ap.expx" checksum="ba3e399bddbb4fd5e84f48864194e953" />
+  <item name="labbench.io@ctscpm2ap@CPAInstructions.zip" checksum="811cf31b4c4bc4a9b68342227790a710" />
+  <item name="labbench.io@ctscpm2ap@ctscpm2ap.expx" checksum="faa8c6c0dc5aeae36cce694f11c9c4c7" />
   <item name="labbench.io@ctscpm3ap@ctscpm3ap.expx" checksum="69ef976d9b79571975c42e3c7ae1f2c5" />
   <item name="labbench.io@ctscpmauto@ctscpmauto.expx" checksum="127a5e65689d1b9e8f244449c2e06790" />
-  <item name="labbench.io@flanker@flanker.expx" checksum="11847fa0722b12574c719e8803a77e0e" />
+  <item name="labbench.io@flanker@flanker.expx" checksum="3490577c38a52da04ca8d4148b5e26ac" />
   <item name="labbench.io@flanker@Instruction.png" checksum="c7db4f25a13c70c5fb406eb240c003fc" />
   <item name="labbench.io@flanker@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
-  <item name="labbench.io@flanker@Script.py" checksum="1f2be919d2dc56c68bb3b77c4b4aeb3b" />
-  <item name="labbench.io@gonogo@gonogo.expx" checksum="4bc023053b2106f31c9f87b95343754e" />
-  <item name="labbench.io@gonogo@images_en.zip" checksum="5d9dbc99574614ffee9561f975286b6c" />
-  <item name="labbench.io@gonogo@Script.py" checksum="3ca315bff259e8f719740c56dfda67f1" />
+  <item name="labbench.io@flanker@Script.py" checksum="143a19625dddfee7f1f24922f356428b" />
   <item name="labbench.io@hyperknesisDemo@hyperknesisDemo.expx" checksum="39d38c8dbe5a583233c44b9f4cd72dd3" />
   <item name="labbench.io@hyperknesisDemo@HyperknesisInstructionNRS.png" checksum="37ee51cfd1773126226c89ab5c4ecef3" />
   <item name="labbench.io@hyperknesisDemo@HyperknesisInstructionVAS.png" checksum="424c5c9240a72f715edd6e884f96f2b2" />
@@ -45,18 +48,23 @@
   <item name="labbench.io@randomization@randomization.expx" checksum="32a797850a33db01c3fc34ae105983ed" />
   <item name="labbench.io@randomization@Script.py" checksum="5c8de03c93f6d4bfe9838641bdbab7cb" />
   <item name="labbench.io@randomization@Sequence.zip" checksum="0e909f54d0fb3deff779888663878d06" />
-  <item name="labbench.io@scCalibration@Images.zip" checksum="d27fb5615e6ece82de69a1ec451eb3dd" />
-  <item name="labbench.io@scCalibration@scCalibration.expx" checksum="1761d365f87ec76b7b8397346c93eb5d" />
-  <item name="labbench.io@scCalibration@Script.py" checksum="4f4afeb02a0ffb0e89c75c975211083d" />
-  <item name="labbench.io@stopsignal@Images.zip" checksum="2639a93bccbc0b312abe316287dba121" />
-  <item name="labbench.io@stopsignal@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
-  <item name="labbench.io@stopsignal@Script.py" checksum="aaa37cdf5b167a6e2672ca034ff3bfe0" />
-  <item name="labbench.io@stopsignal@stopsignal.expx" checksum="dcc6759c4d51644ea4cfad9d7c2ba18d" />
+  <item name="labbench.io@stopsignal@stopsignal.expx" checksum="2987ddba7042ad7c133bad5f583eefbe" />
   <item name="labbench.io@stopsignal@stopsignal.xps" checksum="58d8b5112234ce9d663c3b6510207f3b" />
-  <item name="labbench.io@stroop@Instructions.zip" checksum="40d9b95984bb2bc735ea612d9cb29bd2" />
+  <item name="labbench.io@stopsignal@StopSignalImages.zip" checksum="c1ada32e0e0a2bc9ab931ac9c4d0f5ee" />
+  <item name="labbench.io@stopsignal@StopSignalScript.py" checksum="f903ec770287dfa7642a445569d3b074" />
+  <item name="labbench.io@stopsignalGame@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
+  <item name="labbench.io@stopsignalGame@stopsignalGame.expx" checksum="8a6a42180f9108de097fc0f0b0a5deec" />
+  <item name="labbench.io@stopsignalGame@stopsignalGame.xps" checksum="58d8b5112234ce9d663c3b6510207f3b" />
+  <item name="labbench.io@stopsignalGame@StopSignalGameImages.zip" checksum="628950ea473c49834cd3fe720760fbe7" />
+  <item name="labbench.io@stopsignalGame@StopSignalGameScript.py" checksum="8ea6e3f67759ad9c3c455339ce7092e7" />
   <item name="labbench.io@stroop@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
-  <item name="labbench.io@stroop@Script.py" checksum="e25afd57a20cd548ce4f6078cf0f3b7e" />
-  <item name="labbench.io@stroop@stroop.expx" checksum="6c42cc316096c6eef45b73d964aab44d" />
+  <item name="labbench.io@stroop@stroop.expx" checksum="97c2d5e252ae8b340544eaf3ff86a415" />
+  <item name="labbench.io@stroop@StroopInstructions.zip" checksum="3d9e458c7a5e81add68d52a409c3d8cf" />
+  <item name="labbench.io@stroop@StroopScript.py" checksum="c9aaf31711bc894ddfb3632df7bf246e" />
+  <item name="labbench.io@stroopReverse@Roboto-Regular.ttf" checksum="327362a7c8d487ad3f7970cc8e2aba8d" />
+  <item name="labbench.io@stroopReverse@stroopReverse.expx" checksum="eed99da99eabe0a80702f469b0f1ac7b" />
+  <item name="labbench.io@stroopReverse@StroopReverseInstructions.zip" checksum="937160305ed8fb416685c213f17cc017" />
+  <item name="labbench.io@stroopReverse@StroopReverseScript.py" checksum="cc2339dd1bcb45a11b48a2b7992f35d0" />
   <item name="labbench.io@thrEstimation@Cue01.png" checksum="a8a2baf48e184c733189573235886681" />
   <item name="labbench.io@thrEstimation@Cue02.png" checksum="a0f6d5a4aa33cc23145d4f08734df19a" />
   <item name="labbench.io@thrEstimation@Cue03.png" checksum="2fd976772836135fd56863fb34d75831" />
