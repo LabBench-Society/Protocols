@@ -8,7 +8,7 @@ def StroopNeutralStimulate(tc, x):
         canvas.Color(tc.StroopColors[name[0]])
         canvas.Circle(display.Width/2, display.Height/2, display.Height/8)
 
-        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup == 'LIO')
+        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup != 'JOYSTICK')
         
     return True
 
@@ -24,7 +24,7 @@ def StroopStimulate(tc, x):
         canvas.Color(tc.StroopColors[name[0]])
         canvas.Write(display.Width/2, display.Height/2, tc.StroopWords[name[1]])
 
-        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup == 'LIO')
+        display.Display(canvas, tc.StroopDisplayTime, tc.ExperimentalSetup != 'JOYSTICK')
         
     return True
 
