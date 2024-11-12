@@ -1,59 +1,183 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
-    <subject-validator 
-        regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
-        advice="Must be SXXX or TESTXXX, where X is a digit"/>
-    <experimental-setup>
-        <devices>
-            <display
-                id="display"
-                active-color="rgb(255,255,255)"
-                background-color="rgb(0,0,0)"
-                inactive-color="rgb(32,32,32)"
-                normative-distance="40"
-                position="fullscreen"
-                screen="secondary"
-                fiducial-position="lower-right">
+    <experimental-setup-variants>
+        <experimental-setup id="LabBench PAD (Fiducial: upper-right)">
+            <devices>
+                <display
+                    id="display"
+                    active-color="rgb(255,255,255)"
+                    background-color="rgb(0,0,0)"
+                    inactive-color="rgb(32,32,32)"
+                    normative-distance="40"
+                    position="fullscreen"
+                    screen="secondary"
+                    fiducial-position="upper-right">
+    
+                    <monitor 
+                        diagonal-size="35.5" 
+                        distance="55" />
+                    <fiducial 
+                        x="17" 
+                        y="17" 
+                        size="10"/>
+    
+                    <configurations>
+                        <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
+                    </configurations>
+                </display>
 
-                <monitor diagonal-size="35.5" distance="40" />
-                <fiducial x="17" y="17" size="10"/>
-
-                <configurations>
-                    <image-display 
-                        id="image"
-                        experimental-setup-id="image"
-                        background-color="rgb(0,0,0)" />
-                </configurations>
-            </display>
-        </devices>
-        <device-mapping>
-            <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
-        </device-mapping>        
-    </experimental-setup>
+                <lio id="lio">
+                    <response-devices>
+                        <response-pad id="pad" 
+                            timing-source="response-port01">
+                            <map experimental-setup-id="image">
+                                <button-assignment code="1" button="button-01" label="Button 1" />
+                                <button-assignment code="2" button="button-02" label="Button 2" />
+                                <button-assignment code="3" button="button-03" label="Button 3" />
+                                <button-assignment code="4" button="button-04" label="Button 4" />
+                                <button-assignment code="5" button="previous" label="Previous" />
+                                <button-assignment code="6" button="next" label="Next" />
+                            </map>
+                        </response-pad>
+                        <visual-trigger id="detector" 
+                            arming-period="200" 
+                            timing-source="response-port02"/>
+                    </response-devices>
+                </lio>
+            </devices>
+            <device-mapping>
+                <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
+                <device-assignment device-id="lio.pad" instrument-name="Button" />
+                <device-assignment device-id="lio.detector" instrument-name="TriggerDetector" />
+            </device-mapping>        
+        </experimental-setup>    
+    </experimental-setup-variants>
     <protocol>
         <languages>
             
         </languages>
         <defines>
-            
+            <define name="NumberOfRepetitions" value="10"/>
         </defines>
         <templates>
             
         </templates>
         <tests>
-            <questionnaire id="FIDUCIAL" 
-                name="Verify fiducial"
+            <questionnaire id="SIZE" 
+                name="Screen Size"
                 experimental-setup-id="image"
                 control="operator">
                 <test-events
-                    start="func: Script.Start(tc)">
+                    start="func: Script.StartSize(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
                 </test-events>
                 <properties>
+                    <instructions default="Assets.Images.ScreenSizeInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
-                        default="Assets.Images.Instruction"/>
+                        default="Assets.Images.ScreenSizeInstruction"/>                    
+                </properties>                
+
+                <content>
+                    <numeric id="VALUE"
+                        title="Screen size"
+                        instruction="Please enter the diagonal length (in centimeters) of the screen">
+                        <validation min="0" min-included="true" max="1000" max-included="true"/>
+                    </numeric>
+                </content>            
+            </questionnaire>
+
+            <questionnaire id="POSITION" 
+                name="Screen Position"
+                experimental-setup-id="image"
+                control="operator">
+                <test-events
+                    start="func: Script.StartPosition(tc)">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                </test-events>
+                <properties>
+                    <instructions default="Assets.Images.ScreenPositionInstruction" override-results="true"/>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.ScreenPositionInstruction"/>
+                </properties>                
+
+                <content>
+                    <numeric id="VALUE"
+                        title="Screen position"
+                        instruction="Please enter the distance in centimeters between the subject's eyes and the screen">
+                        <validation min="0" min-included="true" max="1000" max-included="true"/>
+                    </numeric>
+                </content>            
+            </questionnaire>
+
+            <questionnaire id="FIDUCIAL" 
+                name="Fiducial Position"
+                experimental-setup-id="image"
+                control="operator">
+                <test-events
+                    start="func: Script.StartFiducial(tc)">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                </test-events>
+                <properties>
+                    <instructions default="Assets.Images.PositionInstruction" override-results="true"/>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.PositionInstruction"/>
+                </properties>                
+
+                <content>
+                    <numeric id="X"
+                        title="Horizontal Position (X)"
+                        instruction="Please enter the horizontal position in millimeters">
+                        <validation min="0" min-included="true" max="1000" max-included="true"/>
+                    </numeric>
+                    <numeric id="Y"
+                        title="Vertical Position (Y)"
+                        instruction="Please enter the vertical position in millimeters">
+                        <validation min="0" min-included="true" max="1000" max-included="true"/>
+                    </numeric>
+                </content>            
+            </questionnaire>
+
+            <questionnaire id="UPDATE" 
+                name="Update Calibration"
+                experimental-setup-id="image"
+                control="operator">
+                <test-events
+                    start="func: Script.StartUpdate(tc)">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                </test-events>
+                <properties>
+                    <instructions default="Assets.Images.UpdateInstruction" override-results="true"/>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.UpdateInstruction"/>
+                </properties>                
+
+                <content>
+                    <boolean id="VALUE"
+                        title="Update calibration"
+                        instruction="Has the screen calibration been updated in either the EXPX file or LabBench Designer?"
+                        true-label="Yes" 
+                        false-label="No"  />
+                </content>
+            </questionnaire>
+            
+            <questionnaire id="VERIFY" 
+                name="Verify Fiducial"
+                experimental-setup-id="image"
+                control="operator">
+                <test-events
+                    start="func: Script.StartVerify(tc)">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                </test-events>
+                <properties>
+                    <instructions default="Assets.Images.VerifyInstruction" override-results="true"/>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.VerifyInstruction"/>
                 </properties>                
 
                 <content>
@@ -64,6 +188,48 @@
                         false-label="No"  />
                 </content>
             </questionnaire>
+
+            <stimulation-sequence 
+                id="TEST" 
+                name="Trigger Detection Test"
+                response-collection="yes-no"
+                experimental-setup-id="image"
+                stimulus-update-rate="20000">
+                <test-events
+                    complete="func: Script.CheckTriggers(tc)">
+                    <instrument name="TriggerDetector" interface="trigger-detector" />
+                </test-events>
+                <properties>
+                    <instructions 
+                        default="Assets.Images.TestInstruction" 
+                        override-results="true"/>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.TestInstruction"/>
+                </properties>             
+                
+                <stimulation-scripts
+                    initialize="func: Script.Initialize(tc)"
+                    stimulate="func: Script.Stimulate(tc,x)"
+                    stimulus-description="Image"
+                    stimulus-unit="lux">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                    <instrument name="TriggerDetector" interface="trigger-detector" />
+                </stimulation-scripts>
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence>
+                        <sequence Tperiod="2" iterations="NumberOfStimuli * NumberOfRepetitions" />
+                    </sequence>
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus name="S1" />
+                    <stimulus name="S2" />
+                    <stimulus name="S3" />
+                    <stimulus name="S4" />
+                </stimuli>            
+            </stimulation-sequence>
         </tests>
         <assets>
             <file-asset id="Images" file="Images.zip" />
@@ -71,6 +237,28 @@
         </assets>
     </protocol>
     <post-actions>
-        
+        <export-pdf name="Create Calibration Record"
+            location="C:\CalibrationData"
+            filename="dynamic: '{n}.pdf'.format(n = Subject)">
+            <styles>
+            </styles>
+            <content>
+                <header>
+                    <text value="dynamic: Subject"/>
+                </header>
+                <page>
+                    <column>
+                        <text value="Calibration Record:"/>
+                        <text value="dynamic: 'Screen size: {size}cm'.format(size = SIZE.VALUE)"/>
+                        <text value="dynamic: 'Screen position: {position}cm'.format(position = POSITION.VALUE)"/>
+                        <text value="dynamic: 'Fiducial X: {x}mm'.format(x  = FIDUCIAL.X)"/>
+                        <text value="dynamic: 'Fiducial Y: {y}mm'.format(y  = FIDUCIAL.Y)"/>
+                    </column>
+                </page>
+                <footer>
+
+                </footer>
+            </content>
+        </export-pdf>        
     </post-actions>
 </experiment>
