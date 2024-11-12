@@ -71,7 +71,7 @@
 
                 <monitor 
                     diagonal-size="35.5" 
-                    distance="55" />
+                    distance="40" />
                 <fiducial 
                     x="17" 
                     y="17" 
@@ -94,8 +94,8 @@
     <protocol>
         <defines>
             <!-- Defines for the Stop-Signal Task -->
-            <define name="StopSignalTrainingStopSignals" value="4"/> 
-            <define name="StopSignalNumberOfStopSignals" value="5"/> <!-- Intended value: 30 -->
+            <define name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value: 5 -->
+            <define name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
             <define name="StopSignalLowDelayLimit" value="50"/>
             <define name="StopSignalHighDelayLimit" value="750"/>
             <define name="StopSignalFixationDelay"  value="500"/>

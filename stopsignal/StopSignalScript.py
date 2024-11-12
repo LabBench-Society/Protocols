@@ -90,7 +90,7 @@ class StopSignalTask:
         self.feedbackTime = tc.StopSignalFeedbackTime
         self.responseTimeout = tc.StopSignalResponseTimeout
         self.feedbackDelay = tc.StopSignalFeedbackDelay
-        self.Fiducials = False if tc.ExperimentalSetup == "JOYSTICK" else True
+        self.Fiducials = tc.ExperimentalSetup != "JOYSTICK"
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -168,7 +168,7 @@ class GoSignalTask:
         self.feedbackDelay = tc.StopSignalFeedbackDelay
         
         self.result = tc.Current
-        self.Fiducials = False if tc.ExperimentalSetup == "JOYSTICK" else True
+        self.Fiducials = tc.ExperimentalSetup != "JOYSTICK"
             
         self.Log.Information("Go Signal Task Created")
         
