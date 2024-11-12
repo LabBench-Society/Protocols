@@ -44,7 +44,7 @@
             name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
             labbench-version="5.0"
             category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>       
-    </category>
+    </category> 
 
     <category name="Cognitive Tasks" id="cogniCategory">
         <protocol id="stopsignal"
