@@ -200,7 +200,9 @@
                     <instrument name="TriggerDetector" interface="trigger-detector" />
                 </test-events>
                 <properties>
-                    <instructions default="Assets.Images.TestInstruction" override-results="true"/>
+                    <instructions 
+                        default="Assets.Images.TestInstruction" 
+                        override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.TestInstruction"/>
