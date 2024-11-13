@@ -98,7 +98,7 @@
             category="Psychometrics;Demonstration Protocol"/>
     </category>
 
-    <category name="Calivbration" id="Calibration">
+    <category name="Calibration" id="Calibration">
         <protocol id="scCalibration"
             name="Screen and Fiducial Calibration Protocol"
             labbench-version="5.0"
