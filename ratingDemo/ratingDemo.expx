@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+    <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup-variants default="SCALE">
+        <experimental-setup id="LabBench SCALE" name="SCALE">
+            <devices>
+                <lio id="lio">
+                    <response-devices>
+                        <visual-analog-scale 
+                            id="scale"
+                            length="10"
+                            sample-period="200"
+                            timing-source="none">
+                            <anchors>
+                                <modality text=" " />
+                                <top-anchor text="10/Worst Possible Itch" />
+                                <bottom-anchor text="0/No Itch" />
+                            </anchors>
+                            <button-maps>
+                                <map>
+                                    <button-assignment 
+                                        code="1" 
+                                        button="increase" 
+                                        label="Increase"/>
+                                    <button-assignment 
+                                        code="2" 
+                                        button="decrease" 
+                                        label="Decrease"/>
+                                </map>
+                            </button-maps>
+                        </visual-analog-scale>
+                    </response-devices>
+                </lio>
+                <display id="display"
+                    active-color="rgb(0,0,0)"
+                    background-color="rgb(255,255,255)"
+                    inactive-color="rgb(32,32,32)"
+                    position="fullscreen"
+                    screen="secondary"
+                    fiducial-position="upper-right"
+                    normative-distance="40">
+    
+                    <monitor diagonal-size="35.5" distance="40" />
+                    <fiducial x="17" y="17" size="10"/>
+    
+                    <configurations>
+                        <composite-scale 
+                            id="scales"
+                            experimental-setup-id="vas"
+                            controller-device="lio.scale">
+                            <visual-analog-scale 
+                                id="itch"
+                                length="10"
+                                sample-period="200"
+                                timing-source="none">
+                                <anchors>
+                                    <modality text="" />
+                                    <top-anchor text="10/Værst tænkelig kløe" />
+                                    <bottom-anchor text="0/Ingen Kløe" />
+                                </anchors>
+                            </visual-analog-scale>
+                        </composite-scale>
+    
+                        <image-display 
+                            background-color="rgb(255, 255, 255)"
+                            experimental-setup-id="image"
+                            id="image"/>
+    
+                        <questionnaire 
+                            id="survey"
+                            experimental-setup-id="survey"
+                            background-color="rgb(255,255,255)" />
+                    </configurations>
+             </display>
+            </devices>
+            <device-mapping>
+                <device-assignment instrument-name="Scales" device-id="display.scales" />
+                <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
+                <device-assignment device-id="display.survey" instrument-name="Questionnaire" />                
+                <device-assignment instrument-name="RatioScale" device-id="lio.scale" />
+                <device-assignment instrument-name="Button" device-id="lio.scale" />
+            </device-mapping>
+        </experimental-setup>    
+    </experimental-setup-variants>
+    <protocol>
+        <templates>
+            <content>
+                <questionnaire id="itchIntensity"
+                    control="subject"
+                    experimental-setup-id="survey">
+                    <variables>
+                        <strings value="1;2;3" name="Measurements" />
+                    </variables>
+                                         
+                    <templates>
+                        <numerical-scale 
+                            id="nrs"
+                            instruction=" "
+                            minimum="0"
+                            maximum="10"
+                            top-anchor="10/Worst possible itch"
+                            bottom-anchor="0/No itch"                       
+                            active-color="rgb(255, 0, 0)"
+                            inactive-color="rgb(32, 32, 32)"/>
+                    </templates>
+
+                    <content>
+                        <foreach variable="n" in="Measurements">
+                            <numerical-scale 
+                                id="var: 'M{n}'.format(n = n)"
+                                template="nrs"
+                                title="var: 'Measurement {n}'.format(n = n)"/>
+                        </foreach>
+                    </content>
+                </questionnaire>   
+            </content>
+        </templates>
+        <tests>
+        </tests>
+        <assets>
+        </assets>
+    </protocol>
+    <post-actions>
+    </post-actions>
+</experiment>

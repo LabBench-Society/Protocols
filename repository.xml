@@ -25,6 +25,10 @@
             name="Introduction to Image Generation"
             labbench-version="5.0"
             category="Demonstration Protocol"/>
+        <protocol id="ratingDemo"
+            name="Introduction to Psychophysical Rating Scales"
+            labbench-version="5.0"
+            category="Demonstration Protocol"/>
     </category>
 
     <category name="Cuff Pressure Algometry" id="cpaCategory">
