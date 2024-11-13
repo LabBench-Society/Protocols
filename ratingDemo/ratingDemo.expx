@@ -93,7 +93,7 @@
                     <variables>
                         <strings value="1;2;3" name="Measurements" />
                     </variables>
-                                         
+
                     <templates>
                         <numerical-scale 
                             id="nrs"
@@ -118,6 +118,9 @@
             </content>
         </templates>
         <tests>
+            <questionnaire-constructor id="itchIntensity" 
+                name="Itch Intensity" 
+                template="itchIntensity" />
         </tests>
         <assets>
         </assets>
