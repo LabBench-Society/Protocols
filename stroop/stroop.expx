@@ -279,11 +279,10 @@
             <stimulation-sequence-constructor id="STROOPTrial" 
                name="Stroop Task (Trial)"
                template="STROOPTrial"/>
-            
-   
+               
             <stimulation-sequence-constructor id="STROOP" 
-            name="Stroop Task"
-            template="STROOP"/>
+               name="Stroop Task"
+               template="STROOP"/>
         </tests>
         <assets>
             <file-asset id="StroopInstructions" file="StroopInstructions.zip"/>
