@@ -3,36 +3,22 @@
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants default="SCALE">
-        <experimental-setup id="LabBench SCALE" name="SCALE">
+    <experimental-setup-variants default="PAD">
+        <experimental-setup id="LabBench PAD" name="PAD">
             <devices>
                 <lio id="lio">
                     <response-devices>
-                        <visual-analog-scale 
-                            id="scale"
-                            length="10"
-                            sample-period="200"
-                            timing-source="none">
-                            <anchors>
-                                <modality text=" " />
-                                <top-anchor text="10/Worst Possible Itch" />
-                                <bottom-anchor text="0/No Itch" />
-                            </anchors>
-                            <button-maps>
-                                <map>
-                                    <button-assignment 
-                                        code="1" 
-                                        button="increase" 
-                                        label="Increase"/>
-                                    <button-assignment 
-                                        code="2" 
-                                        button="decrease" 
-                                        label="Decrease"/>
-                                </map>
-                            </button-maps>
-                        </visual-analog-scale>
+                        <response-pad id="pad" type="button-4-cross" timing-source="none">
+                            <map>
+                                <button-assignment code="5" button="decrease" />
+                                <button-assignment code="6" button="increase" />
+                                <button-assignment code="3" button="up" />
+                                <button-assignment code="1" button="down" />
+                            </map>
+                        </response-pad>
                     </response-devices>
                 </lio>
+
                 <display id="display"
                     active-color="rgb(0,0,0)"
                     background-color="rgb(255,255,255)"
@@ -46,30 +32,37 @@
                     <fiducial x="17" y="17" size="10"/>
     
                     <configurations>
-                        <composite-scale 
-                            id="scales"
+                        <composite-scale id="scales"
                             experimental-setup-id="vas"
-                            controller-device="lio.scale">
-                            <visual-analog-scale 
-                                id="itch"
+                            controller-device="lio.pad">
+                            <visual-analog-scale id="pain"
                                 length="10"
                                 sample-period="200"
                                 timing-source="none">
                                 <anchors>
-                                    <modality text="" />
-                                    <top-anchor text="10/Værst tænkelig kløe" />
-                                    <bottom-anchor text="0/Ingen Kløe" />
+                                    <modality text="Pain" />
+                                    <top-anchor text="10/Worst possible pain" />
+                                    <bottom-anchor text="0/No pain" />
                                 </anchors>
                             </visual-analog-scale>
+                            <numerical-scale id="nrs"
+                                minimum="0"
+                                maximum="10"
+                                sample-period="200"
+                                timing-source="none">
+                                <anchors>
+                                    <modality text="Pain" />
+                                    <top-anchor text="10/Worst possible pain" />
+                                    <bottom-anchor text="0/No pain" />
+                                </anchors>
+                            </numerical-scale>
                         </composite-scale>
     
-                        <image-display 
+                        <image-display id="image"
                             background-color="rgb(255, 255, 255)"
-                            experimental-setup-id="image"
-                            id="image"/>
+                            experimental-setup-id="image" />
     
-                        <questionnaire 
-                            id="survey"
+                        <questionnaire id="questionnaire"
                             experimental-setup-id="survey"
                             background-color="rgb(255,255,255)" />
                     </configurations>
@@ -79,48 +72,66 @@
                 <device-assignment instrument-name="Scales" device-id="display.scales" />
                 <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
                 <device-assignment device-id="display.survey" instrument-name="Questionnaire" />                
-                <device-assignment instrument-name="RatioScale" device-id="lio.scale" />
-                <device-assignment instrument-name="Button" device-id="lio.scale" />
+                <device-assignment instrument-name="RatioScale" device-id="lio.pad" />
+                <device-assignment instrument-name="Button" device-id="lio.pad" />
             </device-mapping>
         </experimental-setup>    
     </experimental-setup-variants>
     <protocol>
         <templates>
             <content>
-                <questionnaire id="itchIntensity"
+                <questionnaire id="painIntensities"
                     control="subject"
-                    experimental-setup-id="survey">
-                    <variables>
-                        <strings value="1;2;3" name="Measurements" />
-                    </variables>
-
+                    experimental-setup-id="questionnaire">
                     <templates>
-                        <numerical-scale 
-                            id="nrs"
-                            instruction=" "
+                        <categorical-scale id="crs"
+                            title="Pain"
+                            instruction="Please rate your worst pain in the last 24 hours"
+                            top-anchor="Worst possible pain" 
+                            bottom-anchor="No pain" 
+                            active-color="rgb(255,0,0)" 
+                            inactive-color="rgb(32,0,0)">
+                            <category value="None" />
+                            <category value="Mild" />
+                            <category value="Moderate" />
+                            <category value="Strong" />
+                            <category value="Extruciating" />
+                            <category value="Worst Possible" />
+                        </categorical-scale>
+
+                        <numerical-scale id="nrs"
+                            title="Pain"
+                            instruction="Please rate your worst pain in the last 24 hours"
                             minimum="0"
                             maximum="10"
-                            top-anchor="10/Worst possible itch"
-                            bottom-anchor="0/No itch"                       
+                            top-anchor="10/Worst possible pain"
+                            bottom-anchor="0/No pain"                       
                             active-color="rgb(255, 0, 0)"
                             inactive-color="rgb(32, 32, 32)"/>
-                    </templates>
+
+                        <visual-analog-scale id="vas"
+                            title="Pain"
+                            instruction="Please rate your worst pain in the last 24 hours"
+                            length="10"
+                            top-anchor="10/Worst possible pain"
+                            bottom-anchor="0/No pain"                       
+                            active-color="rgb(255, 0, 0)"
+                            inactive-color="rgb(32, 32, 32)"/>
+                </templates>
 
                     <content>
-                        <foreach variable="n" in="Measurements">
-                            <numerical-scale 
-                                id="var: 'M{n}'.format(n = n)"
-                                template="nrs"
-                                title="var: 'Measurement {n}'.format(n = n)"/>
-                        </foreach>
+                        <categorical-scale id="CRS" template="crs"/>
+                        <numerical-scale id="NRS" template="nrs"/>
+                        <numerical-scale id="VAS" template="vas"/>
                     </content>
                 </questionnaire>   
+
             </content>
         </templates>
         <tests>
-            <questionnaire-constructor id="itchIntensity" 
-                name="Itch Intensity" 
-                template="itchIntensity" />
+            <questionnaire-constructor id="Intensities" 
+                name="Pain Intensity" 
+                template="painIntensities" />
         </tests>
         <assets>
         </assets>
