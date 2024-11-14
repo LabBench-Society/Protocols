@@ -33,7 +33,7 @@
     
                     <configurations>
                         <composite-scale id="scales"
-                            experimental-setup-id="vas"
+                            experimental-setup-id="scales"
                             controller-device="lio.pad">
                             <visual-analog-scale id="pain"
                                 length="10"
@@ -117,7 +117,7 @@
                             bottom-anchor="0/No pain"                       
                             active-color="rgb(255, 0, 0)"
                             inactive-color="rgb(32, 32, 32)"/>
-                </templates>
+                    </templates>
 
                     <content>
                         <categorical-scale id="CRS" template="crs"/>
@@ -129,9 +129,13 @@
             </content>
         </templates>
         <tests>
-            <questionnaire-constructor id="Intensities" 
-                name="Pain Intensity" 
-                template="painIntensities" />
+            <questionnaire-constructor id="Intensities" name="Pain Intensity" template="painIntensities" />
+            
+            <psychophysics-response-recording id="recording" 
+                name="Recording"
+                duration="60" 
+                sample-rate="4"
+                experimental-setup-id="scales" />
         </tests>
         <assets>
         </assets>
