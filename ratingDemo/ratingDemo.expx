@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+    <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup-variants default="PAD">
+        <experimental-setup id="LabBench PAD" name="PAD">
+            <devices>
+                <lio id="lio">
+                    <response-devices>
+                        <response-pad id="pad" type="button-4-cross" timing-source="none">
+                            <map>
+                                <button-assignment code="5" button="decrease" />
+                                <button-assignment code="6" button="increase" />
+                                <button-assignment code="3" button="up" />
+                                <button-assignment code="1" button="down" />
+                            </map>
+                        </response-pad>
+                    </response-devices>
+                </lio>
+
+                <display id="display"
+                    active-color="rgb(255,0,0)"
+                    background-color="rgb(255,255,255)"
+                    inactive-color="rgb(32,32,32)"
+                    position="fullscreen"
+                    screen="secondary"
+                    fiducial-position="upper-right"
+                    normative-distance="40">
+    
+                    <monitor diagonal-size="35.5" distance="40" />
+                    <fiducial x="17" y="17" size="10"/>
+    
+                    <configurations>
+                        <composite-scale id="scales"
+                            experimental-setup-id="scales"
+                            controller-device="lio.pad">
+                            <visual-analog-scale id="pain"
+                                length="10"
+                                sample-period="200"
+                                timing-source="none">
+                                <anchors>
+                                    <modality text="Pain" />
+                                    <top-anchor text="10/Worst possible pain" />
+                                    <bottom-anchor text="0/No pain" />
+                                </anchors>
+                            </visual-analog-scale>
+                            <numerical-scale id="nrs"
+                                minimum="0"
+                                maximum="10"
+                                sample-period="200"
+                                timing-source="none">
+                                <anchors>
+                                    <modality text="Pain" />
+                                    <top-anchor text="10/Worst possible pain" />
+                                    <bottom-anchor text="0/No pain" />
+                                </anchors>
+                            </numerical-scale>
+                        </composite-scale>
+    
+                        <image-display id="image"
+                            background-color="rgb(255, 255, 255)"
+                            experimental-setup-id="image" />
+    
+                        <questionnaire id="questionnaire"
+                            experimental-setup-id="questionnaire"
+                            background-color="rgb(255,255,255)" />
+                    </configurations>
+             </display>
+            </devices>
+            <device-mapping>
+                <device-assignment instrument-name="Scales" device-id="display.scales" />
+                <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
+                <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire" />                
+                <device-assignment instrument-name="RatioScale" device-id="lio.pad" />
+                <device-assignment instrument-name="Button" device-id="lio.pad" />
+            </device-mapping>
+        </experimental-setup>    
+        <experimental-setup id="Joystick" name="JOYSTICK">
+            <devices>
+                <joystick id="joystick">
+                    <map>
+                        <button-assignment code="16" button="decrease" />
+                        <button-assignment code="32" button="increase" />
+                        <button-assignment code="1" button="up" />
+                        <button-assignment code="4" button="down" />
+                    </map>
+                </joystick>
+
+                <display id="display"
+                    active-color="rgb(255,0,0)"
+                    background-color="rgb(255,255,255)"
+                    inactive-color="rgb(32,32,32)"
+                    position="fullscreen"
+                    screen="secondary"
+                    fiducial-position="upper-right"
+                    normative-distance="40">
+    
+                    <monitor diagonal-size="35.5" distance="40" />
+                    <fiducial x="17" y="17" size="10"/>
+    
+                    <configurations>
+                        <composite-scale id="scales"
+                            experimental-setup-id="scales"
+                            controller-device="joystick">
+                            <visual-analog-scale id="pain"
+                                length="10"
+                                sample-period="200"
+                                timing-source="none">
+                                <anchors>
+                                    <modality text="Pain" />
+                                    <top-anchor text="10/Worst possible pain" />
+                                    <bottom-anchor text="0/No pain" />
+                                </anchors>
+                            </visual-analog-scale>
+                            <numerical-scale id="nrs"
+                                minimum="0"
+                                maximum="10"
+                                sample-period="200"
+                                timing-source="none">
+                                <anchors>
+                                    <modality text="Pain" />
+                                    <top-anchor text="10/Worst possible pain" />
+                                    <bottom-anchor text="0/No pain" />
+                                </anchors>
+                            </numerical-scale>
+                        </composite-scale>
+    
+                        <image-display id="image"
+                            background-color="rgb(255, 255, 255)"
+                            experimental-setup-id="image" />
+    
+                        <questionnaire id="questionnaire"
+                            experimental-setup-id="questionnaire"
+                            background-color="rgb(255,255,255)" />
+                    </configurations>
+             </display>
+            </devices>
+            <device-mapping>
+                <device-assignment instrument-name="Scales" device-id="display.scales" />
+                <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
+                <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire" />                
+                <device-assignment instrument-name="RatioScale" device-id="joystick" />
+                <device-assignment instrument-name="Button" device-id="joystick" />
+            </device-mapping>
+        </experimental-setup>    
+    </experimental-setup-variants>
+    <protocol>
+        <templates>
+            <content>
+                <questionnaire id="painIntensities"
+                    control="subject"
+                    experimental-setup-id="questionnaire">
+                    <templates>
+                        <categorical-scale id="crs"
+                            title="Pain"
+                            instruction="Please rate your worst pain in the last 24 hours"
+                            top-anchor="Worst possible pain" 
+                            bottom-anchor="No pain" 
+                            active-color="rgb(255,0,0)" 
+                            inactive-color="rgb(32,0,0)">
+                            <category value="None" />
+                            <category value="Mild" />
+                            <category value="Moderate" />
+                            <category value="Strong" />
+                            <category value="Extruciating" />
+                            <category value="Worst Possible" />
+                        </categorical-scale>
+
+                        <numerical-scale id="nrs"
+                            title="Pain"
+                            instruction="Please rate your worst pain in the last 24 hours"
+                            minimum="0"
+                            maximum="10"
+                            top-anchor="10/Worst possible pain"
+                            bottom-anchor="0/No pain"                       
+                            active-color="rgb(255, 0, 0)"
+                            inactive-color="rgb(32, 32, 32)"/>
+
+                        <visual-analog-scale id="vas"
+                            title="Pain"
+                            instruction="Please rate your worst pain in the last 24 hours"
+                            length="10"
+                            top-anchor="10/Worst possible pain"
+                            bottom-anchor="0/No pain"                       
+                            active-color="rgb(255, 0, 0)"
+                            inactive-color="rgb(32, 32, 32)"/>
+                    </templates>
+
+                    <content>
+                        <categorical-scale id="CRS" template="crs"/>
+                        <numerical-scale id="NRS" template="nrs"/>
+                        <visual-analog-scale id="VAS" template="vas"/>
+                    </content>
+                </questionnaire>   
+
+            </content>
+        </templates>
+        <tests>
+            <questionnaire-constructor id="Intensities" name="Pain Intensity" template="painIntensities" />
+            
+            <psychophysics-response-recording id="recording" 
+                name="Recording"
+                duration="60" 
+                sample-rate="4"
+                experimental-setup-id="scales" />
+        </tests>
+        <assets>
+        </assets>
+    </protocol>
+    <post-actions>
+    </post-actions>
+</experiment>
