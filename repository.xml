@@ -71,16 +71,13 @@
             name="Flanker Task"
             labbench-version="5.0"
             category="Cognitive Task"/>
-
-        <!-- 
-        <protocol id="gonogo"
-            name="Go/Nogo Task"
-            labbench-version="5.0"
-            category="Cognitive Task"/>        
-        -->
     </category>
 
     <category name="Electroencephalography" id="eegCategory">
+        <protocol id="stroopReverseEEG"
+            name="Reverse Stroop Task (Electroencephalography)"
+            labbench-version="5.0"
+            category="Cognitive Task"/>
         <protocol id="aoddball"
             name="Oddball Task (Auditory)"
             labbench-version="5.0"
