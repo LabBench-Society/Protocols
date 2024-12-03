@@ -56,7 +56,7 @@
             labbench-version="5.0"
             category="Cognitive Task"/>      
         <protocol id="stopsignalGame"
-            name="Stop Signal Task (Reward/Punishment)"
+            name="Stop Signal Game"
             labbench-version="5.0"
             category="Cognitive Task"/>      
         <protocol id="stroop"
@@ -74,10 +74,14 @@
     </category>
 
     <category name="Electroencephalography" id="eegCategory">
+        <protocol id="stroopEEG"
+            name="Stroop Task (Electroencephalography)"
+            labbench-version="5.0"
+            category="Cognitive Task;EEG"/>
         <protocol id="stroopReverseEEG"
             name="Reverse Stroop Task (Electroencephalography)"
             labbench-version="5.0"
-            category="Cognitive Task"/>
+            category="Cognitive Task;EEG"/>
         <protocol id="aoddball"
             name="Oddball Task (Auditory)"
             labbench-version="5.0"
