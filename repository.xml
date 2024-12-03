@@ -74,6 +74,10 @@
     </category>
 
     <category name="Electroencephalography" id="eegCategory">
+        <protocol id="stopsignalEEG"
+            name="Stop Signal Task (Electroencephalography)"
+            labbench-version="5.0"
+            category="Cognitive Task;EEG"/>      
         <protocol id="stroopEEG"
             name="Stroop Task (Electroencephalography)"
             labbench-version="5.0"
