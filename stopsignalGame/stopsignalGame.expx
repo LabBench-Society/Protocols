@@ -177,13 +177,8 @@
             </content>
         </templates>
         <tests>
-            <stimulation-sequence-constructor id="StopSignalTraining" 
-                name="Stop Signal Task (Training Task)"
-                template="StopSignalTraining"/>
-
-            <stimulation-sequence-constructor id="StopSignalGame" 
-                name="Stop Signal Game"
-                template="StopSignalGame"/>
+            <stimulation-sequence-constructor id="StopSignalTraining" name="Stop Signal Task (Training Task)" template="StopSignalTraining"/>
+            <stimulation-sequence-constructor id="StopSignalGame" name="Stop Signal Game" template="StopSignalGame"/>
         </tests>
         <assets>
             <file-asset id="StopSignalGameImages" file="StopSignalGameImages.zip" />
