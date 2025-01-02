@@ -328,7 +328,6 @@ def DisplayScore(tc):
         canvas.Write(tc.DisplayWidth/2, tc.DisplayHeight/2, "Final Score: {points} points".format(points = int(tc.Current.Annotations.score)))
         return canvas.GetAsset()
 
-
 def Stimulate(tc, x):   
     display = tc.Instruments.ImageDisplay
     
