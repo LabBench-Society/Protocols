@@ -240,17 +240,17 @@ class TaskFeedback:
 
 class GameFeedback:
     def __init__(self, tc):
-        self.images = tc.Assets.StopSignalGameImages
         self.tc = tc
+
+        self.images = tc.Assets.StopSignalGameImages
         self.display = tc.Instruments.ImageDisplay
+
         self.score = 0
-        self.levels = []
-        self.level = 1
+        self.accumulated = 0
         self.result = tc.Current
 
     def Complete(self):
         self.result.Annotations.SetInteger("score", int(self.score))
-        self.result.Annotations.SetIntegers("levels", self.levels)
 
     def GoFeedback(self, answer, time):        
         display = self.display
@@ -262,22 +262,22 @@ class GameFeedback:
             distance = display.Height/14
 
             if answer:
-                levelIncease = math.ceil((self.tc.StopSignalResponseTimeout - time)/10)
-                levelIncease = levelIncease if levelIncease > 0 else 1
-                self.score = int(self.score + self.level)
-                self.level = int(self.level + levelIncease)
+                score = math.ceil((self.tc.StopSignalResponseTimeout - time)/10)
+                score = score if score > 0 else 1
+                self.score = int(self.score + score)
+                self.accumulated = int(self.accumulated + score)
                 canvas.Color("#00FF00")
                 canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "{score} points".format(score = self.score))
+                canvas.Write(display.Width/2, display.Height/2 + distance, "+{score} points".format(score = score))
             else:
                 canvas.Color("#FF0000")
                 canvas.Write(display.Width/2 , display.Height/2, "YOU LOOSE")
 
-            self.levels.append(self.level)
             self.display.Display(canvas)
 
     def StopFeedback(self, answer):
         display = self.display
+
         with self.tc.Image.GetCanvas(self.display) as canvas:
             canvas.AlignCenter()
             canvas.AlignMiddle()
@@ -287,19 +287,19 @@ class GameFeedback:
 
             if answer:
                 canvas.Color("#00FF00")
-                canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU WIN")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
+                canvas.Write(display.Width/2 , display.Height/2, "YOU WIN")
             else:
                 self.level = 1
                 canvas.Color("#FF0000")
                 canvas.Write(display.Width/2 , display.Height/2 - distance, "YOU LOOSE")
-                canvas.Write(display.Width/2, display.Height/2 + distance, "Level: {level}".format(level = self.level))
+                canvas.Write(display.Width/2, display.Height/2 + distance, "-{score} points".format(score = self.accumulated))
+                self.score = self.score - self.accumulated # Penalty for loosing
 
-            self.levels.append(self.level)
+            self.accumulated = 0
             self.display.Display(canvas)
 
-def UpDownInitialize(tc):
-    feedback = TaskFeedback(tc)
+def UpDownGameInitialize(tc):
+    feedback = GameFeedback(tc)
     tc.Defines.Set("Feedback", feedback)
     tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150), feedback))
     tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
