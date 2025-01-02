@@ -218,26 +218,6 @@ class GoSignalTask:
 
         return self.feedbackTime
  
-class TaskFeedback:
-    def __init__(self, tc):
-        self.images = tc.Assets.StopSignalGameImages
-        self.display = tc.Instruments.ImageDisplay
-
-    def Complete(self):
-        pass
-
-    def GoFeedback(self, answer, time):
-        if answer:
-            self.display.Display(self.images.Correct)
-        else:
-            self.display.Display(self.images.Wrong)
-
-    def StopFeedback(self, answer):
-        if answer:
-            self.display.Display(self.images.Correct)
-        else:
-            self.display.Display(self.images.Wrong)
-
 class GameFeedback:
     def __init__(self, tc):
         self.tc = tc
