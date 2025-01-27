@@ -5,27 +5,27 @@
             name="LabBench Protocol Repository">
 
     <category name="Getting Started" id="intro">
-        <protocol id="introdemo"
+        <protocol id="intro.labbench"
             name="Introduction to LabBench"
             labbench-version="5.0"
             category="Psychometrics;Demonstration Protocol"/>
-        <protocol id="thrEstimation"
+        <protocol id="intro.thrEstimation"
             name="Introduction to Estimation of Thresholds and Psychometric Functions"
             labbench-version="5.0"
             category="Thresholds;Psychopmetric Functions;Demonstration Protocol"/>
-        <protocol id="randomization"
+        <protocol id="intro.randomization"
             name="Introduction to Randomization and Templating"
             labbench-version="5.0"
             category="Randomization;Templating;Demonstration Protocol"/>
-        <protocol id="cpardemo"
+        <protocol id="intro.cpar"
             name="Introduction to Cuff Pressure Algometry"
             labbench-version="5.0"
             category="Pressure Algometry;Demonstration Protocol"/>
-        <protocol id="imageGeneration"
+        <protocol id="intro.imageGeneration"
             name="Introduction to Image Generation"
             labbench-version="5.0"
             category="Demonstration Protocol"/>
-        <protocol id="ratingDemo"
+        <protocol id="intro.ratings"
             name="Introduction to Psychophysical Rating Scales"
             labbench-version="5.0"
             category="Demonstration Protocol"/>
@@ -53,26 +53,32 @@
     </category> 
 
     <category name="Cognitive Tasks" id="cogniCategory">
-        <protocol id="stopsignal"
-            name="Stop Signal Task"
-            labbench-version="5.0"
-            category="Cognitive Task"/>      
-        <protocol id="stopsignalGame"
-            name="Stop Signal Game"
-            labbench-version="5.0"
-            category="Cognitive Task"/>      
-        <protocol id="stroop"
-            name="Stroop Task"
-            labbench-version="5.0"
-            category="Cognitive Task"/>
-        <protocol id="stroopReverse"
-            name="Reverse Stroop Task"
-            labbench-version="5.0"
-            category="Cognitive Task"/>
-        <protocol id="flanker"
-            name="Flanker Task"
-            labbench-version="5.0"
-            category="Cognitive Task"/>
+        <category name="Stop Signal Tasks" id="cogni.sst">
+            <protocol id="cogni.sst.task"
+                name="Stop Signal Task"
+                labbench-version="5.0"
+                category="Cognitive Task"/>      
+            <protocol id="cogni.sst.game"
+                name="Stop Signal Game"
+                labbench-version="5.0"
+                category="Cognitive Task"/>              
+        </category>
+        <category name="Stroop Tasks" id="cogni.stroop">
+            <protocol id="cogni.stroop.task"
+                name="Stroop Task"
+                labbench-version="5.0"
+                category="Cognitive Task"/>
+            <protocol id="cogni.stroop.reverse"
+                name="Reverse Stroop Task"
+                labbench-version="5.0"
+                category="Cognitive Task"/>
+        </category>
+        <category name="Flanker Tasks" id="cogni.flanker">
+            <protocol id="cogni.flanker.task"
+                name="Flanker Task"
+                labbench-version="5.0"
+                category="Cognitive Task"/>
+        </category>
     </category>
 
     <category name="Electroencephalography" id="eegCategory">
