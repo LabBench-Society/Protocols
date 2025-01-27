@@ -155,4 +155,42 @@
         <assets>
         </assets>
     </protocol>
+    <post-actions>
+        <export-to-csv name="Exporting session"
+                       location="C:\LabBenchData\cpa"
+                       header="true"
+                       separator=";"
+                       culture="en"                       
+                       filename="dynamic: '{s}.csv'.format(s = Subject)">
+
+            <item name="ProtocolID"  value="SR01.ProtocolID"        default="NA" />
+            <item name="MachineName" value="SR01.MachineID"         default="NA" />
+            <item name="OS"          value="SR01.OperatingSystem"   default="NA" />
+            <item name="Instrument"  value="SR01.Instruments[0].ID" default="NA" />
+
+            <!-- Stimulus-Response (Cuff 1) -->
+            <item name="SR01PDT" value="SR01.PDT" default="NA"/>
+            <item name="SR02PTT" value="SR01.PTT" default="NA"/>
+
+            <!-- Stimulus-Response (Cuff 2) -->
+            <item name="SR02PDT" value="SR02.PDT" default="NA"/>
+            <item name="SR02PTT" value="SR02.PTT" default="NA"/>
+
+            <!-- Temporal Summation (Cuff 1) -->
+            <item name="TS01" value="TS.Responses[0]" default="NA"/>
+            <item name="TS02" value="TS.Responses[1]" default="NA"/>
+            <item name="TS03" value="TS.Responses[2]" default="NA"/>
+            <item name="TS04" value="TS.Responses[3]" default="NA"/>
+            <item name="TS05" value="TS.Responses[4]" default="NA"/>
+            <item name="TS06" value="TS.Responses[5]" default="NA"/>
+            <item name="TS07" value="TS.Responses[6]" default="NA"/>
+            <item name="TS08" value="TS.Responses[7]" default="NA"/>
+            <item name="TS09" value="TS.Responses[8]" default="NA"/>
+            <item name="TS10" value="TS.Responses[9]" default="NA"/>
+
+            <!-- CPM (Cuff 1) -->
+            <item name="CPMPDT" value="CPM.PDT" default="NA"/>
+            <item name="CPMPTT" value="CPM.PTT" default="NA"/>
+        </export-to-csv>
+    </post-actions>    
 </experiment>
