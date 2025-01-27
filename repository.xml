@@ -44,12 +44,6 @@
             name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
             labbench-version="5.0"
             category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>            
-        <!-- 
-        <protocol id="cpa.stscpm3ap"
-            name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
-            labbench-version="5.0"
-            category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>       
-        --> 
     </category> 
 
     <category name="Cognitive Tasks" id="cogniCategory">
@@ -81,44 +75,44 @@
         </category>
     </category>
 
-    <category name="Electroencephalography" id="eegCategory">
-        <protocol id="stopsignalEEG"
+    <category name="Electroencephalography" id="eeg">
+        <protocol id="eeg.stopsignal"
             name="Stop Signal Task (Electroencephalography)"
             labbench-version="5.0"
             category="Cognitive Task;EEG"/>      
-        <protocol id="stroopEEG"
+        <protocol id="eeg.stroop"
             name="Stroop Task (Electroencephalography)"
             labbench-version="5.0"
             category="Cognitive Task;EEG"/>
-        <protocol id="stroopReverseEEG"
+        <protocol id="eeg.stroopReverse"
             name="Reverse Stroop Task (Electroencephalography)"
             labbench-version="5.0"
             category="Cognitive Task;EEG"/>
-        <protocol id="aoddball"
+        <protocol id="eeg.aoddball"
             name="Oddball Task (Auditory)"
             labbench-version="5.0"
             category="EEG" />
-        <protocol id="voddball"
+        <protocol id="eeg.voddball"
             name="Oddball Task (Visual)"
             labbench-version="5.0"
             category="EEG" />    
     </category>
 
-    <category name="Itch Assessment" id="itchCategory">
-        <protocol id="hyperknesisDemo"
+    <category name="Itch Assessment" id="itch">
+        <protocol id="itch.hyperknesis"
             name="Hyperknesis"
             labbench-version="5.0"
             category="Psychometrics;Demonstration Protocol"/>
-        <protocol id="alloknesisDemo"
+        <protocol id="itch.alloknesis"
             name="Alloknesis"
             labbench-version="5.0"
             category="Psychometrics;Demonstration Protocol"/>
     </category>
 
-    <category name="Calibration" id="Calibration">
-        <protocol id="scCalibration"
+    <category name="Calibration" id="calibration">
+        <protocol id="calibration.screenFiducial"
             name="Screen and Fiducial Calibration Protocol"
             labbench-version="5.0"
-            category="Visual Stimuli;Validation Protocol"/>
+            category="Visual Stimuli;Calibration Protocol"/>
     </category>
 </repository>
