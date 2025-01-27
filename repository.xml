@@ -4,7 +4,7 @@
             id="labbench.io"
             name="LabBench Protocol Repository">
 
-    <category name="Introductions" id="introductionsCategory">
+    <category name="Getting Started" id="intro">
         <protocol id="introdemo"
             name="Introduction to LabBench"
             labbench-version="5.0"
@@ -31,23 +31,25 @@
             category="Demonstration Protocol"/>
     </category>
 
-    <category name="Cuff Pressure Algometry" id="cpaCategory">
-        <protocol id="ctscpm2ap"
+    <category name="Cuff Pressure Algometry" id="cpa">
+        <protocol id="cpa.tscpm2ap"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
             labbench-version="5.0"
             category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
-        <protocol id="ctscpm3ap"
+        <protocol id="cpa.tscpm3ap"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
             labbench-version="5.0"
             category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
-        <protocol id="ctscpmauto"
+        <protocol id="cpa.tscpm.validation"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
             labbench-version="5.0"
-            category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>             
-        <protocol id="cstscpm3ap"
+            category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>            
+        <!-- 
+        <protocol id="cpa.stscpm3ap"
             name="Spatial, Temporal Summation and Conditioned Pain Modulation Protocol (3AP)"
             labbench-version="5.0"
             category="Pressure Algometry;Spatial Summation;Temporal Summation;Conditioned Pain Modulation"/>       
+        --> 
     </category> 
 
     <category name="Cognitive Tasks" id="cogniCategory">
