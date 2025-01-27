@@ -40,7 +40,7 @@
             name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
             labbench-version="5.0"
             category="Pressure Algometry;Temporal Summation;Conditioned Pain Modulation"/>
-        <protocol id="cpa.tscpm.validation"
+        <protocol id="cpa.tscpmValidation"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
             labbench-version="5.0"
             category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>            
