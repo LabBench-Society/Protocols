@@ -32,6 +32,10 @@
     </category>
 
     <category name="Cuff Pressure Algometry" id="cpa">
+        <protocol id="cpa.cpm2ap"
+            name="Conditioned Pain Modulation Protocol (2AP)" 
+            labbench-version="5.0"
+            category="Pressure Algometry;Conditioned Pain Modulation"/>
         <protocol id="cpa.tscpm2ap"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
             labbench-version="5.0"
