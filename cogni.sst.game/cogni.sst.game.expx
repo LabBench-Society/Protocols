@@ -104,7 +104,7 @@
             <define name="StopSignalBetaX1" value="2"/> <!--  Old value: 1.2041 -->
             <define name="StopSignalBetaN" value="50"/>
             <define name="StopSignalIntensityX0" value="0.0"/>
-            <define name="StopSignalIntensityN" value="50"/>
+            <define name="StopSignalIntensityN" value="15"/>
             <define name="StopSignalConfidenceLevel" value="0.95"/>
         </defines>
         <templates>
