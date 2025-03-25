@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
-   <experimental-setup-variants default="LIO">
+   <experimental-setup-variants default="JOYSTICK">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
@@ -117,7 +117,7 @@
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
-                            default="Assets.StopSignalGameImages.TaskInstructions" 
+                            default="Assets.StopSignalGameImages.Instructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
@@ -148,7 +148,7 @@
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
-                            default="Assets.StopSignalGameImages.GameInstructions" 
+                            default="Assets.StopSignalGameImages.Instructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
