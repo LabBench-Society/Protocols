@@ -92,10 +92,12 @@
             name="Reverse Stroop Task (Electroencephalography)"
             labbench-version="5.0"
             category="Cognitive Task;EEG"/>
-        <protocol id="eeg.aoddball"
+        <!-- 
+            <protocol id="eeg.aoddball"
             name="Oddball Task (Auditory)"
             labbench-version="5.0"
             category="EEG" />
+        -->
         <protocol id="eeg.voddball"
             name="Oddball Task (Visual)"
             labbench-version="5.0"

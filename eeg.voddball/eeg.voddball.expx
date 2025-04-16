@@ -12,8 +12,8 @@
 
                 <trigger-setup
                     logic-system="positive"
-                    low-byte-voltage-level="unconnected"
-                    high-byte-voltage-level="unconnected" />
+                    low-byte-voltage-level="5.0V"
+                    high-byte-voltage-level="5.0V" />
                     
                 <response-devices>
                     <visual-trigger id="trigger"
@@ -80,10 +80,6 @@
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
 
-                <test-events selected="func: Script.ResponseInstructions(tc)">
-                    <instrument name="ImageDisplay" interface="image-display"/>
-                </test-events>
-
                 <properties>
                     <instructions default="Assets.ResponseTask" override-results="true"/>
                     <subject-instructions experimental-setup-id="image" default="Assets.Images.responseTask" />
@@ -97,8 +93,7 @@
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
-                    <instrument name="Display"
-                                interface="image-display"/>
+                    <instrument name="ImageDisplay" interface="image-display"/>
                 </stimulation-scripts>                
 
                 <stimulation-pattern time-base="seconds">
@@ -144,10 +139,6 @@
                 response-collection="none"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
-
-                <test-events selected="func: Script.CountingInstructions(tc)">
-                    <instrument name="ImageDisplay" interface="image-display"/>
-                </test-events>
 
                 <properties>
                     <instructions default="Assets.CountingTask" override-results="true"/>
