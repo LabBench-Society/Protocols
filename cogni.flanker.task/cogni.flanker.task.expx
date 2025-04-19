@@ -93,8 +93,6 @@
                 response-collection="yes-no"
                 stimulus-update-rate="10000">
 
-                <test-events complete="func: FlankerScript.Evaluate(tc)" />
-
                 <properties>
                     <subject-instructions experimental-setup-id="image" 
                         default="Assets.FlankerInstruction.Joystick if ExperimentalSetup == 'JOYSTICK' else Assets.FlankerInstruction.LIO"/>
