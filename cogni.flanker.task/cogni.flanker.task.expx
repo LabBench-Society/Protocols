@@ -26,8 +26,8 @@
                 </display>
                 <joystick id="button">
                     <map>
-                        <button-assignment code="16" button="left" label="H and K"/>
-                        <button-assignment code="32" button="right" label="S and C"/>
+                        <button-assignment code="80" button="right" label="S and C"/>
+                        <button-assignment code="160" button="left" label="H and K"/>
                     </map>
                 </joystick>
             </devices>
@@ -65,8 +65,8 @@
                     <response-devices>
                         <response-pad id="pad" timing-source="response-port02" type="button-4-cross">
                             <map>
-                            <button-assignment code="5" button="left" label="H and K"/>
-                            <button-assignment code="6" button="right" label="S and C"/>
+                                <button-assignment code="5" button="right" label="S and C"/>
+                                <button-assignment code="6" button="left" label="H and K"/>
                             </map>
                         </response-pad>
                         <visual-trigger id="trigger" timing-source="response-port02"/>
@@ -96,7 +96,8 @@
                 <test-events complete="func: FlankerScript.Evaluate(tc)" />
 
                 <properties>
-                    <subject-instructions experimental-setup-id="image" default="Assets.FlankerInstruction"/>
+                    <subject-instructions experimental-setup-id="image" 
+                        default="Assets.FlankerInstruction.Joystick if ExperimentalSetup == 'JOYSTICK' else Assets.FlankerInstruction.LIO"/>
                 </properties>
                 
                 <stimulation-scripts initialize="True"
@@ -139,7 +140,7 @@
         <assets>
             <file-asset id="FlankerScript" file="FlankerScript.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf" />
-            <file-asset id="FlankerInstruction" file="FlankerInstruction.png"/>
+            <file-asset id="FlankerInstruction" file="FlankerInstruction.zip"/>
         </assets>
     </protocol>    
     <post-actions>
