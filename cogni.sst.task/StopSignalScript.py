@@ -143,17 +143,7 @@ class GoSignalTask:
         if button == self.Buttons.NoResponse:
             self.answer.append(False)
         else:         
-            if self.signal == 0: # Left
-                if button == self.Buttons.Left: # Correct
-                    self.answer.append(True)
-                else: # wrong
-                    self.answer.append(False)
-                    
-            else: # Right
-                if button == self.Buttons.Right: # Correct
-                    self.answer.append(True)
-                else: # wrong
-                    self.answer.append(False)
+            self.answer.append(button == self.Buttons.Left if self.signal == 0 else button == self.Buttons.Right)
                         
         self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 

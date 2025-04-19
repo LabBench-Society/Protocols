@@ -87,8 +87,8 @@
     <protocol>
         <defines>
             <!-- Stop Signal Game Defines -->
-            <define name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value 5 -->
-            <define name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
+            <define name="StopSignalTrainingStopSignals" value="2"/> <!-- Intended value 5 -->
+            <define name="StopSignalNumberOfStopSignals" value="2"/> <!-- Intended value: 30 -->
             <define name="StopSignalLowDelayLimit" value="50"/>
             <define name="StopSignalHighDelayLimit" value="750"/>
             <define name="StopSignalFixationDelay"  value="500"/>
@@ -97,15 +97,8 @@
             <define name="StopSignalFeedbackTime" value="1000"/>
             <define name="StopSignalPause" value="1000"/>
             <define name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
-            <define name="StopSignalTrials" value="30"/>
-            <define name="StopSignalAlphaX0" value="0.0"/>
-            <define name="StopSignalAlphaN" value="200"/>
-            <define name="StopSignalBetaX0" value="-2"/> <!--  Old value: -1.2041 -->
-            <define name="StopSignalBetaX1" value="2"/> <!--  Old value: 1.2041 -->
-            <define name="StopSignalBetaN" value="50"/>
-            <define name="StopSignalIntensityX0" value="0.0"/>
-            <define name="StopSignalIntensityN" value="15"/>
-            <define name="StopSignalConfidenceLevel" value="0.95"/>
+
+            <define name="CognitiveTask" value="func: StopSignalGameScript.CreateTask(tc)"/>
         </defines>
         <templates>
             <content>
@@ -113,7 +106,7 @@
                     experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
-                    <test-events complete="func: StopSignalGameScript.Complete(tc)" />
+                    <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
@@ -121,8 +114,8 @@
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalGameScript.UpDownGameInitialize(tc)"
-                                        stimulate="func: StopSignalGameScript.Stimulate(tc,x)"
+                    <stimulation-scripts initialize="CognitiveTask.UpDownGameInitialize(100, 150)"
+                                        stimulate="CognitiveTask.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
@@ -144,7 +137,7 @@
                     response-collection="none"
                     stimulus-update-rate="44100">
 
-                    <test-events complete="func: StopSignalGameScript.Complete(tc)" />
+                    <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
@@ -152,8 +145,8 @@
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalGameScript.PsiGameInitialize(tc)"
-                                        stimulate="func: StopSignalGameScript.Stimulate(tc,x)"
+                    <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTaskTraining.Annotations.sstLastStopSignalDelay)"
+                                        stimulate="CognitiveTask.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
