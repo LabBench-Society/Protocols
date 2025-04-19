@@ -3,7 +3,7 @@
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants default="LIO">
+    <experimental-setup-variants default="JOYSTICK">
         <experimental-setup name="Joystick" id="JOYSTICK">
             <devices>
                 <display id="display"
@@ -83,7 +83,7 @@
         <defines>
             <define name="StimulusRepetitions" value="3"/>
             <define name="DisplayTime" value="1000"/>
-            <define name="Stimuli" value="func: Script.GetImages(tc)"/>
+            <define name="Images" value="func: FlankerScript.GetImages(tc)"/>
         </defines>
         <tests>
             <stimulation-sequence 
@@ -93,14 +93,14 @@
                 response-collection="yes-no"
                 stimulus-update-rate="10000">
 
-                <test-events complete="func: Script.Evaluate(tc)" />
+                <test-events complete="func: FlankerScript.Evaluate(tc)" />
 
                 <properties>
-                    <subject-instructions experimental-setup-id="image" default="Assets.Instruction"/>
+                    <subject-instructions experimental-setup-id="image" default="Assets.FlankerInstruction"/>
                 </properties>
                 
                 <stimulation-scripts initialize="True"
-                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulate="func: FlankerScript.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
                     <instrument name="ImageDisplay"
@@ -137,9 +137,9 @@
             </stimulation-sequence>        
         </tests>
         <assets>
-            <file-asset id="Script" file="Script.py" />
+            <file-asset id="FlankerScript" file="FlankerScript.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf" />
-            <file-asset id="Instruction" file="Instruction.png"/>
+            <file-asset id="FlankerInstruction" file="FlankerInstruction.png"/>
         </assets>
     </protocol>    
     <post-actions>

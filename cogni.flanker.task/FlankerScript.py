@@ -26,7 +26,7 @@ def GetImages(tc):
     }
     
 def Stimulate(tc, x):
-    tc.Instruments.ImageDisplay.Display(tc.Stimuli[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")       
+    tc.Instruments.ImageDisplay.Display(tc.Images[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")       
     return True
 
 def IsCorrect(tc, result):
