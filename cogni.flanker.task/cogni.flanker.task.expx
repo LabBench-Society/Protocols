@@ -26,8 +26,8 @@
                 </display>
                 <joystick id="button">
                     <map>
-                        <button-assignment code="80" button="right" label="S and C"/>
-                        <button-assignment code="160" button="left" label="H and K"/>
+                        <button-assignment code="80" button="left" label="H and K"/>
+                        <button-assignment code="160" button="right" label="S and C"/>
                     </map>
                 </joystick>
             </devices>
@@ -65,8 +65,8 @@
                     <response-devices>
                         <response-pad id="pad" timing-source="response-port02" type="button-4-cross">
                             <map>
-                                <button-assignment code="5" button="right" label="S and C"/>
-                                <button-assignment code="6" button="left" label="H and K"/>
+                                <button-assignment code="5" button="left" label="H and K"/>
+                                <button-assignment code="6" button="right" label="S and C"/>
                             </map>
                         </response-pad>
                         <visual-trigger id="trigger" timing-source="response-port02"/>

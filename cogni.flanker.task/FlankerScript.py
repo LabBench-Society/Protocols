@@ -34,5 +34,7 @@ def IsCorrect(tc, result):
     return result.Response == tc.Response.Buttons.Left if name[0] == 'H' or name[0] == 'K' else result.Response == tc.Response.Buttons.Right
     
 def Evaluate(tc):
-    tc.Current.Annotations.SetBools("correct", [IsCorrect(tc, s) for s in tc.Current.Stimulations])    
+    correct = [IsCorrect(tc, s) for s in tc.Current.Stimulations]
+    tc.Current.Annotations.SetBools("correct", correct)    
+    tc.Log.Information("Correct {correct}", correct)
     return True
