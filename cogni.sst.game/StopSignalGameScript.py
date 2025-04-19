@@ -238,17 +238,17 @@ class CognitiveTask:
         
         if tc.StimulusName == "STOP":
             display.Run(display.Sequence(self.StopTask)
-                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
+                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFixationDelay)
                         .Run(lambda task: task.Go())
                         .Run(lambda task: task.Stop())
-                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
+                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFeedbackDelay)
                         .Run(lambda task: task.Feedback()))
             
         elif tc.StimulusName == "GO":
             display.Run(display.Sequence(self.GoTask)
-                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
+                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFixationDelay)
                         .Run(lambda task: task.Go())
-                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
+                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFeedbackDelay)
                         .Run(lambda task: task.Feedback()))
         else:
             tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))

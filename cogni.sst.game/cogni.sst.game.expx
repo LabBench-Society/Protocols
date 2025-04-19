@@ -114,7 +114,7 @@
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="CognitiveTask.UpDownGameInitialize(100, 150)"
+                    <stimulation-scripts initialize="CognitiveTask.Initialize(100, 150)"
                                         stimulate="CognitiveTask.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
@@ -145,7 +145,7 @@
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTaskTraining.Annotations.sstLastStopSignalDelay)"
+                    <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTraining.Annotations.sstLastStopSignalDelay)"
                                         stimulate="CognitiveTask.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
