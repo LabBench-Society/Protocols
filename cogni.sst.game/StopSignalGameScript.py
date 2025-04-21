@@ -267,3 +267,16 @@ def DisplayScore(tc):
         canvas.Color("#FFFFFF")
         canvas.Write(tc.DisplayWidth/2, tc.DisplayHeight/2, "Final Score: {points} points".format(points = int(tc.Current.Annotations.score)))
         return canvas.GetAsset()
+    
+def CalculateRT(tc):
+    gtTime = tc.StopSignalGame.Annotations.gtTime
+    gtAnswer = tc.StopSignalGame.Annotations.gtAnswer
+    rt = [time for time, answer in zip(gtTime, gtAnswer) if answer]
+    return int(sum(rt) / len(rt) if rt else 0)
+
+def CalculateSSD(tc):
+    ssd = tc.StopSignalGame.Annotations.sstStopSignalDelays
+    return int(sum(ssd) / len(ssd) if ssd else 0)
+
+def CalculateSSRT(tc):
+    return CalculateRT(tc) - CalculateSSD(tc)

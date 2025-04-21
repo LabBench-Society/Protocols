@@ -299,6 +299,7 @@
             header="true"
             separator=";"
             filename="dynamic: '{subject}.csv'.format(subject = Subject)">
+            <item name="ID" value="Subject" default="NA"/>
             <item name="Sex" value="SUBJECT.SEX" default="NA" />
             <item name="Age" value="SUBJECT.AGE" default="NA" />
             <item name="Handedness" value="SUBJECT.HANDEDNESS" default="NA" />

@@ -175,6 +175,16 @@
         </assets>
     </protocol>
     <post-actions>
-        
+        <export-to-csv name="Export to CSV"
+            location="C:\LabBenchData\cogni.sst.game"
+            header="true"
+            separator=";"
+            filename="dynamic: '{subject}.csv'.format(subject = Subject)">
+            <item name="ID" value="Subject" default="NA"/>
+            <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
+            <item name="RT" value="func: StopSignalGameScript.CalculateRT(tc)" default="NA" />
+            <item name="SSD" value="func: StopSignalGameScript.CalculateSSD(tc)" default="NA" />
+            <item name="SSRT" value="func: StopSignalGameScript.CalculateSSRT(tc)" default="NA" />
+        </export-to-csv>                
     </post-actions>
 </experiment>
