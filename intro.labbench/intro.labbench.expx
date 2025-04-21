@@ -295,7 +295,7 @@
    </protocol>
    <post-actions>
       <export-to-csv name="Calculate scores and export to CSV"
-            location="C:\LabBenchData\intro"
+            location="C:\LabBenchData\intro.labbench"
             header="true"
             separator=";"
             filename="dynamic: '{subject}.csv'.format(subject = Subject)">
@@ -306,6 +306,10 @@
             <item name="Stess" value="func: DassCalculations.Stess(tc)" default="NA" />
             <item name="Anxiety" value="func: DassCalculations.Anxiety(tc)" default="NA" />
             <item name="Depresion" value="func: DassCalculations.Depresion(tc)" default="NA" />
+            <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
+            <item name="RT" value="func: StopSignalGameScript.CalculateRT(tc)" default="NA" />
+            <item name="SSD" value="func: StopSignalGameScript.CalculateSSD(tc)" default="NA" />
+            <item name="SSRT" value="func: StopSignalGameScript.CalculateSSRT(tc)" default="NA" />
       </export-to-csv>
    </post-actions>
 </experiment>
