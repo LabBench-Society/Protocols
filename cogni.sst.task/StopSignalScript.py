@@ -212,3 +212,16 @@ class CognitiveTask:
 
 def CreateTask(tc):
     return CognitiveTask(tc)
+
+def CalculateRT(tc):
+    gtTime = tc.StopSignalTask.Annotations.gtTime
+    gtAnswer = tc.StopSignalTask.Annotations.gtAnswer
+    rt = [time for time, answer in zip(gtTime, gtAnswer) if answer]
+    return int(sum(rt) / len(rt) if rt else 0)
+
+def CalculateSSD(tc):
+    ssd = tc.StopSignalTask.Annotations.sstStopSignalDelays
+    return int(sum(ssd) / len(ssd) if ssd else 0)
+
+def CalculateSSRT(tc):
+    return CalculateRT(tc) - CalculateSSD(tc)

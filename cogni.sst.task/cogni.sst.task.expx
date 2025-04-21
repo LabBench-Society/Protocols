@@ -188,6 +188,15 @@
         </assets>
     </protocol>
     <post-actions>
-        
+        <export-to-csv name="Export to CSV"
+            location="C:\LabBenchData\cogni.sst.task"
+            header="true"
+            separator=";"
+            filename="dynamic: '{subject}.csv'.format(subject = Subject)">
+            <item name="ID" value="Subject" default="NA"/>
+            <item name="RT" value="func: StopSignalScript.CalculateRT(tc)" default="NA" />
+            <item name="SSD" value="func: StopSignalScript.CalculateSSD(tc)" default="NA" />
+            <item name="SSRT" value="func: StopSignalScript.CalculateSSRT(tc)" default="NA" />
+        </export-to-csv>                        
     </post-actions>
 </experiment>
