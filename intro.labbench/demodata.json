@@ -1,1 +1,139 @@
-{ "valid": [true, true, true], "id": ["S001", "S002", "S003"], "completed": [true, true, true], "data": [{ "SUBJECT": { "ID": "SUBJECT", "Type": "SurveyResult", "Operator": "krist", "RunningTime": 7.5870, "RecordingTime": "2023-01-22 20:06:04", "Iteration": 1.0000, "ProtocolID": "cpardemo", "MachineName": "KRHE-WORKPC", "OS": "Win32NT 10.0", "SEX": 1.0000, "AGE": 45.0000, "CONSENT": true  }, "PCS": { "ID": "PCS", "Type": "SurveyResult", "Operator": "krist", "RunningTime": 36.8140, "RecordingTime": "2023-01-22 20:06:13", "Iteration": 1.0000, "ProtocolID": "cpardemo", "MachineName": "KRHE-WORKPC", "OS": "Win32NT 10.0", "I01": 3.0000, "I02": 2.0000, "I03": 1.0000, "I04": 3.0000, "I05": 0.0000, "I06": 3.0000, "I07": 2.0000, "I08": 2.0000, "I09": 3.0000, "I10": 2.0000, "I11": 1.0000, "I12": 0.0000, "I13": 3.0000  }  }, { "SUBJECT": { "ID": "SUBJECT", "Type": "SurveyResult", "Operator": "krist", "RunningTime": 8.7000, "RecordingTime": "2023-01-22 20:39:27", "Iteration": 3.0000, "ProtocolID": "cpardemo", "MachineName": "KRHE-WORKPC", "OS": "Win32NT 10.0", "SEX": 1.0000, "AGE": 45.0000, "CONSENT": true  }, "PCS": { "ID": "PCS", "Type": "SurveyResult", "Operator": "krist", "RunningTime": 50.2170, "RecordingTime": "2023-01-22 20:39:38", "Iteration": 1.0000, "ProtocolID": "cpardemo", "MachineName": "KRHE-WORKPC", "OS": "Win32NT 10.0", "I01": 2.0000, "I02": 1.0000, "I03": 3.0000, "I04": 2.0000, "I05": 1.0000, "I06": 3.0000, "I07": 2.0000, "I08": 4.0000, "I09": 2.0000, "I10": 3.0000, "I11": 3.0000, "I12": 2.0000, "I13": 3.0000  }  }, { "SUBJECT": { "ID": "SUBJECT", "Type": "SurveyResult", "Operator": "krist", "RunningTime": 3.7980, "RecordingTime": "2023-01-22 20:40:49", "Iteration": 2.0000, "ProtocolID": "cpardemo", "MachineName": "KRHE-WORKPC", "OS": "Win32NT 10.0", "SEX": 0.0000, "AGE": 42.0000, "CONSENT": true  }, "PCS": { "ID": "PCS", "Type": "SurveyResult", "Operator": "krist", "RunningTime": 207.4310, "RecordingTime": "2023-01-22 20:41:12", "Iteration": 1.0000, "ProtocolID": "cpardemo", "MachineName": "KRHE-WORKPC", "OS": "Win32NT 10.0", "I01": 1.0000, "I02": 3.0000, "I03": 2.0000, "I04": 1.0000, "I05": 2.0000, "I06": 3.0000, "I07": 1.0000, "I08": 4.0000, "I09": 2.0000, "I10": 3.0000, "I11": 2.0000, "I12": 3.0000, "I13": 1.0000  }  }]  }
+{
+  "valid": [
+    true,
+    true,
+    true
+  ],
+  "id": [
+    "S001",
+    "S002",
+    "S003"
+  ],
+  "completed": [
+    true,
+    true,
+    true
+  ],
+  "data": [
+    {
+      "SUBJECT": {
+        "ID": "SUBJECT",
+        "Type": "SurveyResult",
+        "Operator": "krist",
+        "RunningTime": 7.587,
+        "RecordingTime": "2023-01-22 20:06:04",
+        "Iteration": 1,
+        "ProtocolID": "cpardemo",
+        "MachineName": "KRHE-WORKPC",
+        "OS": "Win32NT 10.0",
+        "SEX": 1,
+        "AGE": 45,
+        "CONSENT": true
+      },
+      "PCS": {
+        "ID": "PCS",
+        "Type": "SurveyResult",
+        "Operator": "krist",
+        "RunningTime": 36.814,
+        "RecordingTime": "2023-01-22 20:06:13",
+        "Iteration": 1,
+        "ProtocolID": "cpardemo",
+        "MachineName": "KRHE-WORKPC",
+        "OS": "Win32NT 10.0",
+        "I01": 3,
+        "I02": 2,
+        "I03": 1,
+        "I04": 3,
+        "I05": 0,
+        "I06": 3,
+        "I07": 2,
+        "I08": 2,
+        "I09": 3,
+        "I10": 2,
+        "I11": 1,
+        "I12": 0,
+        "I13": 3
+      }
+    },
+    {
+      "SUBJECT": {
+        "ID": "SUBJECT",
+        "Type": "SurveyResult",
+        "Operator": "krist",
+        "RunningTime": 8.7,
+        "RecordingTime": "2023-01-22 20:39:27",
+        "Iteration": 3,
+        "ProtocolID": "cpardemo",
+        "MachineName": "KRHE-WORKPC",
+        "OS": "Win32NT 10.0",
+        "SEX": 1,
+        "AGE": 45,
+        "CONSENT": true
+      },
+      "PCS": {
+        "ID": "PCS",
+        "Type": "SurveyResult",
+        "Operator": "krist",
+        "RunningTime": 50.217,
+        "RecordingTime": "2023-01-22 20:39:38",
+        "Iteration": 1,
+        "ProtocolID": "cpardemo",
+        "MachineName": "KRHE-WORKPC",
+        "OS": "Win32NT 10.0",
+        "I01": 2,
+        "I02": 1,
+        "I03": 3,
+        "I04": 2,
+        "I05": 1,
+        "I06": 3,
+        "I07": 2,
+        "I08": 4,
+        "I09": 2,
+        "I10": 3,
+        "I11": 3,
+        "I12": 2,
+        "I13": 3
+      }
+    },
+    {
+      "SUBJECT": {
+        "ID": "SUBJECT",
+        "Type": "SurveyResult",
+        "Operator": "krist",
+        "RunningTime": 3.798,
+        "RecordingTime": "2023-01-22 20:40:49",
+        "Iteration": 2,
+        "ProtocolID": "cpardemo",
+        "MachineName": "KRHE-WORKPC",
+        "OS": "Win32NT 10.0",
+        "SEX": 0,
+        "AGE": 42,
+        "CONSENT": true
+      },
+      "PCS": {
+        "ID": "PCS",
+        "Type": "SurveyResult",
+        "Operator": "krist",
+        "RunningTime": 207.431,
+        "RecordingTime": "2023-01-22 20:41:12",
+        "Iteration": 1,
+        "ProtocolID": "cpardemo",
+        "MachineName": "KRHE-WORKPC",
+        "OS": "Win32NT 10.0",
+        "I01": 1,
+        "I02": 3,
+        "I03": 2,
+        "I04": 1,
+        "I05": 2,
+        "I06": 3,
+        "I07": 1,
+        "I08": 4,
+        "I09": 2,
+        "I10": 3,
+        "I11": 2,
+        "I12": 3,
+        "I13": 1
+      }
+    }
+  ]
+}

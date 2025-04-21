@@ -12,17 +12,15 @@
 
                 <trigger-setup
                     logic-system="positive"
-                    low-byte-voltage-level="unconnected"
-                    high-byte-voltage-level="unconnected" />
+                    low-byte-voltage-level="5.0V"
+                    high-byte-voltage-level="5.0V" />
                     
                 <response-devices>
-                    <visual-trigger 
-                        id="trigger"
+                    <visual-trigger id="trigger"
                         arming-period="200"
                         timing-source="response-port01"/>
 
-                    <button
-                        id="button"
+                    <button id="button"
                         timing-source="response-port01">
                         <map>
                             <button-assignment 
@@ -55,17 +53,9 @@
             </display>
         </devices>
         <device-mapping>
-            <device-assignment
-                instrument-name="Button"
-                device-id="lio.button" />
-
-            <device-assignment
-                instrument-name="ImageDisplay"
-                device-id="display.image" />
-
-            <device-assignment
-                instrument-name="TriggerGenerator"
-                device-id="lio" />
+            <device-assignment instrument-name="Button" device-id="lio.button" />
+            <device-assignment instrument-name="ImageDisplay" device-id="display.image" />
+            <device-assignment instrument-name="TriggerGenerator" device-id="lio" />
         </device-mapping>
     </experimental-setup>
     <protocol>
@@ -83,43 +73,32 @@
                 value="500"/>
         </defines>
         <tests>
-            <stimulation-sequence
-                id="ODDBALLR"
+            <stimulation-sequence id="ODDBALLR"
                 name="Visual Oddball Task (Response Task)"
                 experimental-setup-id="image"
                 response-collection="yes-no"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
 
-                <test-events selected="func: Script.ResponseInstructions(tc)">
-                    <instrument name="Display"
-                                interface="image-display"/>
-                </test-events>
-
                 <properties>
-                    <instructions 
-                        default="Assets.ResponseTask"
-                        override-results="true"/>
+                    <instructions default="Assets.ResponseTask" override-results="true"/>
+                    <subject-instructions experimental-setup-id="image" default="Assets.Images.responseTask" />
                 </properties>
 
                 <configuration>
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
                 
-                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                <stimulation-scripts initialize="True"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
-                    <instrument name="Display"
-                                interface="image-display"/>
+                    <instrument name="ImageDisplay" interface="image-display"/>
                 </stimulation-scripts>                
 
                 <stimulation-pattern time-base="seconds">
                     <sequence>
-                        <sequence 
-                            iterations="1" 
-                            Tperiod="2" 
-                            stimulate="false"/>
+                        <sequence iterations="1" Tperiod="2" stimulate="false"/>
 
                         <uniformly-distributed-sequence
                             iterations="NumberOfStimuli * NumberOfOddballs"
@@ -135,9 +114,8 @@
                         count="1">
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="1" />
+                                <code output="Code" value="1" />
+                                <code output="Digital" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -147,52 +125,40 @@
                         count="5">
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="2" />
+                                <code output="Code" value="2" />
+                                <code output="Digital" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
                 </stimuli>
             </stimulation-sequence>
 
-            <stimulation-sequence
-                id="ODDBALLC"
+            <stimulation-sequence id="ODDBALLC"
                 name="Visual Oddball Task (Counting Task)"
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="44100"
                 trigger-update-rate="20000">
 
-                <test-events selected="func: Script.CountingInstructions(tc)">
-                    <instrument name="Display"
-                                interface="image-display"/>
-                </test-events>
-
                 <properties>
-                    <instructions 
-                        default="Assets.CountingTask"
-                        override-results="true"/>
+                    <instructions default="Assets.CountingTask" override-results="true"/>
+                    <subject-instructions experimental-setup-id="image" default="Assets.Images.countingTask" />
                 </properties>
 
                 <configuration>
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
 
-                <stimulation-scripts initialize="func: Script.Initialize(tc)"
+                <stimulation-scripts initialize="True"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
-                    <instrument name="Display"
-                                interface="image-display"/>
+                    <instrument name="ImageDisplay" interface="image-display"/>
                 </stimulation-scripts>                             
 
                 <stimulation-pattern time-base="seconds">
                     <sequence>
-                        <sequence 
-                            iterations="1" 
-                            Tperiod="2" 
-                            stimulate="false"/>
+                        <sequence iterations="1" Tperiod="2"  stimulate="false"/>
 
                         <uniformly-distributed-sequence
                             iterations="NumberOfStimuli * NumberOfOddballs"
@@ -209,9 +175,8 @@
                         count="1">
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="1" />
+                                <code output="Code" value="1" />
+                                <code output="Digital" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -222,17 +187,15 @@
 
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="2" />
+                                <code output="Code" value="2" />
+                                <code output="Digital" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
                 </stimuli>
             </stimulation-sequence>
 
-            <questionnaire
-                id="RESPONSE"
+            <questionnaire id="RESPONSE"
                 name="Number of oddballs"
                 experimental-setup-id="image"
                 control="operator">

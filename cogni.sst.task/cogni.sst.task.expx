@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
-   <experimental-setup-variants default="LIO">
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.1/experiment.xsd">
+   <experimental-setup-variants default="JOYSTICK">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
@@ -101,15 +101,10 @@
             <define name="StopSignalPause" value="1000"/>
             <define name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
 
-            <define name="StopSignalTrials" value="30"/>
-            <define name="StopSignalAlphaX0" value="0.0"/>
-            <define name="StopSignalAlphaN" value="200"/>
-            <define name="StopSignalBetaX0" value="-2"/> 
-            <define name="StopSignalBetaX1" value="2"/> 
-            <define name="StopSignalBetaN" value="50"/>
-            <define name="StopSignalIntensityX0" value="0.0"/>
-            <define name="StopSignalIntensityN" value="50"/>
+            <define name="StopSignalTrials" value="50"/>
             <define name="StopSignalConfidenceLevel" value="0.95"/>
+
+            <define name="CognitiveTask" value="func: StopSignalScript.CreateTask(tc)"/>
         </defines>
         <templates>
             <content>
@@ -117,15 +112,16 @@
                     experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
-                    <test-events complete="func: StopSignalScript.Complete(tc)" />
+
+                    <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
                             default="Assets.StopSignalImages.Instructions" />
                     </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalScript.UpDownInitialize(tc)"
-                                        stimulate="func: StopSignalScript.Stimulate(tc,x)"
+                    <stimulation-scripts initialize="CognitiveTask.Initialize(100, 150)"
+                                        stimulate="CognitiveTask.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
@@ -147,17 +143,21 @@
                     response-collection="none"
                     stimulus-update-rate="44100">
 
-                    <test-events complete="func: StopSignalScript.Complete(tc)" />
+                    <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
                         <subject-instructions experimental-setup-id="sstSetup"
                             default="Assets.StopSignalImages.Instructions" />
                     </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalScript.PsiInitialize(tc)"
-                                        stimulate="func: StopSignalScript.Stimulate(tc,x)"
-                                        stimulus-description="Image"
-                                        stimulus-unit="N/A">
+                    <dependencies>
+                        <dependency id="StopSignalTaskTraining" />                        
+                    </dependencies>
+
+                    <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTaskTraining.Annotations.sstLastStopSignalDelay)"
+                                         stimulate="CognitiveTask.Stimulate()"
+                                         stimulus-description="Image"
+                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
                         <instrument name="Button" interface="button"/>
                     </stimulation-scripts>
@@ -188,6 +188,15 @@
         </assets>
     </protocol>
     <post-actions>
-        
+        <export-to-csv name="Export to CSV"
+            location="C:\LabBenchData\cogni.sst.task"
+            header="true"
+            separator=";"
+            filename="dynamic: '{subject}.csv'.format(subject = Subject)">
+            <item name="ID" value="Subject" default="NA"/>
+            <item name="RT" value="func: StopSignalScript.CalculateRT(tc)" default="NA" />
+            <item name="SSD" value="func: StopSignalScript.CalculateSSD(tc)" default="NA" />
+            <item name="SSRT" value="func: StopSignalScript.CalculateSSRT(tc)" default="NA" />
+        </export-to-csv>                        
     </post-actions>
 </experiment>

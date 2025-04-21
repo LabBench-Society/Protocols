@@ -26,13 +26,5 @@ def GetImages(tc):
     }
     
 def Stimulate(tc, x):
-    tc.Instruments.ImageDisplay.Display(tc.Stimuli[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")       
-    return True
-
-def IsCorrect(tc, result):
-    name = result.Stimulus
-    return result.Response == tc.Response.Buttons.Left if name[0] == 'H' or name[0] == 'K' else result.Response == tc.Response.Buttons.Right
-    
-def Evaluate(tc):
-    tc.Current.Annotations.SetBools("correct", [IsCorrect(tc, s) for s in tc.Current.Stimulations])    
+    tc.Instruments.ImageDisplay.Display(tc.Images[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")       
     return True

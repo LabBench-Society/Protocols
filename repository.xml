@@ -32,6 +32,10 @@
     </category>
 
     <category name="Cuff Pressure Algometry" id="cpa">
+        <protocol id="cpa.cpm2ap"
+            name="Conditioned Pain Modulation Protocol (2AP)" 
+            labbench-version="5.0"
+            category="Pressure Algometry;Conditioned Pain Modulation"/>
         <protocol id="cpa.tscpm2ap"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
             labbench-version="5.0"
@@ -88,10 +92,6 @@
             name="Reverse Stroop Task (Electroencephalography)"
             labbench-version="5.0"
             category="Cognitive Task;EEG"/>
-        <protocol id="eeg.aoddball"
-            name="Oddball Task (Auditory)"
-            labbench-version="5.0"
-            category="EEG" />
         <protocol id="eeg.voddball"
             name="Oddball Task (Visual)"
             labbench-version="5.0"

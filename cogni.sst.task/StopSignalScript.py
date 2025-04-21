@@ -1,10 +1,10 @@
 ﻿import random
-import math
 
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
-        self.lowerLimit = tc.StopSignalLowDelayLimit
-        self.highLimit = tc.StopSignalHighDelayLimit
+        self.Log = tc.Log
+        self.lowerLimit = int(tc.StopSignalLowDelayLimit)
+        self.highLimit = int(tc.StopSignalHighDelayLimit)
         self.delay = initialDelay
         self.stopSignalDelay = []
         self.stepsize = stepsize
@@ -13,78 +13,25 @@ class UpDownAlgorithm:
 
     def Complete(self, result):
         result.Annotations.SetIntegers("sstDelays", self.delays)
-        result.Annotations.SetIntegers("sstStopSignalDelay", self.stopSignalDelay)
+        result.Annotations.SetIntegers("sstStopSignalDelays", self.stopSignalDelay)
+        result.Annotations.SetInteger("sstLastStopSignalDelay", self.stopSignalDelay[-1])
+        self.Log.Debug("Stop Signal Delays [ {delays} ]", self.stopSignalDelay)
 
     def Iterate(self, answer):
         if answer:
-            self.delay = self.delay + self.stepsize
-            
-            if self.delay > self.highLimit:
-                self.delay = self.highLimit
+            self.delay = int(self.delay + self.stepsize) if self.delay + self.stepsize < self.highLimit else self.highLimit
         else:
-            self.delay = self.delay - self.stepsize
-            
-            if self.delay < self.lowerLimit:
-                self.delay = self.lowerLimit
+            self.delay = int(self.delay - self.stepsize) if self.delay - self.stepsize > self.lowerLimit else self.lowerLimit
         
         self.stopSignalDelay.append(self.delay)
-
-class PsiAlgorithm:
-    def __init__(self, tc):
-        self.lowerLimit = tc.StopSignalLowDelayLimit
-        self.highLimit = tc.StopSignalHighDelayLimit
-        self.delays = []
-        self.method = tc.Create(tc.Psychophysics.PsiMethod()
-                                                .NumberOfTrials(tc.StopSignalTrials)
-                                                .Function(tc.Psychophysics.Functions.Quick(Beta=1, Lambda=0.02, Gamma=0))
-                                                .Alpha(X0=tc.StopSignalAlphaX0,X1=1.0,N = tc.StopSignalAlphaN)
-                                                .Beta(X0=tc.StopSignalBetaX0,X1=tc.StopSignalBetaX1,N = tc.StopSignalBetaN)
-                                                .Intensity(X0 = tc.StopSignalIntensityX0,X1 = 1.0,N = tc.StopSignalIntensityN))
-        
-        self.delay = self.Transform(self.method.Setup())     
-        self.alpha = []
-        self.beta = []
-        self.ConfidenceLevel = tc.StopSignalConfidenceLevel
-        self.alphaConfidence = []
-        self.betaConfidence = []
-        self.stopSignalDelay = []
-        self.delays = []
-
-    def Transform(self, x):
-        return (self.highLimit - self.lowerLimit) * (1 - x) + self.lowerLimit
-    
-    def Complete(self, result):
-        result.Annotations.SetNumber("sstLowerLimit", self.lowerLimit)
-        result.Annotations.SetNumber("sstHighLimit", self.highLimit)
-        result.Annotations.SetNumbers("sstDelays", self.delays)
-        result.Annotations.SetNumbers("sstStopSignalDelay", self.stopSignalDelay)
-        result.Annotations.SetNumbers("sstAlpha", self.alpha)        
-        result.Annotations.SetNumbers("sstAlphaLower", [x[0] for x in self.alphaConfidence])        
-        result.Annotations.SetNumbers("sstAlphaUpper", [x[1] for x in self.alphaConfidence])        
-        result.Annotations.SetNumbers("sstBeta", self.beta)   
-        result.Annotations.SetNumbers("sstBetaLower", [x[0] for x in self.betaConfidence])        
-        result.Annotations.SetNumbers("sstBetaUpper", [x[1] for x in self.betaConfidence])                
-
-    def Iterate(self, answer):
-        self.delays.append(self.delay)
-
-        self.delay = self.Transform(self.method.Iterate(answer))      
-
-        alpha = self.method.EstimateAlpha()
-        self.alpha.append(alpha)
-        self.beta.append(self.method.EstimateBeta())
-        self.alphaConfidence.append(self.method.EstimateAlphaConfidenceInterval(self.ConfidenceLevel))
-        self.betaConfidence.append(self.method.EstimateBetaConfidenceInterval(self.ConfidenceLevel))
-        self.stopSignalDelay.append(self.Transform(alpha))
-        
 
 class StopSignalTask:
     def __init__(self, tc, algorithm, feedback):
         self.Log = tc.Log
         self.feedback = feedback
         self.Buttons = tc.Response.Buttons
-        self.display = tc.Devices.ImageDisplay
-        self.response = tc.Devices.Button
+        self.display = tc.Instruments.ImageDisplay
+        self.response = tc.Instruments.Button
         self.images = tc.Assets.StopSignalImages
         self.algorithm = algorithm
         self.feedbackTime = tc.StopSignalFeedbackTime
@@ -139,7 +86,7 @@ class StopSignalTask:
 
         self.algorithm.Iterate(self.answer[-1])
 
-        self.Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay}, New Delay: {delay} ]", 
+        self.Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay} ]", 
                         self.answer[-1], 
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
@@ -196,17 +143,7 @@ class GoSignalTask:
         if button == self.Buttons.NoResponse:
             self.answer.append(False)
         else:         
-            if self.signal == 0: # Left
-                if button == self.Buttons.Left: # Correct
-                    self.answer.append(True)
-                else: # wrong
-                    self.answer.append(False)
-                    
-            else: # Right
-                if button == self.Buttons.Right: # Correct
-                    self.answer.append(True)
-                else: # wrong
-                    self.answer.append(False)
+            self.answer.append(button == self.Buttons.Left if self.signal == 0 else button == self.Buttons.Right)
                         
         self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 
@@ -223,9 +160,6 @@ class TaskFeedback:
         self.images = tc.Assets.StopSignalImages
         self.display = tc.Instruments.ImageDisplay
 
-    def Complete(self):
-        pass
-
     def GoFeedback(self, answer, time):
         if answer:
             self.display.Display(self.images.Correct)
@@ -238,45 +172,56 @@ class TaskFeedback:
         else:
             self.display.Display(self.images.Wrong)
 
-def UpDownInitialize(tc):
-    feedback = TaskFeedback(tc)
-    tc.Defines.Set("Feedback", feedback)
-    tc.Defines.Set("StopTask", StopSignalTask(tc, UpDownAlgorithm(tc, 100, 150), feedback))
-    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
-    return True
+class CognitiveTask:
+    def __init__(self, tc):
+        self.tc = tc        
 
-def PsiInitialize(tc):
-    feedback = TaskFeedback(tc)
-    tc.Defines.Set("Feedback", feedback)
-    tc.Defines.Set("StopTask", StopSignalTask(tc, PsiAlgorithm(tc), feedback))
-    tc.Defines.Set("GoTask", GoSignalTask(tc, feedback))
-    return True
+    def Initialize(self, stepsize, initialDelay):
+        self.Feedback = TaskFeedback(self.tc)
+        self.StopTask = StopSignalTask(self.tc, UpDownAlgorithm(self.tc, stepsize, initialDelay), self.Feedback)
+        self.GoTask = GoSignalTask(self.tc, self.Feedback)        
+        return True
 
-def Complete(tc):
-    tc.StopTask.Complete()
-    tc.GoTask.Complete()
-    tc.Feedback.Complete()
-    return True
-
-def Stimulate(tc, x):   
-    display = tc.Instruments.ImageDisplay
+    def Complete(self):
+        self.StopTask.Complete()
+        self.GoTask.Complete()        
+        return True
     
-    if tc.StimulusName == "STOP":
-        display.Run(display.Sequence(tc.StopTask)
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
-                    .Run(lambda task: task.Go())
-                    .Run(lambda task: task.Stop())
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
-                    .Run(lambda task: task.Feedback()))
+    def Stimulate(self):
+        tc = self.tc
+        display = tc.Instruments.ImageDisplay
         
-    elif tc.StimulusName == "GO":
-        display.Run(display.Sequence(tc.GoTask)
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
-                    .Run(lambda task: task.Go())
-                    .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
-                    .Run(lambda task: task.Feedback()))
-    else:
-        tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
+        if tc.StimulusName == "STOP":
+            display.Run(display.Sequence(self.StopTask)
+                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
+                        .Run(lambda task: task.Go())
+                        .Run(lambda task: task.Stop())
+                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
+                        .Run(lambda task: task.Feedback()))
+            
+        elif tc.StimulusName == "GO":
+            display.Run(display.Sequence(self.GoTask)
+                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFixationDelay)
+                        .Run(lambda task: task.Go())
+                        .Display(tc.Assets.StopSignalImages.FixationCross, tc.StopSignalFeedbackDelay)
+                        .Run(lambda task: task.Feedback()))
+        else:
+            tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
 
-    return True
+        return True
 
+def CreateTask(tc):
+    return CognitiveTask(tc)
+
+def CalculateRT(tc):
+    gtTime = tc.StopSignalTask.Annotations.gtTime
+    gtAnswer = tc.StopSignalTask.Annotations.gtAnswer
+    rt = [time for time, answer in zip(gtTime, gtAnswer) if answer]
+    return int(sum(rt) / len(rt) if rt else 0)
+
+def CalculateSSD(tc):
+    ssd = tc.StopSignalTask.Annotations.sstStopSignalDelays
+    return int(sum(ssd) / len(ssd) if ssd else 0)
+
+def CalculateSSRT(tc):
+    return CalculateRT(tc) - CalculateSSD(tc)

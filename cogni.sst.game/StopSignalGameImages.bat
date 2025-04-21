@@ -6,8 +6,7 @@ move Slide3.PNG StopRight.png
 move Slide4.PNG StopLeft.png
 move Slide5.PNG Clear.png
 move Slide6.PNG FixationCross.png
-move Slide7.PNG GameInstructions.png
-move Slide8.PNG TaskInstructions.png
+move Slide7.PNG Instructions.png
 
 cd ..
 pause

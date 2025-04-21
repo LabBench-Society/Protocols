@@ -5,8 +5,8 @@
    <subject-validator 
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />      
-      <experimental-setup-variants default="LIO">
-         <experimental-setup name="Joystick" id="JOYSITCK">
+      <experimental-setup-variants default="JOYSTICK">
+         <experimental-setup name="Joystick" id="JOYSTICK">
             <devices>
                <joystick id="joystick">
                   <map experimental-setup-id="image">
@@ -33,16 +33,16 @@
                   background-color="rgb(0,0,0)"
                   inactive-color="rgb(32,32,32)"
                   normative-distance="40"
-                  position="fullscreen"
-                  screen="secondary">
+                  position="upper-right"
+                  screen="primary">
             
                   <monitor
                      diagonal-size="53.34"
                      distance="40" />
       
                   <configurations>
-                     <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
-      
+                     <image-display id="image" background-color="rgb(0,0,0)" />
+                     
                      <questionnaire 
                         id="questionnaire"
                         experimental-setup-id="questionnaire"
@@ -126,26 +126,19 @@
          <!-- Depression, Anxiety and Stress Scale (DASS) -->
          <define name="DassTextDB" value="func: DassText.CreateText(tc)" />
 
-         <!-- Stop Signal Game Defines -->
-         <define name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value 5 -->
-         <define name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
-         <define name="StopSignalLowDelayLimit" value="50"/>
-         <define name="StopSignalHighDelayLimit" value="750"/>
-         <define name="StopSignalFixationDelay"  value="500"/>
-         <define name="StopSignalResponseTimeout"  value="1000"/>
-         <define name="StopSignalFeedbackDelay" value="1000"/>            
-         <define name="StopSignalFeedbackTime" value="1000"/>
-         <define name="StopSignalPause" value="1000"/>
-         <define name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
-         <define name="StopSignalTrials" value="30"/>
-         <define name="StopSignalAlphaX0" value="0.0"/>
-         <define name="StopSignalAlphaN" value="200"/>
-         <define name="StopSignalBetaX0" value="-2"/> <!--  Old value: -1.2041 -->
-         <define name="StopSignalBetaX1" value="2"/> <!--  Old value: 1.2041 -->
-         <define name="StopSignalBetaN" value="50"/>
-         <define name="StopSignalIntensityX0" value="0.0"/>
-         <define name="StopSignalIntensityN" value="50"/>
-         <define name="StopSignalConfidenceLevel" value="0.95"/>         
+            <!-- Stop Signal Game Defines -->
+            <define name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value 5 -->
+            <define name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
+            <define name="StopSignalLowDelayLimit" value="50"/>
+            <define name="StopSignalHighDelayLimit" value="750"/>
+            <define name="StopSignalFixationDelay"  value="500"/>
+            <define name="StopSignalResponseTimeout"  value="1000"/>
+            <define name="StopSignalFeedbackDelay" value="1000"/>            
+            <define name="StopSignalFeedbackTime" value="1000"/>
+            <define name="StopSignalPause" value="1000"/>
+            <define name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
+
+            <define name="CognitiveTask" value="func: StopSignalGameScript.CreateTask(tc)"/>
       </defines>      
       <templates>
          <content>
@@ -153,8 +146,9 @@
                experimental-setup-id="questionnaire"
                control="subject">
             <variables>
-               <strings name="QuestionIDs" value="I01;I02;I03;I04;I05;I06;I07;I08;I09;I10;I11;I12;I13;I14;I15;I16;I17;I18;I19;I20;I31;I32;I33;I34;I35;I36;I37;I38;I39;I40;I41;I42" />
+               <strings name="QuestionIDs" value="I01;I02;I03;I04;I05;I06;I07;I08;I09;I10;I11;I12;I13;I14;I15;I16;I17;I18;I19;I20;I21;I22;I23;I24;I25;I26;I27;I28;I29;I30;I31;I32;I33;I34;I35;I36;I37;I38;I39;I40;I41;I42" />
             </variables>
+            <test-events complete="func: DassCalculations.Complete(tc)" />
             <properties>
                <subject-instructions 
                   experimental-setup-id="image"
@@ -181,66 +175,66 @@
             </content>
             </questionnaire>
 
-                <stimulation-sequence id="StopSignalTraining"
-                    experimental-setup-id="image"
-                    response-collection="none"
-                    stimulus-update-rate="44100">
-                    <test-events complete="func: StopSignalGameScript.Complete(tc)" />
+         <stimulation-sequence id="StopSignalTraining"
+            experimental-setup-id="sstSetup"
+            response-collection="none"
+            stimulus-update-rate="44100">
+            <test-events complete="CognitiveTask.Complete()" />
 
-                    <properties>
-                        <subject-instructions experimental-setup-id="image"
-                            default="Assets.StopSignalGameImages.TaskInstructions" 
-                            completed="func: StopSignalGameScript.DisplayScore(tc)"/>
-                    </properties>
+            <properties>
+                <subject-instructions experimental-setup-id="sstSetup"
+                    default="Assets.StopSignalGameImages.Instructions" 
+                    completed="func: StopSignalGameScript.DisplayScore(tc)"/>
+            </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalGameScript.UpDownGameInitialize(tc)"
-                                        stimulate="func: StopSignalGameScript.Stimulate(tc,x)"
-                                        stimulus-description="Image"
-                                        stimulus-unit="N/A">
-                        <instrument name="ImageDisplay" interface="image-display"/>
-                        <instrument name="Button" interface="button"/>
-                    </stimulation-scripts>
+            <stimulation-scripts initialize="CognitiveTask.Initialize(100, 150)"
+                                stimulate="CognitiveTask.Stimulate()"
+                                stimulus-description="Image"
+                                stimulus-unit="N/A">
+                <instrument name="ImageDisplay" interface="image-display"/>
+                <instrument name="Button" interface="button"/>
+            </stimulation-scripts>
 
-                    <stimulation-pattern time-base="seconds">
-                        <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
-                    </stimulation-pattern>
+            <stimulation-pattern time-base="seconds">
+                <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
+            </stimulation-pattern>
 
-                    <stimuli order="block-random">
-                        <stimulus name="GO" count="3" />
-                        <stimulus name="STOP" count="1"/>
-                    </stimuli>
-                </stimulation-sequence>
+            <stimuli order="block-random">
+                <stimulus name="GO" count="3" />
+                <stimulus name="STOP" count="1"/>
+            </stimuli>
+         </stimulation-sequence>
 
-                <stimulation-sequence id="StopSignalGame"
-                    experimental-setup-id="image"
-                    response-collection="none"
-                    stimulus-update-rate="44100">
+         <stimulation-sequence id="StopSignalGame"
+            experimental-setup-id="sstSetup"
+            response-collection="none"
+            stimulus-update-rate="44100">
 
-                    <test-events complete="func: StopSignalGameScript.Complete(tc)" />
+            <test-events complete="CognitiveTask.Complete()" />
 
-                    <properties>
-                        <subject-instructions experimental-setup-id="image"
-                            default="Assets.StopSignalGameImages.GameInstructions" 
-                            completed="func: StopSignalGameScript.DisplayScore(tc)"/>
-                    </properties>
+            <properties>
+                <subject-instructions experimental-setup-id="sstSetup"
+                    default="Assets.StopSignalGameImages.Instructions" 
+                    completed="func: StopSignalGameScript.DisplayScore(tc)"/>
+            </properties>
 
-                    <stimulation-scripts initialize="func: StopSignalGameScript.PsiGameInitialize(tc)"
-                                        stimulate="func: StopSignalGameScript.Stimulate(tc,x)"
-                                        stimulus-description="Image"
-                                        stimulus-unit="N/A">
-                        <instrument name="ImageDisplay" interface="image-display"/>
-                        <instrument name="Button" interface="button"/>
-                    </stimulation-scripts>
+            <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTraining.Annotations.sstLastStopSignalDelay)"
+                                stimulate="CognitiveTask.Stimulate()"
+                                stimulus-description="Image"
+                                stimulus-unit="N/A">
+                <instrument name="ImageDisplay" interface="image-display"/>
+                <instrument name="Button" interface="button"/>
+            </stimulation-scripts>
 
-                    <stimulation-pattern time-base="seconds">
-                        <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
-                    </stimulation-pattern>
+            <stimulation-pattern time-base="seconds">
+                <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
+            </stimulation-pattern>
 
-                    <stimuli order="block-random">
-                        <stimulus name="GO" count="3" />                        
-                        <stimulus name="STOP" count="1"/>
-                    </stimuli>
-                </stimulation-sequence>    
+            <stimuli order="block-random">
+                <stimulus name="GO" count="3" />                        
+                <stimulus name="STOP" count="1"/>
+            </stimuli>
+         </stimulation-sequence>    
          </content>
       </templates>
       <tests>
@@ -253,11 +247,11 @@
                <likert 
                   id="SEX"
                   title="Sex"
-                  instruction="Please specify the sex of the subject">
+                  instruction="Please specify the biological sex of the subject">
 
                   <choice value="0" label="Female" />
                   <choice value="1" label="Male" />
-                  <choice value="2" label="Non-binary" />
+                  <choice value="2" label="Prefer to not answer" />
                </likert>
                <numeric 
                   id="AGE"
@@ -301,16 +295,23 @@
       </assets>
    </protocol>
    <post-actions>
-      <export-to-csv name="Calculate scores and export to CSV"
-            location="C:\LabBenchData\intro"
+      <export-to-csv name="Export to CSV"
+            location="C:\LabBenchData\intro.labbench"
             header="true"
             separator=";"
             filename="dynamic: '{subject}.csv'.format(subject = Subject)">
+            <item name="ID" value="Subject" default="NA"/>
             <item name="Sex" value="SUBJECT.SEX" default="NA" />
             <item name="Age" value="SUBJECT.AGE" default="NA" />
-            <item name="Stess" value="func: DassCalculations.Stess(tc)" default="NA" />
+            <item name="Handedness" value="SUBJECT.HANDEDNESS" default="NA" />
+            <item name="Stress" value="func: DassCalculations.Stress(tc)" default="NA" />
             <item name="Anxiety" value="func: DassCalculations.Anxiety(tc)" default="NA" />
-            <item name="Depresion" value="func: DassCalculations.Depresion(tc)" default="NA" />
+            <item name="Depression" value="func: DassCalculations.Depression(tc)" default="NA" />
+            <item name="Total" value="func: DassCalculations.Total(tc)" default="NA" />
+            <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
+            <item name="RT" value="func: StopSignalGameScript.CalculateRT(tc)" default="NA" />
+            <item name="SSD" value="func: StopSignalGameScript.CalculateSSD(tc)" default="NA" />
+            <item name="SSRT" value="func: StopSignalGameScript.CalculateSSRT(tc)" default="NA" />
       </export-to-csv>
    </post-actions>
 </experiment>
