@@ -295,7 +295,7 @@
       </assets>
    </protocol>
    <post-actions>
-      <export-to-csv name="Calculate scores and export to CSV"
+      <export-to-csv name="Export to CSV"
             location="C:\LabBenchData\intro.labbench"
             header="true"
             separator=";"
