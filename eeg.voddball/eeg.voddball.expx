@@ -125,7 +125,7 @@
                         count="5">
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code" value="2" />
+                                <code output="Code" value="3" />
                                 <code output="Digital" value="1" />
                             </trigger>
                         </triggers>
@@ -187,7 +187,7 @@
 
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code" value="2" />
+                                <code output="Code" value="3" />
                                 <code output="Digital" value="1" />
                             </trigger>
                         </triggers>
