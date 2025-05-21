@@ -98,6 +98,24 @@
             category="EEG" />    
     </category>
 
+    <category name="Tactile Sensitivity Testing" id="tactile">
+        <category name="Monofilament Testing" id="tactile.filament">
+            <protocol id="tactile.filament.v1"
+                name="Monofilament Testing, Version 1"
+                labbench-version="5.2"
+                category="Psychometrics;Tactile Sensitivity Testing;Templates;Demonstration Protocol"/>
+
+        </category>
+        <!-- 
+        <category name="Two-Point Discrimation" id="tactile.tpd">
+
+        </category>
+        <category name="Two-Point Orientation" id="tactile.tpd">
+            
+        </category>
+        -->
+    </category>
+
     <category name="Itch Assessment" id="itch">
         <protocol id="itch.hyperknesis"
             name="Hyperknesis"
