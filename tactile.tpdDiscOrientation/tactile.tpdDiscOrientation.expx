@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="..\experiment.xsd">
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup />
+    <protocol>
+        <defines />
+        <tests>
+            <psychophysics-manual-threshold-estimation id="TPD_PSI_FC1I2A"
+                                                       name="Two-point Orientation (Psi, Forced Choice)"                                                       
+                                                       stimulus-unit="mm">
+                <psi-algorithm number-of-trials="30"
+                               intensities="[2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
+                    <quick alpha="0.5" beta="1" gamma="0.5" lambda="0.02" />
+                    <beta type="linspace" base="10" x0="-1.2041" x1="1.2041" n="20"/>
+                    <alpha type="linspace" x0="2.0/15.0" x1="1" n="50" />
+                </psi-algorithm>
+                <one-interval-forced-choice-task alternative-a-image="TactileImages.TwoProngsAlong"
+                                                 alternative-a="Along"
+                                                 alternative-b-image="TactileImages.TwoProngsAcross"
+                                                 alternative-b="Across"
+                                                 question="What is the orientation of two points (Along or Across)?"/>
+            </psychophysics-manual-threshold-estimation>
+        </tests>
+
+        <assets>
+            <file-asset id="TactileImages" file="TactileImages.zip" />
+        </assets>
+    </protocol>    
+</experiment>

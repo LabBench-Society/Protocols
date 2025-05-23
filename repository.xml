@@ -99,21 +99,26 @@
     </category>
 
     <category name="Tactile Sensitivity Testing" id="tactile">
-        <category name="Monofilament Testing" id="tactile.filament">
-            <protocol id="tactile.filament.v1"
-                name="Monofilament Testing, Version 1"
-                labbench-version="5.2"
-                category="Psychometrics;Tactile Sensitivity Testing;Templates;Demonstration Protocol"/>
-
-        </category>
-        <!-- 
-        <category name="Two-Point Discrimation" id="tactile.tpd">
-
-        </category>
-        <category name="Two-Point Orientation" id="tactile.tpd">
-            
-        </category>
-        -->
+        <protocol id="tactile.filament"
+            name="Monofilament Testing (von Frey Hairs/Semmes-Weinstein)"
+            labbench-version="5.2"
+            category="Tactile Sensitivity Testing;Monofilament;Templates;Demonstration Protocol"/>
+        <protocol id="tactile.tpdDisc"
+            name="Two-Point Discrimination Testing (Disk Discriminator)"
+            labbench-version="5.2"
+            category="Tactile Sensitivity Testing;Two-Point Discrimination;Disk Discrinator;Templates;Demonstration Protocol"/>
+        <protocol id="tactile.tpdCaliper"
+            name="Two-Point Discrimination Testing (Caliper)"
+            labbench-version="5.2"
+            category="Tactile Sensitivity Testing;Two-Point Discrimination;Caliper;Templates;Demonstration Protocol"/>
+        <protocol id="tactile.tpdDiscOrientation"
+            name="Two-Point Orientation Testing (Disk Discriminator)"
+            labbench-version="5.2"
+            category="Tactile Sensitivity Testing;Two-Point Orientation;Disk Discrinator;Templates;Demonstration Protocol"/>
+        <protocol id="tactile.gratingOrientation"
+            name="Grating Orientation Testing (Grating Domes)"
+            labbench-version="5.2"
+            category="Tactile Sensitivity Testing;Grating Orientation;Grating Dome;Templates;Demonstration Protocol"/>
     </category>
 
     <category name="Itch Assessment" id="itch">

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="..\experiment.xsd">
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup />
+    <protocol>
+        <defines />
+        <tests>
+            <psychophysics-manual-threshold-estimation id="VFREY_UD_YESNO" 
+                stimulus-unit="g" 
+                name="Somedic Aesthesiometer II (Yes/No, Up/Down, Increasing)">
+                <catch-trials order="block-randomized"
+                              interval="3" 
+                              image="TactileImages.NoFilament"
+                              instruction="Catch Trial"/>
+                <up-down-algorithm stop-rule="4"
+                                   skip-rule="0"
+                                   terminate-on-limit-reached="true"
+                                   initial-direction="increasing"                                   
+                                   initial-step-size="1"                                   
+                                   intensities="[0.064, 0.14, 0.32, 1.7, 5.1, 8.3, 24]"
+                                   intensity-labels="['Transparent', 'Brown', 'Orange', 'Blue', 'Black', 'Green', 'Yellow']"/>
+                <yes-no-task question="Did you feel a touch on the skin?"
+                             positive-answer="Yes"
+                             negative-answer="No"
+                             task-illustration-image="TactileImages.Filament" />
+            </psychophysics-manual-threshold-estimation>
+
+            <psychophysics-manual-threshold-estimation id="VFREY_PSI_YESNO" 
+                stimulus-unit="g" 
+                name="Somedic Aesthesiometer II (Yes/No, Psi-Method)">
+                <catch-trials order="block-randomized"
+                              interval="3" 
+                              image="TactileImages.NoFilament"
+                              instruction="Catch Trial"/>
+                <psi-algorithm intensities='[0.064, 0.14, 0.32, 1.7, 5.1, 8.3, 24]'
+                               intensity-labels="['Transparent', 'Brown', 'Orange', 'Blue', 'Black', 'Green', 'Yellow']"
+                               number-of-trials='30'>
+                    <quick alpha="0.5" beta="1" gamma="0" lambda="0.02" />
+                    <beta type="linspace" base="10" x0="-1.2041" x1="1.2041" n="20"/>
+                    <alpha type="linspace" x0="0.064/24" x1="1" n="50" />
+                </psi-algorithm>
+                <yes-no-task question="Did you feel a touch on the skin?"
+                             positive-answer="Yes"
+                             negative-answer="No"
+                             task-illustration-image="TactileImages.Filament" />
+            </psychophysics-manual-threshold-estimation>
+
+            <psychophysics-manual-threshold-estimation id="VFREY_PSI_2IFC" 
+                stimulus-unit="g" 
+                name="Somedic Aesthesiometer II (2IFC, Psi-Method)">
+                <psi-algorithm intensities='[0.064, 0.14, 0.32, 1.7, 5.1, 8.3, 24]'
+                               intensity-labels="['Transparent', 'Brown', 'Orange', 'Blue', 'Black', 'Green', 'Yellow']"
+                               number-of-trials='30'>
+                    <quick alpha="0.5" beta="1" gamma="0" lambda="0.02" />
+                    <beta type="linspace" base="10" x0="-1.2041" x1="1.2041" n="20"/>
+                    <alpha type="linspace" x0="0.064/24" x1="1" n="50" />
+                </psi-algorithm>
+                <two-interval-forced-choice-task interval-a="A"
+                                                 interval-b="B"
+                                                 no-stimulus-image="TactileImages.NoFilament"
+                                                 stimulus-image="TactileImages.Filament"
+                                                 question="When did you feel two points? In interval A or interval B?" />
+            </psychophysics-manual-threshold-estimation>
+        </tests>
+
+        <assets>
+            <file-asset id="TactileImages" file="TactileImages.zip" />
+        </assets>
+    </protocol>    
+</experiment>

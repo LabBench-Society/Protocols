@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="..\experiment.xsd">
+    <subject-validator regex="^S[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup />
+    <protocol>
+        <defines />
+        <tests>
+            <psychophysics-manual-threshold-estimation id="TPD_UD_INC_YESNO"
+                                                       name="Two-point Discrimination (Yes/No, Up/Down, Increasing)"
+                                                       stimulus-unit="mm">
+                <intensity-transformation a="1" b="2"/>
+                <catch-trials order="block-randomized"
+                              instruction="Catch Trial"
+                              interval="4"
+                              image="TactileImages.OneProng" />
+                <up-down-algorithm stop-rule="6"
+                                   skip-rule="1"
+                                   terminate-on-limit-reached="true"
+                                   initial-direction="increasing"                                   
+                                   initial-step-size="2"                                   
+                                   intensities="[x/10 for x in range(2,151)]"/>
+                <yes-no-task question="Do you feel one or two points?"
+                             positive-answer="Two"
+                             negative-answer="One"
+                             task-illustration-image="TactileImages.TwoProngs" />
+            </psychophysics-manual-threshold-estimation>
+
+            <psychophysics-manual-threshold-estimation id="TPD_PSI_YESNO"
+                                                       name="Two-point Discrimination (Yes/No, Psi method)"
+                                                       stimulus-unit="mm">
+                <intensity-transformation a="1" b="2"/>
+                <catch-trials order="block-randomized"
+                              instruction="Catch Trial"
+                              image="TactileImages.OneProng"
+                              interval="5" />
+                <psi-algorithm intensities='[x/10 for x in range(2,151)]'
+                               number-of-trials='30'>
+                    <quick alpha="0.5" beta="1" gamma="0" lambda="0.02" />
+                    <beta type="linspace" base="10" x0="-1.2041" x1="1.2041" n="20"/>
+                    <alpha type="linspace" x0="2.0/15.0" x1="1" n="50" />
+                </psi-algorithm>
+                <yes-no-task question="Do you feel one or two points?"
+                             positive-answer="Two"
+                             negative-answer="One"
+                             task-illustration-image="TactileImages.TwoProngs" />
+            </psychophysics-manual-threshold-estimation>
+
+            <psychophysics-manual-threshold-estimation id="TPD_PSI_FC2I2A"
+                                                       name="Two-point Discrimination (Psi method, Forced Choice, One or two points)"
+                                                       stimulus-unit="mm">
+                <intensity-transformation a="1" b="2"/>
+                <psi-algorithm number-of-trials="30"
+                               intensities="[x/10 for x in range(2,151)]">
+                    <quick alpha="0.5" beta="1" gamma="0" lambda="0.02" />
+                    <beta type="linspace" base="10" x0="-1.2041" x1="1.2041" n="20"/>
+                    <alpha type="linspace" x0="2.0/15.0" x1="1" n="50" />
+                </psi-algorithm>
+                <two-interval-forced-choice-task interval-a="A"
+                                                 interval-b="B"
+                                                 no-stimulus-image="TactileImages.OneProng"
+                                                 stimulus-image="TactileImages.TwoProngs"
+                                                 question="When did you feel two points? In interval A or interval B?" />
+            </psychophysics-manual-threshold-estimation>
+        </tests>
+
+        <assets>
+            <file-asset id="TactileImages" file="TactileImages.zip" />
+        </assets>
+    </protocol>    
+</experiment>
