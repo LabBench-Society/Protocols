@@ -54,27 +54,27 @@
         <category name="Stop Signal Tasks" id="cogni.sst">
             <protocol id="cogni.sst.task"
                 name="Stop Signal Task"
-                labbench-version="5.0"
+                labbench-version="5.2"
                 category="Cognitive Task"/>      
             <protocol id="cogni.sst.game"
                 name="Stop Signal Game"
-                labbench-version="5.0"
+                labbench-version="5.2"
                 category="Cognitive Task"/>              
         </category>
         <category name="Stroop Tasks" id="cogni.stroop">
             <protocol id="cogni.stroop.task"
                 name="Stroop Task"
-                labbench-version="5.0"
+                labbench-version="5.2"
                 category="Cognitive Task"/>
             <protocol id="cogni.stroop.reverse"
                 name="Reverse Stroop Task"
-                labbench-version="5.0"
+                labbench-version="5.2"
                 category="Cognitive Task"/>
         </category>
         <category name="Flanker Tasks" id="cogni.flanker">
             <protocol id="cogni.flanker.task"
                 name="Flanker Task"
-                labbench-version="5.0"
+                labbench-version="5.2"
                 category="Cognitive Task"/>
         </category>
     </category>
