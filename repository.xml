@@ -88,10 +88,6 @@
     </category>
 
     <category name="Electroencephalography" id="eeg">
-        <protocol id="eeg.stopsignal"
-            name="Stop Signal Task (Electroencephalography)"
-            labbench-version="5.0"
-            category="Cognitive Task;EEG"/>      
         <protocol id="eeg.stroop"
             name="Stroop Task (Electroencephalography)"
             labbench-version="5.0"
