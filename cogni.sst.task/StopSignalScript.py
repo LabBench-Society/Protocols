@@ -31,6 +31,8 @@ class StopSignalTask:
         self.feedback = feedback
         self.Buttons = tc.Response.Buttons
         self.display = tc.Instruments.ImageDisplay
+        self.triggerGenerator = tc.Instruments.TriggerGenerator
+        self.triggerTlk = tc.Triggers
         self.response = tc.Instruments.Button
         self.images = tc.Assets.StopSignalImages
         self.algorithm = algorithm
