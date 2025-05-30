@@ -1,8 +1,17 @@
 ﻿import random
 
+def GeneratorTrigger(tc, code):
+    generator = tc.Instruments.TriggerGenerator    
+    generator.GenerateTriggerSequence(tc.Triggers.StartTrigger.Response02, 
+                                      tc.Triggers.Sequence().Add(tc.Triggers.Trigger(code).Stimulus().Code(1)))
+
+
 def StroopNeutralStimulate(tc, x):
     display = tc.Instruments.ImageDisplay
     name =  tc.StimulusName
+
+    GeneratorTrigger(tc, 1)
+
     with tc.Image.GetCanvas(display) as canvas:
         canvas.Fill(True)
         canvas.Color(tc.StroopColors[name[0]])
@@ -15,6 +24,9 @@ def StroopNeutralStimulate(tc, x):
 def StroopStimulate(tc, x):
     display = tc.Instruments.ImageDisplay
     name =  tc.StimulusName
+
+    GeneratorTrigger(tc, 3 if name[0] == name[1] else 5)
+
     with tc.Image.GetCanvas(display) as canvas:
         canvas.AlignCenter()
         canvas.AlignMiddle()

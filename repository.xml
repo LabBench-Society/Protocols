@@ -58,7 +58,7 @@
             category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>            
     </category> 
 
-    <category name="Test of Cognitive Function" id="cogniCategory">
+    <category name="Tests of Cognitive Function" id="cogniCategory">
         <category name="Stop Signal Tasks" id="cogni.sst">
             <protocol id="cogni.sst.task"
                 name="Stop Signal Task"

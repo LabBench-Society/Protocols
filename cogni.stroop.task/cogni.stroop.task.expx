@@ -116,6 +116,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
@@ -156,6 +157,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                 <stimulation-pattern time-base="seconds">
@@ -192,6 +194,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
@@ -236,6 +239,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
