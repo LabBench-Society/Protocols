@@ -77,7 +77,7 @@ class StopSignalTask:
 
         self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response01, 
                                                       self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(10).Stimulus().Code(1)))
+                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
         
         if self.signal == 0:
             self.display.Display(self.images.Left, self.Fiducials)
@@ -123,6 +123,7 @@ class GoSignalTask:
         self.feedback = feedback
         self.tc = tc
         self.display = tc.Instruments.ImageDisplay
+
         self.triggerGenerator = tc.Instruments.TriggerGenerator
         self.triggerTlk = tc.Triggers
         self.triggers = triggers
@@ -156,7 +157,7 @@ class GoSignalTask:
         
         self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response01, 
                                                       self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(10).Stimulus().Code(1)))
+                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
 
         if self.signal == 0:
             self.display.Display(self.images.Left, self.Fiducials)

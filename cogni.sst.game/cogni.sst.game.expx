@@ -34,6 +34,7 @@
         <device-mapping>
             <device-assignment device-id="joystick" instrument-name="Button" />
             <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
+            <device-assignment device-id="joystick" instrument-name="TriggerGenerator" />
         </device-mapping>        
     </experimental-setup>    
     <experimental-setup name="LabBench I/O" id="LIO">
@@ -81,6 +82,7 @@
         <device-mapping>
             <device-assignment device-id="lio.pad" instrument-name="Button" />
             <device-assignment device-id="display.image" instrument-name="ImageDisplay"/>
+            <device-assignment device-id="lio" instrument-name="TriggerGenerator" />
         </device-mapping>        
     </experimental-setup>
    </experimental-setup-variants>                    
@@ -120,6 +122,7 @@
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
                         <instrument name="Button" interface="button"/>
+                        <instrument name="TriggerGenerator" interface="trigger-generator" />
                     </stimulation-scripts>
 
                     <stimulation-pattern time-base="seconds">
@@ -151,6 +154,7 @@
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
                         <instrument name="Button" interface="button"/>
+                        <instrument name="TriggerGenerator" interface="trigger-generator" />
                     </stimulation-scripts>
 
                     <stimulation-pattern time-base="seconds">

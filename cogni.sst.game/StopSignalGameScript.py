@@ -1,6 +1,17 @@
 ﻿import random
 import math
 
+class TriggerRecording:
+    def __init__(self, tc):
+        self.triggers = []
+        self.result = tc.Current
+
+    def Add(self, code):
+        self.triggers.append(code)
+
+    def Complete(self):
+        self.result.Annotations.SetIntegers("sstTriggers", self.triggers)
+
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
         self.Log = tc.Log
@@ -27,11 +38,16 @@ class UpDownAlgorithm:
         self.stopSignalDelay.append(self.delay)
       
 class StopSignalTask:
-    def __init__(self, tc, algorithm, feedback):
+    def __init__(self, tc, algorithm, feedback, triggers):
         self.Log = tc.Log
         self.feedback = feedback
         self.Buttons = tc.Response.Buttons
         self.display = tc.Instruments.ImageDisplay
+
+        self.triggerGenerator = tc.Instruments.TriggerGenerator
+        self.triggerTlk = tc.Triggers
+        self.triggers = triggers
+
         self.response = tc.Instruments.Button
         self.images = tc.Assets.StopSignalGameImages
         self.algorithm = algorithm
@@ -59,6 +75,10 @@ class StopSignalTask:
         self.response.Reset()
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
+
+        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response01, 
+                                                      self.triggerTlk.Sequence()
+                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
         
         if self.signal == 0:
             self.display.Display(self.images.Left, self.Fiducials)
@@ -86,6 +106,7 @@ class StopSignalTask:
             self.time.append(int(-1))
 
         self.algorithm.Iterate(self.answer[-1])
+        self.triggers.Add(7 if self.answer[-1] else 9)
 
         self.Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay} ]", 
                         self.answer[-1], 
@@ -97,12 +118,17 @@ class StopSignalTask:
         return self.feedbackTime
 
 class GoSignalTask:
-    def __init__(self, tc, feedback):   
+    def __init__(self, tc, feedback, triggers):   
         self.Log = tc.Log    
         self.Buttons = tc.Response.Buttons
         self.feedback = feedback
         self.tc = tc
         self.display = tc.Instruments.ImageDisplay
+
+        self.triggerGenerator = tc.Instruments.TriggerGenerator
+        self.triggerTlk = tc.Triggers
+        self.triggers = triggers
+
         self.response = tc.Instruments.Button
         self.images = tc.Assets.StopSignalGameImages
 
@@ -130,6 +156,10 @@ class GoSignalTask:
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
         
+        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response01, 
+                                                      self.triggerTlk.Sequence()
+                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+
         if self.signal == 0:
             self.display.Display(self.images.Left, self.Fiducials)
         else:
@@ -143,8 +173,10 @@ class GoSignalTask:
         
         if button == self.Buttons.NoResponse:
             self.answer.append(False)
+            self.triggers.Add(1)
         else:         
             self.answer.append(button == self.Buttons.Left if self.signal == 0 else button == self.Buttons.Right)
+            self.triggers.Add(3 if self.answer[-1] else 5)
                         
         self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 
@@ -221,15 +253,17 @@ class CognitiveTask:
         self.tc = tc        
 
     def Initialize(self, stepsize, initialDelay):
+        self.Triggers = TriggerRecording(self.tc)
         self.Feedback = GameFeedback(self.tc)
-        self.StopTask = StopSignalTask(self.tc, UpDownAlgorithm(self.tc, stepsize, initialDelay), self.Feedback)
-        self.GoTask = GoSignalTask(self.tc, self.Feedback)        
+        self.StopTask = StopSignalTask(self.tc, UpDownAlgorithm(self.tc, stepsize, initialDelay), self.Feedback, self.Triggers)
+        self.GoTask = GoSignalTask(self.tc, self.Feedback, self.Triggers)        
         return True
 
     def Complete(self):
         self.StopTask.Complete()
         self.GoTask.Complete()        
         self.Feedback.Complete()
+        self.Triggers.Complete()
         return True
     
     def Stimulate(self):
