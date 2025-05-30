@@ -88,14 +88,6 @@
     </category>
 
     <category name="Electroencephalography" id="eeg">
-        <protocol id="eeg.stroop"
-            name="Stroop Task (Electroencephalography)"
-            labbench-version="5.0"
-            category="Cognitive Task;EEG"/>
-        <protocol id="eeg.stroopReverse"
-            name="Reverse Stroop Task (Electroencephalography)"
-            labbench-version="5.0"
-            category="Cognitive Task;EEG"/>
         <protocol id="eeg.voddball"
             name="Oddball Task (Visual)"
             labbench-version="5.0"
