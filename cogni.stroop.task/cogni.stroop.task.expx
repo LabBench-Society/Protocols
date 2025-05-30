@@ -6,7 +6,7 @@
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
 
-   <experimental-setup-variants default="LIO">         
+   <experimental-setup-variants default="JOYSTICK">         
       <experimental-setup name="Joystick" id="JOYSTICK">
          <devices>
             <joystick id="joystick">
