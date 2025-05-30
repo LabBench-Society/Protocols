@@ -1,4 +1,8 @@
-﻿
+﻿def GeneratorTrigger(tc, code):
+    generator = tc.Instruments.TriggerGenerator    
+    generator.GenerateTriggerSequence(tc.Triggers.StartTrigger.Response02, 
+                                      tc.Triggers.Sequence().Add(tc.Triggers.Trigger(code).Stimulus().Code(1)))
+
 def GenerateImage(tc, name):
     with tc.Image.GetCanvas(1920,1080) as canvas:
         canvas.Font('Roboto')
@@ -26,5 +30,6 @@ def GetImages(tc):
     }
     
 def Stimulate(tc, x):
-    tc.Instruments.ImageDisplay.Display(tc.Images[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")       
+    tc.Instruments.ImageDisplay.Display(tc.Images[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")  
+    GeneratorTrigger(tc, 1)     
     return True
