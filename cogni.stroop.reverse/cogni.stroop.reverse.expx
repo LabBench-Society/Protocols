@@ -6,7 +6,7 @@
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
 
-   <experimental-setup-variants default="LIO">         
+   <experimental-setup-variants default="JOYSTICK">         
       <experimental-setup name="Joystick" id="JOYSTICK">
          <devices>
             <joystick id="joystick">
@@ -38,6 +38,7 @@
          <device-mapping>
             <device-assignment device-id="joystick" instrument-name="Button" />
             <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
+            <device-assignment device-id="joystick" instrument-name="TriggerGenerator" />
          </device-mapping>        
       </experimental-setup>    
       <experimental-setup name="LabBench I/O" id="LIO">
@@ -76,7 +77,8 @@
          </devices>
          <device-mapping>
             <device-assignment instrument-name="ImageDisplay" device-id="display.image"/>
-            <device-assignment instrument-name="Button" device-id="lio.pad"/>             
+            <device-assignment instrument-name="Button" device-id="lio.pad"/>         
+            <device-assignment device-id="lio" instrument-name="TriggerGenerator" />
          </device-mapping>
       </experimental-setup>        
    </experimental-setup-variants>
@@ -113,6 +115,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
@@ -153,6 +156,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                 <stimulation-pattern time-base="seconds">
@@ -189,6 +193,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">
@@ -233,6 +238,7 @@
                   stimulus-description="Image"
                   stimulus-unit="N/A">
                   <instrument name="ImageDisplay" interface="image-display"/>
+                  <instrument name="TriggerGenerator" interface="trigger-generator" />
                </stimulation-scripts>
     
                <stimulation-pattern time-base="seconds">

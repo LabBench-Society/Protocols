@@ -1,5 +1,10 @@
 ﻿import random
 
+def GeneratorTrigger(tc, code):
+    generator = tc.Instruments.TriggerGenerator    
+    generator.GenerateTriggerSequence(tc.Triggers.StartTrigger.Response02, 
+                                      tc.Triggers.Sequence().Add(tc.Triggers.Trigger(code).Stimulus().Code(1)))
+
 class Position:
     def __init__(self, display):
         self.Size = display.Height/12
@@ -26,6 +31,8 @@ def ReverseStroopNeutralStimulate(tc, x):
     name =  tc.StimulusName
     position = Position(display)
 
+    GeneratorTrigger(tc, 1)
+
     with tc.Image.GetCanvas(display) as canvas:
         canvas.Fill(True)
         DrawResponses(tc, position, canvas)
@@ -41,6 +48,8 @@ def ReverseStroopStimulate(tc, x):
     display = tc.Instruments.ImageDisplay
     name =  tc.StimulusName
     position = Position(display)
+
+    GeneratorTrigger(tc, 3 if name[0] == name[1] else 5)
 
     with tc.Image.GetCanvas(display) as canvas:
         canvas.Fill(True)
