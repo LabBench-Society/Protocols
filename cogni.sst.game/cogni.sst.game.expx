@@ -43,8 +43,7 @@
                 id="lio" 
                 default-analog-output="0">
                 <response-devices>
-                    <response-pad
-                        id="pad" 
+                    <response-pad id="pad" 
                         type="button-4-cross" 
                         timing-source="response-port02">
                         <map experimental-setup-id="sstSetup">
@@ -52,8 +51,7 @@
                             <button-assignment code="6" button="right" label="Right" />
                         </map>
                     </response-pad>
-                    <visual-trigger 
-                        id="vtrig"
+                    <visual-trigger id="vtrig"
                         arming-period="200" 
                         timing-source="response-port02" />
                 </response-devices>

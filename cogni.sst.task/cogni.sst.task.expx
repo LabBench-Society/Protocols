@@ -20,13 +20,10 @@
                 position="fullscreen"
                 screen="secondary">
 
-                <monitor
-                    diagonal-size="53.34"
-                    distance="40" />
+                <monitor diagonal-size="53.34" distance="40" />
 
                 <configurations>
-                    <image-display
-                        id="image"
+                    <image-display id="image"
                         experimental-setup-id="sstSetup"
                         background-color="rgb(0,0,0)" />
                 </configurations>                
@@ -56,8 +53,7 @@
                 </response-devices>
             </lio>
 
-            <display
-                id="display"
+            <display id="display"
                 active-color="rgb(255,255,255)"
                 background-color="rgb(0,0,0)"
                 inactive-color="rgb(32,32,32)"
@@ -66,17 +62,11 @@
                 screen="secondary"
                 fiducial-position="upper-right">
 
-                <monitor 
-                    diagonal-size="35.5" 
-                    distance="40" />
-                <fiducial 
-                    x="17" 
-                    y="17" 
-                    size="10"/>
+                <monitor diagonal-size="35.5" distance="40" />
+                <fiducial x="17" y="17" size="10"/>
 
                 <configurations>
-                    <image-display
-                        id="image"
+                    <image-display id="image"
                         experimental-setup-id="sstSetup"
                         background-color="rgb(0,0,0)" />
                 </configurations>                

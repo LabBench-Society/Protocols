@@ -75,7 +75,7 @@ class StopSignalTask:
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
 
-        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response01, 
+        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
                                                       self.triggerTlk.Sequence()
                                                                      .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
         
@@ -155,7 +155,7 @@ class GoSignalTask:
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
         
-        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response01, 
+        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
                                                       self.triggerTlk.Sequence()
                                                                      .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
 
