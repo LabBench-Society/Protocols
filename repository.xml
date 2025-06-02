@@ -59,6 +59,10 @@
     </category> 
 
     <category name="Thermal Cutaneous Testing" id="tct">
+        <protocol id="tct.thr"
+            name="Detection and Pain Thresholds" 
+            labbench-version="5.2"
+            category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
         <protocol id="tct.ts"
             name="Temporal Summation" 
             labbench-version="5.2"

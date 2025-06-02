@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.2/experiment.xsd">
+    <experimental-setup>
+        <devices>
+            <tcs id="tcs"
+                 minimal-temperature="0"
+                 neutral-temperature="32"
+                 maximal-temperature="60"
+                 trigger-output="true"/>
+        </devices>
+        <device-mapping>
+            <device-assignment instrument-name="ThermalStimulator" device-id="tcs"/>
+        </device-mapping>
+    </experimental-setup>
+    <protocol>
+        <defines />
+        <tests>                         
+            <thermal-threshold-estimation id="HDT"
+                                          name="Heat Detection Threshold (HDT)"
+                                          experimental-setup-id="blank"
+                                          maximal-temperature="Stimulator.Max"
+                                          initial-stimulation-delay="2"
+                                          stimulation-rate="1"
+                                          return-rate="8"
+                                          repetitions="3"
+                                          stimulation-interval="5"
+                                          threshold-type="heat-detection-threshold"/>
+            
+            <thermal-threshold-estimation id="HPT"
+                                          name="Heat Pain Threshold (HPT)"
+                                          experimental-setup-id="blank"
+                                          maximal-temperature="Stimulator.Max"
+                                          initial-stimulation-delay="2"
+                                          stimulation-rate="1"
+                                          return-rate="8"
+                                          repetitions="3"
+                                          stimulation-interval="5"
+                                          threshold-type="heat-pain-threshold"/>
+    
+            <thermal-threshold-estimation id="CDT"
+                                          name="Cold Detection Threshold (CDT)"
+                                          experimental-setup-id="blank"
+                                          maximal-temperature="Stimulator.Min"
+                                          initial-stimulation-delay="2"
+                                          stimulation-rate="1"
+                                          return-rate="170"
+                                          repetitions="3"
+                                          stimulation-interval="5"
+                                          threshold-type="cold-detection-threshold"/>
+            
+            <thermal-threshold-estimation id="CPT"
+                                          name="Cold Pain Threshold (CPT)"
+                                          experimental-setup-id="blank"
+                                          maximal-temperature="Stimulator.Min"
+                                          initial-stimulation-delay="2"
+                                          stimulation-rate="1"
+                                          return-rate="8"
+                                          repetitions="3"
+                                          stimulation-interval="5"
+                                          threshold-type="cold-pain-threshold" />
+        </tests>
+        <assets>
+        </assets>
+    </protocol>    
+</experiment>
