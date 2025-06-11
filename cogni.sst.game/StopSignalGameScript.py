@@ -79,6 +79,7 @@ class StopSignalTask:
         self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
                                                       self.triggerTlk.Sequence()
                                                                      .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggers.Add(1 if self.signal == 0 else 2)
         
         if self.signal == 0:
             self.display.Display(self.images.Left, self.Fiducials)
@@ -106,13 +107,16 @@ class StopSignalTask:
             self.time.append(int(-1))
 
         self.algorithm.Iterate(self.answer[-1])
-        self.triggers.Add(7 if self.answer[-1] else 9)
+        self.triggers.Add(3 if self.answer[-1] else 4)
 
         self.Log.Information("STOP-SIGNAL RESPONSE [ Correct: {answer}, sstDelay: {stopSignalDelay} ]", 
                         self.answer[-1], 
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
 
+        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
+                                                      self.triggerTlk.Sequence()
+                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
         self.feedback.StopFeedback(self.answer[-1])
 
         return self.feedbackTime
@@ -159,6 +163,7 @@ class GoSignalTask:
         self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
                                                       self.triggerTlk.Sequence()
                                                                      .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggers.Add(5 if self.signal == 0 else 6)
 
         if self.signal == 0:
             self.display.Display(self.images.Left, self.Fiducials)
@@ -173,10 +178,10 @@ class GoSignalTask:
         
         if button == self.Buttons.NoResponse:
             self.answer.append(False)
-            self.triggers.Add(1)
+            self.triggers.Add(7)
         else:         
             self.answer.append(button == self.Buttons.Left if self.signal == 0 else button == self.Buttons.Right)
-            self.triggers.Add(3 if self.answer[-1] else 5)
+            self.triggers.Add(8 if self.answer[-1] else 9)
                         
         self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
                          button, 
@@ -184,6 +189,9 @@ class GoSignalTask:
                          self.answer[-1],
                          self.time[-1])
 
+        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
+                                                      self.triggerTlk.Sequence()
+                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
         self.feedback.GoFeedback(self.answer[-1], self.time[-1])
 
         return self.feedbackTime
