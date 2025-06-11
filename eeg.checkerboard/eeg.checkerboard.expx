@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+    <subject-validator
+        regex="^S[0-9]{3}$"
+        advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup>
+        <devices>
+            <lio id="lio"
+                default-analog-output="0">
+
+                <trigger-setup
+                    logic-system="positive"
+                    low-byte-voltage-level="5.0V"
+                    high-byte-voltage-level="unconnected" />
+                    
+                <response-devices>
+                    <button id="button" timing-source="response-port02">
+                        <map>
+                            <button-assignment code="1" button="button-01" label="Button 1"/>
+                        </map>
+                    </button>
+
+                    <visual-trigger id="trigger" arming-period="200" timing-source="response-port02"/>
+                </response-devices>
+            </lio>
+            <display id="display"
+                active-color="rgb(255,255,255)"
+                background-color="rgb(0,0,0)"
+                inactive-color="rgb(32,32,32)"
+                normative-distance="40"
+                position="fullscreen"
+                screen="secondary">
+
+                <monitor diagonal-size="35.5" distance="40" />
+                <fiducial size="10" x="17" y="17" />
+
+                <configurations>
+                    <image-display 
+                        id="image"
+                        experimental-setup-id="image"
+                        background-color="rgb(0,0,0)" />
+                </configurations>
+            </display>
+        </devices>
+        <device-mapping>
+            <device-assignment instrument-name="Button" device-id="lio.button" />
+            <device-assignment instrument-name="ImageDisplay" device-id="display.image" />
+            <device-assignment instrument-name="TriggerGenerator" device-id="lio" />
+        </device-mapping>
+    </experimental-setup>
+    <protocol>
+        <properties>
+            <rerun-policy
+                force-warning="false"
+                require-reason="false" />
+        </properties>
+        <defines>
+            <define 
+                name="NumberOfOddballs" 
+                value="40" />
+            <define 
+                name="DisplayTime" 
+                value="500"/>
+        </defines>
+        <tests>
+            <stimulation-sequence id="ODDBALLR"
+                name="Visual Oddball Task (Response Task)"
+                experimental-setup-id="image"
+                response-collection="yes-no"
+                stimulus-update-rate="44100"
+                trigger-update-rate="20000">
+
+                <properties>
+                    <instructions default="Assets.ResponseTask" override-results="true"/>
+                    <subject-instructions experimental-setup-id="image" default="Assets.Images.responseTask" />
+                </properties>
+
+                <configuration>
+                    <trigger-generation trigger-source="response-port02" />
+                </configuration>
+                
+                <stimulation-scripts initialize="True"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="ImageDisplay" interface="image-display"/>
+                </stimulation-scripts>                
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence>
+                        <sequence iterations="1" Tperiod="2" stimulate="false"/>
+
+                        <uniformly-distributed-sequence
+                            iterations="NumberOfStimuli * NumberOfOddballs"
+                            minTperiod="1"
+                            maxTperiod="2"
+                            stimulate="true" />
+                        </sequence>                   
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus
+                        name="oddball"
+                        count="1">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="Code" value="1" />
+                                <code output="Digital" value="1" />
+                            </trigger>
+                        </triggers>
+                    </stimulus>
+
+                    <stimulus
+                        name="normal"
+                        count="5">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="Code" value="3" />
+                                <code output="Digital" value="1" />
+                            </trigger>
+                        </triggers>
+                    </stimulus>
+                </stimuli>
+            </stimulation-sequence>
+
+            <stimulation-sequence id="ODDBALLC"
+                name="Visual Oddball Task (Counting Task)"
+                experimental-setup-id="image"
+                response-collection="none"
+                stimulus-update-rate="44100"
+                trigger-update-rate="20000">
+
+                <properties>
+                    <instructions default="Assets.CountingTask" override-results="true"/>
+                    <subject-instructions experimental-setup-id="image" default="Assets.Images.countingTask" />
+                </properties>
+
+                <configuration>
+                    <trigger-generation trigger-source="response-port02" />
+                </configuration>
+
+                <stimulation-scripts initialize="True"
+                                     stimulate="func: Script.Stimulate(tc,x)"
+                                     stimulus-description="Image"
+                                     stimulus-unit="N/A">
+                    <instrument name="ImageDisplay" interface="image-display"/>
+                </stimulation-scripts>                             
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence>
+                        <sequence iterations="1" Tperiod="2"  stimulate="false"/>
+
+                        <uniformly-distributed-sequence
+                            iterations="NumberOfStimuli * NumberOfOddballs"
+                            minTperiod="1"
+                            maxTperiod="2"
+                            stimulate="true" />
+                        </sequence>                   
+                </stimulation-pattern>
+
+
+                <stimuli order="block-random">
+                    <stimulus
+                        name="oddball"
+                        count="1">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="Code" value="1" />
+                                <code output="Digital" value="1" />
+                            </trigger>
+                        </triggers>
+                    </stimulus>
+
+                    <stimulus
+                        name="normal"
+                        count="5">
+
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="Code" value="3" />
+                                <code output="Digital" value="1" />
+                            </trigger>
+                        </triggers>
+                    </stimulus>
+                </stimuli>
+            </stimulation-sequence>
+
+            <questionnaire id="RESPONSE"
+                name="Number of oddballs"
+                experimental-setup-id="image"
+                control="operator">
+
+                <properties>
+                    <auto-start value="true" />
+                </properties>
+
+                <content>
+                    <numeric
+                        id="COUNT"
+                        title="Number of oddballs"
+                        instruction="How many red cues did you count?">
+                        <validation
+                            max="1000"
+                            max-included="true"
+                            min="0"
+                            min-included="true" />
+                    </numeric>
+                </content>
+            </questionnaire>
+        </tests>
+        <assets>
+            <file-asset
+                id="CountingTask"
+                file="CountingTask.rtf" />
+
+            <file-asset 
+                id="ResponseTask"
+                file="ResponseTask.rtf"/>
+
+            <file-asset 
+                id="Script"
+                file="Script.py"/>
+
+            <file-asset 
+                id="Images"
+                file="Images.zip"/>
+        </assets>
+    </protocol>
+    <post-actions>
+    </post-actions>
+</experiment>
