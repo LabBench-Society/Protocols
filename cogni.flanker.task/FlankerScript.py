@@ -30,6 +30,6 @@ def GetImages(tc):
     }
     
 def Stimulate(tc, x):
-    tc.Instruments.ImageDisplay.Display(tc.Images[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")  
     GeneratorTrigger(tc, 1)     
+    tc.Instruments.ImageDisplay.Display(tc.Images[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")  
     return True
