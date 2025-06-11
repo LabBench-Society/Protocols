@@ -15,7 +15,7 @@
                     high-byte-voltage-level="unconnected" />
                     
                 <response-devices>
-                    <button id="button" timing-source="response-port01">
+                    <button id="button" timing-source="response-port02">
                         <map>
                             <button-assignment code="1" button="button-01" label="Button 1"/>
                         </map>
