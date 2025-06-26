@@ -32,7 +32,7 @@
                 position="fullscreen"
                 screen="secondary">
 
-                <monitor diagonal-size="35.5" distance="40" />
+                <monitor diagonal-size="59.5" distance="120" />
                 <fiducial size="10" x="17" y="17" />
 
                 <configurations>
@@ -58,10 +58,10 @@
         <defines>
             <define 
                 name="NumberOfOddballs" 
-                value="40" />
+                value="80" />
             <define 
                 name="DisplayTime" 
-                value="500"/>
+                value="300"/>
         </defines>
         <tests>
             <stimulation-sequence id="ODDBALLR"
@@ -91,12 +91,10 @@
                     <sequence>
                         <sequence iterations="1" Tperiod="2" stimulate="false"/>
 
-                        <uniformly-distributed-sequence
-                            iterations="NumberOfStimuli * NumberOfOddballs"
-                            minTperiod="1"
-                            maxTperiod="2"
-                            stimulate="true" />
-                        </sequence>                   
+                        <sequence iterations="NumberOfStimuli * NumberOfOddballs"
+                            Tperiod="0.5"
+                            stimulate="true"/>
+                    </sequence>                   
                 </stimulation-pattern>
 
                 <stimuli order="block-random">
@@ -113,7 +111,7 @@
 
                     <stimulus
                         name="normal"
-                        count="5">
+                        count="4">
                         <triggers>
                             <trigger duration="10">
                                 <code output="Code" value="3" />
@@ -149,16 +147,13 @@
 
                 <stimulation-pattern time-base="seconds">
                     <sequence>
-                        <sequence iterations="1" Tperiod="2"  stimulate="false"/>
+                        <sequence iterations="1" Tperiod="2" stimulate="false"/>
 
-                        <uniformly-distributed-sequence
-                            iterations="NumberOfStimuli * NumberOfOddballs"
-                            minTperiod="1"
-                            maxTperiod="2"
-                            stimulate="true" />
-                        </sequence>                   
+                        <sequence iterations="NumberOfStimuli * NumberOfOddballs"
+                            Tperiod="0.5"
+                            stimulate="true"/>
+                    </sequence>                   
                 </stimulation-pattern>
-
 
                 <stimuli order="block-random">
                     <stimulus
