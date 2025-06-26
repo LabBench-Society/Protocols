@@ -21,7 +21,7 @@
                         </map>
                     </button>
 
-                    <visual-trigger id="trigger" arming-period="200" timing-source="response-port02"/>
+                    <visual-trigger id="trigger" arming-period="100" timing-source="response-port02"/>
                 </response-devices>
             </lio>
             <display id="display"
