@@ -61,7 +61,7 @@
                 value="80" />
             <define 
                 name="DisplayTime" 
-                value="300"/>
+                value="500"/>
         </defines>
         <tests>
             <stimulation-sequence id="ODDBALLR"
@@ -92,7 +92,7 @@
                         <sequence iterations="1" Tperiod="2" stimulate="false"/>
 
                         <sequence iterations="NumberOfStimuli * NumberOfOddballs"
-                            Tperiod="0.5"
+                            Tperiod="1.5"
                             stimulate="true"/>
                     </sequence>                   
                 </stimulation-pattern>
@@ -150,7 +150,7 @@
                         <sequence iterations="1" Tperiod="2" stimulate="false"/>
 
                         <sequence iterations="NumberOfStimuli * NumberOfOddballs"
-                            Tperiod="0.5"
+                            Tperiod="1.5"
                             stimulate="true"/>
                     </sequence>                   
                 </stimulation-pattern>
