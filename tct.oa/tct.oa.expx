@@ -11,8 +11,8 @@
             </joystick>
 
             <display id="display"
-                     screen="secondary"
-                     position="fullscreen"
+                     screen="primary"
+                     position="upper-right"
                      normative-distance="40">
 
                 <monitor diagonal-size="35" distance="40"/>
@@ -88,16 +88,16 @@
                                        name="Offset Analgesia (Familiarization)"
                                        experimental-setup-id="scale"
                                        response-collection="numerical-rating"
-                                       intensity="THR"
-                                       minimal-display-temperature="Stimulator.Neutral"
-                                       maximal-display-temperature="Stimulator.Max">
+                                       intensity="THR.C01"
+                                       minimal-display-temperature="ThermalStimulator.Neutral"
+                                       maximal-display-temperature="ThermalStimulator.Max">
                 <stimulus>
-                    <linear-segments baseline="Stimulator.Neutral">
+                    <linear-segments baseline="ThermalStimulator.Neutral">
                         <!-- Increase with 1C/s -->
                         <segment duration="1000" value="x - 2"/>
                         <segment duration="9900" value="x - 2"/>
                         <segment duration="100" value="x - 2"/>
-                        <segment duration="1000" value="Stimulator.Neutral" />
+                        <segment duration="1000" value="ThermalStimulator.Neutral" />
                     </linear-segments>
                 </stimulus>
             </thermal-rated-stimulation>
@@ -106,11 +106,11 @@
                                        name="Offset Analgesia"
                                        experimental-setup-id="scale"
                                        response-collection="numerical-rating"
-                                       intensity="THR"
-                                       minimal-display-temperature="Stimulator.Neutral"
-                                       maximal-display-temperature="Stimulator.Max">
+                                       intensity="THR.C01"
+                                       minimal-display-temperature="ThermalStimulator.Neutral"
+                                       maximal-display-temperature="ThermalStimulator.Max">
                 <stimulus>
-                    <linear-segments baseline="Stimulator.Neutral">
+                    <linear-segments baseline="ThermalStimulator.Neutral">
                         <!-- Increase with 1C/s -->
                         <segment duration="1000" value="x"/>
                         <segment duration="5000" value="x"/>
@@ -121,7 +121,7 @@
                         <segment duration="5000" value="x"/>
                         <segment duration="5000" value="x"/>
                         <segment duration="5000" value="x"/>
-                        <segment duration="1000" value="Stimulator.Neutral" />
+                        <segment duration="1000" value="ThermalStimulator.Neutral" />
                     </linear-segments>
                 </stimulus>
             </thermal-rated-stimulation>
@@ -130,11 +130,11 @@
                                        name="Offset Analgesia (Control)"
                                        experimental-setup-id="scale"
                                        response-collection="numerical-rating"
-                                       intensity="THR"
-                                       minimal-display-temperature="Stimulator.Neutral"
-                                       maximal-display-temperature="Stimulator.Max">
+                                       intensity="THR.C01"
+                                       minimal-display-temperature="ThermalStimulator.Neutral"
+                                       maximal-display-temperature="ThermalStimulator.Max">
                 <stimulus>
-                    <linear-segments baseline="Stimulator.Neutral">
+                    <linear-segments baseline="ThermalStimulator.Neutral">
                         <!-- Increase with 1C/s -->
                         <segment duration="1000" value="x"/>
                         <segment duration="5000" value="x"/>
@@ -143,7 +143,7 @@
                         <segment duration="5000" value="x"/>
                         <segment duration="5000" value="x"/>
                         <segment duration="5000" value="x"/>
-                        <segment duration="1000" value="Stimulator.Neutral" />
+                        <segment duration="1000" value="ThermalStimulator.Neutral" />
                     </linear-segments>
                 </stimulus>
             </thermal-rated-stimulation>            
