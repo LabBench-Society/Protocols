@@ -51,17 +51,17 @@
             <thermal-rated-stimulation id="TSP01"
                                        name="Temporal Summation (Single Stimulus)"
                                        response-collection="none"
-                                       intensity="THR"
-                                       minimal-display-temperature="Stimulator.Neutral"
-                                       maximal-display-temperature="Stimulator.Max">
+                                       intensity="THR.C01"
+                                       minimal-display-temperature="ThermalStimulator.Neutral"
+                                       maximal-display-temperature="ThermalStimulator.Max">
                 <dependencies>
                     <dependency id="THR"/>
                 </dependencies>
                 <stimulus>
-                    <linear-segments baseline="Stimulator.Neutral">
+                    <linear-segments baseline="ThermalStimulator.Neutral">
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
                     </linear-segments>
                 </stimulus>
             </thermal-rated-stimulation>
@@ -98,84 +98,84 @@
                                        name="Temporal Summation (10 Stimuli)"
                                        experimental-setup-id="blank"
                                        response-collection="none"
-                                       intensity="THR"
-                                       minimal-display-temperature="Stimulator.Neutral"
-                                       maximal-display-temperature="Stimulator.Max">
+                                       intensity="THR.C01"
+                                       minimal-display-temperature="ThermalStimulator.Neutral"
+                                       maximal-display-temperature="ThermalStimulator.Max">
                 <dependencies>
                     <dependency id="THR"/>
                     <dependency id="TSP01Rating"/>
                 </dependencies>
                 <stimulus>
-                    <linear-segments baseline="Stimulator.Neutral">
+                    <linear-segments baseline="ThermalStimulator.Neutral">
                         <!-- STIMULUS 1 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 2 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 3 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 4 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 5 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 6 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 7 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 8 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 9 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
     
                         <!-- STIMULUS 10 -->
                         <segment duration="100" value="x"/>
                         <segment duration="300" value="x"/>
-                        <segment duration="100" value="Stimulator.Neutral" />
+                        <segment duration="100" value="ThermalStimulator.Neutral" />
     
-                        <segment duration="500" value="Stimulator.Neutral"/>
+                        <segment duration="500" value="ThermalStimulator.Neutral"/>
                     </linear-segments>
                 </stimulus>
             </thermal-rated-stimulation>
