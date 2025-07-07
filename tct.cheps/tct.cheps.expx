@@ -15,7 +15,10 @@
         </device-mapping>
     </experimental-setup>
     <protocol>
-        <defines />
+        <defines>
+            <define name="RiseTime" value="10.0/3.0" />
+            <define name="Ts" value="175.0" />
+        </defines>
         <tests>                        
             <stimulation-sequence id="CHEPS" 
                 name="Contact Heat Evoked Potentials">
@@ -33,11 +36,11 @@
                         <stimulus>
                             <linear-segments baseline="Stimulator.Neutral">
                                 <segment duration="10" value="x"/>
-                                <segment duration="155" value="x"/>
+                                <segment duration="175 - 20" value="x"/>
                                 <segment duration="10" value="Stimulator.Neutral"/>
-                                <segment duration="1000-175" value="Stimulator.Neutral"/>
+                                <segment duration="1000 - 175" value="Stimulator.Neutral"/>
                                 <segment duration="10" value="x"/>
-                                <segment duration="155" value="x"/>
+                                <segment duration="175 - 20" value="x"/>
                                 <segment duration="10" value="Stimulator.Neutral"/>
                             </linear-segments>
                         </stimulus>
