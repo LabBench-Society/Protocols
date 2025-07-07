@@ -71,6 +71,10 @@
             name="Offset Analgesia" 
             labbench-version="5.2"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
+        <protocol id="tct.cheps"
+            name="Contact Heat Evoked Potentials (CHEPS)" 
+            labbench-version="5.2"
+            category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
     </category>
 
     <category name="Tests of Cognitive Function" id="cogniCategory">

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.2/experiment.xsd">
+    <experimental-setup>
+        <devices>
+            <tcs id="tcs"
+                 minimal-temperature="0"
+                 neutral-temperature="35"
+                 maximal-temperature="60"
+                 trigger-output="true"/>
+        </devices>
+        <device-mapping>
+            <device-assignment instrument-name="ThermalStimulator" device-id="tcs"/>
+            <device-assignment instrument-name="Stimulator" device-id="tcs"/>
+        </device-mapping>
+    </experimental-setup>
+    <protocol>
+        <defines />
+        <tests>                        
+            <stimulation-sequence id="CHEPS" 
+                name="Contact Heat Evoked Potentials">
+                <stimulation-pattern time-base="seconds">
+                    <uniformly-distributed-sequence 
+                        maxTperiod="18" 
+                        minTperiod="15"
+                        iterations="15"/>
+                </stimulation-pattern>
+
+                <stimuli order="round-robin">
+                    <stimulus count="1"
+                              intensity="60"
+                              name="CHEPSStimulus">
+                        <stimulus>
+                            <linear-segments baseline="Stimulator.Neutral">
+                                <segment duration="10" value="x"/>
+                                <segment duration="155" value="x"/>
+                                <segment duration="10" value="Stimulator.Neutral"/>
+                                <segment duration="1000-175" value="Stimulator.Neutral"/>
+                                <segment duration="10" value="x"/>
+                                <segment duration="155" value="x"/>
+                                <segment duration="10" value="Stimulator.Neutral"/>
+                            </linear-segments>
+                        </stimulus>
+                    </stimulus>
+                </stimuli>                
+            </stimulation-sequence>
+        </tests>
+        <assets>
+        </assets>
+    </protocol>    
+</experiment>
