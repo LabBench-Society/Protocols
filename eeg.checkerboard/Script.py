@@ -4,7 +4,7 @@ class Checkerboard:
         self.tc = tc
         self.N = 16
         self.F = 0.5
-        self.A = 23.824;
+        self.A = 23.824
 
     def Setup(self, N, F):
         self.display = self.tc.Instruments.ImageDisplay
