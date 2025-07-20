@@ -83,41 +83,157 @@
             <define name="NumberOfReversels" value="100" />
             <define name="Checkerboard" value="func: Script.CreateCheckerboard(tc)" />
         </defines>
+        <templates>
+            <content>
+                <stimulation-sequence id="VEP"
+                    experimental-setup-id="image"
+                    response-collection="none"
+                    stimulus-update-rate="20000"
+                    trigger-update-rate="20000">
+
+                    <configuration>
+                        <trigger-generation trigger-source="response-port01" />
+                    </configuration>
+
+                    <test-events selected="var: 'Checkerboard.Setup({N}, {F})'.format(N = N, F = F)">
+                        <instrument name="ImageDisplay" interface="image-display"/>
+                    </test-events>
+                    
+                    <stimulation-scripts initialize="Checkerboard.Initialize()"
+                                        stimulate="Checkerboard.Stimulate()"
+                                        stimulus-description="Image"
+                                        stimulus-unit="N/A">
+                        <instrument name="ImageDisplay" interface="image-display"/>
+                        <instrument name="TriggerGenerator" interface="trigger-generator"/>
+                    </stimulation-scripts>                
+
+                    <stimulation-pattern time-base="seconds">
+                        <sequence>
+                            <sequence iterations="1" Tperiod="1" stimulate="false"/>
+                            <sequence iterations="NumberOfReversels" Tperiod="Checkerboard.GetPeriod()" />
+                        </sequence>
+                    </stimulation-pattern>
+
+                    <stimuli order="round-robin">
+                        <stimulus name="stimulus" />
+                    </stimuli>
+                </stimulation-sequence>
+            </content>
+        </templates>
         <tests>
-            <stimulation-sequence id="N16F10"
-                name="Visual Evoked Potential (N = 16, F = 1Hz)"
-                experimental-setup-id="image"
-                response-collection="none"
-                stimulus-update-rate="20000"
-                trigger-update-rate="20000">
+            <!-- 32 x 32 -->
 
-                <configuration>
-                    <trigger-generation trigger-source="response-port01" />
-                </configuration>
+            <stimulation-sequence-constructor id="N16F05" 
+                name="Visual Evoked Potential (N = 16, F = 0.5Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="16" />
+                    <string name="F" value="0.5" />
+                </variables>
+            </stimulation-sequence-constructor>
 
-                <test-events selected="Checkerboard.Setup(16, 1)">
-                    <instrument name="ImageDisplay" interface="image-display"/>
-                </test-events>
-                
-                <stimulation-scripts initialize="Checkerboard.Initialize()"
-                                     stimulate="Checkerboard.Stimulate()"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="ImageDisplay" interface="image-display"/>
-                    <instrument name="TriggerGenerator" interface="trigger-generator"/>
-                </stimulation-scripts>                
+            <stimulation-sequence-constructor id="N16F10" 
+                name="Visual Evoked Potential (N = 16, F = 1Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="16" />
+                    <string name="F" value="1" />
+                </variables>
+            </stimulation-sequence-constructor>
 
-                <stimulation-pattern time-base="seconds">
-                    <sequence>
-                        <sequence iterations="1" Tperiod="1" stimulate="false"/>
-                        <sequence iterations="NumberOfReversels" Tperiod="Checkerboard.GetPeriod()" />
-                    </sequence>
-                </stimulation-pattern>
+            <stimulation-sequence-constructor id="N16F20" 
+                name="Visual Evoked Potential (N = 16, F = 2Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="16" />
+                    <string name="F" value="2" />
+                </variables>
+            </stimulation-sequence-constructor>
 
-                <stimuli order="round-robin">
-                    <stimulus name="stimulus" />
-                </stimuli>
-            </stimulation-sequence>
+            <stimulation-sequence-constructor id="N16F40" 
+                name="Visual Evoked Potential (N = 16, F = 4Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="16" />
+                    <string name="F" value="4" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <!-- 32 x 32 -->
+
+            <stimulation-sequence-constructor id="N32F05" 
+                name="Visual Evoked Potential (N = 32, F = 0.5Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="32" />
+                    <string name="F" value="0.5" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <stimulation-sequence-constructor id="N32F10" 
+                name="Visual Evoked Potential (N = 32, F = 1Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="32" />
+                    <string name="F" value="1" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <stimulation-sequence-constructor id="N32F20" 
+                name="Visual Evoked Potential (N = 32, F = 2Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="32" />
+                    <string name="F" value="2" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <stimulation-sequence-constructor id="N32F40" 
+                name="Visual Evoked Potential (N = 32, F = 4Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="32" />
+                    <string name="F" value="4" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <!-- 64 x 64 -->
+
+            <stimulation-sequence-constructor id="N64F05" 
+                name="Visual Evoked Potential (N = 64, F = 0.5Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="64" />
+                    <string name="F" value="0.5" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <stimulation-sequence-constructor id="N64F10" 
+                name="Visual Evoked Potential (N = 64, F = 1Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="64" />
+                    <string name="F" value="1" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <stimulation-sequence-constructor id="N64F20" 
+                name="Visual Evoked Potential (N = 64, F = 2Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="64" />
+                    <string name="F" value="2" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <stimulation-sequence-constructor id="N64F40" 
+                name="Visual Evoked Potential (N = 64, F = 4Hz)" 
+                template="VEP">
+                <variables>
+                    <string name="N" value="64" />
+                    <string name="F" value="4" />
+                </variables>
+            </stimulation-sequence-constructor>
         </tests>
         <assets>
             <file-asset id="Script" file="Script.py"/>
