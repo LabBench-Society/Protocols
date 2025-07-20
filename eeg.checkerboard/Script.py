@@ -55,6 +55,12 @@ class Checkerboard:
 
             return canvas.GetImage() 
         
+    def Display(self, image, fiducial):
+        display = self.tc.Instruments.ImageDisplay
+        display.Display(image, fiducial)
+
+        return self.Period/2
+        
     def Stimulate(self):
         display = self.tc.Instruments.ImageDisplay
         triggerGenerator = self.tc.Instruments.TriggerGenerator
@@ -67,8 +73,8 @@ class Checkerboard:
                                                                  .Add(self.tc.Triggers.Trigger(1).Stimulus().Digital().Code(1)))
 
         self.tc.Scheduler.Run(self.tc.Scheduler.Create()
-                              .Add(self.Period/2, lambda: display.Display(image, True))
-                              .Add(self.Period/2, lambda: display.Display(image, False)))
+                              .Add(lambda: self.Display(image, True))
+                              .Add(lambda: self.Display(image, False)))
 
         return True      
 

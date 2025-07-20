@@ -46,7 +46,7 @@
                         high-byte-voltage-level="unconnected" />
                         
                     <response-devices>
-                        <visual-trigger id="trigger" arming-period="200" timing-source="response-port01"/>
+                        <visual-trigger id="trigger" arming-period="100" timing-source="response-port01"/>
                     </response-devices>
                 </lio>
                 <display id="display"
@@ -121,7 +121,7 @@
             </content>
         </templates>
         <tests>
-            <!-- 32 x 32 -->
+            <!-- 16 x 16 -->
 
             <stimulation-sequence-constructor id="N16F05" 
                 name="Visual Evoked Potential (N = 16, F = 0.5Hz)" 
@@ -137,7 +137,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="16" />
-                    <string name="F" value="1" />
+                    <string name="F" value="1.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -146,7 +146,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="16" />
-                    <string name="F" value="2" />
+                    <string name="F" value="2.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -155,7 +155,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="16" />
-                    <string name="F" value="4" />
+                    <string name="F" value="4.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -175,7 +175,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="32" />
-                    <string name="F" value="1" />
+                    <string name="F" value="1.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -184,7 +184,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="32" />
-                    <string name="F" value="2" />
+                    <string name="F" value="2.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -193,7 +193,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="32" />
-                    <string name="F" value="4" />
+                    <string name="F" value="4.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -213,7 +213,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="64" />
-                    <string name="F" value="1" />
+                    <string name="F" value="1.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -222,7 +222,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="64" />
-                    <string name="F" value="2" />
+                    <string name="F" value="2.0" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -231,7 +231,7 @@
                 template="VEP">
                 <variables>
                     <string name="N" value="64" />
-                    <string name="F" value="4" />
+                    <string name="F" value="4.0" />
                 </variables>
             </stimulation-sequence-constructor>
         </tests>
