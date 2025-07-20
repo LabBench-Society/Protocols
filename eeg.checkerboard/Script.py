@@ -57,8 +57,14 @@ class Checkerboard:
         
     def Stimulate(self):
         display = self.tc.Instruments.ImageDisplay
+        triggerGenerator = self.tc.Instruments.TriggerGenerator
+
         self.count = self.count + 1
         image = self.evenImage if self.count % 2 == 0 else self.oddImage
+
+        triggerGenerator.GenerateTriggerSequence(self.tc.Triggers.StartTrigger.Response01, 
+                                                 self.tc.Triggers.Sequence()
+                                                                 .Add(self.tc.Triggers.Trigger(1).Stimulus().Digital().Code(1)))
 
         self.tc.Scheduler.Run(self.tc.Scheduler.Create()
                               .Add(self.Period/2, lambda: display.Display(image, True))
