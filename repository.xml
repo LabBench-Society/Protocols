@@ -111,6 +111,11 @@
             name="Oddball Task (Visual)"
             labbench-version="5.0"
             category="EEG" />    
+
+        <protocol id="eeg.checkerboard"
+            name="Visual Evoked Potentials (Checkerboard)"
+            labbench-version="5.3"
+            category="EEG" />
     </category>
 
     <category name="Tactile Sensitivity Testing" id="tactile">
