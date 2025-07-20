@@ -7,33 +7,28 @@ class Checkerboard:
         self.A = 23.824;
 
     def Setup(self, N, F):
-        display = self.tc.Instruments.ImageDisplay
+        self.display = self.tc.Instruments.ImageDisplay
         self.N = N
         self.F = F
         self.Period = 1000 / F
         self.count = 0
         self.evenImage = self.CreateImage(0)
         self.oddImage = self.CreateImage(1)
-        display.Display(self.evenImage)
-
+        self.display.Display(self.evenImage)
         return True
     
     def GetPeriod(self):
         return 1/self.F
     
     def Initialize(self):
-        display = self.tc.Instruments.ImageDisplay
-        display.Display(self.evenImage)
+        self.display.Display(self.evenImage)
         self.count = 0
-
         return True      
     
     def CreateImage(self, remainder):
-        display = self.tc.Instruments.ImageDisplay
-
-        with self.tc.Image.GetCanvas(display) as canvas:
-            metrics = display.Metrics
-            L = metrics.AngleToPixels(self.A / self.N)
+        with self.tc.Image.GetCanvas(self.display) as canvas:
+            L = self.display.Metrics.AngleToPixels(self.A / self.N)
+            Lc = self.display.Metrics.AngleToPixels(self.A / 16)
             canvas.Fill(True)
             xoffset = (canvas.Width - self.N*L)/2
             yoffset = (canvas.Height - self.N*L)/2
@@ -50,19 +45,16 @@ class Checkerboard:
 
             canvas.Color("#FF0000")
             canvas.StrokeWidth(3)
-            canvas.Line(canvas.Width/2 - L, canvas.Height/2, canvas.Width/2 + L, canvas.Height/2)
-            canvas.Line(canvas.Width/2, canvas.Height/2 - L, canvas.Width/2, canvas.Height/2 + L)
+            canvas.Line(canvas.Width/2 - Lc, canvas.Height/2, canvas.Width/2 + Lc, canvas.Height/2)
+            canvas.Line(canvas.Width/2, canvas.Height/2 - Lc, canvas.Width/2, canvas.Height/2 + Lc)
 
             return canvas.GetImage() 
         
     def Display(self, image, fiducial):
-        display = self.tc.Instruments.ImageDisplay
-        display.Display(image, fiducial)
-
+        self.display.Display(image, fiducial)
         return self.Period/2
         
     def Stimulate(self):
-        display = self.tc.Instruments.ImageDisplay
         triggerGenerator = self.tc.Instruments.TriggerGenerator
 
         self.count = self.count + 1
