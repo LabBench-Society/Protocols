@@ -84,8 +84,8 @@
             <define name="Checkerboard" value="func: Script.CreateCheckerboard(tc)" />
         </defines>
         <tests>
-            <stimulation-sequence id="N16F05"
-                name="Visual Evoked Potential (N = 16, F = 0.5Hz)"
+            <stimulation-sequence id="N16F10"
+                name="Visual Evoked Potential (N = 16, F = 1Hz)"
                 experimental-setup-id="image"
                 response-collection="none"
                 stimulus-update-rate="20000"
@@ -95,11 +95,11 @@
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
 
-                <test-events selected="Checkerboard.Initialize(16, 0.5)">
+                <test-events selected="Checkerboard.Setup(16, 1)">
                     <instrument name="ImageDisplay" interface="image-display"/>
                 </test-events>
                 
-                <stimulation-scripts initialize="True"
+                <stimulation-scripts initialize="Checkerboard.Initialize()"
                                      stimulate="Checkerboard.Stimulate()"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
@@ -108,8 +108,8 @@
 
                 <stimulation-pattern time-base="seconds">
                     <sequence>
-                        <sequence iterations="1" Tperiod="2" stimulate="false"/>
-                        <sequence iterations="NumberOfReversels" Tperiod="2/0.5" />
+                        <sequence iterations="1" Tperiod="1" stimulate="false"/>
+                        <sequence iterations="NumberOfReversels" Tperiod="Checkerboard.GetPeriod()" />
                     </sequence>
                 </stimulation-pattern>
 
