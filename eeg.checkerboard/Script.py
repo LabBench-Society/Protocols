@@ -21,9 +21,25 @@ class Checkerboard:
         return 1/self.F
     
     def Initialize(self):
+        triggerGenerator = self.tc.Instruments.TriggerGenerator
         self.display.Display(self.evenImage)
         self.count = 0
+
+        triggerGenerator.GenerateTriggerSequence(self.tc.Triggers.StartTrigger.Response01, 
+                                                 True,
+                                                 self.tc.Triggers.Sequence()
+                                                                 .Add(self.tc.Triggers.Trigger(10).Stimulus().Digital().Code(1)))
         return True      
+    
+    def Complete(self):
+        triggerGenerator = self.tc.Instruments.TriggerGenerator
+        triggerGenerator.Cancel()
+        return True
+    
+    def Abort(self):
+        triggerGenerator = self.tc.Instruments.TriggerGenerator
+        triggerGenerator.Cancel()
+        return True
     
     def CreateImage(self, remainder):
         with self.tc.Image.GetCanvas(self.display) as canvas:
@@ -50,23 +66,17 @@ class Checkerboard:
 
             return canvas.GetImage() 
         
-    def Display(self, image, fiducial):
+    def Display(self, image, duration, fiducial):
         self.display.Display(image, fiducial)
-        return self.Period/2
+        return duration
         
     def Stimulate(self):
-        triggerGenerator = self.tc.Instruments.TriggerGenerator
-
         self.count = self.count + 1
         image = self.evenImage if self.count % 2 == 0 else self.oddImage
 
-        triggerGenerator.GenerateTriggerSequence(self.tc.Triggers.StartTrigger.Response01, 
-                                                 self.tc.Triggers.Sequence()
-                                                                 .Add(self.tc.Triggers.Trigger(1).Stimulus().Digital().Code(1)))
-
         self.tc.Scheduler.Run(self.tc.Scheduler.Create()
-                              .Add(lambda: self.Display(image, True))
-                              .Add(lambda: self.Display(image, False)))
+                              .Add(lambda: self.Display(image, 125, True))
+                              .Add(lambda: self.Display(image, 125 - self.Period, False)))
 
         return True      
 

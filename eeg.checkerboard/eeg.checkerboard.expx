@@ -4,7 +4,7 @@
     <subject-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants default="JOYSTICK">
+    <experimental-setup-variants default="LIO">
         <experimental-setup id="JOYSTICK" name="Joystick">
             <devices>
                 <joystick id="joystick">
@@ -18,7 +18,8 @@
                     inactive-color="rgb(32,32,32)"
                     normative-distance="40"
                     position="fullscreen"
-                    screen="secondary">
+                    screen="secondary"
+                    fiducial-position="upper-right">
 
                     <monitor diagonal-size="35.5" distance="40" />
                     <fiducial size="10" x="17" y="17" />
@@ -46,7 +47,7 @@
                         high-byte-voltage-level="unconnected" />
                         
                     <response-devices>
-                        <visual-trigger id="trigger" arming-period="100" timing-source="response-port01"/>
+                        <visual-trigger id="trigger" arming-period="50" timing-source="response-port01"/>
                     </response-devices>
                 </lio>
                 <display id="display"
@@ -55,7 +56,8 @@
                     inactive-color="rgb(32,32,32)"
                     normative-distance="40"
                     position="fullscreen"
-                    screen="secondary">
+                    screen="secondary" 
+                    fiducial-position="upper-right">
 
                     <monitor diagonal-size="35.5" distance="40" />
                     <fiducial size="10" x="17" y="17" />
@@ -92,10 +94,13 @@
                     trigger-update-rate="20000">
 
                     <configuration>
-                        <trigger-generation trigger-source="response-port01" />
+                        <trigger-generation trigger-source="internal" />    
+                        <stimulation-generation trigger-source="response-port01"/>                   
                     </configuration>
 
-                    <test-events selected="var: 'Checkerboard.Setup({N}, {F})'.format(N = N, F = F)">
+                    <test-events selected="var: 'Checkerboard.Setup({N}, {F})'.format(N = N, F = F)"
+                                 complete="Checkerboard.Complete()"
+                                 abort="Checkerboard.Abort()">
                         <instrument name="ImageDisplay" interface="image-display"/>
                     </test-events>
                     
