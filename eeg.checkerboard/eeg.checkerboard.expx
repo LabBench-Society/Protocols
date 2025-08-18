@@ -59,7 +59,7 @@
                     screen="secondary" 
                     fiducial-position="upper-right">
 
-                    <monitor diagonal-size="61.0" distance="40" />
+                    <monitor diagonal-size="60.0" distance="123" />
                     <fiducial size="10" x="17" y="17" />
 
                     <configurations>
