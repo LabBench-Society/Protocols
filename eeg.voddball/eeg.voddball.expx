@@ -15,13 +15,13 @@
                     high-byte-voltage-level="unconnected" />
                     
                 <response-devices>
-                    <button id="button" timing-source="response-port02">
+                    <visual-trigger id="trigger" arming-period="100" timing-source="response-port01"/>
+
+                    <button id="button" timing-source="response-port01">
                         <map>
                             <button-assignment code="1" button="button-01" label="Button 1"/>
                         </map>
                     </button>
-
-                    <visual-trigger id="trigger" arming-period="100" timing-source="response-port02"/>
                 </response-devices>
             </lio>
             <display id="display"
