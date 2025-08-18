@@ -11,7 +11,7 @@
 
                 <trigger-setup
                     logic-system="positive"
-                    low-byte-voltage-level="5.0V"
+                    low-byte-voltage-level="unconnected"
                     high-byte-voltage-level="unconnected" />
                     
                 <response-devices>
@@ -77,7 +77,7 @@
                 </properties>
 
                 <configuration>
-                    <trigger-generation trigger-source="response-port02" />
+                    <trigger-generation trigger-source="response-port01" />
                 </configuration>
                 
                 <stimulation-scripts initialize="True"
@@ -105,6 +105,7 @@
                             <trigger duration="10">
                                 <code output="Code" value="1" />
                                 <code output="Digital" value="1" />
+                                <code output="Stimulus" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -116,6 +117,7 @@
                             <trigger duration="10">
                                 <code output="Code" value="3" />
                                 <code output="Digital" value="1" />
+                                <code output="Stimulus" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -135,7 +137,7 @@
                 </properties>
 
                 <configuration>
-                    <trigger-generation trigger-source="response-port02" />
+                    <trigger-generation trigger-source="response-port01" />
                 </configuration>
 
                 <stimulation-scripts initialize="True"
@@ -163,6 +165,7 @@
                             <trigger duration="10">
                                 <code output="Code" value="1" />
                                 <code output="Digital" value="1" />
+                                <code output="Stimulus" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -175,6 +178,7 @@
                             <trigger duration="10">
                                 <code output="Code" value="3" />
                                 <code output="Digital" value="1" />
+                                <code output="Stimulus" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
