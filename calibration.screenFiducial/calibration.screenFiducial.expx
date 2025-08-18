@@ -29,17 +29,6 @@
 
                 <lio id="lio">
                     <response-devices>
-                        <response-pad id="pad" 
-                            timing-source="response-port01">
-                            <map experimental-setup-id="image">
-                                <button-assignment code="1" button="button-01" label="Button 1" />
-                                <button-assignment code="2" button="button-02" label="Button 2" />
-                                <button-assignment code="3" button="button-03" label="Button 3" />
-                                <button-assignment code="4" button="button-04" label="Button 4" />
-                                <button-assignment code="5" button="previous" label="Previous" />
-                                <button-assignment code="6" button="next" label="Next" />
-                            </map>
-                        </response-pad>
                         <visual-trigger id="detector" 
                             arming-period="200" 
                             timing-source="response-port02"/>
@@ -48,7 +37,6 @@
             </devices>
             <device-mapping>
                 <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
-                <device-assignment device-id="lio.pad" instrument-name="Button" />
                 <device-assignment device-id="lio.detector" instrument-name="TriggerDetector" />
             </device-mapping>        
         </experimental-setup>    
@@ -192,7 +180,7 @@
             <stimulation-sequence 
                 id="TEST" 
                 name="Trigger Detection Test"
-                response-collection="yes-no"
+                response-collection="none"
                 experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <test-events
