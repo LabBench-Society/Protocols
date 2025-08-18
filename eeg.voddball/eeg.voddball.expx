@@ -58,7 +58,7 @@
         <defines>
             <define 
                 name="NumberOfOddballs" 
-                value="80" />
+                value="60" />
             <define 
                 name="DisplayTime" 
                 value="500"/>
