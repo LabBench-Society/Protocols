@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
-   <experimental-setup-variants default="JOYSTICK">
+   <experimental-setup-variants default="LIO">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
@@ -64,10 +64,11 @@
                 inactive-color="rgb(32,32,32)"
                 normative-distance="40"
                 position="fullscreen"
+                fiducial-position="lower-right"
                 screen="secondary">
 
-                <monitor diagonal-size="35.5" distance="40" />
-                <fiducial size="10" x="17" y="17"/>
+                <monitor diagonal-size="68.0" distance="100" />
+                <fiducial size="10" x="10" y="13"/>
 
                 <configurations>
                     <image-display
