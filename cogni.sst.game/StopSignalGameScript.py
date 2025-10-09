@@ -231,7 +231,7 @@ class GameFeedback:
                 canvas.Color("#FF0000")
                 canvas.Write(display.Width/2 , display.Height/2, "YOU LOOSE")
 
-            self.display.Display(canvas)
+            self.display.Display(canvas, True)
 
     def StopFeedback(self, answer):
         display = self.display
@@ -254,7 +254,7 @@ class GameFeedback:
                 self.score = self.score - self.accumulated # Penalty for loosing
 
             self.accumulated = 0
-            self.display.Display(canvas)
+            self.display.Display(canvas, True)
 
 class CognitiveTask:
     def __init__(self, tc):
