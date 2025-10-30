@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.4/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants default="PAD">
-        <experimental-setup id="LabBench PAD" name="PAD">
+    <experimental-setup-variants default="LIO">
+        <experimental-setup id="LIO" name="LabBench I/O">
             <devices>
                 <lio id="lio">
                     <response-devices>
-                        <response-pad id="pad" type="button-4-cross" timing-source="none">
-                            <map>
-                                <button-assignment code="5" button="decrease" />
-                                <button-assignment code="6" button="increase" />
-                                <button-assignment code="3" button="up" />
-                                <button-assignment code="1" button="down" />
-                            </map>
-                        </response-pad>
+                        <visual-analog-scale id="scale"
+                            length="10"
+                            sample-period="200"
+                            timing-source="none" />
                     </response-devices>
                 </lio>
 
                 <display id="display"
-                    active-color="rgb(255,0,0)"
-                    background-color="rgb(255,255,255)"
-                    inactive-color="rgb(32,32,32)"
                     position="fullscreen"
                     screen="secondary"
                     fiducial-position="upper-right"
-                    normative-distance="40">
+                    normative-distance="40">                    
     
                     <monitor diagonal-size="35.5" distance="40" />
-                    <fiducial x="17" y="17" size="10"/>
+                    <fiducial x="17" y="17" size="10"/>                    
+
+                    <typography background-color="rgb(255,255,255)"
+                                inactive-color="rgb(32,32,32)"
+                                foreground-color="rgb(0,0,0)"
+                                active-color="rgb(255,0,0)">
+
+                        <top-anchor size="32" style="normal" weight="normal" color="rgb(0,0,0)" />
+                        <bottom-anchor size="32" style="normal" weight="normal" color="rgb(0,0,0)" />
+                        <scale-modality size="48" style="normal" weight="bold" color="rgb(0,0,0)"  />
+                        <crs-category size="22" style="normal" weight="normal" color="rgb(0,0,0)" />
+                        <nrs-category size="22" style="normal" weight="normal" color="rgb(0,0,0)" />                        
+                    </typography>
     
                     <configurations>
-                        <composite-scale id="scales"
-                            experimental-setup-id="scales"
-                            controller-device="lio.pad">
+                        <composite-scale id="vas"
+                            experimental-setup-id="vas"
+                            controller-device="lio.scale">
                             <visual-analog-scale id="pain"
-                                length="10"
+                                length="10"                                                                
                                 sample-period="200"
                                 timing-source="none">
                                 <anchors>
@@ -45,6 +50,11 @@
                                     <bottom-anchor text="0/No pain" />
                                 </anchors>
                             </visual-analog-scale>
+                        </composite-scale>
+
+                        <composite-scale id="nrs"
+                            experimental-setup-id="nrs"
+                            controller-device="lio.scale">
                             <numerical-scale id="nrs"
                                 minimum="0"
                                 maximum="10"
@@ -57,25 +67,46 @@
                                 </anchors>
                             </numerical-scale>
                         </composite-scale>
-    
+
+                        <composite-scale id="crs"
+                            experimental-setup-id="crs"
+                            controller-device="lio.scale">
+                            <categorical-scale id="pain">
+                                <anchors>
+                                    <modality text="Pain" />
+                                    <top-anchor text="10/Worst possible pain" />
+                                    <bottom-anchor text="0/No pain" />
+                                </anchors>
+                                <categories>
+                                    <category text="None" />
+                                    <category text="Mild" />
+                                    <category text="Moderate" />
+                                    <category text="Severe" />
+                                    <category text="Very severe" />
+                                    <category text="Worst possible" />
+                                </categories>
+                            </categorical-scale>
+                        </composite-scale>
+                        
                         <image-display id="image"
                             background-color="rgb(255, 255, 255)"
-                            experimental-setup-id="image" />
-    
-                        <questionnaire id="questionnaire"
-                            experimental-setup-id="questionnaire"
-                            background-color="rgb(255,255,255)" />
+                            experimental-setup-id="image" />    
                     </configurations>
              </display>
             </devices>
             <device-mapping>
-                <device-assignment instrument-name="Scales" device-id="display.scales" />
                 <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
-                <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire" />                
-                <device-assignment instrument-name="RatioScale" device-id="lio.pad" />
-                <device-assignment instrument-name="Button" device-id="lio.pad" />
+                <device-assignment device-id="lio.scale" instrument-name="RatioScale" />
+
+                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasRecording"/>
+                <device-assignment device-id="display.nrs" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="nrsRecording"/>
+                <device-assignment device-id="display.crs" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="crsRecording"/>
+                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasEvents"/>
+                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasSignals"/>
+                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasCombined"/>
             </device-mapping>
         </experimental-setup>    
+        <!-- 
         <experimental-setup id="Joystick" name="JOYSTICK">
             <devices>
                 <joystick id="joystick">
@@ -144,68 +175,93 @@
                 <device-assignment instrument-name="Button" device-id="joystick" />
             </device-mapping>
         </experimental-setup>    
+        -->
     </experimental-setup-variants>
     <protocol>
-        <templates>
-            <content>
-                <questionnaire id="painIntensities"
-                    control="subject"
-                    experimental-setup-id="questionnaire">
-                    <templates>
-                        <categorical-scale id="crs"
-                            title="Pain"
-                            instruction="Please rate your worst pain in the last 24 hours"
-                            top-anchor="Worst possible pain" 
-                            bottom-anchor="No pain" 
-                            active-color="rgb(255,0,0)" 
-                            inactive-color="rgb(32,0,0)">
-                            <category value="None" />
-                            <category value="Mild" />
-                            <category value="Moderate" />
-                            <category value="Strong" />
-                            <category value="Extruciating" />
-                            <category value="Worst Possible" />
-                        </categorical-scale>
-
-                        <numerical-scale id="nrs"
-                            title="Pain"
-                            instruction="Please rate your worst pain in the last 24 hours"
-                            minimum="0"
-                            maximum="10"
-                            top-anchor="10/Worst possible pain"
-                            bottom-anchor="0/No pain"                       
-                            active-color="rgb(255, 0, 0)"
-                            inactive-color="rgb(32, 32, 32)"/>
-
-                        <visual-analog-scale id="vas"
-                            title="Pain"
-                            instruction="Please rate your worst pain in the last 24 hours"
-                            length="10"
-                            top-anchor="10/Worst possible pain"
-                            bottom-anchor="0/No pain"                       
-                            active-color="rgb(255, 0, 0)"
-                            inactive-color="rgb(32, 32, 32)"/>
-                    </templates>
-
-                    <content>
-                        <categorical-scale id="CRS" template="crs"/>
-                        <numerical-scale id="NRS" template="nrs"/>
-                        <visual-analog-scale id="VAS" template="vas"/>
-                    </content>
-                </questionnaire>   
-
-            </content>
-        </templates>
         <tests>
-            <questionnaire-constructor id="Intensities" name="Pain Intensity" template="painIntensities" />
-            
-            <psychophysics-response-recording id="recording" 
-                name="Recording"
+            <psychophysics-response-recording id="vasRecording" 
+                name="Recording (Visual Analog Scale)"
                 duration="60" 
                 sample-rate="4"
-                experimental-setup-id="scales" />
+                response-weight="1"
+                signal-weight="0"
+                experimental-setup-id="vas" />
+
+            <psychophysics-response-recording id="nrsRecording" 
+                name="Recording (Numerical Rating Scale)"
+                duration="60" 
+                sample-rate="4"
+                response-weight="1"
+                signal-weight="0"
+                experimental-setup-id="nrs" />
+
+            <psychophysics-response-recording id="crsRecording" 
+                name="Recording (Categorical Rating Scale)"
+                duration="60" 
+                sample-rate="4"
+                response-weight="1"
+                signal-weight="0"
+                experimental-setup-id="crs" />
+
+            <psychophysics-response-recording id="vasEvents" 
+                name="Recording with events (Visual Analog Scale)"
+                duration="60" 
+                sample-rate="4"
+                response-weight="1"
+                signal-weight="0"
+                experimental-setup-id="vas">
+                <events-makers>
+                    <group id="PDT">
+                        <marker id="PDT" name="Pain Detected" next-group="PTT" />
+                        <marker id="STOP" name="Hand withdrawn" complete="true" />
+                    </group>
+                    <group id="PTT">
+                        <marker id="STOP" name="Hand withdrawn" complete="true" />
+                    </group>
+                </events-makers>
+            </psychophysics-response-recording>
+
+            <psychophysics-response-recording id="vasSignals" 
+                name="Recording ratings and signals (Visual Analog Scale)"
+                duration="60" 
+                sample-rate="4"
+                response-weight="1"
+                signal-weight="1"
+                experimental-setup-id="vas">
+                <test-events>
+                    <instrument interface="ratio-scale" />
+                </test-events>
+                <signals sample="func: Script.Sample(tc)" min="0" max="10">
+                    <signal id="CTRL" name="Control Signal" unit="cm" />
+                </signals>
+            </psychophysics-response-recording>
+
+            <psychophysics-response-recording id="vasCombined" 
+                name="Recording ratings and signals with events (Visual Analog Scale)"
+                duration="60" 
+                sample-rate="4"
+                response-weight="1"
+                signal-weight="1"
+                experimental-setup-id="vas">
+                <test-events>
+                    <instrument interface="ratio-scale" />
+                </test-events>
+                <events-makers>
+                    <group id="PDT">
+                        <marker id="PDT" name="Pain Detected" next-group="PTT" />
+                        <marker id="STOP" name="Hand withdrawn" complete="true" />
+                    </group>
+                    <group id="PTT">
+                        <marker id="STOP" name="Hand withdrawn" complete="true" />
+                    </group>
+                </events-makers>
+                <signals sample="func: Script.Sample(tc)" min="0" max="10">
+                    <signal id="CTRL" name="Control Signal" unit="cm" />
+                </signals>
+            </psychophysics-response-recording>
         </tests>
         <assets>
+            <file-asset id="Script" file="Script.py" />
         </assets>
     </protocol>
     <post-actions>
