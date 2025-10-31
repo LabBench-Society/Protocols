@@ -178,6 +178,9 @@
         -->
     </experimental-setup-variants>
     <protocol>
+        <defines>
+            <define name="Walk" value="func: Script.CreateRandomWalk(tc)" />
+        </defines>
         <tests>
             <psychophysics-response-recording id="vasRecording" 
                 name="Recording (Visual Analog Scale)"
@@ -224,14 +227,14 @@
             <psychophysics-response-recording id="vasSignals" 
                 name="Recording ratings and signals (Visual Analog Scale)"
                 duration="60" 
-                sample-rate="4"
+                sample-rate="20"
                 response-weight="1"
                 signal-weight="1"
                 experimental-setup-id="vas">
                 <test-events>
                     <instrument interface="ratio-scale" />
                 </test-events>
-                <signals sample="func: Script.Sample(tc)" min="0" max="10">
+                <signals sample="Walk.Sample()" min="0" max="10">
                     <signal id="CTRL" name="Control Signal" unit="cm" />
                 </signals>
             </psychophysics-response-recording>
@@ -239,9 +242,9 @@
             <psychophysics-response-recording id="vasCombined" 
                 name="Recording ratings and signals with events (Visual Analog Scale)"
                 duration="60" 
-                sample-rate="4"
+                sample-rate="20"
                 response-weight="1"
-                signal-weight="1"
+                signal-weight="2"
                 experimental-setup-id="vas">
                 <test-events>
                     <instrument interface="ratio-scale" />
@@ -255,7 +258,7 @@
                         <marker id="STOP" name="Hand withdrawn" complete="true" />
                     </group>
                 </events-makers>
-                <signals sample="func: Script.Sample(tc)" min="0" max="10">
+                <signals sample="Walk.Sample()" min="0" max="10">
                     <signal id="CTRL" name="Control Signal" unit="cm" />
                 </signals>
             </psychophysics-response-recording>
