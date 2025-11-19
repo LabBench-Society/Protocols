@@ -156,11 +156,20 @@
         </assets>
     </protocol>
     <post-actions>
+        <export-log name="Exporting Session Log" 
+                       location="C:\LabBenchData\cpa" 
+                        filename="dynamic: '{s}.pdf'.format(s = Subject)" />
+
+        <export-data name="Exporting to JSON" 
+                        location="C:\LabBenchData\cpa" 
+                        filename="dynamic: '{s}.json'.format(s = Subject)" 
+                        format="json"/>
+
         <export-to-csv name="Exporting session"
                        location="C:\LabBenchData\cpa"
                        header="true"
                        separator=";"
-                       culture="en"                       
+                       culture="da"                       
                        filename="dynamic: '{s}.csv'.format(s = Subject)">
 
             <item name="ProtocolID"  value="SR01.ProtocolID"        default="NA" />
@@ -169,28 +178,31 @@
             <item name="Instrument"  value="SR01.Instruments[0].ID" default="NA" />
 
             <!-- Stimulus-Response (Cuff 1) -->
-            <item name="SR01PDT" value="SR01.PDT" default="NA"/>
-            <item name="SR02PTT" value="SR01.PTT" default="NA"/>
+            <item name="SR01PDT" value="'{:.2f}'.format(SR01.PDT)" default="NA"/>
+            <item name="SR01PTT" value="'{:.2f}'.format(SR01.PTT)" default="NA"/>
+            <item name="SR01PTL" value="'{:.2f}'.format(SR01.PTL)" default="NA"/>
 
             <!-- Stimulus-Response (Cuff 2) -->
-            <item name="SR02PDT" value="SR02.PDT" default="NA"/>
-            <item name="SR02PTT" value="SR02.PTT" default="NA"/>
+            <item name="SR02PDT" value="'{:.2f}'.format(SR02.PDT)" default="NA"/>
+            <item name="SR02PTT" value="'{:.2f}'.format(SR02.PTT)" default="NA"/>
+            <item name="SR02PTL" value="'{:.2f}'.format(SR02.PTL)" default="NA"/>
 
             <!-- Temporal Summation (Cuff 1) -->
-            <item name="TS01" value="TS.Responses[0]" default="NA"/>
-            <item name="TS02" value="TS.Responses[1]" default="NA"/>
-            <item name="TS03" value="TS.Responses[2]" default="NA"/>
-            <item name="TS04" value="TS.Responses[3]" default="NA"/>
-            <item name="TS05" value="TS.Responses[4]" default="NA"/>
-            <item name="TS06" value="TS.Responses[5]" default="NA"/>
-            <item name="TS07" value="TS.Responses[6]" default="NA"/>
-            <item name="TS08" value="TS.Responses[7]" default="NA"/>
-            <item name="TS09" value="TS.Responses[8]" default="NA"/>
-            <item name="TS10" value="TS.Responses[9]" default="NA"/>
+            <item name="TS01" value="'{:.2f}'.format(TS.Responses[0])" default="NA"/>
+            <item name="TS02" value="'{:.2f}'.format(TS.Responses[1])" default="NA"/>
+            <item name="TS03" value="'{:.2f}'.format(TS.Responses[2])" default="NA"/>
+            <item name="TS04" value="'{:.2f}'.format(TS.Responses[3])" default="NA"/>
+            <item name="TS05" value="'{:.2f}'.format(TS.Responses[4])" default="NA"/>
+            <item name="TS06" value="'{:.2f}'.format(TS.Responses[5])" default="NA"/>
+            <item name="TS07" value="'{:.2f}'.format(TS.Responses[6])" default="NA"/>
+            <item name="TS08" value="'{:.2f}'.format(TS.Responses[7])" default="NA"/>
+            <item name="TS09" value="'{:.2f}'.format(TS.Responses[8])" default="NA"/>
+            <item name="TS10" value="'{:.2f}'.format(TS.Responses[9])" default="NA"/>
 
             <!-- CPM (Cuff 1) -->
-            <item name="CPMPDT" value="CPM.PDT" default="NA"/>
-            <item name="CPMPTT" value="CPM.PTT" default="NA"/>
+            <item name="CPMPDT" value="'{:.2f}'.format(CPM.PDT)" default="NA"/>
+            <item name="CPMPTT" value="'{:.2f}'.format(CPM.PTT)" default="NA"/>
+            <item name="CPMPTL" value="'{:.2f}'.format(CPM.PTL)" default="NA"/>
         </export-to-csv>
     </post-actions>    
 </experiment>
