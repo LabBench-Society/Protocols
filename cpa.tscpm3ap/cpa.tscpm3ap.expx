@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.4/experiment.xsd">
 <experimental-setup-variants default="CPARPlus">
     <experimental-setup name="LabBench CPAR+" id="CPARPlus">
         <devices>
@@ -103,7 +103,7 @@
                 primary-cuff="1"
                 second-cuff="false"
                 stop-mode="stop-when-button-pressed"
-                vas-pdt="0.1">
+                vas-pdt="1.0">
                 <dependencies />
             </algometry-stimulus-response>
 
@@ -116,7 +116,7 @@
                 primary-cuff="2"
                 second-cuff="false"
                 stop-mode="stop-when-button-pressed"
-                vas-pdt="0.1">
+                vas-pdt="1.0">
                 <dependencies />
             </algometry-stimulus-response>
 
@@ -146,7 +146,7 @@
                 pressure-limit="100"
                 primary-cuff="1"
                 stop-mode="stop-when-button-pressed"
-                vas-pdt="0.1">
+                vas-pdt="1.0">
                 <dependencies>
                     <dependency id="SR02"/>
                 </dependencies>
