@@ -217,6 +217,7 @@
                        culture="da"                       
                        filename="dynamic: '{s}.csv'.format(s = Subject)">
 
+            <item name="SubjectID"  value="Subject"        default="NA" />
             <item name="ProtocolID"  value="SR01.ProtocolID"        default="NA" />
             <item name="MachineName" value="SR01.MachineID"         default="NA" />
             <item name="OS"          value="SR01.OperatingSystem"   default="NA" />
