@@ -248,6 +248,9 @@
             <item name="CPMPDT" value="'{:.2f}'.format(CPM.PDT)" default="NA"/>
             <item name="CPMPTT" value="'{:.2f}'.format(CPM.PTT)" default="NA"/>
             <item name="CPMPTL" value="'{:.2f}'.format(CPM.PTL)" default="NA"/>
+
+            <!-- CP Rating -->
+            <item name="CPRating" value="CPRating.RATING" default="NA"/>
         </export-to-csv>
     </post-actions>    
 </experiment>
