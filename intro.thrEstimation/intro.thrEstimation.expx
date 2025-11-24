@@ -143,10 +143,9 @@
             
         </defines>
         <tests>
-            <psychophysics-threshold-estimation 
-                id="yesNo"
+            <psychophysics-threshold-estimation id="yesNo"
                 name="Yes/No Response Task"
-                experimental-setup-id="image"
+                experimental-setup-id="image"                
                 stimulus-update-rate="44100">
 
                 <update-rate-deterministic value="2000" />
@@ -154,12 +153,16 @@
                 <yes-no-task />
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Beep">
+                    <channel id="CH01" name="Beep">
                         <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
+                            start-intensity="Stimulator.Range/2 + Stimulator.Imin"
+                            initial-direction="decreasing"
+                            reversal-rule="1"
+                            skip-rule="1"
+                            stop-rule="7"
+                            step-size="0.15"
+                            max-step-size-reduction="0.25"
+                            step-size-reduction="0.5"/>
 
                         <stimulus>
                             <sine Is="x" Ts="200" Frequency="1000" />
