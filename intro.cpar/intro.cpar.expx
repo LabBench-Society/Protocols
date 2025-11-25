@@ -125,7 +125,7 @@
 
     <algometry-conditioned-pain-modulation id="CPMAP2" name="CPM Test (Stop on VAS 10)"
       delta-conditional-pressure="10"
-      conditional-pressure="SR02AP2.PTT"
+      conditional-pressure="0.7 * SR02AP2.PTT"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="1"
@@ -139,7 +139,7 @@
     <algometry-conditioned-pain-modulation id="CPMCondTimeAP2" name="CPM Test (30s conditioning, Stop on VAS 10)"
       delta-conditional-pressure="10"
       conditioning-time="30"
-      conditional-pressure="SR02AP2.PTT"
+      conditional-pressure="0.7 * SR02AP2.PTT"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="1"
@@ -153,7 +153,7 @@
     <algometry-conditioned-pain-modulation id="CPMInstaCondAP2" name="CPM Test (30s instant conditioning, Stop on VAS 10)"
       delta-conditional-pressure="0"
       conditioning-time="30"
-      conditional-pressure="SR02AP2.PTT"
+      conditional-pressure="0.7 * SR02AP2.PTT"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="1"
@@ -213,26 +213,51 @@
     <!-- Stimulus Rating Tests -->
 
 
-    <algometry-stimulus-rating 
-      id="T01PDT"
-      name="Stimulus Rating (PTD)"
+    <algometry-stimulus-rating id="SR01PDT" name="Stimulus Rating (PTD)"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
       measurement="PDT"/>
 
-    <algometry-conditioned-pain-modulation-rating 
-      id="T09"
-      name="Conditioned Pain Modulation Rating (PDT)"
-      conditional-pressure="T07.PTT"
+    <algometry-stimulus-rating id="SR01PPT" name="Stimulus Rating (PTT)"
+      delta-pressure="1"
+      pressure-limit="100"
+      second-cuff="false"
+      primary-cuff="1"
+      measurement="PTT"/>
+
+    <algometry-stimulus-rating id="SR01BOTH" name="Stimulus Rating (BOTH)"
+      delta-pressure="1"
+      pressure-limit="100"
+      second-cuff="false"
+      primary-cuff="1"
+      measurement="BOTH"/>
+
+    <algometry-stimulus-rating id="CondSR01BOTH" name="Stimulus Rating (Conditioned: 30s, BOTH)"
+      conditioning-time="30"
+      delta-pressure="1"
+      pressure-limit="100"
+      second-cuff="false"
+      primary-cuff="1"
+      measurement="BOTH"/>
+
+    <algometry-stimulus-rating id="SPASumBOTH" name="Stimulus Rating (BOTH)"
+      delta-pressure="1"
+      pressure-limit="100"
+      second-cuff="true"
+      primary-cuff="1"
+      measurement="BOTH"/>
+
+      <algometry-conditioned-pain-modulation-rating id="T09" name="CPM (PDT)"
+      conditional-pressure="0.7 * SR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
       measurement="PDT">
       <dependencies>
-        <dependency id="T07"/>
+        <dependency id="SR01PPT"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
   </tests>
