@@ -136,6 +136,34 @@
       </dependencies>
     </algometry-conditioned-pain-modulation>
 
+    <algometry-conditioned-pain-modulation id="CPMCondTimeAP2" name="CPM Test (30s conditioning, Stop on VAS 10)"
+      delta-conditional-pressure="10"
+      conditioning-time="30"
+      conditional-pressure="SR02AP2.PTT"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      stop-mode="stop-on-maximal-rating"
+      vas-pdt="0.1">
+      <dependencies>
+          <dependency id="SR02AP2"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation>
+
+    <algometry-conditioned-pain-modulation id="CPMInstaCondAP2" name="CPM Test (30s instant conditioning, Stop on VAS 10)"
+      delta-conditional-pressure="0"
+      conditioning-time="30"
+      conditional-pressure="SR02AP2.PTT"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      stop-mode="stop-on-maximal-rating"
+      vas-pdt="0.1">
+      <dependencies>
+          <dependency id="SR02AP2"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation>
+
     <algometry-temporal-summation id="TSumAP2" name="Temporal Summation (Stop on VAS 10)"
       no-of-stimuli="10"
       pressure-static="0"
