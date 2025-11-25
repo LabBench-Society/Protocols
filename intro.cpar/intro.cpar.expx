@@ -181,8 +181,8 @@
       pressure-stimulate="AP2SR01.PTT"
       primary-cuff="1"
       second-cuff="false"
-      stimulus-duration="10"
-      tail-duration="5">
+      stimulus-duration="60"
+      tail-duration="20">
       <dependencies>
         <dependency id="AP2SR01"/>
       </dependencies>
@@ -225,8 +225,8 @@
       pressure-stimulate="AP2SpatialSum.PTT"
       primary-cuff="1"
       second-cuff="true"
-      stimulus-duration="10"
-      tail-duration="5">
+      stimulus-duration="60"
+      tail-duration="20">
       <dependencies>
         <dependency id="AP2SpatialSum"/>
       </dependencies>
@@ -336,8 +336,8 @@
       pressure-stimulate="AP3SR01.PTT"
       primary-cuff="1"
       second-cuff="false"
-      stimulus-duration="10"
-      tail-duration="5">
+      stimulus-duration="60"
+      tail-duration="20">
       <dependencies>
         <dependency id="AP3SR01"/>
       </dependencies>
@@ -364,7 +364,7 @@
     </algometry-arbitrary-temporal-summation>
 
     <algometry-temporal-summation id="AP3SpatialTSum" name="Spatial Temporal Summation (Stop on button) [Cuff 1 + 2]"
-      no-of-stimuli="10"
+      no-of-stimuli="0"
       pressure-static="0"
       pressure-stimulate="AP3SpatialSum.PTT"
       primary-cuff="1"
@@ -380,8 +380,8 @@
       pressure-stimulate="AP3SpatialSum.PTT"
       primary-cuff="1"
       second-cuff="true"
-      stimulus-duration="10"
-      tail-duration="5">
+      stimulus-duration="60"
+      tail-duration="20">
       <dependencies>
         <dependency id="AP3SpatialSum"/>
       </dependencies>
