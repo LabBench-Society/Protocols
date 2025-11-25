@@ -224,7 +224,7 @@
     <algometry-static-temporal-summation id="AP2SpatialSTSum" name="Spatial Static Temporal Summation (Stop on VAS 10) [Cuff 1 + 2]"
       pressure-stimulate="AP2SpatialSum.PTT"
       primary-cuff="1"
-      second-cuff="false"
+      second-cuff="true"
       stimulus-duration="10"
       tail-duration="5">
       <dependencies>
@@ -235,7 +235,7 @@
     <algometry-arbitrary-temporal-summation id="AP2SpatialATSum" name="Spatial Arbitrary Temporal Summation (Stop on VAS 10) [Cuff 1 + 2]"
       pressure-static="0"
       primary-cuff="1"
-      second-cuff="false">
+      second-cuff="true">
       <dependencies>
         <dependency id="AP2SpatialSum"/>
       </dependencies>
@@ -252,7 +252,160 @@
       </stimuli>
     </algometry-arbitrary-temporal-summation>
 
-    <!-- 3 AP versions of the tests -->
+    <!-- 3AP versions of the tests -->
+
+    <algometry-stimulus-response id="AP3SR01" name="Stimulus Response (Stop on button) [Cuff 1]"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      second-cuff="false"
+      stop-mode="stop-when-button-pressed"
+      vas-pdt="0.1" />
+
+    <algometry-stimulus-response id="AP3SR02" name="Stimulus Response (Stop on button) [Cuff 2]"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="2"
+      second-cuff="false"
+      stop-mode="stop-when-button-pressed"
+      vas-pdt="0.1" />
+
+    <algometry-stimulus-response id="AP3SpatialSum" name="Spatial Summation (Stop on button) [Cuff 1+2]"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      second-cuff="true"
+      stop-mode="stop-when-button-pressed"
+      vas-pdt="0.1" />
+
+    <algometry-conditioned-pain-modulation id="AP3CPM" name="CPM Test (Stop on button)"
+      delta-conditional-pressure="10"
+      conditional-pressure="0.7 * AP3SR02.PTT"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      stop-mode="stop-when-button-pressed"
+      vas-pdt="0.1">
+      <dependencies>
+          <dependency id="AP3SR02"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation>
+
+    <algometry-conditioned-pain-modulation id="AP3CPMCondTime" name="CPM Test (30s conditioning, Stop on button)"
+      delta-conditional-pressure="10"
+      conditioning-time="30"
+      conditional-pressure="0.7 * AP3SR02.PTT"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      stop-mode="stop-when-button-pressed"
+      vas-pdt="0.1">
+      <dependencies>
+          <dependency id="AP3SR02"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation>
+
+    <algometry-conditioned-pain-modulation id="AP3CPMInstaCond" name="CPM Test (30s instant conditioning, Stop on button)"
+      delta-conditional-pressure="0"
+      conditioning-time="30"
+      conditional-pressure="0.7 * AP3SR02.PTT"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      stop-mode="stop-when-button-pressed"
+      vas-pdt="0.1">
+      <dependencies>
+          <dependency id="AP3SR02"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation>
+
+    <algometry-temporal-summation id="AP3TSum" name="Temporal Summation (Stop on button) [Cuff 1]"
+      no-of-stimuli="10"
+      pressure-static="0"
+      pressure-stimulate="AP3SR02.PTT"
+      primary-cuff="1"
+      second-cuff="false"
+      t-on="1"
+      t-off="1">
+      <dependencies>
+          <dependency id="AP3SR02"/>
+      </dependencies>
+    </algometry-temporal-summation>
+
+    <algometry-static-temporal-summation id="AP3STSum" name="Static Temporal Summation (Stop on button) [Cuff 1]"
+      pressure-stimulate="AP3SR01.PTT"
+      primary-cuff="1"
+      second-cuff="false"
+      stimulus-duration="10"
+      tail-duration="5">
+      <dependencies>
+        <dependency id="AP3SR01"/>
+      </dependencies>
+    </algometry-static-temporal-summation>
+
+    <algometry-arbitrary-temporal-summation id="AP3ATSum" name="Arbitrary Temporal Summation (Stop on button) [Cuff 1]"
+      pressure-static="0"
+      primary-cuff="1"
+      second-cuff="false">
+      <dependencies>
+        <dependency id="AP3SR01"/>
+      </dependencies>
+      <stimuli>
+          <stimulus pressure="0.2 * AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="0.4 * AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="0.6 * AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="0.8 * AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SR01.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SR01.PTT" t-on="1" t-off="1"/>
+      </stimuli>
+    </algometry-arbitrary-temporal-summation>
+
+    <algometry-temporal-summation id="AP3SpatialTSum" name="Spatial Temporal Summation (Stop on button) [Cuff 1 + 2]"
+      no-of-stimuli="10"
+      pressure-static="0"
+      pressure-stimulate="AP3SpatialSum.PTT"
+      primary-cuff="1"
+      second-cuff="true"
+      t-on="1"
+      t-off="1">
+      <dependencies>
+          <dependency id="AP3SpatialSum"/>
+      </dependencies>
+    </algometry-temporal-summation>
+
+    <algometry-static-temporal-summation id="AP3SpatialSTSum" name="Spatial Static Temporal Summation (Stop on button) [Cuff 1 + 2]"
+      pressure-stimulate="AP3SpatialSum.PTT"
+      primary-cuff="1"
+      second-cuff="true"
+      stimulus-duration="10"
+      tail-duration="5">
+      <dependencies>
+        <dependency id="AP3SpatialSum"/>
+      </dependencies>
+    </algometry-static-temporal-summation>
+
+    <algometry-arbitrary-temporal-summation id="AP3SpatialATSum" name="Spatial Arbitrary Temporal Summation (Stop on button) [Cuff 1 + 2]"
+      pressure-static="0"
+      primary-cuff="1"
+      second-cuff="true">
+      <dependencies>
+        <dependency id="AP3SpatialSum"/>
+      </dependencies>
+      <stimuli>
+          <stimulus pressure="0.2 * AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="0.4 * AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="0.6 * AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="0.8 * AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+          <stimulus pressure="AP3SpatialSum.PTT" t-on="1" t-off="1"/>
+      </stimuli>
+    </algometry-arbitrary-temporal-summation>
 
     <!-- Stimulus Rating Tests -->
 
@@ -278,14 +431,6 @@
       primary-cuff="1"
       measurement="BOTH"/>
 
-    <algometry-stimulus-rating id="rCondSR01BOTH" name="Stimulus Rating (Conditioned: 30s, BOTH)"
-      conditioning-time="30"
-      delta-pressure="1"
-      pressure-limit="100"
-      second-cuff="false"
-      primary-cuff="1"
-      measurement="BOTH"/>
-
     <algometry-stimulus-rating id="rSPASumBOTH" name="Stimulus Rating (BOTH)"
       delta-pressure="1"
       pressure-limit="100"
@@ -293,13 +438,71 @@
       primary-cuff="1"
       measurement="BOTH"/>
 
-      <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT)"
+    <algometry-stimulus-rating id="rExternalCPMBOTH" name="External CPM (Extenally Conditioned: 30s, BOTH)"
+      conditioning-time="30"
+      delta-pressure="1"
+      pressure-limit="100"
+      second-cuff="false"
+      primary-cuff="1"
+      measurement="BOTH"/>
+
+    <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT)"
       conditional-pressure="0.7 * SR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
       measurement="PDT">
+      <dependencies>
+        <dependency id="rSR01PPT"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation-rating>
+
+    <algometry-conditioned-pain-modulation-rating id="rCPMPTT" name="CPM (PTT)"
+      conditional-pressure="0.7 * SR01PPT.PTT"
+      delta-conditional-pressure="10"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="2"
+      measurement="PTT">
+      <dependencies>
+        <dependency id="rSR01PPT"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation-rating>
+
+    <algometry-conditioned-pain-modulation-rating id="rCPMBOTH" name="CPM (BOTH)"
+      conditional-pressure="0.7 * SR01PPT.PTT"
+      delta-conditional-pressure="10"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="2"
+      measurement="BOTH">
+      <dependencies>
+        <dependency id="rSR01PPT"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation-rating>
+
+    <algometry-conditioned-pain-modulation-rating id="rDelayedCPMBOTH" name="CPM (BOTH, Delayed 30s)"
+      conditional-pressure="0.7 * SR01PPT.PTT"
+      delta-conditional-pressure="10"
+      conditioning-time="30"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="2"
+      measurement="BOTH">
+      <dependencies>
+        <dependency id="rSR01PPT"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation-rating>
+
+    <algometry-conditioned-pain-modulation-rating id="rDelayedInstaCPMBOTH" name="CPM (BOTH, Instant CPM, Delayed 30s)"
+      conditional-pressure="0.7 * SR01PPT.PTT"
+      delta-conditional-pressure="0"
+      conditioning-time="30"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="2"
+      measurement="BOTH">
       <dependencies>
         <dependency id="rSR01PPT"/>
       </dependencies>
