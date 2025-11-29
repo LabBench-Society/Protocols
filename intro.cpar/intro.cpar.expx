@@ -364,7 +364,7 @@
     </algometry-arbitrary-temporal-summation>
 
     <algometry-temporal-summation id="AP3SpatialTSum" name="Spatial Temporal Summation (Stop on button) [Cuff 1 + 2]"
-      no-of-stimuli="0"
+      no-of-stimuli="10"
       pressure-static="0"
       pressure-stimulate="AP3SpatialSum.PTT"
       primary-cuff="1"
