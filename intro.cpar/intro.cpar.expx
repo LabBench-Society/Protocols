@@ -476,57 +476,57 @@
       measurement="BOTH"/>
 
     <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT) [Cuff 1]"
-      conditional-pressure="0.7 * rSR01PPT.PTT"
+      conditional-pressure="0.7 * rSR02BOTH.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
       measurement="PDT">
       <dependencies>
-        <dependency id="rSR01PPT"/>
+        <dependency id="rSR02BOTH"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rCPMPTT" name="CPM (PTT) [Cuff 1]"
-      conditional-pressure="0.7 * rSR02PPT.PTT"
+      conditional-pressure="0.7 * rSR02BOTH.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
       measurement="PTT">
       <dependencies>
-        <dependency id="rSR02PPT"/>
+        <dependency id="rSR02BOTH"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rCPMBOTH" name="CPM (BOTH) [Cuff 1]"
-      conditional-pressure="0.7 * rSR02PPT.PTT"
+      conditional-pressure="0.7 * rSR02BOTH.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
       measurement="BOTH">
       <dependencies>
-        <dependency id="rSR02PPT"/>
+        <dependency id="rSR02BOTH"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rInstaCPMBOTH" name="CPM (BOTH, Instantaneous) [Cuff 1]"
-      conditional-pressure="0.7 * rSR02PPT.PTT"
+      conditional-pressure="0.7 * rSR02BOTH.PTT"
       delta-conditional-pressure="0"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
       measurement="BOTH">
       <dependencies>
-        <dependency id="rSR02PPT"/>
+        <dependency id="rSR02BOTH"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
 
 
     <algometry-conditioned-pain-modulation-rating id="rDelayedCPMBOTH" name="CPM (BOTH, Delayed 30s) [Cuff 1]"
-      conditional-pressure="0.7 * rSR02PPT.PTT"
+      conditional-pressure="0.7 * rSR02BOTH.PTT"
       delta-conditional-pressure="10"
       conditioning-time="30"
       delta-pressure="1"
@@ -534,12 +534,12 @@
       primary-cuff="2"
       measurement="BOTH">
       <dependencies>
-        <dependency id="rSR02PPT"/>
+        <dependency id="rSR02BOTH"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rDelayedInstaCPMBOTH" name="CPM (BOTH, Instant CPM, Delayed 30s) [Cuff 1]"
-      conditional-pressure="0.7 * rSR02PPT.PTT"
+      conditional-pressure="0.7 * rSR02BOTH.PTT"
       delta-conditional-pressure="0"
       conditioning-time="30"
       delta-pressure="1"
@@ -547,7 +547,7 @@
       primary-cuff="2"
       measurement="BOTH">
       <dependencies>
-        <dependency id="rSR02PPT"/>
+        <dependency id="rSR02BOTH"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
   </tests>
