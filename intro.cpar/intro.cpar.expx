@@ -123,8 +123,30 @@
       stop-mode="stop-on-maximal-rating"
       vas-pdt="0.1" />
 
+    <algometry-stimulus-response id="AP2ExCPM" name="CPM Externally conditioned (Stop on VAS 10) [Cuff 1]"
+      conditioning-time="30"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      second-cuff="false"
+      stop-mode="stop-on-maximal-rating"
+      vas-pdt="0.1" />
+
     <algometry-conditioned-pain-modulation id="AP2CPM" name="CPM Test (Stop on VAS 10)"
       delta-conditional-pressure="10"
+      conditional-pressure="0.7 * AP2SR02.PTT"
+      delta-pressure="1"
+      pressure-limit="100"
+      primary-cuff="1"
+      stop-mode="stop-on-maximal-rating"
+      vas-pdt="0.1">
+      <dependencies>
+          <dependency id="AP2SR02"/>
+      </dependencies>
+    </algometry-conditioned-pain-modulation>
+
+    <algometry-conditioned-pain-modulation id="AP2InstaCPM" name="CPM Test (Instant Conditioning, Stop on VAS 10)"
+      delta-conditional-pressure="0"
       conditional-pressure="0.7 * AP2SR02.PTT"
       delta-pressure="1"
       pressure-limit="100"
