@@ -410,35 +410,35 @@
     <!-- Stimulus Rating Tests -->
 
 
-    <algometry-stimulus-rating id="rSR01PDT" name="Stimulus Rating (PTD)"
+    <algometry-stimulus-rating id="rSR01PDT" name="Stimulus Rating (PTD) [Cuff 1]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
       measurement="PDT"/>
 
-    <algometry-stimulus-rating id="rSR01PPT" name="Stimulus Rating (PTT)"
+    <algometry-stimulus-rating id="rSR01PPT" name="Stimulus Rating (PTT) [Cuff 1]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
       measurement="PTT"/>
 
-    <algometry-stimulus-rating id="rSR01BOTH" name="Stimulus Rating (BOTH)"
+    <algometry-stimulus-rating id="rSR01BOTH" name="Stimulus Rating (BOTH) [Cuff 1]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
       measurement="BOTH"/>
 
-    <algometry-stimulus-rating id="rSPASumBOTH" name="Stimulus Rating (BOTH)"
+    <algometry-stimulus-rating id="rSPASumBOTH" name="Stimulus Rating (BOTH) [Cuff 1]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="true"
       primary-cuff="1"
       measurement="BOTH"/>
 
-    <algometry-stimulus-rating id="rExternalCPMBOTH" name="External CPM (Extenally Conditioned: 30s, BOTH)"
+    <algometry-stimulus-rating id="rExternalCPMBOTH" name="External CPM (Extenally Conditioned: 30s, BOTH) [Cuff 1]"
       conditioning-time="30"
       delta-pressure="1"
       pressure-limit="100"
@@ -446,7 +446,7 @@
       primary-cuff="1"
       measurement="BOTH"/>
 
-    <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT)"
+    <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT) [Cuff 1]"
       conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
@@ -458,7 +458,7 @@
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
-    <algometry-conditioned-pain-modulation-rating id="rCPMPTT" name="CPM (PTT)"
+    <algometry-conditioned-pain-modulation-rating id="rCPMPTT" name="CPM (PTT) [Cuff 1]"
       conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
@@ -470,7 +470,7 @@
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
-    <algometry-conditioned-pain-modulation-rating id="rCPMBOTH" name="CPM (BOTH)"
+    <algometry-conditioned-pain-modulation-rating id="rCPMBOTH" name="CPM (BOTH) [Cuff 1]"
       conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
@@ -482,7 +482,7 @@
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
-    <algometry-conditioned-pain-modulation-rating id="rDelayedCPMBOTH" name="CPM (BOTH, Delayed 30s)"
+    <algometry-conditioned-pain-modulation-rating id="rDelayedCPMBOTH" name="CPM (BOTH, Delayed 30s) [Cuff 1]"
       conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       conditioning-time="30"
@@ -495,7 +495,7 @@
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
 
-    <algometry-conditioned-pain-modulation-rating id="rDelayedInstaCPMBOTH" name="CPM (BOTH, Instant CPM, Delayed 30s)"
+    <algometry-conditioned-pain-modulation-rating id="rDelayedInstaCPMBOTH" name="CPM (BOTH, Instant CPM, Delayed 30s) [Cuff 1]"
       conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="0"
       conditioning-time="30"
