@@ -447,7 +447,7 @@
       measurement="BOTH"/>
 
     <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT)"
-      conditional-pressure="0.7 * SR01PPT.PTT"
+      conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
@@ -459,7 +459,7 @@
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rCPMPTT" name="CPM (PTT)"
-      conditional-pressure="0.7 * SR01PPT.PTT"
+      conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
@@ -471,7 +471,7 @@
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rCPMBOTH" name="CPM (BOTH)"
-      conditional-pressure="0.7 * SR01PPT.PTT"
+      conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
       pressure-limit="100"
@@ -483,7 +483,7 @@
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rDelayedCPMBOTH" name="CPM (BOTH, Delayed 30s)"
-      conditional-pressure="0.7 * SR01PPT.PTT"
+      conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="10"
       conditioning-time="30"
       delta-pressure="1"
@@ -496,7 +496,7 @@
     </algometry-conditioned-pain-modulation-rating>
 
     <algometry-conditioned-pain-modulation-rating id="rDelayedInstaCPMBOTH" name="CPM (BOTH, Instant CPM, Delayed 30s)"
-      conditional-pressure="0.7 * SR01PPT.PTT"
+      conditional-pressure="0.7 * rSR01PPT.PTT"
       delta-conditional-pressure="0"
       conditioning-time="30"
       delta-pressure="1"
