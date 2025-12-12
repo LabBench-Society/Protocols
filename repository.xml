@@ -30,6 +30,14 @@
             labbench-version="5.0"
             category="Demonstration Protocol"/>
     </category>
+    <category name="Nerve Excitability Testing (NET)" id="net">
+        <category name="Sodium channel Excitability Nociceptor Test (SENT)" id="sent">
+            <protocol id="net.sent.pharmacology"
+                name="Sodium channel Excitability Nociceptor Test (SENT) [Pharmacology]"  
+                labbench-version="5.5"
+                category="Nerve Excitability Testing;Perception Threshold Tracking" />
+        </category>
+    </category>
 
     <category name="Cuff Pressure Algometry" id="cpa">
         <protocol id="cpa.cpm2ap"
