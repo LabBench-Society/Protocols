@@ -329,7 +329,7 @@
                     <!-- input 1-->
                     <channel id="C01"
                              name="Pulse 1"
-                             Imax="Imult *PINPsiS['C01'] if Imult * PINPsiS['C01'] &lt; Stimulator.Imax else Stimulator.Imax">
+                             Imax="min(Imult * PINPsiS.C01, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
@@ -361,7 +361,7 @@
                     <!-- input 2-->
                     <channel id="C02"
                              name="pulse 2"
-                             Imax="Imult*1.4*PINPsiS['C02'] if Imult *1.4*PINPsiS['C02'] &lt; Stimulator.Imax else Stimulator.Imax">
+                             Imax="min(1.4 * Imult * PINPsiS.C02, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
@@ -393,7 +393,7 @@
                     <!-- input 3 -->
                     <channel id="C03"
                              name="pulse 3"
-                             Imax="Imult*0.8*PINPsiS['C01'] if Imult*0.8*PINPsiS['C01'] &lt; Stimulator.Imax else Stimulator.Imax">
+                             Imax="min(0.8 * Imult * PINPsiS.C01, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
@@ -425,7 +425,7 @@
                     <!-- input 4 -->
                     <channel id="C04"
                              name="pulse 4"
-                             Imax="Imult * PINPsiS['C03'] if Imult * PINPsiS['C03'] &lt; Stimulator.Imax else Stimulator.Imax">
+                             Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
@@ -457,7 +457,7 @@
                     <!-- input 5 -->
                     <channel id="C05"
                              name="pulse 5"
-                             Imax="Imult *( PINPsiS['C03']) if Imult * (PINPsiS['C03']) &lt; Stimulator.Imax else Stimulator.Imax">
+                             Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
