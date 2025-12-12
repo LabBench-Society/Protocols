@@ -31,9 +31,9 @@
             category="Demonstration Protocol"/>
     </category>
     <category name="Nerve Excitability Testing (NET)" id="net">
-        <category name="Sodium channel Excitability Nociceptor Test (SENT)" id="sent">
-            <protocol id="net.sent.pharmacology"
-                name="Sodium channel Excitability Nociceptor Test (SENT) [Pharmacology]"  
+        <category name="Sodium Channel Excitability Nociceptor Test (SCENT)" id="sent">
+            <protocol id="net.scent.pharmacology"
+                name="Sodium Channel Excitability Nociceptor Test (SCENT) [Pharmacology]"  
                 labbench-version="5.5"
                 category="Nerve Excitability Testing;Perception Threshold Tracking" />
         </category>

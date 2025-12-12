@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://labbench.io https://labbench.io/xsd/4.0.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.5/experiment.xsd">
 
-            <!-- This sodium channel excitability nociceptor testing (SCENT) protocol consists 
-                of rectangular and ramp test pulses preceded by hyperpolarizing or depolarizing 
-                pre-pulses. The pulse shapes are derived to isolate Sodium curents from Nav1.7, 
-                1.8, and 1.9. The protocol was developed by Jenny Tigerholm. Publication pending. 
-		
-		        The prtocol is designed for testing topical application of compounds affecting 
-		        the gating mechanisms of Nav channels. Trine Andresen designed the study-->
+    <!-- This sodium channel excitability nociceptor testing (SCENT) protocol consists 
+        of rectangular and ramp test pulses preceded by hyperpolarizing or depolarizing 
+        pre-pulses. The pulse shapes are derived to isolate Sodium curents from Nav1.7, 
+        1.8, and 1.9. The protocol was developed by Jenny Tigerholm. Publication pending. 
 
+        The prtocol is designed for testing topical application of compounds affecting 
+        the gating mechanisms of Nav channels. Trine Andresen designed the study-->
 
-    <subject-validator regex="^S\d{2}BL\d$|^S\d{2}AC\d$|^TEST\d+$"
-                       advice="ID must be in the form of SXXBLY or SXXACY where X and Y is are digits, or start with TEST followed by digits" />
+    <subject-validator regex="^S\d{3}$|^TEST\d+$"
+                       advice="ID must be in the form of SXXX where X is an digit, or start with TEST followed by digits" />
 
     <experimental-setup>
         <devices>
@@ -23,8 +22,7 @@
                          transconductance="1mA_1V" />
                 </stimulators>
                 <response-devices>
-                    <button id="button"
-                            timing-source="none">
+                    <button id="button" timing-source="none">
                         <map>
                             <button-assignment code="1" button="button-01" label="1"/>
                         </map>
@@ -33,25 +31,9 @@
             </lio>
         </devices>
         <device-mapping>
-            <device-assignment test-type="psychophysics-stimulus-presentation"
-                               instrument-name="Stimulator"
-                               device-id="dev" />
-            <device-assignment test-type="psychophysics-stimulus-presentation"
-                               instrument-name="Trigger"
-                               device-id="dev" />
-            <device-assignment test-type="psychophysics-stimulus-presentation"
-                               instrument-name="Response"
-                               device-id="dev.button" />
-            
-            <device-assignment test-type="psychophysics-threshold-estimation"
-                               instrument-name="Button"
-                               device-id="dev.button" />
-            <device-assignment test-type="psychophysics-threshold-estimation"
-                               instrument-name="Stimulator"
-                               device-id="dev" />
-            <device-assignment test-type="psychophysics-threshold-estimation"
-                               instrument-name="Trigger"
-                               device-id="dev" />
+            <device-assignment instrument-name="Stimulator" device-id="dev" />
+            <device-assignment instrument-name="TriggerGenerator" device-id="dev" />
+            <device-assignment instrument-name="Button" device-id="dev.button" />            
         </device-mapping>
     </experimental-setup>
 
@@ -158,19 +140,16 @@
                     value="6"/>
         </defines>
         <tests>
-            <psychophysics-stimulus-presentation ID="PINFAM"
+            <psychophysics-stimulus-presentation id="PINFAM"
                                                  name="PIN: Familization"
                                                  stimulus-update-rate="20000">
                 <properties>
-                    <instructions default-instructions="PINInstructions"
+                    <instructions default="PINInstructions"
                                   override-results="false"
                                   start-instruction="Start the test" />
                 </properties>
 
-                <intensity type="geomspace"
-                           x0="PinImax/20.0"
-                           x1="PinImax"
-                           n="20" />
+                <intensity type="geomspace" x0="PinImax/20.0" x1="PinImax" n="20" />
 
                 <responses response-collection="yes-no" />
 
@@ -183,50 +162,34 @@
                 <stimulation>
                     <stimulus>
                         <combined>
-                            <pulse Is="x"
-                                   Ts="1"
-                                   Tdelay="0"/>
-                            <pulse Is="-0.2*x"
-                                   Ts="5"
-                                   Tdelay="1"/>
+                            <pulse Is="x" Ts="1" Tdelay="0"/>
+                            <pulse Is="-0.2*x" Ts="5" Tdelay="1"/>
                         </combined>
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
 
-            <psychophysics-threshold-estimation ID="PINTEST"
+            <psychophysics-threshold-estimation id="PINTEST"
                                                 name="PIN: Test of subject response"
                                                 stimulus-update-rate="20000">
                 <dependencies>
-                    <dependency ID="PINFAM"/>
+                    <dependency id="PINFAM"/>
                 </dependencies>
 
-                <update-rate-random min="2000"
-                                    max="3000" />
+                <update-rate-random min="2000" max="3000" />
 
                 <yes-no-task />
 
                 <channels>
-                    <channel ID="C01"
-                             channel-type="single-sample"
-                             name="pulse 1"
-                             Imax="PinImax">
+                    <channel id="C01" name="pulse 1" Imax="PinImax">
                         <up-down-method down-rule="ReversalRule"
                                         up-rule="ReversalRule"
                                         skip-rule="1"
                                         start-intensity="0.1"
-                                        step-size-up="StepSize"
-                                        step-size-down="StepSize"
-                                        step-size-type="relative"
+                                        step-size="StepSize"
                                         max-step-size-reduction="MaxStepSizeReduction"
                                         step-size-reduction="StepSizeReduction"
-                                        initial-direction="increasing"
-                                        stop-rule="3">
-                            <quick alpha="0.5"
-                                   beta="1"
-                                   lambda="0.05"
-                                   gamma="0.05"/>
-                        </up-down-method>
+                                        stop-rule="3" />
 
                         <triggers>
                             <trigger duration="1">
@@ -236,49 +199,35 @@
 
                         <stimulus>
                             <combined>
-                                <pulse Is="x"
-                                       Ts="1"
-                                       Tdelay="0"/>
-                                <pulse Is="-0.2*x"
-                                       Ts="5"
-                                       Tdelay="1"/>
+                                <pulse Is="x" Ts="1" Tdelay="0"/>
+                                <pulse Is="-0.2*x" Ts="5" Tdelay="1"/>
                             </combined>
                         </stimulus>
                     </channel>
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation ID="PINPsiS"
+            <psychophysics-threshold-estimation id="PINPsiS"
                                                 name="Start values for SCENT"
                                                 stimulus-update-rate="20000">
                 <dependencies>
-                    <dependency ID="PINTEST"/>
+                    <dependency id="PINTEST"/>
                 </dependencies>
                                 
-                <update-rate-random min="2000"
-                                    max="3000" />
-                <!-- interval in ms between the stimuli-->
-                <!--  <update-rate-random min="RL" max="RH" /> -->
+                <update-rate-random min="2000" max="3000" />
+
                 <yes-no-task  />
 
                 <channels>
-                    <channel ID="C01"
-                             channel-type="single-sample"
-                             name="pulse 1"
-                             Imax="PinImax">
+                    <channel id="C01" name="pulse 1" Imax="PinImax">
                         <up-down-method down-rule="1"
                                         up-rule="1"
                                         skip-rule="1"
-                                        start-intensity="0.5 * PINTEST['C01']"
-                                        step-size-up="StepSize"
-                                        step-size-down="StepSize"
-                                        step-size-type="relative"
+                                        start-intensity="0.5 * PINTEST.C01"
+                                        step-size="StepSize"
                                         max-step-size-reduction="MaxStepSizeReduction"
                                         step-size-reduction="StepSizeReduction"
-                                        initial-direction="increasing"
-                                        stop-rule="3">
-                            <quick alpha="0.5" beta="1" lambda="0.02" gamma="0.0" />
-                        </up-down-method>
+                                        stop-rule="3" />
 
                         <triggers>
                             <trigger duration="1">
@@ -301,23 +250,15 @@
                         </stimulus>
                     </channel>
 
-                    <channel ID="C02"
-                             channel-type="single-sample"
-                             name="pulse 2"
-                             Imax="PinImax">
+                    <channel id="C02" name="pulse 2" Imax="PinImax">
                         <up-down-method down-rule="1"
                                         up-rule="1"
                                         skip-rule="1"
-                                        start-intensity="0.5 * PINTEST['C01']"
-                                        step-size-up="StepSize"
-                                        step-size-down="StepSize"
-                                        step-size-type="relative"
+                                        start-intensity="0.5 * PINTEST.C01"
+                                        step-size="StepSize"
                                         max-step-size-reduction="MaxStepSizeReduction"
                                         step-size-reduction="StepSizeReduction"
-                                        initial-direction="increasing"
-                                        stop-rule="3">
-                            <quick alpha="0.5" beta="1" lambda="0.02" gamma="0.0" />
-                        </up-down-method>
+                                        stop-rule="3" />
 
                         <triggers>
                             <trigger duration="1">
@@ -336,28 +277,19 @@
                                 <pulse Is="-1*((PS2*x)*(PT2+T2)+(x-PS2*x)*T2)/(PT2*5+T2*5)"
                                        Ts="PT2*5+T2*5"
                                        Tdelay="PT2+T2+Del"/>
-
                             </combined>
                         </stimulus>
                     </channel>
 
-                    <channel ID="C03"
-                             channel-type="single-sample"
-                             name="Pulse 5"
-                             Imax="PinImax">
+                    <channel id="C03" name="Pulse 5" Imax="PinImax">
                         <up-down-method down-rule="1"
                                         up-rule="1"
                                         skip-rule="1"
-                                        start-intensity="0.5 * PINTEST['C01']"
-                                        step-size-up="StepSize"
-                                        step-size-down="StepSize"
-                                        step-size-type="relative"
+                                        start-intensity="0.5 * PINTEST.C01"
+                                        step-size="StepSize"
                                         max-step-size-reduction="MaxStepSizeReduction"
                                         step-size-reduction="StepSizeReduction"
-                                        initial-direction="increasing"
-                                        stop-rule="3">
-                            <quick alpha="0.5" beta="1" lambda="0.02" gamma="0.0" />
-                        </up-down-method>
+                                        stop-rule="3" />
 
                         <triggers>
                             <trigger duration="1">
@@ -382,11 +314,11 @@
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation ID="SCENT"
+            <psychophysics-threshold-estimation id="SCENT"
                                                 name= "PIN: Psi SCENT"
                                                 stimulus-update-rate="20000">
                 <dependencies>
-                    <dependency ID="PINPsiS"/>
+                    <dependency id="PINPsiS"/>
                 </dependencies>
                 <update-rate-random min="2000"
                                     max="3000" />
@@ -395,30 +327,14 @@
 
                 <channels>
                     <!-- input 1-->
-                    <channel ID="C01"
-                             channel-type="single-sample"
+                    <channel id="C01"
                              name="Pulse 1"
                              Imax="Imult *PINPsiS['C01'] if Imult * PINPsiS['C01'] &lt; Stimulator.Imax else Stimulator.Imax">
-                        <channel-dependencies>
-                        </channel-dependencies>
                         <psi-method number-of-trials="Trials">
-                            <quick alpha="0.5"
-                                   beta="1"
-                                   lambda="0.05"
-                                   gamma="0.05" />
-                            <beta type="linspace"
-                                  base="10"
-                                  x0="betaX0"
-                                  x1="betaN"
-                                  n="20"/>
-                            <alpha type="linspace"
-                                   x0="alphaX0"
-                                   x1="1"
-                                   n="alphaN" />
-                            <intensity type="linspace"
-                                       x0="intensityX0"
-                                       x1="1"
-                                       n="intensityN" />
+                            <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                            <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
 
                         <triggers>
@@ -443,30 +359,14 @@
                     </channel>
 
                     <!-- input 2-->
-                    <channel ID="C02"
-                             channel-type="single-sample"
+                    <channel id="C02"
                              name="pulse 2"
                              Imax="Imult*1.4*PINPsiS['C02'] if Imult *1.4*PINPsiS['C02'] &lt; Stimulator.Imax else Stimulator.Imax">
-                        <channel-dependencies>
-                        </channel-dependencies>
                         <psi-method number-of-trials="Trials">
-                            <quick alpha="0.5"
-                                   beta="1"
-                                   lambda="0.05"
-                                   gamma="0.05" />
-                            <beta type="linspace"
-                                  base="10"
-                                  x0="betaX0"
-                                  x1="betaN"
-                                  n="20"/>
-                            <alpha type="linspace"
-                                   x0="alphaX0"
-                                   x1="1"
-                                   n="alphaN" />
-                            <intensity type="linspace"
-                                       x0="intensityX0"
-                                       x1="1"
-                                       n="intensityN" />
+                            <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                            <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
 
                         <triggers>
@@ -491,30 +391,14 @@
                     </channel>
 
                     <!-- input 3 -->
-                    <channel ID="C03"
-                             channel-type="single-sample"
+                    <channel id="C03"
                              name="pulse 3"
                              Imax="Imult*0.8*PINPsiS['C01'] if Imult*0.8*PINPsiS['C01'] &lt; Stimulator.Imax else Stimulator.Imax">
-                        <channel-dependencies>
-                        </channel-dependencies>
                         <psi-method number-of-trials="Trials">
-                            <quick alpha="0.5"
-                                   beta="1"
-                                   lambda="0.05"
-                                   gamma="0.05" />
-                            <beta type="linspace"
-                                  base="10"
-                                  x0="betaX0"
-                                  x1="betaN"
-                                  n="20"/>
-                            <alpha type="linspace"
-                                   x0="alphaX0"
-                                   x1="1"
-                                   n="alphaN" />
-                            <intensity type="linspace"
-                                       x0="intensityX0"
-                                       x1="1"
-                                       n="intensityN" />
+                            <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                            <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
 
                         <triggers>
@@ -539,30 +423,14 @@
                     </channel>
 
                     <!-- input 4 -->
-                    <channel ID="C04"
-                             channel-type="single-sample"
+                    <channel id="C04"
                              name="pulse 4"
                              Imax="Imult * PINPsiS['C03'] if Imult * PINPsiS['C03'] &lt; Stimulator.Imax else Stimulator.Imax">
-                        <channel-dependencies>
-                        </channel-dependencies>
                         <psi-method number-of-trials="Trials">
-                            <quick alpha="0.5"
-                                   beta="1"
-                                   lambda="0.05"
-                                   gamma="0.05" />
-                            <beta type="linspace"
-                                  base="10"
-                                  x0="betaX0"
-                                  x1="betaN"
-                                  n="20"/>
-                            <alpha type="linspace"
-                                   x0="alphaX0"
-                                   x1="1"
-                                   n="alphaN" />
-                            <intensity type="linspace"
-                                       x0="intensityX0"
-                                       x1="1"
-                                       n="intensityN" />
+                            <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                            <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
 
                         <triggers>
@@ -587,30 +455,14 @@
                     </channel>
 
                     <!-- input 5 -->
-                    <channel ID="C05"
-                             channel-type="single-sample"
+                    <channel id="C05"
                              name="pulse 5"
                              Imax="Imult *( PINPsiS['C03']) if Imult * (PINPsiS['C03']) &lt; Stimulator.Imax else Stimulator.Imax">
-                        <channel-dependencies>
-                        </channel-dependencies>
                         <psi-method number-of-trials="Trials">
-                            <quick alpha="0.5"
-                                   beta="1"
-                                   lambda="0.05"
-                                   gamma="0.05" />
-                            <beta type="linspace"
-                                  base="10"
-                                  x0="betaX0"
-                                  x1="betaN"
-                                  n="20"/>
-                            <alpha type="linspace"
-                                   x0="alphaX0"
-                                   x1="1"
-                                   n="alphaN" />
-                            <intensity type="linspace"
-                                       x0="intensityX0"
-                                       x1="1"
-                                       n="intensityN" />
+                            <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                            <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
 
                         <triggers>
@@ -634,10 +486,7 @@
                         </stimulus>
                     </channel>
                 </channels>
-            </psychophysics-threshold-estimation>
-            
-
-
+            </psychophysics-threshold-estimation>            
         </tests>
         <assets>
             <file-asset id="PINInstructions"
