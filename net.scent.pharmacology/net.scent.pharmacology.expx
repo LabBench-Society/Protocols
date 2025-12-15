@@ -425,6 +425,7 @@
             </psychophysics-threshold-estimation-constructor>
 
             <!-- 
+            
             <psychophysics-threshold-estimation id="PINTEST"
                                                 name="PIN: Test of subject response"
                                                 stimulus-update-rate="20000">
@@ -474,6 +475,7 @@
             </psychophysics-threshold-estimation-constructor>
 
             <!-- 
+
             <psychophysics-threshold-estimation id="PINPsiS"
                                                 name="Start values for SCENT"
                                                 stimulus-update-rate="20000">
