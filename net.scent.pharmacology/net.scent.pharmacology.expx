@@ -13,131 +13,82 @@
     <subject-validator regex="^S\d{3}$|^TEST\d+$"
                        advice="ID must be in the form of SXXX where X is an digit, or start with TEST followed by digits" />
 
-    <experimental-setup>
-        <devices>
-            <lio id="dev"
-                 default-analog-output="0">
-                <stimulators>
-                    <ds5 name="Stimulator"
-                         transconductance="1mA_1V" />
-                </stimulators>
-                <response-devices>
-                    <button id="button" timing-source="none">
-                        <map>
-                            <button-assignment code="1" button="button-01" label="1"/>
-                        </map>
-                    </button>
-                </response-devices>
-            </lio>
-        </devices>
-        <device-mapping>
-            <device-assignment instrument-name="Stimulator" device-id="dev" />
-            <device-assignment instrument-name="TriggerGenerator" device-id="dev" />
-            <device-assignment instrument-name="Button" device-id="dev.button" />            
-        </device-mapping>
-    </experimental-setup>
-
+    <experimental-setup-variants default="LIO">
+        <experimental-setup id="LIO" name="LabBench I/O">
+            <devices>
+                <lio id="dev"
+                    default-analog-output="0">
+                    <stimulators>
+                        <ds5 name="Stimulator"
+                            transconductance="1mA_1V" />
+                    </stimulators>
+                    <response-devices>
+                        <button id="button" timing-source="none">
+                            <map>
+                                <button-assignment code="1" button="button-01" label="1"/>
+                            </map>
+                        </button>
+                    </response-devices>
+                </lio>
+            </devices>
+            <device-mapping>
+                <device-assignment instrument-name="Stimulator" device-id="dev" />
+                <device-assignment instrument-name="TriggerGenerator" device-id="dev" />
+                <device-assignment instrument-name="Button" device-id="dev.button" />            
+            </device-mapping>
+        </experimental-setup>
+    </experimental-setup-variants>
     <protocol>
         <defines>
+            <!-- Maximal stimulation intensities -->
             <define name="PinImax" value="2"/>
             <define name="PatchImax" value="10"/>
 
             <!-- Stimuli long stimuli -->
-            <define name="PLP"
-                    value="50"/>
+            <define name="PLP" value="50"/>
 
             <!-- Stimuli sodium channels protocol -->
             <!-- parameter for pulse 1-->
-            <define name="T1"
-                    value="1"/>
-            <define name="PT1"
-                    value="10"/>
-            <define name="PS1"
-                    value="-0.2"/>
+            <define name="T1" value="1"/>
+            <define name="PT1" value="10"/>
+            <define name="PS1" value="-0.2"/>
 
             <!-- parameter for pulse 2-->
-            <define name="T2"
-                    value="0.5"/>
-            <define name="PT2"
-                    value="50"/>
-            <define name="PS2"
-                    value="-0.2"/>
+            <define name="T2" value="0.5"/>
+            <define name="PT2" value="50"/>
+            <define name="PS2" value="-0.2"/>
 
             <!-- parameter for pulse 3-->
-            <define name="T3"
-                    value="1"/>
-            <define name="PT3"
-                    value="50"/>
-            <define name="PS3"
-                    value="0.2"/>
+            <define name="T3" value="1"/>
+            <define name="PT3" value="50"/>
+            <define name="PS3" value="0.2"/>
 
             <!-- parameter for pulse 4-->
-            <define name="T4"
-                    value="90"/>
-            <define name="PT4"
-                    value="90"/>
-            <define name="PS4"
-                    value="-0.4"/>
+            <define name="T4" value="90"/>
+            <define name="PT4" value="90"/>
+            <define name="PS4" value="-0.4"/>
 
             <!-- parameterp for pulse 5-->
-            <define name="T5"
-                    value="90"/>
-            <define name="PT5"
-                    value="90"/>
-            <define name="PS5"
-                    value="0.2"/>
-
-            <!-- Method of Limits -->
-            <define name="Istart"
-                    value="0.005"/>
-            <define name="Naverage"
-                    value="1"/>
-            <define name="Ndiscard"
-                    value="1"/>
-            <define name="Ntest"
-                    value="2"/>
-            <define name="Pdecrease"
-                    value="0.2"/>
-            <define name="Pmin"
-                    value="0.05"/>
-            <define name="Pstep"
-                    value="0.2"/>
-
-            <!-- Psi Method -->
-            <define name="Trials"
-                    value="25"/> <!-- ACTUAL VALUE 25 -->
-            <define name="Imult"
-                    value="4"/>
-            <define name="alphaX0"
-                    value="0.05"/>
-            <define name="alphaN"
-                    value="200"/>
-            <define name="intensityX0"
-                    value="0.05"/>
-            <define name="intensityN"
-                    value="100"/>
-            <define name="Del"
-                    value="5"/>
-            <define name="betaX0"
-                    value="0"/>
-            <define name="betaN"
-                    value="1.2"/>
+            <define name="T5" value="90"/>
+            <define name="PT5" value="90"/>
+            <define name="PS5" value="0.2"/>
 
             <!-- Up/Down Parameters -->
-            <define name="ReversalRule"
-                    value="1" />
-            <define name="StartIntensity"
-                    value="0.001" />
-            <define name="StepSize"
-                    value="0.25" />
-            <define name="StepSizeReduction"
-                    value="0.5" />
-            <define name="MaxStepSizeReduction"
-                    value="0.25"/>
-            <define name="SkipRule"
-                    value="1"/>
-            <define name="StopRule"
-                    value="6"/>
+            <define name="ReversalRule" value="1" />
+            <define name="StepSize" value="0.25" />
+            <define name="StepSizeReduction" value="0.5" />
+            <define name="MaxStepSizeReduction" value="0.25"/>
+
+            <!-- Psi Method -->
+            <define name="Trials" value="30"/> 
+            <define name="Imult" value="4"/>
+            <define name="alphaX0" value="0.05"/>
+            <define name="alphaN" value="200"/>
+            <define name="intensityX0" value="0.05"/>
+            <define name="intensityN" value="100"/>
+            <define name="Del" value="5"/>
+            <define name="betaX0" value="0"/>
+            <define name="betaN" value="1.2"/>
         </defines>
         <tests>
             <psychophysics-stimulus-presentation id="PINFAM"
@@ -332,7 +283,7 @@
                              Imax="min(Imult * PINPsiS.C01, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
                             <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
                             <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
@@ -364,7 +315,7 @@
                              Imax="min(1.4 * Imult * PINPsiS.C02, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
                             <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
                             <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
@@ -396,7 +347,7 @@
                              Imax="min(0.8 * Imult * PINPsiS.C01, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
                             <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
                             <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
@@ -428,7 +379,7 @@
                              Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
                             <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
                             <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
@@ -460,7 +411,7 @@
                              Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                            <beta type="linspace" base="10" x0="betaX0" x1="betaN" n="20"/>
+                            <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
                             <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
                             <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
                         </psi-method>
