@@ -440,11 +440,8 @@
             </psychophysics-threshold-estimation>            
         </tests>
         <assets>
-            <file-asset id="PINInstructions"
-                        file="PINInstructions.rtf" />
-            <file-asset id="PATCHInstructions"
-                        file="PATCHInstructions.rtf" />
-            <file-asset id="Script" file="Script.py" />
+            <file-asset id="PINInstructions" file="PINInstructions.rtf" />
+            <file-asset id="PATCHInstructions" file="PATCHInstructions.rtf" />
         </assets>
     </protocol>
 
