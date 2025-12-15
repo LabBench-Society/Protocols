@@ -271,16 +271,12 @@
                 <dependencies>
                     <dependency id="PINPsiS"/>
                 </dependencies>
-                <update-rate-random min="2000"
-                                    max="3000" />
-                <!-- interval in ms between the stimuli-->
+                <update-rate-random min="2000" max="3000" />
+
                 <yes-no-task />
 
                 <channels>
-                    <!-- input 1-->
-                    <channel id="C01"
-                             name="Pulse 1"
-                             Imax="min(Imult * PINPsiS.C01, Stimulator.Imax)">
+                    <channel id="C01" name="Pulse 1" Imax="min(Imult * PINPsiS.C01, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -309,10 +305,7 @@
                         </stimulus>
                     </channel>
 
-                    <!-- input 2-->
-                    <channel id="C02"
-                             name="pulse 2"
-                             Imax="min(1.4 * Imult * PINPsiS.C02, Stimulator.Imax)">
+                    <channel id="C02" name="pulse 2" Imax="min(1.4 * Imult * PINPsiS.C02, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -341,10 +334,7 @@
                         </stimulus>
                     </channel>
 
-                    <!-- input 3 -->
-                    <channel id="C03"
-                             name="pulse 3"
-                             Imax="min(0.8 * Imult * PINPsiS.C01, Stimulator.Imax)">
+                    <channel id="C03" name="pulse 3" Imax="min(0.8 * Imult * PINPsiS.C01, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -373,10 +363,7 @@
                         </stimulus>
                     </channel>
 
-                    <!-- input 4 -->
-                    <channel id="C04"
-                             name="pulse 4"
-                             Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
+                    <channel id="C04" name="pulse 4" Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -405,10 +392,7 @@
                         </stimulus>
                     </channel>
 
-                    <!-- input 5 -->
-                    <channel id="C05"
-                             name="pulse 5"
-                             Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
+                    <channel id="C05" name="pulse 5" Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
                         <psi-method number-of-trials="Trials">
                             <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                             <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
