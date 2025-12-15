@@ -90,36 +90,341 @@
             <define name="betaX0" value="0"/>
             <define name="betaN" value="1.2"/>
         </defines>
+        <templates>
+            <variables>
+
+            </variables>
+            <content>
+                <psychophysics-stimulus-presentation id="SCENTFamilization" stimulus-update-rate="20000">
+                    <properties>
+                        <instructions default="var: 'SCENTInstructions.{e}'.format(e = electrode)" override-results="false" />
+                    </properties>
+
+                    <intensity type="geomspace" 
+                        x0="var: '{e}Imax/20.0'.format(e = electrode)" 
+                        x1="var: '{e}Imax'.format(e = electrode)" 
+                        n="20" />
+
+                    <responses response-collection="yes-no" />
+
+                    <triggers start-triggger="internal">
+                        <trigger duration="1">
+                            <code output="Stimulus" value="1"/>
+                        </trigger>
+                    </triggers>
+                    
+                    <stimulation>
+                        <stimulus>
+                            <combined>
+                                <pulse Is="x" Ts="1" Tdelay="0"/>
+                                <pulse Is="-0.2*x" Ts="5" Tdelay="1"/>
+                            </combined>
+                        </stimulus>
+                    </stimulation>
+                </psychophysics-stimulus-presentation>
+
+                <psychophysics-threshold-estimation id="SCENTTest" stimulus-update-rate="20000">
+                    <dependencies>
+                        <dependency id="var: dependency"/>
+                    </dependencies>
+
+                    <update-rate-random min="2000" max="3000" />
+
+                    <yes-no-task />
+
+                    <channels>
+                        <channel id="C01" name="pulse 1" Imax="var: '{e}Imax'.format(e = electrode)">
+                            <up-down-method reversal-rule="ReversalRule"
+                                            skip-rule="1"
+                                            start-intensity="0.1"
+                                            step-size="StepSize"
+                                            max-step-size-reduction="MaxStepSizeReduction"
+                                            step-size-reduction="StepSizeReduction"
+                                            stop-rule="3" />
+
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="x" Ts="1" Tdelay="0"/>
+                                    <pulse Is="-0.2*x" Ts="5" Tdelay="1"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+                    </channels>
+                </psychophysics-threshold-estimation>
+
+                <psychophysics-threshold-estimation id="SCENTStart" stimulus-update-rate="20000">
+                    <dependencies>
+                        <dependency id="var: dependency"/>
+                    </dependencies>
+                                    
+                    <update-rate-random min="2000" max="3000" />
+
+                    <yes-no-task  />
+
+                    <stimulus-channel-template Imax="var: '{e}Imax'.format(e = electrode)">
+                        <up-down-method down-rule="1"
+                                        up-rule="1"
+                                        skip-rule="1"
+                                        start-intensity="var: '0.5 * {d}.C01'.format(d = dependency)"
+                                        step-size="StepSize"
+                                        max-step-size-reduction="MaxStepSizeReduction"
+                                        step-size-reduction="StepSizeReduction"
+                                        stop-rule="3" />                        
+                    </stimulus-channel-template>
+
+                    <channels>
+                        <channel id="C01" name="pulse 1">
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS1*x"
+                                        Ts="PT1+T1"
+                                        Tdelay="0"/>
+                                    <pulse Is="x-PS1*x"
+                                        Ts="T1"
+                                        Tdelay="PT1"/>
+                                    <pulse Is="-1*((PS1*x)*(PT1+T1)+(x-PS1*x)*T1)/(PT1*5+T1*5)"
+                                        Ts="PT1*5+T1*5"
+                                        Tdelay="PT1+T1+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+
+                        <channel id="C02" name="pulse 2">
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS2*x"
+                                        Ts="PT2+T2"
+                                        Tdelay="0"/>
+                                    <pulse Is="x-PS2*x"
+                                        Ts="T2"
+                                        Tdelay="PT2"/>
+                                    <pulse Is="-1*((PS2*x)*(PT2+T2)+(x-PS2*x)*T2)/(PT2*5+T2*5)"
+                                        Ts="PT2*5+T2*5"
+                                        Tdelay="PT2+T2+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+
+                        <channel id="C03" name="Pulse 5">
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS5*x"
+                                        Ts="PT5+T5"
+                                        Tdelay="0"/>
+                                    <ramp Is="x-PS5*x"
+                                        Ts="T5"
+                                        Tdelay="PT5"/>
+                                    <pulse Is="-1*((PS5*x)*(PT5+T5)+((x-PS5*x)*T5)*0.5)/(PT5*5+T5*5)"
+                                        Ts="PT5*5+T5*5"
+                                        Tdelay="PT5+T5+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+                    </channels>
+                </psychophysics-threshold-estimation>
+
+                <psychophysics-threshold-estimation id="SCENT"
+                                                    stimulus-update-rate="20000">
+                    <dependencies>
+                        <dependency id="PINPsiS"/>
+                    </dependencies>
+                    <update-rate-random min="2000" max="3000" />
+
+                    <yes-no-task />
+
+                    <channels>
+                        <channel id="C01" name="Pulse 1" Imax="min(Imult * PINPsiS.C01, Stimulator.Imax)">
+                            <psi-method number-of-trials="Trials">
+                                <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
+                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                            </psi-method>
+
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS1*x"
+                                        Ts="PT1+T1"
+                                        Tdelay="0"/>
+                                    <pulse Is="x-PS1*x"
+                                        Ts="T1"
+                                        Tdelay="PT1"/>
+                                    <pulse Is="-1*((PS1*x)*(PT1+T1)+(x-PS1*x)*T1)/(PT1*5+T1*5)"
+                                        Ts="PT1*5+T1*5"
+                                        Tdelay="PT1+T1+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+
+                        <channel id="C02" name="pulse 2" Imax="min(1.4 * Imult * PINPsiS.C02, Stimulator.Imax)">
+                            <psi-method number-of-trials="Trials">
+                                <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
+                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                            </psi-method>
+
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS2*x"
+                                        Ts="PT2+T2"
+                                        Tdelay="0"/>
+                                    <pulse Is="x-PS2*x"
+                                        Ts="T2"
+                                        Tdelay="PT2"/>
+                                    <pulse Is="-1*((PS2*x)*(PT2+T2)+(x-PS2*x)*T2)/(PT2*5+T2*5)"
+                                        Ts="PT2*5+T2*5"
+                                        Tdelay="PT2+T2+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+
+                        <channel id="C03" name="pulse 3" Imax="min(0.8 * Imult * PINPsiS.C01, Stimulator.Imax)">
+                            <psi-method number-of-trials="Trials">
+                                <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
+                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                            </psi-method>
+
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS3*x"
+                                        Ts="PT3+T3"
+                                        Tdelay="0"/>
+                                    <pulse Is="x-PS3*x"
+                                        Ts="T3"
+                                        Tdelay="PT3"/>
+                                    <pulse Is="-1*((PS3*x)*(PT3+T3)+(x-PS3*x)*T3)/(PT3*5+T3*5)"
+                                        Ts="PT3*5+T3*5"
+                                        Tdelay="PT3+T3+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+
+                        <channel id="C04" name="pulse 4" Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
+                            <psi-method number-of-trials="Trials">
+                                <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
+                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                            </psi-method>
+
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS4*x"
+                                        Ts="PT4+T4"
+                                        Tdelay="0"/>
+                                    <ramp Is="x-PS4*x"
+                                        Ts="T4"
+                                        Tdelay="PT4"/>
+                                    <pulse Is="-1*((PS4*x)*(PT4+T4)+((x-PS4*x)*T4)*0.5)/(PT4*5+T4*5)"
+                                        Ts="PT4*5+T4*5"
+                                        Tdelay="PT4+T4+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+
+                        <channel id="C05" name="pulse 5" Imax="min(Imult * PINPsiS.C03, Stimulator.Imax)">
+                            <psi-method number-of-trials="Trials">
+                                <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
+                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
+                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
+                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                            </psi-method>
+
+                            <triggers>
+                                <trigger duration="1">
+                                    <code output="Stimulus" value="1"/>
+                                </trigger>
+                            </triggers>
+
+                            <stimulus>
+                                <combined>
+                                    <pulse Is="PS5*x"
+                                        Ts="PT5+T5"
+                                        Tdelay="0"/>
+                                    <ramp Is="x-PS5*x"
+                                        Ts="T5"
+                                        Tdelay="PT5"/>
+                                    <pulse Is="-1*((PS5*x)*(PT5+T5)+((x-PS5*x)*T5)*0.5)/(PT5*5+T5*5)"
+                                        Ts="PT5*5+T5*5"
+                                        Tdelay="PT5+T5+Del"/>
+                                </combined>
+                            </stimulus>
+                        </channel>
+                    </channels>
+                </psychophysics-threshold-estimation>            
+
+            </content>
+        </templates>
         <tests>
-            <psychophysics-stimulus-presentation id="PINFAM"
-                                                 name="PIN: Familization"
-                                                 stimulus-update-rate="20000">
-                <properties>
-                    <instructions default="PINInstructions"
-                                  override-results="false"
-                                  start-instruction="Start the test" />
-                </properties>
+            <psychophysics-stimulus-presentation-constructor id="PINFAM" 
+                name="PIN: Familization" 
+                template="SCENTFamilization">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                </variables>
+            </psychophysics-stimulus-presentation-constructor>
 
-                <intensity type="geomspace" x0="PinImax/20.0" x1="PinImax" n="20" />
+            <psychophysics-threshold-estimation-constructor id="PINTEST" 
+                name="PIN: Test of subject response" 
+                template="SCENTTest">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                    <string name="dependency" value="PINFAM" />
+                </variables>
+            </psychophysics-threshold-estimation-constructor>
 
-                <responses response-collection="yes-no" />
-
-                <triggers start-triggger="internal">
-                    <trigger duration="1">
-                        <code output="Stimulus" value="1"/>
-                    </trigger>
-                </triggers>
-                
-                <stimulation>
-                    <stimulus>
-                        <combined>
-                            <pulse Is="x" Ts="1" Tdelay="0"/>
-                            <pulse Is="-0.2*x" Ts="5" Tdelay="1"/>
-                        </combined>
-                    </stimulus>
-                </stimulation>
-            </psychophysics-stimulus-presentation>
-
+            <!-- 
             <psychophysics-threshold-estimation id="PINTEST"
                                                 name="PIN: Test of subject response"
                                                 stimulus-update-rate="20000">
@@ -157,7 +462,18 @@
                     </channel>
                 </channels>
             </psychophysics-threshold-estimation>
+            -->
 
+            <psychophysics-threshold-estimation-constructor id="PINPsiS" 
+                name="PIN: Start values for SCENT" 
+                template="SCENTStart">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                    <string name="dependency" value="PINTEST" />
+                </variables>
+            </psychophysics-threshold-estimation-constructor>
+
+            <!-- 
             <psychophysics-threshold-estimation id="PINPsiS"
                                                 name="Start values for SCENT"
                                                 stimulus-update-rate="20000">
@@ -264,7 +580,7 @@
                     </channel>
                 </channels>
             </psychophysics-threshold-estimation>
-
+-->
             <psychophysics-threshold-estimation id="SCENT"
                                                 name= "PIN: Psi SCENT"
                                                 stimulus-update-rate="20000">
@@ -424,8 +740,7 @@
             </psychophysics-threshold-estimation>            
         </tests>
         <assets>
-            <file-asset id="PINInstructions" file="PINInstructions.rtf" />
-            <file-asset id="PATCHInstructions" file="PATCHInstructions.rtf" />
+            <file-asset id="SCENTInstructions" file="SCENTInstructions.zip" />
         </assets>
     </protocol>
 
