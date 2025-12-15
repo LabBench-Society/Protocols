@@ -498,9 +498,9 @@
     </protocol>
 
     <post-actions>
-        <export-data name="Exporting session to MATLAB"
+        <export-data name="Exporting session to JSON"
                      location="C:\LabBenchExport\SCENTPharm"
-                     filename="dynamic: '{session}-{time}.mat'.format(session = SESSION_NAME, time = SESSION_TIME)"
-                     format="matlab"/>
+                     filename="dynamic: '{s}D{time}.json'.format(s = Subject, time = StartTime.ToString('yyyyMMdd'))"
+                     format="json"/>
     </post-actions>
 </experiment>
