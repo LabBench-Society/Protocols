@@ -13,6 +13,10 @@
             name="Introduction to Estimation of Thresholds and Psychometric Functions"
             labbench-version="5.0"
             category="Thresholds;Psychopmetric Functions;Demonstration Protocol"/>
+        <protocol id="intro.questionnaires" 
+            name="Introduction to Questionnaires"
+            labbench-version="5.4"
+            category="Demonstration Protocol"/>
         <protocol id="intro.cpar"
             name="Introduction to Cuff Pressure Algometry"
             labbench-version="5.0"
