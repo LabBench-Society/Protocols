@@ -73,19 +73,19 @@
     <category name="Thermal Cutaneous Testing" id="tct">
         <protocol id="tct.thr"
             name="Detection and Pain Thresholds" 
-            labbench-version="5.2"
+            labbench-version="5.5"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
         <protocol id="tct.ts"
             name="Temporal Summation" 
-            labbench-version="5.2"
+            labbench-version="5.5"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
         <protocol id="tct.oa"
             name="Offset Analgesia" 
-            labbench-version="5.2"
+            labbench-version="5.5"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
         <protocol id="tct.cheps"
             name="Contact Heat Evoked Potentials (CHEPS)" 
-            labbench-version="5.2"
+            labbench-version="5.5"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
     </category>
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.2/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.5/experiment.xsd">
     <experimental-setup>
         <devices>
             <tcs id="tcs"
@@ -27,7 +27,6 @@
     
                 <channels>
                     <channel id="C01"
-                             channel-type="single-sample"
                              name="Rect (0.5s)"
                              Imax="Stimulator.Imax"
                              Imin="Stimulator.Neutral">
@@ -35,8 +34,7 @@
                                                  initial-intensity="45"
                                                  intensities="range((int)(Stimulator.Neutral), (int)(Stimulator.Max + 1), 1)"
                                                  skip-rule="0"
-                                                 stop-rule="2"
-                                                 terminate-on-limit-reached="true" />
+                                                 stop-rule="2" />
                         <stimulus>
                             <linear-segments baseline="Stimulator.Neutral">
                                 <segment duration="100" value="x"/>
