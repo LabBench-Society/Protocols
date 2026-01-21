@@ -1,22 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="..\experiment.xsd">
+
+<!-- 
     xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+-->
  <subject-validator 
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
-        advice="Must be SXXX or TESTXXX, where X is a digit"/>    
-    <experimental-setup>
+        advice="Must be SXXX or TESTXXX, where X is a digit"/> 
+<experimental-setup-variants default="JOYSTICK">
+    <experimental-setup id="JOYSTICK" name="Joystick">
         <devices>
-            <joystick
-                id="joystick">
+            <joystick id="joystick">
                 <map experimental-setup-id="image">
                     <button-assignment code="16" button="button-01" label="Button 1"/>
-                    <button-assignment code="32" button="button-01" label="Button 1"/>
+                    <button-assignment code="32" button="button-01" label="Button 2"/>
 
                     <button-assignment code="1" button="button-01" label="Button 1"/>
                     <button-assignment code="2" button="button-02" label="Button 1"/>
                     <button-assignment code="4" button="button-04" label="Button 1"/>
                     <button-assignment code="8" button="button-03" label="Button 1"/>
+                </map>
+                <map experimental-setup-id="fyn">
+                    <button-assignment code="16" button="left" label="Left"/>
+                    <button-assignment code="32" button="right" label="Right"/>
                 </map>
                 <map experimental-setup-id="crs">
                     <button-assignment code="16" button="decrease" label="Decrease"/>
@@ -31,28 +39,35 @@
                     <button-assignment code="32" button="increase" label="Increase"/>
                 </map>
             </joystick>
+            <display id="display"
+                screen="primary"
+                position="upper-right"
+                normative-distance="40">
 
-            <display
-                id="display"
-                screen="secondary"
-                position="fullscreen"
-                normative-distance="40"
-                active-color="rgb(255,0,0)"
-                background-color="rgb(255,255,255)"
-                inactive-color="rgb(16,16,16)">
+                <monitor diagonal-size="35.5" distance="40" />
 
-                <monitor
-                    diagonal-size="53.34"
-                    distance="40" />
+                <fiducial size="10" x="17" y="17"/>
+
+                <typography active-color="rgb(255,0,0)"
+                            background-color="rgb(0,0,0)"
+                            foreground-color="rgb(255,255,255)"
+                            inactive-color="rgb(128,128,128)">
+                    <crs-category size="18" color="rgb(255,255,255)" border-thickness="1" weight="normal" style="normal"/>
+                    <nrs-category size="18" color="rgb(255,255,255)" border-thickness="1" weight="normal" style="normal" />
+                    <scale-modality size="24" color="rgb(255, 255, 255)" weight="bold" style="normal"/>
+                    <bottom-anchor size="20" color="rgb(255, 255, 255)" weight="normal" style="normal" />
+                    <top-anchor size="20" color="rgb(255, 255, 255)" weight="normal" style="normal" />
+
+                </typography>
 
                 <configurations>
-                    <image-display 
-                        background-color="rgb(0,0,0)"
-                        id="image"
+                    <image-display id="image"
                         experimental-setup-id="image"/>
 
-                    <categorical-scale
-                        id="crs"
+                    <image-display id="fyn"
+                        experimental-setup-id="fyn"/>
+
+                    <categorical-scale id="crs"
                         experimental-setup-id="crs"
                         controller-device="joystick">
                         <anchors>
@@ -68,9 +83,10 @@
                         </categories>
                     </categorical-scale>
 
-                    <numerical-scale
-                        id="nrs"
+                    <numerical-scale id="nrs"
                         experimental-setup-id="nrs"
+                        minimum="0"
+                        maximum="10"
                         controller-device="joystick">
                         <anchors>
                             <top-anchor text="Maximal Sound" />                                
@@ -78,8 +94,7 @@
                         </anchors>
                     </numerical-scale>
 
-                    <visual-analog-scale
-                        id="vas"
+                    <visual-analog-scale id="vas"
                         experimental-setup-id="vas"
                         controller-device="joystick"
                         length="10">
@@ -90,51 +105,40 @@
                     </visual-analog-scale>
                 </configurations>
             </display>
-
             <sound id="sound" />
         </devices>
-        <device-mapping>
-            <device-assignment 
-                device-id="joystick" 
-                test-type="psychophysics-threshold-estimation" 
-                instrument-name="Button" />
+            <device-mapping>
+                <device-assignment device-id="display.fyn" 
+                    test-type="psychophysics-threshold-estimation"
+                    test-id="forcedYesNoPsi"
+                    instrument-name="ImageDisplay" />
 
-            <device-assignment 
-                device-id="display.image" 
-                test-type="psychophysics-threshold-estimation" 
-                instrument-name="ImageDisplay" />
+                <device-assignment device-id="joystick" instrument-name="Button" />
+                <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
+                <device-assignment device-id="sound" instrument-name="Stimulator" />
+
+                <device-assignment device-id="display.nrs" 
+                    test-type="psychophysics-threshold-estimation" 
+                    test-id="NRS"
+                    instrument-name="IntervalScale" />
 
                 <device-assignment 
-                device-id="display.image" 
-                test-type="psychophysics-threshold-estimation" 
-                instrument-name="SubjectInstructions" />
+                    device-id="display.crs" 
+                    test-type="psychophysics-threshold-estimation" 
+                    test-id="CRS"
+                    instrument-name="OrdinalScale" />
 
-            <device-assignment 
-                device-id="sound" 
-                test-type="psychophysics-threshold-estimation" 
-                instrument-name="Stimulator" />
-
-            <device-assignment 
-                device-id="display.nrs" 
-                test-type="psychophysics-threshold-estimation" 
-                test-id="NRS"
-                instrument-name="IntervalScale" />
-
-            <device-assignment 
-                device-id="display.crs" 
-                test-type="psychophysics-threshold-estimation" 
-                test-id="CRS"
-                instrument-name="OrdinalScale" />
-
-            <device-assignment 
-                device-id="display.vas" 
-                test-type="psychophysics-threshold-estimation" 
-                test-id="VAS"
-                instrument-name="RatioScale" />
+                <device-assignment 
+                    device-id="display.vas" 
+                    test-type="psychophysics-threshold-estimation" 
+                    test-id="VAS"
+                    instrument-name="RatioScale" />
 
 
             </device-mapping>        
-    </experimental-setup>
+        </experimental-setup>
+</experimental-setup-variants>   
+
     <protocol>
         <languages>
             
@@ -144,9 +148,10 @@
         </defines>
         <tests>
             <psychophysics-threshold-estimation id="yesNo"
-                name="Yes/No Response Task"
+                name="Yes/No Response Task (Up/Down)"
                 experimental-setup-id="image"                
-                stimulus-update-rate="44100">
+                stimulus-update-rate="44100"
+                trigger-update-rate="44100">
 
                 <update-rate-deterministic value="2000" />
                 
@@ -162,7 +167,7 @@
                             stop-rule="7"
                             step-size="0.15"
                             max-step-size-reduction="0.25"
-                            step-size-reduction="0.5"/>
+                            step-size-reduction="0.5" />
 
                         <stimulus>
                             <sine Is="x" Ts="200" Frequency="1000" />
@@ -171,18 +176,100 @@
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation 
-                id="manualYesNo"
+            <psychophysics-threshold-estimation id="yesNoDUD"
+                name="Yes/No Response Task (Discrete Up/Down)"
+                experimental-setup-id="image"                
+                stimulus-update-rate="44100"
+                trigger-update-rate="44100">
+
+                <update-rate-deterministic value="2000" />
+                
+                <yes-no-task />
+
+                <channels>
+                    <channel id="CH01" name="Beep">
+                        <discrete-up-down-method 
+                            stop-rule="7" 
+                            initial-intensity="10" 
+                            initial-step-size="2"
+                            initial-direction="increasing"
+                            skip-rule="1"
+                            intensities="[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]" />
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation id="yesNoPsi"
+                name="Yes/No Response Task (Psi-Method)"
+                experimental-setup-id="image"                
+                stimulus-update-rate="44100"
+                trigger-update-rate="44100">
+
+                <update-rate-deterministic value="2000" />
+                
+                <yes-no-task />
+
+                <channels>
+                    <channel id="CH01" name="Beep" Imin="Stimulator.Imin" Imax="Stimulator.Imax">
+                        <psi-method number-of-trials="30">
+                            <quick lambda="0.05" gamma="0.0" />
+                            <beta type="linspace" x0="-1.2" x1="1.2" n="24"/>
+                            <alpha type="linspace" x0="0" x1="1" n="100" />
+                            <intensity type="linspace" x0="0" x1="1" n="50" />
+                        </psi-method>
+
+                        <stimulus>
+                            <sine Is="x" Ts="200" Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation id="forcedYesNoPsi"
+                name="Forced Yes/No Response Task (Psi-Method)"
+                experimental-setup-id="fyn"                
+                stimulus-update-rate="44100"
+                trigger-update-rate="44100">
+
+                <update-rate-deterministic value="2000" />
+                
+                <forced-yes-no-task 
+                    probe="Images.ProbeFYN" 
+                    cue="Images.CueFYN" 
+                    yes-button="right" 
+                    no-button="left" />
+
+                <channels>
+                    <channel id="CH01" name="Beep" Imin="0" Imax="Stimulator.Range/2">
+                        <psi-method number-of-trials="30">
+                            <quick lambda="0.05" gamma="0.0" />
+                            <beta type="linspace" x0="-1.2" x1="1.2" n="24"/>
+                            <alpha type="linspace" x0="0" x1="1" n="100" />
+                            <intensity type="linspace" x0="0" x1="1" n="50" />
+                        </psi-method>
+
+                        <stimulus>
+                            <combined>
+                                <sine Is="Stimulator.Range/2 + Stimulator.Imin" Ts="200" Frequency="1000" />
+                                <sine Is="Stimulator.Range/2 + Stimulator.Imin + x" Ts="200" Frequency="1000" Tdelay="400" />
+                            </combined>
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation id="manualYesNo"
                 name="Manual Yes/No Response Task"
                 experimental-setup-id="image"
                 stimulus-update-rate="44100">
 
-                <manual-yes-no-task />
+                <manual-yes-no-task instruction="Did you hear a tone?" />
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Beep">
+                    <channel id="CH01" name="Beep">
                         <up-down-method 
                             start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
                             initial-direction="decreasing"/>
@@ -194,45 +281,29 @@
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation 
-                id="CRS"
+            <psychophysics-threshold-estimation id="CRS"
                 name="CRS Response Task"
                 experimental-setup-id="crs"
                 stimulus-update-rate="44100">
 
-                <update-rate-deterministic value="4000" />
+                <update-rate-deterministic value="2000" />
                 
-                <categorical-rating-task 
-                    target="1 if ChannelID == 'CH01' else 2" />
+                <categorical-rating-task target="2" />
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Category 1">
+                    <channel id="CH01" name="Category 1" Imin="0" Imax="Stimulator.Imax">
                         <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
+                            start-intensity="Stimulator.Imin"                            
+                            initial-direction="increasing"/>
 
                         <stimulus>
                             <sine Is="x" Ts="200" Frequency="1000" />
                         </stimulus>
                     </channel>
-                    <channel
-                        id="CH02"
-                        name="Category 2">
-                        <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
-
-                        <stimulus>
-                            <sine Is="x" Ts="400" Frequency="1000" />
-                        </stimulus>
-                    </channel>
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation 
-                id="manualCRS"
+            <psychophysics-threshold-estimation id="manualCRS"
                 name="Manual CRS Response Task"
                 experimental-setup-id="image"
                 stimulus-update-rate="44100">
@@ -272,46 +343,29 @@
                 </channels>
             </psychophysics-threshold-estimation>
 
-
-            <psychophysics-threshold-estimation 
-                id="NRS"
+            <psychophysics-threshold-estimation id="NRS"
                 name="NRS Response Task"
                 experimental-setup-id="nrs"
                 stimulus-update-rate="44100">
 
-                <update-rate-deterministic value="1000" />
+                <update-rate-deterministic value="2000" />
                 
-                <interval-rating-task 
-                    target="1 if ChannelID == 'CH01' else 2"/>
+                <interval-rating-task target="2"/>
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Category 1">
+                    <channel id="CH01" name="Category 1" Imin="0" Imax="Stimulator.Imax">
                         <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
+                            start-intensity="Stimulator.Imin"
+                            initial-direction="increasing"/>
 
                         <stimulus>
                             <sine Is="x" Ts="200" Frequency="1000" />
                         </stimulus>
                     </channel>
-                    <channel
-                        id="CH02"
-                        name="Category 2">
-                        <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
-
-                        <stimulus>
-                            <sine Is="x" Ts="400" Frequency="1000" />
-                        </stimulus>
-                    </channel>
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation 
-                id="manualNRS"
+            <psychophysics-threshold-estimation id="manualNRS"
                 name="Manual NRS Response Task"
                 experimental-setup-id="image"
                 stimulus-update-rate="44100">
@@ -323,9 +377,7 @@
                     target="1 if ChannelID == 'CH01' else 2"/>
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Category 1">
+                    <channel id="CH01" name="Category 1"  Imin="0" Imax="Stimulator.Imax">
                         <up-down-method 
                             start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
                             initial-direction="decreasing"/>
@@ -334,9 +386,7 @@
                             <sine Is="x" Ts="200" Frequency="1000" />
                         </stimulus>
                     </channel>
-                    <channel
-                        id="CH02"
-                        name="Category 2">
+                    <channel id="CH02" name="Category 2">
                         <up-down-method 
                             start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
                             initial-direction="decreasing"/>
@@ -348,58 +398,40 @@
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation 
-                id="VAS"
+            <psychophysics-threshold-estimation id="VAS"
                 name="VAS Response Task"
                 experimental-setup-id="vas"
                 stimulus-update-rate="44100">
 
-                <update-rate-deterministic value="1000" />
+                <update-rate-deterministic value="2000" />
 
-                <ratio-rating-task 
-                    target="1 if ChannelID == 'CH01' else 2"/>
+                <ratio-rating-task target="2"/>
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Category 1">
+                    <channel id="CH01" name="Category 1"  Imin="0" Imax="Stimulator.Imax">
                         <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
+                            start-intensity="Stimulator.Imin"
+                            initial-direction="increasing"/>
 
                         <stimulus>
                             <sine Is="x" Ts="200" Frequency="1000" />
                         </stimulus>
                     </channel>
-                    <channel
-                        id="CH02"
-                        name="Category 2">
-                        <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
-
-                        <stimulus>
-                            <sine Is="x" Ts="400" Frequency="1000" />
-                        </stimulus>
-                    </channel>
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation 
-                id="afc"
+            <psychophysics-threshold-estimation id="afc"
                 name="AFC Response Task"
                 experimental-setup-id="image"
                 stimulus-update-rate="44100">
 
                 <properties>
-                    <subject-instructions 
-                        experimental-setup-id="image" 
-                        default="InstructionAFC"/>
+                    <subject-instructions experimental-setup-id="image" default="Images.InstructionAFC"/>
                 </properties>
 
                 <alternative-forced-choice-task 
-                    probe="Assets.ProbeAFC"
-                    cue="Assets.CueAFC"
+                    probe="Images.ProbeAFC"
+                    cue="Images.CueAFC"
                     display-duration="2000"
                     display-interval="3000"
                     pause="1000">
@@ -410,15 +442,13 @@
                 </alternative-forced-choice-task>
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Beep"
-                        Imin="0"
-                        Imax="10">
-
-                        <up-down-method 
-                            start-intensity="5"
-                            initial-direction="decreasing"/>
+                    <channel id="CH01" name="Beep" Imin="Stimulator.Imin" Imax="Stimulator.Imax">
+                        <psi-method number-of-trials="30">
+                            <quick lambda="0.05" gamma="0.33" />
+                            <beta type="linspace" x0="-1.2" x1="1.2" n="24"/>
+                            <alpha type="linspace" x0="0" x1="1" n="100" />
+                            <intensity type="linspace" x0="0" x1="1" n="50" />
+                        </psi-method>
 
                         <stimulus>
                             <combined>
@@ -427,13 +457,11 @@
                                     Ts="500" 
                                     Tdelay="0"
                                     Frequency="1000" />
-
                                 <sine 
                                     Is="50 + x if StimulusAlternative == 'B' else 50"
                                     Ts="500" 
                                     Tdelay="1000"
                                     Frequency="1000" />
-
                                 <sine 
                                     Is="50 + x if StimulusAlternative == 'C' else 50"
                                     Ts="500" 
@@ -445,64 +473,65 @@
                 </channels>
             </psychophysics-threshold-estimation>
 
-            <psychophysics-threshold-estimation 
-                id="ifc"
+            <psychophysics-threshold-estimation id="ifc"
                 name="IFC Response Task"
                 experimental-setup-id="image"
                 stimulus-update-rate="44100">
 
                 <properties>
-                    <subject-instructions 
-                        experimental-setup-id="image" 
-                        default="InstructionIFC"/>
+                    <subject-instructions experimental-setup-id="image"  default="Images.InstructionIFC"/>
                 </properties>
 
                 <interval-forced-choice-task 
-                    probe="Assets.ProbeIFC"
+                    probe="Images.ProbeIFC"
                     display-duration="750"
                     display-interval="1000"
                     pause="1000">
 
-                    <interval id="A" image="Assets.Cue01" button="button-01" />
-                    <interval id="B" image="Assets.Cue02" button="button-02" />
-                    <interval id="C" image="Assets.Cue03" button="button-03" />
-                    <interval id="D" image="Assets.Cue04" button="button-04" />
+                    <interval id="A" image="Images.Cue01" button="button-01" />
+                    <interval id="B" image="Images.Cue02" button="button-02" />
+                    <interval id="C" image="Images.Cue03" button="button-03" />
+                    <interval id="D" image="Images.Cue04" button="button-04" />
                 </interval-forced-choice-task>
 
                 <channels>
-                    <channel
-                        id="CH01"
-                        name="Beep"
-                        Imin="Stimulator.Imin"
-                        Imax="Stimulator.Imax">
-
-                        <up-down-method 
-                            start-intensity="(Stimulator.Imax - Stimulator.Imin)/2 + Stimulator.Imin"
-                            initial-direction="decreasing"/>
+                    <channel id="CH01" name="Short eep" Imin="Stimulator.Imin" Imax="Stimulator.Imax">
+                        <psi-method number-of-trials="30">
+                            <quick lambda="0.05" gamma="0.25" />
+                            <beta type="linspace" x0="-1.2" x1="1.2" n="24"/>
+                            <alpha type="linspace" x0="0" x1="1" n="100" />
+                            <intensity type="linspace" x0="0" x1="1" n="50" />
+                        </psi-method>
 
                         <stimulus>
                             <sine 
                                 Is="x"
-                                Ts="500" 
+                                Ts="250" 
+                                Tdelay="0"
+                                Frequency="1000" />
+                        </stimulus>
+                    </channel>
+                    <channel id="CH02" name="Long Beep" Imin="Stimulator.Imin" Imax="Stimulator.Imax">
+                        <psi-method number-of-trials="30">
+                            <quick lambda="0.05" gamma="0.25" />
+                            <beta type="linspace" x0="-1.2" x1="1.2" n="24"/>
+                            <alpha type="linspace" x0="0" x1="1" n="100" />
+                            <intensity type="linspace" x0="0" x1="1" n="50" />
+                        </psi-method>
+
+                        <stimulus>
+                            <sine 
+                                Is="x"
+                                Ts="750" 
                                 Tdelay="0"
                                 Frequency="1000" />
                         </stimulus>
                     </channel>
                 </channels>
-            </psychophysics-threshold-estimation>
-            
+            </psychophysics-threshold-estimation>            
         </tests>
         <assets>
-            <file-asset id="CueAFC" file="CueAFC.png"></file-asset>
-            <file-asset id="ProbeAFC" file="ProbeAFC.png"></file-asset>
-            <file-asset id="InstructionAFC" file="InstructionAFC.png"></file-asset>
-
-            <file-asset id="Cue01" file="Cue01.png"></file-asset>
-            <file-asset id="Cue02" file="Cue02.png"></file-asset>
-            <file-asset id="Cue03" file="Cue03.png"></file-asset>
-            <file-asset id="Cue04" file="Cue04.png"></file-asset>
-            <file-asset id="ProbeIFC" file="ProbeIFC.png"></file-asset>
-            <file-asset id="InstructionIFC" file="InstructionIFC.png"></file-asset>
+            <file-asset id="Images" file="Images.zip" />
         </assets>
     </protocol>
     <post-actions>
