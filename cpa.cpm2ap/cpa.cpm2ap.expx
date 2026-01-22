@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
 <experimental-setup-variants default="CPARPlus">
     <experimental-setup name="LabBench CPAR+" id="CPARPlus">
         <devices>
@@ -14,22 +14,15 @@
         <devices>
             <cpar-plus id="dev"/>
     
-            <display
-                id="display"
-                screen="secondary"
-                position="fullscreen"
-                active-color="rgb(255,0,0)"
-                background-color="rgb(255,255,255)"
-                inactive-color="rgb(16,16,16)"
+            <display id="display"
                 normative-distance="40">
-    
-                <monitor
-                    diagonal-size="53.34"
-                    distance="40" />
 
+                <typography active-color="rgb(255,0,0)"
+                            background-color="rgb(255,255,255)"
+                            inactive-color="rgb(16,16,16)" />
+    
                 <configurations>
-                    <visual-analog-scale
-                        id="vas"
+                    <visual-analog-scale id="vas"
                         experimental-setup-id="vas"
                         length="10"
                         controller-device="dev">
@@ -58,22 +51,15 @@
         <devices>
             <cpar id="dev" compressor-mode="AUTO"/>
 
-            <display
-                id="display"
-                screen="secondary"
-                position="fullscreen"
-                active-color="rgb(255,0,0)"
-                background-color="rgb(255,255,255)"
-                inactive-color="rgb(16,16,16)"
+            <display id="display"
                 normative-distance="40">
-    
-                <monitor
-                    diagonal-size="35"
-                    distance="40" />
+
+                <typography active-color="rgb(255,0,0)"
+                            background-color="rgb(255,255,255)"
+                            inactive-color="rgb(16,16,16)" />
 
                 <configurations>
-                    <visual-analog-scale
-                        id="vas"
+                    <visual-analog-scale id="vas"
                         experimental-setup-id="vas"
                         length="10"
                         controller-device="dev">
@@ -95,8 +81,7 @@
         <defines />
         <templates>
             <content>
-                <algometry-stimulus-response 
-                    id="SR01"
+                <algometry-stimulus-response id="SR01"
                     experimental-setup-id="vas"
                     delta-pressure="1"
                     pressure-limit="100"
@@ -109,8 +94,7 @@
                     </properties>
                 </algometry-stimulus-response>
 
-                <algometry-stimulus-response 
-                    id="SR02"
+                <algometry-stimulus-response id="SR02"
                     experimental-setup-id="vas"
                     delta-pressure="1"
                     pressure-limit="100"
@@ -123,8 +107,7 @@
                     </properties>
                 </algometry-stimulus-response>
 
-                <algometry-conditioned-pain-modulation 
-                    id="CPM"
+                <algometry-conditioned-pain-modulation id="CPM"
                     experimental-setup-id="vas"
                     conditional-pressure="0.7 * SR02.PTT"
                     delta-conditional-pressure="10"

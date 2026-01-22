@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+   xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
    <subject-validator 
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
@@ -19,17 +19,11 @@
             </joystick>
     
             <display id="display"
-               active-color="rgb(255,255,255)"
-               background-color="rgb(0,0,0)"
-               inactive-color="rgb(32,32,32)"
-               normative-distance="40"
-               position="fullscreen"
-               fiducial-position="upper-right"
-               screen="secondary">
-    
-               <monitor diagonal-size="53.34" distance="40" />
+                     normative-distance="40">
 
-               <fiducial size="10" x="17" y="17"/>
+                <typography active-color="rgb(255,255,255)"
+                            background-color="rgb(0,0,0)"
+                            inactive-color="rgb(32,32,32)" />                    
 
                <configurations>
                   <image-display id="image" experimental-setup-id="stroopSetup" background-color="rgb(0,0,0)" />
@@ -45,16 +39,11 @@
       <experimental-setup name="LabBench I/O" id="LIO">
          <devices>
             <display id="display"
-               active-color="rgb(255,255,255)"
-               background-color="rgb(0,0,0)"
-               inactive-color="rgb(32,32,32)"
-               position="fullscreen"
-               screen="secondary"
-               fiducial-position="upper-right"
-               normative-distance="40">
+                     normative-distance="40">
 
-               <monitor diagonal-size="35.5" distance="40" />
-               <fiducial x="17" y="17" size="10"/>
+                <typography active-color="rgb(255,255,255)"
+                            background-color="rgb(0,0,0)"
+                            inactive-color="rgb(32,32,32)" />                    
 
                <configurations>
                   <image-display id="image" experimental-setup-id="stroopSetup" background-color="rgb(0,0,0)" />

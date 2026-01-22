@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.4/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants>
@@ -16,18 +16,10 @@
             <devices>
                 <cpar-plus id="dev"/>
         
-                <display
-                    id="display"
-                    screen="secondary"
-                    position="fullscreen"
-                    active-color="rgb(255,0,0)"
-                    background-color="rgb(255,255,255)"
-                    inactive-color="rgb(16,16,16)"
-                    normative-distance="40">
-        
-                    <monitor
-                      diagonal-size="53.34"
-                      distance="40" />
+                <display id="display" normative-distance="40">
+                    <typography active-color="rgb(255,0,0)"
+                                background-color="rgb(255,255,255)"
+                                inactive-color="rgb(16,16,16)" />
 
                     <configurations>
                         <visual-analog-scale
@@ -60,18 +52,10 @@
             <devices>
                 <cpar id="dev" compressor-mode="AUTO"/>
     
-                <display
-                    id="display"
-                    screen="secondary"
-                    position="fullscreen"
-                    active-color="rgb(255,0,0)"
-                    background-color="rgb(255,255,255)"
-                    inactive-color="rgb(16,16,16)"
-                    normative-distance="40">
-        
-                    <monitor
-                      diagonal-size="53.34"
-                      distance="40" />
+                <display id="display" normative-distance="40">
+                    <typography active-color="rgb(255,0,0)"
+                                background-color="rgb(255,255,255)"
+                                inactive-color="rgb(16,16,16)" />
 
                     <configurations>
                         <visual-analog-scale

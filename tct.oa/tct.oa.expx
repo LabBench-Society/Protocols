@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.2/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
     <experimental-setup>
         <devices>
             <joystick id="joystick">
@@ -10,13 +10,7 @@
                 </map>
             </joystick>
 
-            <display id="display"
-                     screen="primary"
-                     position="upper-right"
-                     normative-distance="40">
-
-                <monitor diagonal-size="35" distance="40"/>
-
+            <display id="display" normative-distance="40">
                 <configurations>
                     <numerical-scale id="scale"
                                      experimental-setup-id="scale"
@@ -62,7 +56,6 @@
     
                 <channels>
                     <channel id="C01"
-                             channel-type="single-sample"
                              name="Rect (10s)"
                              Imax="Stimulator.Max"
                              Imin="Stimulator.Neutral">
@@ -70,8 +63,7 @@
                                                  initial-intensity="45"
                                                  intensities="range((int)(Stimulator.Neutral), (int)(Stimulator.Max + 1), 1)"
                                                  skip-rule="0"
-                                                 stop-rule="2"
-                                                 terminate-on-limit-reached="true" />
+                                                 stop-rule="2" />
                         <stimulus>
                             <linear-segments baseline="Stimulator.Neutral">
                                 <segment duration="100" value="x"/>

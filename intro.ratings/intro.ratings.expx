@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.4/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="LIO">
@@ -15,15 +15,7 @@
                     </response-devices>
                 </lio>
 
-                <display id="display"
-                    position="fullscreen"
-                    screen="secondary"
-                    fiducial-position="upper-right"
-                    normative-distance="40">                    
-    
-                    <monitor diagonal-size="35.5" distance="40" />
-                    <fiducial x="17" y="17" size="10"/>                    
-
+                <display id="display" normative-distance="40">                    
                     <typography background-color="rgb(255,255,255)"
                                 inactive-color="rgb(32,32,32)"
                                 foreground-color="rgb(0,0,0)"
@@ -98,84 +90,11 @@
                 <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
                 <device-assignment device-id="lio.scale" instrument-name="RatioScale" />
 
-                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasRecording"/>
-                <device-assignment device-id="display.nrs" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="nrsRecording"/>
-                <device-assignment device-id="display.crs" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="crsRecording"/>
-                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasEvents"/>
-                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasSignals"/>
-                <device-assignment device-id="display.vas" instrument-name="Scales" test-type="psychophysics-response-recording" test-id="vasCombined"/>
+                <device-assignment device-id="display.vas" instrument-name="Scales" test-id="match: vas"/>
+                <device-assignment device-id="display.nrs" instrument-name="Scales" test-id="match: nrs"/>
+                <device-assignment device-id="display.crs" instrument-name="Scales" test-id="match: crs"/>
             </device-mapping>
         </experimental-setup>    
-        <!-- 
-        <experimental-setup id="Joystick" name="JOYSTICK">
-            <devices>
-                <joystick id="joystick">
-                    <map>
-                        <button-assignment code="16" button="decrease" />
-                        <button-assignment code="32" button="increase" />
-                        <button-assignment code="1" button="up" />
-                        <button-assignment code="4" button="down" />
-                    </map>
-                </joystick>
-
-                <display id="display"
-                    active-color="rgb(255,0,0)"
-                    background-color="rgb(255,255,255)"
-                    inactive-color="rgb(32,32,32)"
-                    position="fullscreen"
-                    screen="secondary"
-                    fiducial-position="upper-right"
-                    normative-distance="40">
-    
-                    <monitor diagonal-size="35.5" distance="40" />
-                    <fiducial x="17" y="17" size="10"/>
-    
-                    <configurations>
-                        <composite-scale id="scales"
-                            experimental-setup-id="scales"
-                            controller-device="joystick">
-                            <visual-analog-scale id="pain"
-                                length="10"
-                                sample-period="200"
-                                timing-source="none">
-                                <anchors>
-                                    <modality text="Pain" />
-                                    <top-anchor text="10/Worst possible pain" />
-                                    <bottom-anchor text="0/No pain" />
-                                </anchors>
-                            </visual-analog-scale>
-                            <numerical-scale id="nrs"
-                                minimum="0"
-                                maximum="10"
-                                sample-period="200"
-                                timing-source="none">
-                                <anchors>
-                                    <modality text="Pain" />
-                                    <top-anchor text="10/Worst possible pain" />
-                                    <bottom-anchor text="0/No pain" />
-                                </anchors>
-                            </numerical-scale>
-                        </composite-scale>
-    
-                        <image-display id="image"
-                            background-color="rgb(255, 255, 255)"
-                            experimental-setup-id="image" />
-    
-                        <questionnaire id="questionnaire"
-                            experimental-setup-id="questionnaire"
-                            background-color="rgb(255,255,255)" />
-                    </configurations>
-             </display>
-            </devices>
-            <device-mapping>
-                <device-assignment instrument-name="Scales" device-id="display.scales" />
-                <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
-                <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire" />                
-                <device-assignment instrument-name="RatioScale" device-id="joystick" />
-                <device-assignment instrument-name="Button" device-id="joystick" />
-            </device-mapping>
-        </experimental-setup>    
-        -->
     </experimental-setup-variants>
     <protocol>
         <defines>

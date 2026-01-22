@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
     <experimental-setup>
         <devices>
             <cpar-plus id="dev"/>
@@ -11,8 +11,7 @@
     </experimental-setup>
     <protocol>
         <tests>
-            <algometry-stimulus-response 
-                id="SR01"
+            <algometry-stimulus-response id="SR01"
                 name="Stimulus-Response (Cuff 1)"
                 delta-pressure="1"
                 pressure-limit="100"
@@ -26,8 +25,7 @@
                 <dependencies />
             </algometry-stimulus-response>
 
-            <algometry-stimulus-response 
-                id="SR02"
+            <algometry-stimulus-response id="SR02"
                 name="Stimulus-Response (Cuff 2)"
                 delta-pressure="1"
                 pressure-limit="100"
@@ -41,8 +39,7 @@
                 <dependencies />
             </algometry-stimulus-response>
 
-            <algometry-temporal-summation 
-                id="TS"
+            <algometry-temporal-summation id="TS"
                 name="Temporal Summation (Cuff 1)"
                 no-of-stimuli="10"
                 pressure-static="5"
@@ -59,8 +56,7 @@
                 </dependencies>
             </algometry-temporal-summation>
 
-            <algometry-conditioned-pain-modulation 
-                id="CPM"
+            <algometry-conditioned-pain-modulation id="CPM"
                 name="CPM (Cuff 1)"
                 conditional-pressure="0.7 * SR02.PTT"
                 delta-conditional-pressure="10"
@@ -77,8 +73,7 @@
                 </dependencies>
             </algometry-conditioned-pain-modulation>
 
-            <questionnaire 
-                id="SURVEY"
+            <questionnaire id="SURVEY"
                 name="Tank Pressure">
                 <properties>
                     <auto-start value="true"/>

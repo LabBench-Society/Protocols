@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
     <subject-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
@@ -26,16 +26,10 @@
                         </button>
                     </response-devices>
                 </lio>
-                <display id="display"
-                    active-color="rgb(255,255,255)"
-                    background-color="rgb(0,0,0)"
-                    inactive-color="rgb(32,32,32)"
-                    normative-distance="40"
-                    position="fullscreen"
-                    screen="secondary">
-
-                    <monitor diagonal-size="59.5" distance="120" />
-                    <fiducial size="10" x="17" y="17" />
+                <display id="display" normative-distance="40">
+                    <typography active-color="rgb(255,255,255)" 
+                                background-color="rgb(0,0,0)"
+                                inactive-color="rgb(32,32,32)" />
 
                     <configurations>
                         <image-display 
@@ -82,16 +76,10 @@
                         </button>
                     </response-devices>
                 </lio>
-                <display id="display"
-                    active-color="rgb(255,255,255)"
-                    background-color="rgb(0,0,0)"
-                    inactive-color="rgb(32,32,32)"
-                    normative-distance="40"
-                    position="fullscreen"
-                    screen="secondary">
-
-                    <monitor diagonal-size="59.5" distance="120" />
-                    <fiducial size="10" x="17" y="17" />
+                <display id="display" normative-distance="40">
+                    <typography active-color="rgb(255,255,255)" 
+                                background-color="rgb(0,0,0)"
+                                inactive-color="rgb(32,32,32)" />
 
                     <configurations>
                         <image-display 

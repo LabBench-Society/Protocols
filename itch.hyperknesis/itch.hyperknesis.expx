@@ -1,15 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<experiment 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/experiment.xsd">
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
 <subject-validator 
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Must be SXXX or TESTXXX, where X is a digit"/>
     <experimental-setup>
         <devices>
-            <lio
-                id="lio"
-                default-analog-output="0">
+            <lio id="lio" default-analog-output="0">
                 <response-devices>
                     <visual-analog-scale id="scale">
                         <button-maps>
@@ -22,18 +19,10 @@
                 </response-devices>
             </lio>
 
-            <display
-                id="display"
-                screen="secondary"
-                position="fullscreen"
-                active-color="rgb(255,0,0)"
-                background-color="rgb(255,255,255)"
-                inactive-color="rgb(16,16,16)"
-                normative-distance="40">
-
-                <monitor
-                    diagonal-size="53.34"
-                    distance="40" />
+            <display id="display" normative-distance="40">
+                <typography active-color="rgb(255,0,0)"
+                            background-color="rgb(255,255,255)"
+                            inactive-color="rgb(16,16,16)"/>
 
                 <configurations>
                     <composite-scale 
