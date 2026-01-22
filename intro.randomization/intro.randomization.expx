@@ -131,13 +131,12 @@
                 </structs>
             </variables>
             <content>          
-                <questionnaire 
-                    id="prepareTimeSlot"
+                <questionnaire id="prepareTimeSlot"
                     experimental-setup-id="image"
                     control="operator">
                     <test-events
                         start="func: Script.DisplayTimeSlotInstruction(tc)">
-                        <instrument name="SubjectInstructions" interface="image-display" />
+                        <instrument interface="image-display" />
                     </test-events>
                     <properties>
                         <time-constraint 
