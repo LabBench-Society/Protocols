@@ -43,13 +43,15 @@ def StartVerifySize(tc):
    return True
 
 def StartAngleSize(tc):
-   display = tc.Devices.ImageDisplay
+   display = tc.Instruments.ImageDisplay
+
    with tc.Image.GetCanvas(display) as canvas:
       metrics = display.Metrics
-      length = metrics.LengthToPixels(10)
+      length = metrics.GetNormalizedLength(10);
+      px = metrics.LengthToPixels(length)
+      tc.Log.Information("Normalized length of 10cm is {length}cm, which is {px} pixels on this display.", length, px)
 
       canvas.Font("Roboto")
-      canvas.TextSize(48)
       canvas.Color("#ffffff")
       canvas.AlignCenter()
       canvas.Fill(True)
@@ -58,12 +60,15 @@ def StartAngleSize(tc):
       length = metrics.AngleToPixels(10)
 
       canvas.Color("#ffffff")      
-      canvas.Rectangle(canvas.Width/2 - length/2, canvas.Height/2 - 20, canvas.Width/2 + length/2, canvas.Height/2 + 40)
+      canvas.Line(canvas.Width/2 - px/2, canvas.Height/2, canvas.Width/2 + px/2, canvas.Height/2)
+      canvas.Line(canvas.Width/2 - px/2, canvas.Height/2 - 10, canvas.Width/2 - px/2, canvas.Height/2 + 10)
+      canvas.Line(canvas.Width/2 + px/2, canvas.Height/2 - 10, canvas.Width/2 + px/2, canvas.Height/2 + 10)
       canvas.AlignTop()
-      canvas.Write(canvas.Width/2, canvas.Height/2 + 60, "10°")
+      canvas.TextSize(32)
+      canvas.Write(canvas.Width/2, canvas.Height/2 + 60, f"Normalized 10cm")
       
       canvas.AlignBottom()
-      canvas.Write(canvas.Width /2, canvas.Height - 20, "Drawing with visual angles")
+      canvas.Write(canvas.Width /2, canvas.Height - 20, "Do you see the entire line and end caps on the screen?")
       display.Display(canvas)
 
    return True
