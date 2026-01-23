@@ -139,17 +139,75 @@
                         false-label="No"  />
                 </content>
             </questionnaire>
+
+            <questionnaire id="VERIFYSIZE" 
+                name="Verify Physical Size"
+                experimental-setup-id="image"
+                control="operator">
+                <test-events
+                    start="func: Script.StartVerifySize(tc)">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                </test-events>
+                <properties>
+                    <instructions default="Assets.Images.VerifySizeInstruction" override-results="true"/>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.VerifySizeInstruction"/>
+                </properties>                
+
+                <content>
+                    <boolean id="WIDTH"
+                        title="Vertical calibration"
+                        instruction="Is the square 10cm in width"
+                        true-label="Yes" 
+                        false-label="No"  />
+                    <boolean id="HEIGHT"
+                        title="Horizontal calibration"
+                        instruction="Is the square 10cm in height"
+                        true-label="Yes" 
+                        false-label="No"  />
+                </content>
+            </questionnaire>
+
+            <questionnaire id="VERIFYANGLE" 
+                name="Verify Visual Angle"
+                experimental-setup-id="image"
+                control="operator">
+                <test-events
+                    start="func: Script.StartAngleSize(tc)">
+                    <instrument name="ImageDisplay" interface="image-display" />
+                </test-events>
+                <properties>
+                    <instructions default="Assets.Images.VerifyAngleInstruction" override-results="true"/>
+                    <subject-instructions 
+                        experimental-setup-id="image" 
+                        default="Assets.Images.VerifySizeInstruction"/>
+                </properties>                
+
+                <content>
+                    <boolean id="WIDTH"
+                        title="Vertical calibration"
+                        instruction="Is the square 10cm in width"
+                        true-label="Yes" 
+                        false-label="No"  />
+                    <boolean id="HEIGHT"
+                        title="Horizontal calibration"
+                        instruction="Is the square 10cm in height"
+                        true-label="Yes" 
+                        false-label="No"  />
+                </content>
+            </questionnaire>
             
-            <questionnaire id="VERIFY" 
+            <questionnaire id="VERIFYFIDUCIAL" 
                 name="Verify Fiducial"
                 experimental-setup-id="image"
                 control="operator">
                 <test-events
-                    start="func: Script.StartVerify(tc)">
+                    start="func: Script.StartVerifyFiducial(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
                 </test-events>
                 <properties>
-                    <instructions default="Assets.Images.VerifyInstruction" override-results="true"/>
+                    <instructions default="Assets.Images.VerifyFiducialInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.VerifyInstruction"/>
@@ -224,10 +282,10 @@
                 <page>
                     <column>
                         <text value="Calibration Record:"/>
-                        <text value="dynamic: 'Screen size: {size}cm'.format(size = SIZE.VALUE)"/>
-                        <text value="dynamic: 'Screen position: {position}cm'.format(position = POSITION.VALUE)"/>
-                        <text value="dynamic: 'Fiducial X: {x}mm'.format(x  = FIDUCIAL.X)"/>
-                        <text value="dynamic: 'Fiducial Y: {y}mm'.format(y  = FIDUCIAL.Y)"/>
+                        <text value="dynamic: 'Screen size: {}cm'.format(SIZE.VALUE)"/>
+                        <text value="dynamic: 'Screen position: {}cm'.format(POSITION.VALUE)"/>
+                        <text value="dynamic: 'Fiducial X: {}mm'.format(FIDUCIAL.X)"/>
+                        <text value="dynamic: 'Fiducial Y: {}mm'.format(FIDUCIAL.Y)"/>
                     </column>
                 </page>
                 <footer>

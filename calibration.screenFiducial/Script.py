@@ -15,7 +15,7 @@ def StartUpdate(tc):
    tc.Instruments.ImageDisplay.Display(tc.Assets.Images.UpdateInstruction, False)
    return True
 
-def StartVerify(tc):
+def StartVerifyFiducial(tc):
    tc.Instruments.ImageDisplay.Display(tc.Assets.Images.FiducialCheck, True)
    return True
 
