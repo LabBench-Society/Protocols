@@ -57,8 +57,8 @@
                 <content>
                     <numeric id="VALUE"
                         title="Screen size"
-                        instruction="Please enter the diagonal length (in centimeters) of the screen">
-                        <validation min="0" min-included="true" max="1000" max-included="true"/>
+                        instruction="Please enter the diagonal length (in millimeters) of the screen">
+                        <validation min="0" min-included="true" max="10000" max-included="true"/>
                     </numeric>
                 </content>            
             </questionnaire>
@@ -81,8 +81,8 @@
                 <content>
                     <numeric id="VALUE"
                         title="Screen position"
-                        instruction="Please enter the distance in centimeters between the subject's eyes and the screen">
-                        <validation min="0" min-included="true" max="1000" max-included="true"/>
+                        instruction="Please enter the distance in millimeters between the subject's eyes and the screen">
+                        <validation min="0" min-included="true" max="10000" max-included="true"/>
                     </numeric>
                 </content>            
             </questionnaire>
@@ -185,14 +185,9 @@
                 </properties>                
 
                 <content>
-                    <boolean id="WIDTH"
-                        title="Vertical calibration"
-                        instruction="Is the square 10cm in width"
-                        true-label="Yes" 
-                        false-label="No"  />
-                    <boolean id="HEIGHT"
-                        title="Horizontal calibration"
-                        instruction="Is the square 10cm in height"
+                    <boolean id="SIZE"
+                        title="Visual angle"
+                        instruction="Do you see the entire line on the screen"
                         true-label="Yes" 
                         false-label="No"  />
                 </content>
@@ -210,7 +205,7 @@
                     <instructions default="Assets.Images.VerifyFiducialInstruction" override-results="true"/>
                     <subject-instructions 
                         experimental-setup-id="image" 
-                        default="Assets.Images.VerifyInstruction"/>
+                        default="Assets.Images.VerifyFiducialInstruction"/>
                 </properties>                
 
                 <content>
@@ -266,13 +261,14 @@
         </tests>
         <assets>
             <file-asset id="Images" file="Images.zip" />
-            <file-asset id="Script" file="Script.py"></file-asset>
+            <file-asset id="Script" file="Script.py" />
+            <file-asset id="Roboto" file="Roboto-Regular.ttf" />
         </assets>
     </protocol>
     <post-actions>
         <export-pdf name="Create Calibration Record"
             location="C:\CalibrationData"
-            filename="dynamic: '{n}.pdf'.format(n = Subject)">
+            filename="dynamic: f'{Subject}.pdf'">
             <styles>
             </styles>
             <content>
@@ -282,10 +278,10 @@
                 <page>
                     <column>
                         <text value="Calibration Record:"/>
-                        <text value="dynamic: 'Screen size: {}cm'.format(SIZE.VALUE)"/>
-                        <text value="dynamic: 'Screen position: {}cm'.format(POSITION.VALUE)"/>
-                        <text value="dynamic: 'Fiducial X: {}mm'.format(FIDUCIAL.X)"/>
-                        <text value="dynamic: 'Fiducial Y: {}mm'.format(FIDUCIAL.Y)"/>
+                        <text value="dynamic: f'Screen size:     {SIZE.VALUE}mm'     if SIZE.Completed else     'Screen size: N/A'"/>
+                        <text value="dynamic: f'Screen position: {POSITION.VALUE}mm' if POSITION.Completed else 'Screen position: N/A'"/>
+                        <text value="dynamic: f'Fiducial X:      {FIDUCIAL.X}mm'     if FIDUCIAL.Completed else 'Fiducial X: N/A'"/>
+                        <text value="dynamic: f'Fiducial Y:      {FIDUCIAL.Y}mm'     if FIDUCIAL.Completed else 'Fiducial Y: N/A'"/>
                     </column>
                 </page>
                 <footer>

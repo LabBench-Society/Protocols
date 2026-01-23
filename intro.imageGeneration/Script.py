@@ -284,7 +284,7 @@ def Text(tc):
    return True
 
 def PhysicalLengths(tc):
-   display = tc.Devices.ImageDisplay
+   display = tc.Instruments.ImageDisplay
    with tc.Image.GetCanvas(display) as canvas:
       metrics = display.Metrics
       length = metrics.LengthToPixels(10)

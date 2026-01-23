@@ -15,6 +15,59 @@ def StartUpdate(tc):
    tc.Instruments.ImageDisplay.Display(tc.Assets.Images.UpdateInstruction, False)
    return True
 
+def StartVerifySize(tc):
+   display = tc.Instruments.ImageDisplay
+   with tc.Image.GetCanvas(display) as canvas:
+      metrics = display.Metrics
+      length = metrics.LengthToPixels(10)
+
+      canvas.Font("Roboto")
+      canvas.TextSize(48)
+      canvas.Color("#ffffff")
+      canvas.AlignCenter()
+      canvas.Fill(True)
+
+      metrics = display.Metrics
+      length = metrics.LengthToPixels(10)
+
+      canvas.Color("#ffffff")      
+      canvas.Rectangle(canvas.Width/2 - length/2, canvas.Height/2 - length/2, canvas.Width/2 + length/2, canvas.Height/2 + length/2)
+      canvas.AlignTop()
+      canvas.Write(canvas.Width/2, canvas.Height/2 + length/2 + 20, "10cm")
+      canvas.AlignLeft()
+      canvas.AlignMiddle()
+      canvas.Write(canvas.Width/2 + length/2 + 20, canvas.Height/2, "10cm")
+      
+      display.Display(canvas)
+
+   return True
+
+def StartAngleSize(tc):
+   display = tc.Devices.ImageDisplay
+   with tc.Image.GetCanvas(display) as canvas:
+      metrics = display.Metrics
+      length = metrics.LengthToPixels(10)
+
+      canvas.Font("Roboto")
+      canvas.TextSize(48)
+      canvas.Color("#ffffff")
+      canvas.AlignCenter()
+      canvas.Fill(True)
+
+      metrics = display.Metrics
+      length = metrics.AngleToPixels(10)
+
+      canvas.Color("#ffffff")      
+      canvas.Rectangle(canvas.Width/2 - length/2, canvas.Height/2 - 20, canvas.Width/2 + length/2, canvas.Height/2 + 40)
+      canvas.AlignTop()
+      canvas.Write(canvas.Width/2, canvas.Height/2 + 60, "10°")
+      
+      canvas.AlignBottom()
+      canvas.Write(canvas.Width /2, canvas.Height - 20, "Drawing with visual angles")
+      display.Display(canvas)
+
+   return True
+
 def StartVerifyFiducial(tc):
    tc.Instruments.ImageDisplay.Display(tc.Assets.Images.FiducialCheck, True)
    return True
