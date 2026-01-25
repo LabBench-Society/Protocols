@@ -20,10 +20,7 @@ class UpDownAlgorithm:
         self.stopSignalDelay = []
         self.stepsize = stepsize
 
-        self.delays = []
-
     def Complete(self, result):
-        result.Annotations.SetIntegers("sstDelays", self.delays)
         result.Annotations.SetIntegers("sstStopSignalDelays", self.stopSignalDelay)
         result.Annotations.SetInteger("sstLastStopSignalDelay", self.stopSignalDelay[-1])
         self.Log.Debug("Stop Signal Delays [ {delays} ]", self.stopSignalDelay)
