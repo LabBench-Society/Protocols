@@ -7,38 +7,38 @@
     <category name="Getting Started" id="intro">
         <protocol id="intro.labbench"
             name="Introduction to LabBench"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Psychometrics;Demonstration Protocol"/>
         <protocol id="intro.thrEstimation"
             name="Introduction to Estimation of Thresholds and Psychometric Functions"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Thresholds;Psychopmetric Functions;Demonstration Protocol"/>
         <protocol id="intro.questionnaires" 
             name="Introduction to Questionnaires"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Demonstration Protocol"/>
         <protocol id="intro.cpar"
             name="Introduction to Cuff Pressure Algometry"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Pressure Algometry;Demonstration Protocol"/>
         <protocol id="intro.ratings"
             name="Introduction to Computerized Psychophysical Rating Scales (CoScale)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Demonstration Protocol"/>
         <protocol id="intro.randomization"
             name="Introduction to Randomization and Templating"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Randomization;Templating;Demonstration Protocol"/>
         <protocol id="intro.imageGeneration"
             name="Introduction to Image Generation"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Demonstration Protocol"/>
     </category>
     <category name="Nerve Excitability Testing (NET)" id="net">
         <category name="Sodium Channel Excitability Nociceptor Test (SCENT)" id="sent">
             <protocol id="net.scent.pharmacology"
                 name="Sodium Channel Excitability Nociceptor Test (SCENT) [Pharmacology]"  
-                labbench-version="5.6"
+                labbench-version="6.0"
                 category="Nerve Excitability Testing;Perception Threshold Tracking" />
         </category>
     </category>
@@ -46,46 +46,46 @@
     <category name="Cuff Pressure Algometry" id="cpa">
         <protocol id="cpa.cpm2ap"
             name="Conditioned Pain Modulation Protocol (2AP)" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Pressure Algometry;Pain Detection and Tolerance Thresholds;Conditioned Pain Modulation"/>
         <protocol id="cpa.ts2ap"
             name="Temporal Summation Protocol (2AP)" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Pressure Algometry;Pain Detection and Tolerance Thresholds;Temporal Summation"/>
         <protocol id="cpa.ts3ap"
             name="Temporal Summation Protocol (3AP)" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Pressure Algometry;Pain Detection and Tolerance Thresholds;Temporal Summation"/>
         <protocol id="cpa.tscpm2ap"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (2AP)" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Pressure Algometry;Pain Detection and Tolerance Thresholds;Temporal Summation;Conditioned Pain Modulation"/>
         <protocol id="cpa.tscpm3ap"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (3AP)" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Pressure Algometry;Pain Detection and Tolerance Thresholds;Temporal Summation;Conditioned Pain Modulation"/>
         <protocol id="cpa.tscpmValidation"
             name="Temporal Summation and Conditioned Pain Modulation Protocol (Compressor Validation)" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>            
     </category> 
 
     <category name="Thermal Cutaneous Testing" id="tct">
         <protocol id="tct.thr"
             name="Detection and Pain Thresholds" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
         <protocol id="tct.ts"
             name="Temporal Summation" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
         <protocol id="tct.oa"
             name="Offset Analgesia" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
         <protocol id="tct.cheps"
             name="Contact Heat Evoked Potentials (CHEPS)" 
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
     </category>
 
@@ -93,27 +93,27 @@
         <category name="Stop Signal Tasks" id="cogni.sst">
             <protocol id="cogni.sst.task"
                 name="Stop Signal Task"
-                labbench-version="5.6"
+                labbench-version="6.0"
                 category="Cognitive Task"/>      
             <protocol id="cogni.sst.game"
                 name="Stop Signal Game"
-                labbench-version="5.6"
+                labbench-version="6.0"
                 category="Cognitive Task"/>              
         </category>
         <category name="Stroop Tasks" id="cogni.stroop">
             <protocol id="cogni.stroop.task"
                 name="Stroop Task"
-                labbench-version="5.6"
+                labbench-version="6.0"
                 category="Cognitive Task"/>
             <protocol id="cogni.stroop.reverse"
                 name="Reverse Stroop Task"
-                labbench-version="5.6"
+                labbench-version="6.0"
                 category="Cognitive Task"/>
         </category>
         <category name="Flanker Tasks" id="cogni.flanker">
             <protocol id="cogni.flanker.task"
                 name="Flanker Task"
-                labbench-version="5.6"
+                labbench-version="6.0"
                 category="Cognitive Task"/>
         </category>
     </category>
@@ -121,53 +121,53 @@
     <category name="Electroencephalography" id="eeg">
         <protocol id="eeg.voddball"
             name="Oddball Task (Visual)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="EEG" />    
 
         <protocol id="eeg.checkerboard"
             name="Visual Evoked Potentials (Checkerboard)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="EEG" />
     </category>
 
     <category name="Tactile Sensitivity Testing" id="tactile">
         <protocol id="tactile.filament"
             name="Monofilament Testing (von Frey Hairs/Semmes-Weinstein)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Tactile Sensitivity Testing;Monofilament;Templates;Demonstration Protocol"/>
         <protocol id="tactile.tpdDisc"
             name="Two-Point Discrimination Testing (Disk Discriminator)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Tactile Sensitivity Testing;Two-Point Discrimination;Disk Discrinator;Templates;Demonstration Protocol"/>
         <protocol id="tactile.tpdCaliper"
             name="Two-Point Discrimination Testing (Caliper)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Tactile Sensitivity Testing;Two-Point Discrimination;Caliper;Templates;Demonstration Protocol"/>
         <protocol id="tactile.tpdDiscOrientation"
             name="Two-Point Orientation Testing (Disk Discriminator)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Tactile Sensitivity Testing;Two-Point Orientation;Disk Discrinator;Templates;Demonstration Protocol"/>
         <protocol id="tactile.gratingOrientation"
             name="Grating Orientation Testing (Grating Domes)"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Tactile Sensitivity Testing;Grating Orientation;Grating Dome;Templates;Demonstration Protocol"/>
     </category>
 
     <category name="Itch Assessment" id="itch">
         <protocol id="itch.hyperknesis"
             name="Hyperknesis"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Psychometrics;Demonstration Protocol"/>
         <protocol id="itch.alloknesis"
             name="Alloknesis"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Psychometrics;Demonstration Protocol"/>
     </category>
 
     <category name="Calibration" id="calibration">
         <protocol id="calibration.screenFiducial"
             name="Screen and Fiducial Calibration Protocol"
-            labbench-version="5.6"
+            labbench-version="6.0"
             category="Visual Stimuli;Calibration Protocol"/>
     </category>
 </repository>
