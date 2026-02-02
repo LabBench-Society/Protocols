@@ -222,9 +222,7 @@
                 experimental-setup-id="fyn"                
                 stimulus-update-rate="44100"
                 trigger-update-rate="44100">
-
-                <update-rate-deterministic value="2000" />
-                
+              
                 <forced-yes-no-task 
                     probe="Images.ProbeFYN" 
                     cue="Images.CueFYN" 
