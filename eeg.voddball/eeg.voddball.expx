@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <subject-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
@@ -8,8 +8,7 @@
         <experimental-setup name="LabBench BUTTON" id="btn">
             <!-- There is only on setup for this experiment -->
             <devices>
-                <lio id="lio"
-                    default-analog-output="0">
+                <lio id="lio" default-analogue-output="0">
 
                     <trigger-setup
                         logic-system="positive"
@@ -27,15 +26,15 @@
                     </response-devices>
                 </lio>
                 <display id="display" normative-distance="40">
-                    <typography active-color="rgb(255,255,255)" 
-                                background-color="rgb(0,0,0)"
-                                inactive-color="rgb(32,32,32)" />
+                    <typography active-colour="rgb(255,255,255)" 
+                                background-colour="rgb(0,0,0)"
+                                inactive-colour="rgb(32,32,32)" />
 
                     <configurations>
                         <image-display 
                             id="image"
                             experimental-setup-id="image"
-                            background-color="rgb(0,0,0)" />
+                            background-colour="rgb(0,0,0)" />
                     </configurations>
                 </display>
             </devices>
@@ -48,8 +47,7 @@
         <experimental-setup name="LabBench PAD" id="pad">
             <!-- There is only on setup for this experiment -->
             <devices>
-                <lio id="lio"
-                    default-analog-output="0">
+                <lio id="lio" default-analogue-output="0">
 
                     <trigger-setup
                         logic-system="positive"
@@ -77,15 +75,15 @@
                     </response-devices>
                 </lio>
                 <display id="display" normative-distance="40">
-                    <typography active-color="rgb(255,255,255)" 
-                                background-color="rgb(0,0,0)"
-                                inactive-color="rgb(32,32,32)" />
+                    <typography active-colour="rgb(255,255,255)" 
+                                background-colour="rgb(0,0,0)"
+                                inactive-colour="rgb(32,32,32)" />
 
                     <configurations>
                         <image-display 
                             id="image"
                             experimental-setup-id="image"
-                            background-color="rgb(0,0,0)" />
+                            background-colour="rgb(0,0,0)" />
                     </configurations>
                 </display>
             </devices>
@@ -150,9 +148,9 @@
                         count="1">
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code" value="1" />
-                                <code output="Digital" value="1" />
-                                <code output="Stimulus" value="1" />
+                                <code output="trigger-interface" value="1" />
+                                <code output="trigger-output" value="1" />
+                                <code output="stimulator-trigger-output" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -162,9 +160,9 @@
                         count="4">
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code" value="3" />
-                                <code output="Digital" value="1" />
-                                <code output="Stimulus" value="1" />
+                                <code output="trigger-interface" value="3" />
+                                <code output="trigger-output" value="1" />
+                                <code output="stimulator-trigger-output" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -210,9 +208,9 @@
                         count="1">
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code" value="1" />
-                                <code output="Digital" value="1" />
-                                <code output="Stimulus" value="1" />
+                                <code output="trigger-interface" value="1" />
+                                <code output="trigger-output" value="1" />
+                                <code output="stimulator-trigger-output" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>
@@ -223,9 +221,9 @@
 
                         <triggers>
                             <trigger duration="10">
-                                <code output="Code" value="3" />
-                                <code output="Digital" value="1" />
-                                <code output="Stimulus" value="1" />
+                                <code output="trigger-interface" value="3" />
+                                <code output="trigger-output" value="1" />
+                                <code output="stimulator-trigger-output" value="1" />
                             </trigger>
                         </triggers>
                     </stimulus>

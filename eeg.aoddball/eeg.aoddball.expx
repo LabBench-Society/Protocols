@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <subject-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup>
         <devices>
-            <lio
-                id="lio"
-                default-analog-output="0">
-
+            <lio id="lio" default-analogue-output="0">
                 <trigger-setup
                     logic-system="positive"
                     low-byte-voltage-level="unconnected"
                     high-byte-voltage-level="unconnected" />
                     
                 <response-devices>
-                    <audio-trigger
-                        id="trigger"
+                    <audio-trigger id="trigger"
                         arming-period="200"
                         timing-source="response-port01" />
 
-                    <button
-                        id="button"
-                        timing-source="response-port01">
+                    <button id="button" timing-source="response-port01">
                         <map>
-                            <button-assignment 
-                                code="1" 
-                                button="button-01" 
-                                label="Button 1"/>
+                            <button-assignment code="1" button="button-01" label="Button 1"/>
                         </map>
                     </button>
                 </response-devices>
@@ -72,18 +63,14 @@
 
                 <triggers>
                     <trigger duration="10">
-                        <code
-                            output="Code"
-                            value="1" />
+                        <code output="trigger-interface" value="1" />
+                        <code output="trigger-output" value="1" />
                     </trigger>
                 </triggers>
 
                 <stimulation>
                     <stimulus>
-                        <sine
-                            Is="80"
-                            Frequency="1000 if int(x) == 2 else 500"
-                            Ts="200" />
+                        <sine Is="80" Frequency="1000 if int(x) == 2 else 500" Ts="200" />
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
@@ -128,9 +115,8 @@
                         intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="1" />
+                                <code output="trigger-interface" value="1" />
+                                <code output="trigger-output" />
                             </trigger>
                         </triggers>
                         <stimulus>
@@ -147,9 +133,8 @@
                         intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="2" />
+                                <code output="trigger-interface" value="2" />
+                                <code output="trigger-output" />
                             </trigger>
                         </triggers>
                         <stimulus>
@@ -202,9 +187,8 @@
                         intensity="80">
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="1" />
+                                <code output="trigger-interface" value="1" />
+                                <code output="trigger-output" />
                             </trigger>
                         </triggers>
                         <stimulus>
@@ -222,9 +206,8 @@
 
                         <triggers>
                             <trigger duration="10">
-                                <code
-                                    output="Code"
-                                    value="2" />
+                                <code output="trigger-interface" value="2" />
+                                <code output="trigger-output" />
                             </trigger>
                         </triggers>
                         <stimulus>
@@ -261,17 +244,9 @@
             </questionnaire>
         </tests>
         <assets>
-            <file-asset
-                id="TonePresentation"
-                file="TonePresentation.rtf" />
-
-            <file-asset 
-                id="ResponseTask"
-                file="ResponseTask.rtf"/>
-
-            <file-asset 
-                id="CountingTask"
-                file="CountingTask.rtf"/>
+            <file-asset file="TonePresentation.rtf" />
+            <file-asset file="ResponseTask.rtf"/>
+            <file-asset file="CountingTask.rtf"/>
         </assets>
     </protocol>
     <post-actions>
