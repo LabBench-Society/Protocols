@@ -231,7 +231,7 @@
                     <instructions 
                         default="Assets.Images.TestInstruction" 
                         override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.TestInstruction"/>
                 </properties>             
