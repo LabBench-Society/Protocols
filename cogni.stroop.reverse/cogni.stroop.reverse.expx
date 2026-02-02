@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+   xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
    <subject-validator 
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
@@ -21,12 +21,12 @@
             <display id="display"
                      normative-distance="40">
 
-                <typography active-color="rgb(255,255,255)"
-                            background-color="rgb(0,0,0)"
-                            inactive-color="rgb(32,32,32)" />                    
+                <typography active-colour="rgb(255,255,255)"
+                            background-colour="rgb(0,0,0)"
+                            inactive-colour="rgb(32,32,32)" />                    
 
                <configurations>
-                  <image-display id="image" experimental-setup-id="reverseStroopSetup" background-color="rgb(0,0,0)" />
+                  <image-display id="image" experimental-setup-id="reverseStroopSetup" background-colour="rgb(0,0,0)" />
                </configurations>                
             </display>         
          </devices>
@@ -41,16 +41,16 @@
             <display id="display"
                      normative-distance="40">
 
-                <typography active-color="rgb(255,255,255)"
-                            background-color="rgb(0,0,0)"
-                            inactive-color="rgb(32,32,32)" />                    
+                <typography active-colour="rgb(255,255,255)"
+                            background-colour="rgb(0,0,0)"
+                            inactive-colour="rgb(32,32,32)" />                    
 
                <configurations>
-                  <image-display id="image" experimental-setup-id="reverseStroopSetup" background-color="rgb(0,0,0)" />
+                  <image-display id="image" experimental-setup-id="reverseStroopSetup" background-colour="rgb(0,0,0)" />
                </configurations>
             </display>
 
-            <lio id="lio" default-analog-output="0">
+            <lio id="lio" default-analogue-output="0">
                <trigger-setup low-byte-voltage-level="unconnected" high-byte-voltage-level="unconnected" logic-system="positive"/>               
                <response-devices>
                   <response-pad id="pad" timing-source="response-port02" type="button-4-cross">
@@ -280,8 +280,15 @@
                template="RSTROOP"/>
         </tests>
         <assets>
-            <file-asset id="StroopReverseInstructions" file="StroopReverseInstructions.zip"/>
-            <file-asset id="StroopReverseScript" file="StroopReverseScript.py" />
+            <file-asset file="StroopReverseInstructions.zip">
+               <aliases>
+                  <alias replace="Slide1" with="NeutralReverseStroopJoystick" />
+                  <alias replace="Slide2" with="ReverseStroopJoystick" />
+                  <alias replace="Slide3" with="NeutralReverseStroopPAD" />
+                  <alias replace="Slide4" with="ReverseStroopPAD" />
+               </aliases>
+            </file-asset>
+            <file-asset file="StroopReverseScript.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf"/>
         </assets>
     </protocol>
