@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
    <experimental-setup-variants default="LIO">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
@@ -14,14 +14,14 @@
             <display id="display"
                      normative-distance="40">
 
-                <typography active-color="rgb(255,255,255)"
-                            background-color="rgb(0,0,0)"
-                            inactive-color="rgb(32,32,32)" />                    
+                <typography active-colour="rgb(255,255,255)"
+                            background-colour="rgb(0,0,0)"
+                            inactive-colour="rgb(32,32,32)" />                    
 
                 <configurations>
                     <image-display id="image"
                         experimental-setup-id="sstSetup"
-                        background-color="rgb(0,0,0)" />
+                        background-colour="rgb(0,0,0)" />
                 </configurations>                
             </display>         
         </devices>
@@ -52,14 +52,14 @@
             <display id="display"
                      normative-distance="40">
 
-                <typography active-color="rgb(255,255,255)"
-                            background-color="rgb(0,0,0)"
-                            inactive-color="rgb(32,32,32)" />                    
+                <typography active-colour="rgb(255,255,255)"
+                            background-colour="rgb(0,0,0)"
+                            inactive-colour="rgb(32,32,32)" />                    
 
                 <configurations>
                     <image-display id="image"
                         experimental-setup-id="sstSetup"
-                        background-color="rgb(0,0,0)" />
+                        background-colour="rgb(0,0,0)" />
                 </configurations>                
             </display>         
         </devices>
@@ -168,8 +168,20 @@
                 template="StopSignalTask"/>
         </tests>
         <assets>
-            <file-asset id="StopSignalImages" file="StopSignalImages.zip" />
-            <file-asset id="StopSignalScript" file="StopSignalScript.py" />
+            <file-asset file="StopSignalImages.zip">
+                <aliases>
+                    <alias replace="Slide1" with="Right" />
+                    <alias replace="Slide2" with="Left" />
+                    <alias replace="Slide3" with="StopRight" />
+                    <alias replace="Slide4" with="StopLeft" />
+                    <alias replace="Slide5" with="Correct" />
+                    <alias replace="Slide6" with="Wrong" />
+                    <alias replace="Slide7" with="Instructions" />
+                    <alias replace="Slide8" with="Clear" />
+                    <alias replace="Slide9" with="FixationCross" />
+                </aliases>
+            </file-asset>
+            <file-asset file="StopSignalScript.py" />
         </assets>
     </protocol>
     <post-actions>
