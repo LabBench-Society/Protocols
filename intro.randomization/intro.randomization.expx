@@ -53,10 +53,7 @@
 
                  <image-display id="image"
                      background-colour="rgb(255, 255, 255)"
-                     experimental-setup-id="image"
-                     />
-
-                 <questionnaire id="survey" experimental-setup-id="survey" />
+                     experimental-setup-id="image" />
              </configurations>
          </display>
      </devices>
@@ -64,7 +61,6 @@
             <device-assignment instrument-name="Scales" device-id="display.scales" />
             <device-assignment instrument-name="ImageDisplay" device-id="display.image" />                
             <device-assignment instrument-name="Button" device-id="lio.scale" />
-            <device-assignment instrument-name="Questionnaire" device-id="display.survey" />                 
       </device-mapping>
    </experimental-setup>
    <protocol>

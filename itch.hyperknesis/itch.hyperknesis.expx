@@ -110,7 +110,7 @@
 
                 <questionnaire
                     id="vasHyperknesisRating"
-                    control="subject"
+                    control="participant"
                     experimental-setup-id="survey">
                     <variables>
                         <strings value="1;2;3" name="Measurements" />                        
@@ -120,25 +120,25 @@
                         <instructions 
                             default="var: operatorInstructions"
                             override-results="true"/>
-                        <subject-instructions 
+                        <participant-instructions
                             experimental-setup-id="image"
                             default="HyperknesisInstructionVAS" />
                     </properties>
 
                     <templates>
-                        <visual-analog-scale 
+                        <visual-analogue-scale 
                             id="vas"
                             instruction=" "
                             length="10"
                             top-anchor="Worst possible itch"
                             bottom-anchor="No itch"                       
-                            active-color="rgb(255, 0, 0)"
-                            inactive-color="rgb(32, 32, 32)"/>
+                            active-colour="rgb(255, 0, 0)"
+                            inactive-colour="rgb(32, 32, 32)"/>
                     </templates>
 
                     <content>
                         <foreach variable="n" in="Measurements">
-                            <visual-analog-scale
+                            <visual-analogue-scale
                                 id="var: 'M{n}'.format(n = n)"
                                 template="vas"
                                 title="var: 'Measurement {n}'.format(n = n)"/>
@@ -155,7 +155,7 @@
 
                 <questionnaire 
                     id="nrsHyperknesisRating"
-                    control="subject"
+                    control="participant"
                     experimental-setup-id="survey">
                     <variables>
                         <strings value="1;2;3" name="Measurements" />
@@ -165,7 +165,7 @@
                         <instructions 
                             default="var: operatorInstructions"
                             override-results="true"/>
-                        <subject-instructions 
+                        <participant-instructions 
                             experimental-setup-id="image"
                             default="HyperknesisInstructionNRS" />
                     </properties>
@@ -178,8 +178,8 @@
                             maximum="10"
                             top-anchor="10/Worst possible itch"
                             bottom-anchor="0/No itch"                       
-                            active-color="rgb(255, 0, 0)"
-                            inactive-color="rgb(32, 32, 32)"/>
+                            active-colour="rgb(255, 0, 0)"
+                            inactive-colour="rgb(32, 32, 32)"/>
                     </templates>
 
                     <content>
