@@ -41,7 +41,7 @@
       </experimental-setup>    
       <experimental-setup name="Nocitech CPAR" id="CPAR">
         <devices>
-            <cpar id="dev" compressor-mode="AUTO"/>
+            <cpar id="dev" compressor-mode="auto"/>
         </devices>
         <device-mapping>
             <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
@@ -49,7 +49,7 @@
       </experimental-setup>
       <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)" id="CPARDisplay">
         <devices>
-            <cpar id="dev" compressor-mode="AUTO"/>
+            <cpar id="dev" compressor-mode="auto"/>
 
             <display id="display"
                 normative-distance="40">

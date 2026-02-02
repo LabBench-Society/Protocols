@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/4.5.0/experiment.xsd">
-    <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+    <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup>
-        <devices>
-            <!--  Contents omitted for brevity -->
-        </devices>
-        <device-mapping>
-            <!--  Contents omitted for brevity -->
-        </device-mapping>
-    </experimental-setup>
+    <experimental-setup-variants default="SetupID">
+        <experimental-setup id="SetupID" name="Name of experimental setup">
+            <devices>
+                <!--  Contents omitted for brevity -->
+            </devices>
+            <device-mapping>
+                <!--  Contents omitted for brevity -->
+            </device-mapping>
+        </experimental-setup>    
+    </experimental-setup-variants>
     <protocol>
         <languages>
             <!--  Contents omitted for brevity -->
         </languages>
+        <sessions>
+            <!--  Contents omitted for brevity -->
+        </sessions>
+        <properties>
+            <!--  Contents omitted for brevity -->
+        </properties>
+        <randomisations>
+            <!--  Contents omitted for brevity -->
+        </randomisations>        
         <defines>
             <!--  Contents omitted for brevity -->
         </defines>
+        <templates>
+            <!--  Contents omitted for brevity -->
+           
+        </templates>
         <tests>
             <!--  Contents omitted for brevity -->
         </tests>

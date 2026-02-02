@@ -2,7 +2,7 @@
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-   <subject-validator 
+   <participant-validator
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
 
@@ -90,7 +90,7 @@
                <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
 
                <properties>
-                  <subject-instructions 
+                  <participant-instructions
                      experimental-setup-id="reverseStroopSetup" 
                      default="Assets.StroopReverseInstructions.NeutralReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.NeutralReverseStroopPAD"/>
                </properties>                                
@@ -131,7 +131,7 @@
                <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
                 
                <properties>
-                  <subject-instructions 
+                  <participant-instructions 
                      experimental-setup-id="reverseStroopSetup" 
                      default="Assets.StroopReverseInstructions.NeutralReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.NeutralReverseStroopPAD"/>
                </properties>                                
@@ -172,7 +172,7 @@
                <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
 
                <properties>
-                  <subject-instructions 
+                  <participant-instructions
                      experimental-setup-id="reverseStroopSetup" 
                      default="Assets.StroopReverseInstructions.ReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.ReverseStroopPAD"/>
                </properties>                                                    
@@ -213,7 +213,7 @@
                <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
     
                <properties>
-                  <subject-instructions 
+                  <participant-instructions 
                      experimental-setup-id="reverseStroopSetup" 
                      default="Assets.StroopReverseInstructions.ReverseStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopReverseInstructions.ReverseStroopPAD"/>
                </properties>                                                    

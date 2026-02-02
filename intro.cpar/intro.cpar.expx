@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-    <subject-validator regex="^S[0-9]{3}$"
+    <participant-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants>
         <experimental-setup name="LabBench CPAR+">
@@ -42,7 +42,7 @@
           </experimental-setup>    
           <experimental-setup name="Nocitech CPAR">
             <devices>
-                <cpar id="dev" compressor-mode="AUTO"/>
+                <cpar id="dev" compressor-mode="auto"/>
             </devices>
             <device-mapping>
               <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
@@ -50,7 +50,7 @@
           </experimental-setup>
           <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)">
             <devices>
-                <cpar id="dev" compressor-mode="AUTO"/>
+                <cpar id="dev" compressor-mode="auto"/>
     
                 <display id="display" normative-distance="40">
                     <typography active-colour="rgb(255,0,0)"
@@ -421,35 +421,35 @@
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
-      measurement="PDT"/>
+      measurement="pdt"/>
 
     <algometry-stimulus-rating id="rSR01PPT" name="Stimulus Rating (PTT) [Cuff 1]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
-      measurement="PTT"/>
+      measurement="ptt"/>
 
     <algometry-stimulus-rating id="rSR01BOTH" name="Stimulus Rating (BOTH) [Cuff 1]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
-      measurement="BOTH"/>
+      measurement="both"/>
 
     <algometry-stimulus-rating id="rSR02BOTH" name="Stimulus Rating (BOTH) [Cuff 2]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="2"
-      measurement="BOTH"/>
+      measurement="both"/>
 
     <algometry-stimulus-rating id="rSPASumBOTH" name="Stimulus Rating (BOTH) [Cuff 1]"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="true"
       primary-cuff="1"
-      measurement="BOTH"/>
+      measurement="both"/>
 
     <algometry-stimulus-rating id="rExternalCPMBOTH" name="External CPM (Extenally Conditioned: 30s, BOTH) [Cuff 1]"
       conditioning-time="30"
@@ -457,7 +457,7 @@
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
-      measurement="BOTH"/>
+      measurement="both"/>
 
     <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT) [Cuff 1]"
       conditional-pressure="0.7 * rSR02BOTH.PTT"
@@ -465,7 +465,7 @@
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
-      measurement="PDT">
+      measurement="pdt">
       <dependencies>
         <dependency id="rSR02BOTH"/>
       </dependencies>
@@ -477,7 +477,7 @@
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
-      measurement="PTT">
+      measurement="ptt">
       <dependencies>
         <dependency id="rSR02BOTH"/>
       </dependencies>
@@ -489,7 +489,7 @@
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
-      measurement="BOTH">
+      measurement="both">
       <dependencies>
         <dependency id="rSR02BOTH"/>
       </dependencies>
@@ -501,7 +501,7 @@
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
-      measurement="BOTH">
+      measurement="both">
       <dependencies>
         <dependency id="rSR02BOTH"/>
       </dependencies>
@@ -516,7 +516,7 @@
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
-      measurement="BOTH">
+      measurement="both">
       <dependencies>
         <dependency id="rSR02BOTH"/>
       </dependencies>
@@ -529,7 +529,7 @@
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="2"
-      measurement="BOTH">
+      measurement="both">
       <dependencies>
         <dependency id="rSR02BOTH"/>
       </dependencies>

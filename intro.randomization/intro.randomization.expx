@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-<subject-validator 
+<participant-validator 
       regex="^PILOT[0-9]{3}$|^S[0-9]{3}$|^TEST[0-9]+$"
       advice="Please enter an ID in the form of SXXX or PILOTXXX, or TESTX..X, where X is a digit" />
    <experimental-setup>

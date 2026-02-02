@@ -99,7 +99,7 @@
                     <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
-                        <subject-instructions experimental-setup-id="sstSetup"
+                        <participant-instructions experimental-setup-id="sstSetup"
                             default="Assets.StopSignalImages.Instructions" />
                     </properties>
 
@@ -130,7 +130,7 @@
                     <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
-                        <subject-instructions experimental-setup-id="sstSetup"
+                        <participant-instructions experimental-setup-id="sstSetup"
                             default="Assets.StopSignalImages.Instructions" />
                     </properties>
 

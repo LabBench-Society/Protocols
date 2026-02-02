@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
 
- <subject-validator 
+ <participant-validator
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Must be SXXX or TESTXXX, where X is a digit"/> 
 <experimental-setup-variants default="JOYSTICK">
@@ -37,15 +37,15 @@
             </joystick>
             <display id="display" normative-distance="40">
 
-                <typography active-color="rgb(255,0,0)"
-                            background-color="rgb(0,0,0)"
-                            foreground-color="rgb(255,255,255)"
-                            inactive-color="rgb(128,128,128)">
-                    <crs-category size="18" color="rgb(255,255,255)" border-thickness="1" weight="normal" style="normal"/>
-                    <nrs-category size="18" color="rgb(255,255,255)" border-thickness="1" weight="normal" style="normal" />
-                    <scale-modality size="24" color="rgb(255, 255, 255)" weight="bold" style="normal"/>
-                    <bottom-anchor size="20" color="rgb(255, 255, 255)" weight="normal" style="normal" />
-                    <top-anchor size="20" color="rgb(255, 255, 255)" weight="normal" style="normal" />
+                <typography active-colour="rgb(255,0,0)"
+                            background-colour="rgb(0,0,0)"
+                            foreground-colour="rgb(255,255,255)"
+                            inactive-colour="rgb(128,128,128)">
+                    <crs-category size="18" colour="rgb(255,255,255)" border-thickness="1" weight="normal" style="normal"/>
+                    <nrs-category size="18" colour="rgb(255,255,255)" border-thickness="1" weight="normal" style="normal" />
+                    <scale-modality size="24" colour="rgb(255, 255, 255)" weight="bold" style="normal"/>
+                    <bottom-anchor size="20" colour="rgb(255, 255, 255)" weight="normal" style="normal" />
+                    <top-anchor size="20" colour="rgb(255, 255, 255)" weight="normal" style="normal" />
                 </typography>
 
                 <configurations>
@@ -59,6 +59,7 @@
                         experimental-setup-id="crs"
                         controller-device="joystick">
                         <anchors>
+                            <modality text="Sound Intensity" />
                             <top-anchor text="Maximal Sound" />                                
                             <bottom-anchor text="Minimal Sound" />
                         </anchors>
@@ -77,20 +78,22 @@
                         maximum="10"
                         controller-device="joystick">
                         <anchors>
+                            <modality text="Sound Intensity" />
                             <top-anchor text="Maximal Sound" />                                
                             <bottom-anchor text="Minimal Sound" />
                         </anchors>
                     </numerical-scale>
 
-                    <visual-analog-scale id="vas"
+                    <visual-analogue-scale id="vas"
                         experimental-setup-id="vas"
                         controller-device="joystick"
                         length="10">
                         <anchors>
+                            <modality text="Sound Intensity" />
                             <top-anchor text="Maximal Sound" />
                             <bottom-anchor text="Minimal Sound" />
                         </anchors>
-                    </visual-analog-scale>
+                    </visual-analogue-scale>
                 </configurations>
             </display>
             <sound id="sound" />
@@ -412,7 +415,7 @@
                 stimulus-update-rate="44100">
 
                 <properties>
-                    <subject-instructions experimental-setup-id="image" default="Images.InstructionAFC"/>
+                    <participant-instructions experimental-setup-id="image" default="Images.InstructionAFC"/>
                 </properties>
 
                 <alternative-forced-choice-task 
@@ -465,7 +468,7 @@
                 stimulus-update-rate="44100">
 
                 <properties>
-                    <subject-instructions experimental-setup-id="image"  default="Images.InstructionIFC"/>
+                    <participant-instructions experimental-setup-id="image"  default="Images.InstructionIFC"/>
                 </properties>
 
                 <interval-forced-choice-task 

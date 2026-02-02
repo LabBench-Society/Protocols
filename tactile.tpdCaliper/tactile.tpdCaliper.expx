@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
-    <subject-validator regex="^S[0-9]{3}$"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+    <participant-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup />
     <protocol>
@@ -11,13 +11,12 @@
                                                        name="Two-point Discrimination (Yes/No, Up/Down, Increasing)"
                                                        stimulus-unit="mm">
                 <intensity-transformation a="1" b="2"/>
-                <catch-trials order="block-randomized"
+                <catch-trials order="block-randomised"
                               instruction="Catch Trial"
                               interval="4"
                               image="TactileImages.OneProng" />
                 <up-down-algorithm stop-rule="6"
                                    skip-rule="1"
-                                   terminate-on-limit-reached="true"
                                    initial-direction="increasing"                                   
                                    initial-step-size="2"                                   
                                    intensities="[x/10 for x in range(2,151)]"/>
@@ -31,7 +30,7 @@
                                                        name="Two-point Discrimination (Yes/No, Psi method)"
                                                        stimulus-unit="mm">
                 <intensity-transformation a="1" b="2"/>
-                <catch-trials order="block-randomized"
+                <catch-trials order="block-randomised"
                               instruction="Catch Trial"
                               image="TactileImages.OneProng"
                               interval="5" />

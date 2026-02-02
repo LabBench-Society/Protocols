@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
 
     <!-- This sodium channel excitability nociceptor testing (SCENT) protocol consists 
         of rectangular and ramp test pulses preceded by hyperpolarizing or depolarizing 
@@ -10,14 +10,14 @@
         The prtocol is designed for testing topical application of compounds affecting 
         the gating mechanisms of Nav channels. Trine Andresen designed the study-->
 
-    <subject-validator regex="^S\d{3}$|^TEST\d+$"
+    <participant-validator regex="^S\d{3}$|^TEST\d+$"
                        advice="ID must be in the form of SXXX where X is an digit, or start with TEST followed by digits" />
 
     <experimental-setup-variants default="LIO">
         <experimental-setup id="LIO" name="LabBench I/O">
             <devices>
                 <lio id="dev"
-                    default-analog-output="0">
+                    default-analogue-output="0">
                     <stimulators>
                         <ds5 name="Stimulator"
                             transconductance="1mA_1V" />
@@ -109,7 +109,7 @@
 
                     <triggers start-triggger="internal">
                         <trigger duration="1">
-                            <code output="Stimulus" value="1"/>
+                            <code output="stimulator-trigger-output" value="1"/>
                         </trigger>
                     </triggers>
                     
@@ -144,7 +144,7 @@
 
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -182,7 +182,7 @@
                         <channel id="C01" name="pulse 1">
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -204,7 +204,7 @@
                         <channel id="C02" name="pulse 2">
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -226,7 +226,7 @@
                         <channel id="C03" name="Pulse 5">
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -266,7 +266,7 @@
 
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -295,7 +295,7 @@
 
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -324,7 +324,7 @@
 
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -353,7 +353,7 @@
 
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 
@@ -382,7 +382,7 @@
 
                             <triggers>
                                 <trigger duration="1">
-                                    <code output="Stimulus" value="1"/>
+                                    <code output="stimulator-trigger-output" value="1"/>
                                 </trigger>
                             </triggers>
 

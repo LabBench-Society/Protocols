@@ -49,7 +49,7 @@
                 </test-events>
                 <properties>
                     <instructions default="Assets.Images.ScreenSizeInstruction" override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.ScreenSizeInstruction"/>                    
                 </properties>                
@@ -73,7 +73,7 @@
                 </test-events>
                 <properties>
                     <instructions default="Assets.Images.ScreenPositionInstruction" override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.ScreenPositionInstruction"/>
                 </properties>                
@@ -97,7 +97,7 @@
                 </test-events>
                 <properties>
                     <instructions default="Assets.Images.PositionInstruction" override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.PositionInstruction"/>
                 </properties>                
@@ -126,7 +126,7 @@
                 </test-events>
                 <properties>
                     <instructions default="Assets.Images.UpdateInstruction" override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.UpdateInstruction"/>
                 </properties>                
@@ -150,7 +150,7 @@
                 </test-events>
                 <properties>
                     <instructions default="Assets.Images.VerifySizeInstruction" override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions 
                         experimental-setup-id="image" 
                         default="Assets.Images.VerifySizeInstruction"/>
                 </properties>                
@@ -179,7 +179,7 @@
                 </test-events>
                 <properties>
                     <instructions default="Assets.Images.VerifyAngleInstruction" override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions
                         experimental-setup-id="image" 
                         default="Assets.Images.VerifySizeInstruction"/>
                 </properties>                
@@ -203,7 +203,7 @@
                 </test-events>
                 <properties>
                     <instructions default="Assets.Images.VerifyFiducialInstruction" override-results="true"/>
-                    <subject-instructions 
+                    <participant-instructions
                         experimental-setup-id="image" 
                         default="Assets.Images.VerifyFiducialInstruction"/>
                 </properties>                

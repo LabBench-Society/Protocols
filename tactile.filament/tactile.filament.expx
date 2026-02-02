@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
-    <subject-validator regex="^S[0-9]{3}$"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+    <participant-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup />
     <protocol>
@@ -10,13 +10,12 @@
             <psychophysics-manual-threshold-estimation id="VFREY_UD_YESNO" 
                 stimulus-unit="g" 
                 name="Somedic Aesthesiometer II (Yes/No, Up/Down, Increasing)">
-                <catch-trials order="block-randomized"
+                <catch-trials order="block-randomised"
                               interval="3" 
                               image="TactileImages.NoFilament"
                               instruction="Catch Trial"/>
                 <up-down-algorithm stop-rule="4"
                                    skip-rule="0"
-                                   terminate-on-limit-reached="true"
                                    initial-direction="increasing"                                   
                                    initial-step-size="1"                                   
                                    intensities="[0.064, 0.14, 0.32, 1.7, 5.1, 8.3, 24]"
@@ -30,7 +29,7 @@
             <psychophysics-manual-threshold-estimation id="VFREY_PSI_YESNO" 
                 stimulus-unit="g" 
                 name="Somedic Aesthesiometer II (Yes/No, Psi-Method)">
-                <catch-trials order="block-randomized"
+                <catch-trials order="block-randomised"
                               interval="3" 
                               image="TactileImages.NoFilament"
                               instruction="Catch Trial"/>

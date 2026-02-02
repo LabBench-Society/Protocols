@@ -97,7 +97,7 @@
                     <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
-                        <subject-instructions experimental-setup-id="sstSetup"
+                        <participant-instructions experimental-setup-id="sstSetup"
                             default="Assets.StopSignalGameImages.Instructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
@@ -129,7 +129,7 @@
                     <test-events complete="CognitiveTask.Complete()" />
 
                     <properties>
-                        <subject-instructions experimental-setup-id="sstSetup"
+                        <participant-instructions experimental-setup-id="sstSetup"
                             default="Assets.StopSignalGameImages.Instructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>

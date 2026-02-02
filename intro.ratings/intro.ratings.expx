@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
-    <subject-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+    <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="LIO">
         <experimental-setup id="LIO" name="LabBench I/O">
             <devices>
                 <lio id="lio">
                     <response-devices>
-                        <visual-analog-scale id="scale"
+                        <visual-analogue-scale id="scale"
                             length="10"
                             sample-period="200"
                             timing-source="none" />
@@ -16,42 +16,35 @@
                 </lio>
 
                 <display id="display" normative-distance="40">                    
-                    <typography background-color="rgb(255,255,255)"
-                                inactive-color="rgb(32,32,32)"
-                                foreground-color="rgb(0,0,0)"
-                                active-color="rgb(255,0,0)">
+                    <typography background-colour="rgb(255,255,255)"
+                                inactive-colour="rgb(32,32,32)"
+                                foreground-colour="rgb(0,0,0)"
+                                active-colour="rgb(255,0,0)">
 
-                        <top-anchor size="32" style="normal" weight="normal" color="rgb(0,0,0)" />
-                        <bottom-anchor size="32" style="normal" weight="normal" color="rgb(0,0,0)" />
-                        <scale-modality size="48" style="normal" weight="bold" color="rgb(0,0,0)"  />
-                        <crs-category size="22" style="normal" weight="normal" color="rgb(0,0,0)" />
-                        <nrs-category size="22" style="normal" weight="normal" color="rgb(0,0,0)" />                        
+                        <top-anchor size="32" style="normal" weight="normal" colour="rgb(0,0,0)" />
+                        <bottom-anchor size="32" style="normal" weight="normal" colour="rgb(0,0,0)" />
+                        <scale-modality size="48" style="normal" weight="bold" colour="rgb(0,0,0)"  />
+                        <crs-category size="22" style="normal" weight="normal" colour="rgb(0,0,0)" />
+                        <nrs-category size="22" style="normal" weight="normal" colour="rgb(0,0,0)" />                        
                     </typography>
     
                     <configurations>
                         <composite-scale id="vas"
                             experimental-setup-id="vas"
                             controller-device="lio.scale">
-                            <visual-analog-scale id="pain"
-                                length="10"                                                                
-                                sample-period="200"
-                                timing-source="none">
+                            <visual-analogue-scale id="pain" length="10">
                                 <anchors>
                                     <modality text="Pain" />
                                     <top-anchor text="10/Worst possible pain" />
                                     <bottom-anchor text="0/No pain" />
                                 </anchors>
-                            </visual-analog-scale>
+                            </visual-analogue-scale>
                         </composite-scale>
 
                         <composite-scale id="nrs"
                             experimental-setup-id="nrs"
                             controller-device="lio.scale">
-                            <numerical-scale id="nrs"
-                                minimum="0"
-                                maximum="10"
-                                sample-period="200"
-                                timing-source="none">
+                            <numerical-scale id="nrs" minimum="0" maximum="10">
                                 <anchors>
                                     <modality text="Pain" />
                                     <top-anchor text="10/Worst possible pain" />
@@ -81,7 +74,7 @@
                         </composite-scale>
                         
                         <image-display id="image"
-                            background-color="rgb(255, 255, 255)"
+                            background-colour="rgb(255, 255, 255)"
                             experimental-setup-id="image" />    
                     </configurations>
              </display>

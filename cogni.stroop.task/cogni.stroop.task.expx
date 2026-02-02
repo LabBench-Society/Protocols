@@ -2,7 +2,7 @@
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-   <subject-validator 
+   <participant-validator 
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />
 
@@ -88,7 +88,7 @@
                <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
 
                <properties>
-                  <subject-instructions 
+                  <participant-instructions 
                      experimental-setup-id="stroopSetup" 
                      default="Assets.StroopInstructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.NeutralStroopPAD"/>
                </properties>                                
@@ -129,7 +129,7 @@
                <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
                 
                <properties>
-                  <subject-instructions 
+                  <participant-instructions 
                      experimental-setup-id="stroopSetup" 
                      default="Assets.StroopInstructions.NeutralStroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.NeutralStroopPAD"/>
                </properties>                                
@@ -170,7 +170,7 @@
                <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
 
                <properties>
-                  <subject-instructions 
+                  <participant-instructions 
                      experimental-setup-id="stroopSetup" 
                      default="Assets.StroopInstructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.StroopPAD"/>
                </properties>                                                    
@@ -211,7 +211,7 @@
                <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
     
                <properties>
-                  <subject-instructions 
+                  <participant-instructions 
                      experimental-setup-id="stroopSetup" 
                      default="Assets.StroopInstructions.StroopJoystick if ExperimentalSetup == 'JOYSTICK' else Assets.StroopInstructions.StroopPAD"/>
                </properties>                                                    

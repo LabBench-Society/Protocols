@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <experimental-setup>
         <devices>
             <joystick id="joystick">
                 <map>
-                    <button-assignment code="2" button="decrease"/>
-                    <button-assignment code="4" button="increase" />           
+                    <button-assignment code="2" button="decrease" label="Decrease"/>
+                    <button-assignment code="4" button="increase" label="Increase"/>           
                 </map>
             </joystick>
 

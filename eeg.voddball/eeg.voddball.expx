@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-    <subject-validator
+    <participant-validator
         regex="^S[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="btn">
@@ -118,7 +118,7 @@
 
                 <properties>
                     <instructions default="Assets.ResponseTask" override-results="true"/>
-                    <subject-instructions experimental-setup-id="image" default="Assets.Images.responseTask" />
+                    <participant-instructions experimental-setup-id="image" default="Assets.Images.responseTask" />
                 </properties>
 
                 <configuration>
@@ -178,7 +178,7 @@
 
                 <properties>
                     <instructions default="Assets.CountingTask" override-results="true"/>
-                    <subject-instructions experimental-setup-id="image" default="Assets.Images.countingTask" />
+                    <participant-instructions experimental-setup-id="image" default="Assets.Images.countingTask" />
                 </properties>
 
                 <configuration>
@@ -254,21 +254,10 @@
             </questionnaire>
         </tests>
         <assets>
-            <file-asset
-                id="CountingTask"
-                file="CountingTask.rtf" />
-
-            <file-asset 
-                id="ResponseTask"
-                file="ResponseTask.rtf"/>
-
-            <file-asset 
-                id="Script"
-                file="Script.py"/>
-
-            <file-asset 
-                id="Images"
-                file="Images.zip"/>
+            <file-asset id="CountingTask" file="CountingTask.rtf" />
+            <file-asset id="ResponseTask" file="ResponseTask.rtf"/>
+            <file-asset id="Script" file="Script.py"/>
+            <file-asset id="Images" file="Images.zip"/>
         </assets>
     </protocol>
     <post-actions>

@@ -1,44 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
-<subject-validator 
+    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+<participant-validator
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Must be SXXX or TESTXXX, where X is a digit"/>
     <experimental-setup>
         <devices>
-            <lio id="lio" default-analog-output="0">
+            <lio id="lio" default-analogue-output="0">
                 <response-devices>
-                    <visual-analog-scale id="vas">
+                    <visual-analogue-scale id="vas">
                         <button-maps>
                             <map>
-                                <button-assignment code="1" button="increase" />
-                                <button-assignment code="2" button="decrease" />
+                                <button-assignment code="1" button="increase" label="Increase"/>
+                                <button-assignment code="2" button="decrease" label="Decrease"/>
                             </map>
                         </button-maps>
-                    </visual-analog-scale>
+                    </visual-analogue-scale>
                 </response-devices>
             </lio>
 
             <display id="display" normative-distance="40">
-                <typography active-color="rgb(255,0,0)"
-                            background-color="rgb(255,255,255)"
-                            inactive-color="rgb(16,16,16)"/>
-
-                <monitor
-                    diagonal-size="53.34"
-                    distance="40" />
+                <typography active-colour="rgb(255,0,0)"
+                            background-colour="rgb(255,255,255)"
+                            inactive-colour="rgb(16,16,16)"/>
 
                 <configurations>
                     <image-display 
                         id="image"
                         experimental-setup-id="image"
-                        background-color="rgb(255,255,255)"/>
+                        background-colour="rgb(255,255,255)"/>
 
-                    <questionnaire 
-                        id="survey"
-                        experimental-setup-id="survey"
-                        background-color="rgb(255,255,255)" />                        
+                    <questionnaire id="survey" experimental-setup-id="survey" controller-device="lio.vas"/>                        
                 </configurations>
             </display>
         </devices>
@@ -60,7 +53,7 @@
             <content>
                 <questionnaire
                     id="nrsAlloknesisRating"
-                    control="subject"
+                    control="participant"
                     experimental-setup-id="survey">
                     <variables>
                         <strings value="1;2;3" name="Measurements" />
@@ -70,7 +63,7 @@
                         <instructions 
                             default="Assets.operatorAlloknesisInstructionsNRS"
                             override-results="true"/>
-                        <subject-instructions 
+                        <participant-instructions
                             experimental-setup-id="image"
                             default="Assets.AlloknesisInstructionNRS" />
                     </properties>
@@ -83,8 +76,8 @@
                             maximum="10"
                             top-anchor="10/Worst possible itch"
                             bottom-anchor="0/No itch"                       
-                            active-color="rgb(255, 0, 0)"
-                            inactive-color="rgb(32, 32, 32)"/>
+                            active-colour="rgb(255, 0, 0)"
+                            inactive-colour="rgb(32, 32, 32)"/>
                     </templates>
 
                     <content>
@@ -96,9 +89,10 @@
                         </foreach>
                     </content>
                 </questionnaire>   
+
                 <questionnaire
                     id="vasAlloknesisRating"
-                    control="subject"
+                    control="participant"
                     experimental-setup-id="survey">
                     <variables>
                         <strings value="1;2;3" name="Measurements" />
@@ -108,25 +102,25 @@
                         <instructions 
                             default="Assets.operatorAlloknesisInstructionsVAS"
                             override-results="true"/>
-                        <subject-instructions 
+                        <participant-instructions 
                             experimental-setup-id="image"
                             default="Assets.AlloknesisInstructionVAS" />
                     </properties>
 
                     <templates>
-                        <visual-analog-scale 
+                        <visual-analogue-scale 
                             id="vas"
                             instruction=" "
                             length="10"
                             top-anchor="Worst possible itch"
                             bottom-anchor="No itch"                       
-                            active-color="rgb(255, 0, 0)"
-                            inactive-color="rgb(32, 32, 32)"/>
+                            active-colour="rgb(255, 0, 0)"
+                            inactive-colour="rgb(32, 32, 32)"/>
                     </templates>
 
                     <content>
                         <foreach variable="n" in="Measurements">
-                            <visual-analog-scale
+                            <visual-analogue-scale
                                 id="var: 'M{n}'.format(n = n)"
                                 template="vas"
                                 title="var: 'Measurement {n}'.format(n = n)"/>

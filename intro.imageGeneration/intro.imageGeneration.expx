@@ -2,7 +2,7 @@
 <experiment 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-    <subject-validator 
+    <participant-validator 
             regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
             advice="Must be SXXX or TESTXXX, where X is a digit"/>
         <experimental-setup>
@@ -41,7 +41,7 @@
                     </test-events>
                     <properties>
                         <instructions default="var: 'Assets.Instructions.{name}'.format(name = name)" override-results="true"/>
-                        <subject-instructions default="var: 'Assets.Instructions.{name}'.format(name = name)"
+                        <participant-instructions default="var: 'Assets.Instructions.{name}'.format(name = name)"
                             experimental-setup-id="image" />
                     </properties>
                     <templates>

@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
-<subject-validator 
+    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+<participant-validator
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Must be SXXX or TESTXXX, where X is a digit"/>
     <experimental-setup>
         <devices>
-            <lio id="lio" default-analog-output="0">
+            <lio id="lio" default-analogue-output="0">
                 <response-devices>
-                    <visual-analog-scale id="scale">
+                    <visual-analogue-scale id="scale">
                         <button-maps>
                             <map>
-                                <button-assignment code="1" button="increase" />
-                                <button-assignment code="2" button="decrease" />
+                                <button-assignment code="1" button="increase" label="Increase"/>
+                                <button-assignment code="2" button="decrease" label="Decrease"/>
                             </map>
                         </button-maps>
-                    </visual-analog-scale>
+                    </visual-analogue-scale>
                 </response-devices>
             </lio>
 
             <display id="display" normative-distance="40">
-                <typography active-color="rgb(255,0,0)"
-                            background-color="rgb(255,255,255)"
-                            inactive-color="rgb(16,16,16)"/>
+                <typography active-colour="rgb(255,0,0)"
+                            background-colour="rgb(255,255,255)"
+                            inactive-colour="rgb(16,16,16)"/>
 
                 <configurations>
                     <composite-scale 
@@ -30,31 +30,23 @@
                         experimental-setup-id="vas"
                         controller-device="lio.scale">
 
-                        <visual-analog-scale 
-                            id="itch"
-                            length="10"
-                            sample-period="200"
-                            timing-source="none">
-
+                        <visual-analogue-scale id="itch" length="10">
                             <anchors>
                                 <modality text="" />
                                 <top-anchor text="10/Worst imaginable itch" />
                                 <bottom-anchor text="0/No itch" />
                             </anchors>
-                        </visual-analog-scale>
+                        </visual-analogue-scale>
                     </composite-scale>
 
-                    <composite-scale 
-                        id="nrs"
+                    <composite-scale id="nrs"
                         experimental-setup-id="nrs"
                         controller-device="lio.scale">
 
                         <numerical-scale
                             id="itch"
                             minimum="0"
-                            maximum="10"
-                            sample-period="200"
-                            timing-source="none">
+                            maximum="10">
                             <anchors>
                                 <modality text="" />
                                 <top-anchor text="10/Worst imaginable itch" />
@@ -66,12 +58,9 @@
                     <image-display 
                         id="image"
                         experimental-setup-id="image"
-                        background-color="rgb(255,255,255)"/>
+                        background-colour="rgb(255,255,255)"/>
 
-                    <questionnaire 
-                        id="survey"
-                        experimental-setup-id="survey"
-                        background-color="rgb(255,255,255)" />                        
+                    <questionnaire id="survey" experimental-setup-id="survey" controller-device="lio.scale" />                        
                 </configurations>
             </display>
         </devices>
