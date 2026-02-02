@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
 <experimental-setup-variants default="CPARPlus">
     <experimental-setup name="LabBench CPAR+" id="CPARPlus">
         <devices>
@@ -15,12 +15,12 @@
             <cpar-plus id="dev"/>
     
             <display id="display" normative-distance="40">
-                <typography active-color="rgb(255,0,0)"
-                            background-color="rgb(255,255,255)"
-                            inactive-color="rgb(16,16,16)" />
+                <typography active-colour="rgb(255,0,0)"
+                            background-colour="rgb(255,255,255)"
+                            inactive-colour="rgb(16,16,16)" />
 
                 <configurations>
-                    <visual-analog-scale id="vas"
+                    <visual-analogue-scale id="vas"
                         experimental-setup-id="vas"
                         length="10"
                         controller-device="dev">
@@ -29,7 +29,7 @@
                             <top-anchor text="10/Worst imaginable pain" />
                             <bottom-anchor text="0/No pain" />
                         </anchors>
-                    </visual-analog-scale>
+                    </visual-analogue-scale>
                 </configurations>
             </display>
         </devices>
@@ -50,12 +50,12 @@
             <cpar id="dev" compressor-mode="AUTO"/>
 
             <display id="display" normative-distance="40">
-                <typography active-color="rgb(255,0,0)"
-                            background-color="rgb(255,255,255)"
-                            inactive-color="rgb(16,16,16)" />
+                <typography active-colour="rgb(255,0,0)"
+                            background-colour="rgb(255,255,255)"
+                            inactive-colour="rgb(16,16,16)" />
 
                 <configurations>
-                    <visual-analog-scale id="vas"
+                    <visual-analogue-scale id="vas"
                         experimental-setup-id="vas"
                         length="10"
                         controller-device="dev">
@@ -64,7 +64,7 @@
                             <top-anchor text="10/Worst imaginable pain" />
                             <bottom-anchor text="0/No pain" />
                         </anchors>
-                    </visual-analog-scale>
+                    </visual-analogue-scale>
                 </configurations>
             </display>
         </devices>
@@ -168,8 +168,8 @@
                         bottom-anchor="Worst Possible Pain" 
                         maximum="10" 
                         minimum="0" 
-                        active-color="#FF0000" 
-                        inactive-color="#161616" />
+                        active-colour="#FF0000" 
+                        inactive-colour="#161616" />
                 </content>
             </questionnaire>
         </tests>
