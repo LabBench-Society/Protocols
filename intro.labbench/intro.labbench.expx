@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment 
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">   
+   xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">   
    <subject-validator 
       regex="^S[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX, where X is a digit" />      
@@ -27,19 +27,17 @@
                   </map>
                </joystick>
                <display id="display" normative-distance="40">
-                  <typography active-color="rgb(255,255,255)" 
-                              background-color="rgb(0,0,0)"
-                              inactive-color="rgb(32,32,32)" />
+                  <typography active-colour="rgb(255,255,255)" 
+                              background-colour="rgb(0,0,0)"
+                              inactive-colour="rgb(32,32,32)" />
                  
                   <configurations>
                      <image-display id="image" 
                         experimental-setup-id="image"
-                        background-color="rgb(0,0,0)" />
+                        background-colour="rgb(0,0,0)" />
                      
-                     <questionnaire 
-                        id="questionnaire"
+                     <questionnaire id="questionnaire"
                         experimental-setup-id="questionnaire"
-                        background-color="rgb(255, 255, 255)"
                         controller-device="joystick" />
                   </configurations>                
                </display>
@@ -52,8 +50,7 @@
          </experimental-setup>
          <experimental-setup name="LabBench I/O" id="LIO">
             <devices>
-               <lio id="lio" 
-                  default-analog-output="0">
+               <lio id="lio" default-analogue-output="0">
                   <response-devices>
                      <response-pad id="pad" 
                         type="button-4-cross" 
@@ -80,17 +77,15 @@
                </lio>
             
                <display id="display" normative-distance="40">
-                  <typography active-color="rgb(255,255,255)" 
-                              background-color="rgb(0,0,0)"
-                              inactive-color="rgb(32,32,32)" />
+                  <typography active-colour="rgb(255,255,255)" 
+                              background-colour="rgb(0,0,0)"
+                              inactive-colour="rgb(32,32,32)" />
       
                   <configurations>
-                     <image-display id="image" experimental-setup-id="image" background-color="rgb(0,0,0)" />
+                     <image-display id="image" experimental-setup-id="image" background-colour="rgb(0,0,0)" />
 
-                     <questionnaire 
-                        id="questionnaire"
+                     <questionnaire id="questionnaire"
                         experimental-setup-id="questionnaire"
-                        background-color="rgb(255, 255, 255)"
                         controller-device="lio.pad" />
                   </configurations>                
                </display>
@@ -265,11 +260,15 @@
       </tests>
       <assets>
          <file-asset id="DassText" file="DassText_EN.py">
-            <language code="DA" file="DassText_DA.py" />
+            <localisation>
+               <language code="DA" file="DassText_DA.py" />
+            </localisation>
          </file-asset>
          <file-asset id="DassCalculations" file="DassCalculations.py" />
          <file-asset id="DassInstructions" file="DassImages_EN.zip">
-            <language code="DA" file="DassImages_DA.zip" />
+            <localisation>
+               <language code="DA" file="DassImages_DA.zip" />
+            </localisation>
          </file-asset>
          <file-asset id="OperatorInstructions" file="OperatorInstructions.zip" />
 
