@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <subject-validator 
             regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
             advice="Must be SXXX or TESTXXX, where X is a digit"/>
         <experimental-setup>
             <devices>
                 <display id="display" normative-distance="40">
-                    <typography active-color="rgb(255,255,255)"
-                                background-color="rgb(0,0,0)"
-                                inactive-color="rgb(32,32,32)"/>
+                    <typography active-colour="rgb(255,255,255)"
+                                background-colour="rgb(0,0,0)"
+                                inactive-colour="rgb(32,32,32)"/>
     
                     <configurations>
                         <image-display 
                             id="image"
                             experimental-setup-id="image"
-                            background-color="rgb(0,0,0)" />
+                            background-colour="rgb(0,0,0)" />
                     </configurations>
                 </display>
             </devices>
@@ -45,13 +45,13 @@
                             experimental-setup-id="image" />
                     </properties>
                     <templates>
-                        <instruction id="INSTRUCTION" 
-                            title="Generating shapes" 
-                            instruction="var: 'Documents.{name}'.format(name = name)"/>
+                        <boolean id="CONFIRM" 
+                            title="Image confirmation" 
+                            instruction="Do you see drawings on the screen?"/>                        
                     </templates>
 
                     <content>
-                        <instruction id="INSTRUCTION" template="INSTRUCTION"></instruction>
+                        <boolean id="CONFIRM" template="CONFIRM"></boolean>
                     </content>
                 </questionnaire>                            
             </content>            
