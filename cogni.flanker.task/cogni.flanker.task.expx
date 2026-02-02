@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <subject-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="JOYSTICK">
@@ -9,14 +9,14 @@
                 <display id="display"                                                                           
                          normative-distance="40">
                 
-                    <typography active-color="rgb(255,255,255)"
-                                background-color="rgb(0,0,0)"
-                                inactive-color="rgb(32,32,32)" />                    
+                    <typography active-colour="rgb(255,255,255)"
+                                background-colour="rgb(0,0,0)"
+                                inactive-colour="rgb(32,32,32)" />                    
    
                     <configurations>
                         <image-display id="image"
                                        experimental-setup-id="image"
-                                       background-color="rgb(0,0,0)" />
+                                       background-colour="rgb(0,0,0)" />
                     </configurations>
                 </display>
                 <joystick id="button">
@@ -37,15 +37,15 @@
                 <display id="display"
                          normative-distance="40">
             
-                    <typography active-color="rgb(255,255,255)"
-                                background-color="rgb(0,0,0)"
-                                inactive-color="rgb(32,32,32)" />
+                    <typography active-colour="rgb(255,255,255)"
+                                background-colour="rgb(0,0,0)"
+                                inactive-colour="rgb(32,32,32)" />
 
               
                     <configurations>
                         <image-display id="image"
                                        experimental-setup-id="image"
-                                       background-color="rgb(0,0,0)" />
+                                       background-colour="rgb(0,0,0)" />
                     </configurations>
                 </display>
                 <lio id="lio">
@@ -131,7 +131,10 @@
         <assets>
             <file-asset id="FlankerScript" file="FlankerScript.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf" />
-            <file-asset id="FlankerInstruction" file="FlankerInstruction.zip"/>
+            <file-asset id="FlankerInstruction" file="FlankerInstruction.zip">
+                <aliases>
+                </aliases>
+            </file-asset>
         </assets>
     </protocol>    
     <post-actions>

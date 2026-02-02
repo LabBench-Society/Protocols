@@ -266,29 +266,13 @@
         </assets>
     </protocol>
     <post-actions>
-        <export-pdf name="Create Calibration Record"
-            location="C:\CalibrationData"
-            filename="dynamic: f'{Subject}.pdf'">
-            <styles>
-                
-            </styles>
-            <content>
-                <header>
-                    <text value="dynamic: Subject"/>
-                </header>
-                <page>
-                    <column>
-                        <text value="Calibration Record:"/>
-                        <text value="dynamic: f'Screen size:     {SIZE.VALUE}mm'     if SIZE.Completed else     'Screen size: N/A'"/>
-                        <text value="dynamic: f'Screen position: {POSITION.VALUE}mm' if POSITION.Completed else 'Screen position: N/A'"/>
-                        <text value="dynamic: f'Fiducial X:      {FIDUCIAL.X}mm'     if FIDUCIAL.Completed else 'Fiducial X: N/A'"/>
-                        <text value="dynamic: f'Fiducial Y:      {FIDUCIAL.Y}mm'     if FIDUCIAL.Completed else 'Fiducial Y: N/A'"/>
-                    </column>
-                </page>
-                <footer>
-
-                </footer>
-            </content>
-        </export-pdf>        
+        <export-to-csv name="Create Calibration Record" 
+            location="C:\CalibrationData" 
+            filename="dynamic: f'{Subject}.csv'">
+            <item name="SIZE" value="SIZE.VALUE" condition="SIZE.Completed" default="MISSING"/>
+            <item name="POSITION" value="POSITION.VALUE" condition="POSITION.Completed" default="MISSING"/>
+            <item name="FIDUCIAL X" value="FIDUCIAL.X" condition="FIDUCIAL.Completed" default="MISSING"/>
+            <item name="FIDUCIAL Y" value="FIDUCIAL.Y" condition="FIDUCIAL.Completed" default="MISSING"/>
+        </export-to-csv>
     </post-actions>
 </experiment>
