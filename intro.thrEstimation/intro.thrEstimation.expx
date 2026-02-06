@@ -99,30 +99,22 @@
             <sound id="sound" />
         </devices>
             <device-mapping>
-                <device-assignment device-id="display.fyn" 
-                    test-type="psychophysics-threshold-estimation"
-                    test-id="forcedYesNoPsi"
-                    instrument-name="ImageDisplay" />
-
                 <device-assignment device-id="joystick" instrument-name="Button" />
                 <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
                 <device-assignment device-id="sound" instrument-name="Stimulator" />
 
                 <device-assignment device-id="display.nrs" 
-                    test-type="psychophysics-threshold-estimation" 
-                    test-id="NRS"
+                    procedure-id="NRS"
                     instrument-name="IntervalScale" />
 
                 <device-assignment 
                     device-id="display.crs" 
-                    test-type="psychophysics-threshold-estimation" 
-                    test-id="CRS"
+                    procedure-id="CRS"
                     instrument-name="OrdinalScale" />
 
                 <device-assignment 
                     device-id="display.vas" 
-                    test-type="psychophysics-threshold-estimation" 
-                    test-id="VAS"
+                    procedure-id="VAS"
                     instrument-name="RatioScale" />                    
             </device-mapping>        
         </experimental-setup>
@@ -135,7 +127,7 @@
         <defines>
             
         </defines>
-        <tests>
+        <procedures>
             <psychophysics-threshold-estimation id="yesNo"
                 name="Yes/No Response Task (Up/Down)"
                 experimental-setup-id="image"                
@@ -516,7 +508,7 @@
                     </channel>
                 </channels>
             </psychophysics-threshold-estimation>            
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="Images" file="Images.zip" />
         </assets>

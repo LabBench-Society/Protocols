@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/5.6/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <experimental-setup>
         <devices>
             <cpar-plus id="dev"/>
@@ -10,7 +10,7 @@
         </device-mapping>
     </experimental-setup>
     <protocol>
-        <tests>
+        <procedures>
             <algometry-stimulus-response id="SR01"
                 name="Stimulus-Response (Cuff 1)"
                 delta-pressure="1"
@@ -88,7 +88,7 @@
                 </content>
             </questionnaire>
 
-        </tests>
+        </procedures>
         <assets>
         </assets>
     </protocol>

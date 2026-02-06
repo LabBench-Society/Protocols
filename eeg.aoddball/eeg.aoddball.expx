@@ -41,7 +41,7 @@
         <defines>
             <define name="NumberOfOddballs" value="40" />
         </defines>
-        <tests>
+        <procedures>
             <psychophysics-stimulus-presentation
                 id="PRESENTATION"
                 name="Presentation of tones"
@@ -242,7 +242,7 @@
                     </numeric>
                 </content>
             </questionnaire>
-        </tests>
+        </procedures>
         <assets>
             <file-asset file="TonePresentation.rtf" />
             <file-asset file="ResponseTask.rtf"/>

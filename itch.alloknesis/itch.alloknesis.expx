@@ -129,10 +129,10 @@
                 </questionnaire>   
             </content>             
         </templates>
-        <tests>
+        <procedures>
             <questionnaire-constructor id="NRS" name="Alloknesis (NRS)" template="nrsAlloknesisRating" />
             <questionnaire-constructor id="VAS" name="Alloknesis (VAS)" template="vasAlloknesisRating" />
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="operatorAlloknesisInstructionsNRS" file="operatorAlloknesisInstructionsNRS.rtf" />
             <file-asset id="AlloknesisInstructionNRS" file="AlloknesisInstructionNRS.png" />

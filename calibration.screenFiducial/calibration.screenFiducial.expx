@@ -38,15 +38,15 @@
         <templates>
             
         </templates>
-        <tests>
+        <procedures>
             <questionnaire id="SIZE" 
                 name="Screen Size"
                 experimental-setup-id="image"
                 control="operator">
-                <test-events
+                <procedure-events
                     start="func: Script.StartSize(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions default="Assets.Images.ScreenSizeInstruction" override-results="true"/>
                     <participant-instructions 
@@ -67,10 +67,10 @@
                 name="Screen Position"
                 experimental-setup-id="image"
                 control="operator">
-                <test-events
+                <procedure-events
                     start="func: Script.StartPosition(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions default="Assets.Images.ScreenPositionInstruction" override-results="true"/>
                     <participant-instructions 
@@ -91,10 +91,10 @@
                 name="Fiducial Position"
                 experimental-setup-id="image"
                 control="operator">
-                <test-events
+                <procedure-events
                     start="func: Script.StartFiducial(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions default="Assets.Images.PositionInstruction" override-results="true"/>
                     <participant-instructions 
@@ -120,10 +120,10 @@
                 name="Update Calibration"
                 experimental-setup-id="image"
                 control="operator">
-                <test-events
+                <procedure-events
                     start="func: Script.StartUpdate(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions default="Assets.Images.UpdateInstruction" override-results="true"/>
                     <participant-instructions 
@@ -144,10 +144,10 @@
                 name="Verify Physical Size"
                 experimental-setup-id="image"
                 control="operator">
-                <test-events
+                <procedure-events
                     start="func: Script.StartVerifySize(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions default="Assets.Images.VerifySizeInstruction" override-results="true"/>
                     <participant-instructions 
@@ -173,10 +173,10 @@
                 name="Verify Visual Angle"
                 experimental-setup-id="image"
                 control="operator">
-                <test-events
+                <procedure-events
                     start="func: Script.StartAngleSize(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions default="Assets.Images.VerifyAngleInstruction" override-results="true"/>
                     <participant-instructions
@@ -197,10 +197,10 @@
                 name="Verify Fiducial"
                 experimental-setup-id="image"
                 control="operator">
-                <test-events
+                <procedure-events
                     start="func: Script.StartVerifyFiducial(tc)">
                     <instrument name="ImageDisplay" interface="image-display" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions default="Assets.Images.VerifyFiducialInstruction" override-results="true"/>
                     <participant-instructions
@@ -223,10 +223,10 @@
                 response-collection="none"
                 experimental-setup-id="image"
                 stimulus-update-rate="20000">
-                <test-events
+                <procedure-events
                     complete="func: Script.CheckTriggers(tc)">
                     <instrument name="TriggerDetector" interface="trigger-detector" />
-                </test-events>
+                </procedure-events>
                 <properties>
                     <instructions 
                         default="Assets.Images.TestInstruction" 
@@ -258,7 +258,7 @@
                     <stimulus name="S4" />
                 </stimuli>            
             </stimulation-sequence>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="Images" file="Images.zip" />
             <file-asset id="Script" file="Script.py" />

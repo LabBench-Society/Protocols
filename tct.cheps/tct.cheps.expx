@@ -19,7 +19,7 @@
             <define name="RiseTime" value="10.0/3.0" />
             <define name="Ts" value="175.0" />
         </defines>
-        <tests>                        
+        <procedures>                        
             <stimulation-sequence id="CHEPS" 
                 name="Contact Heat Evoked Potentials">
                 <stimulation-pattern time-base="seconds">
@@ -47,7 +47,7 @@
                     </stimulus>
                 </stimuli>                
             </stimulation-sequence>
-        </tests>
+        </procedures>
         <assets>
         </assets>
     </protocol>    

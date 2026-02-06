@@ -43,7 +43,7 @@
     </experimental-setup>
     <protocol>
         <defines />
-        <tests>           
+        <procedures>           
             <psychophysics-threshold-estimation id="THR"
                                                 name="Pain5 and OA"
                                                 experimental-setup-id="blank"
@@ -139,7 +139,7 @@
                     </linear-segments>
                 </stimulus>
             </thermal-rated-stimulation>            
-        </tests>
+        </procedures>
         <assets>
         </assets>
     </protocol>    

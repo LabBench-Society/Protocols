@@ -36,9 +36,9 @@
                 <questionnaire id="TEST" 
                     experimental-setup-id="image"
                     control="operator">
-                    <test-events start="var: 'func: Script.{name}(tc)'.format(name = name)">
+                    <procedure-events start="var: 'func: Script.{name}(tc)'.format(name = name)">
                         <instrument name="ImageDisplay" interface="image-display" />
-                    </test-events>
+                    </procedure-events>
                     <properties>
                         <instructions default="var: 'Assets.Instructions.{name}'.format(name = name)" override-results="true"/>
                         <participant-instructions default="var: 'Assets.Instructions.{name}'.format(name = name)"
@@ -51,12 +51,12 @@
                     </templates>
 
                     <content>
-                        <boolean id="CONFIRM" template="CONFIRM"></boolean>
+                        <boolean-constructor id="CONFIRM" template="CONFIRM"></boolean-constructor>
                     </content>
                 </questionnaire>                            
             </content>            
         </templates>
-        <tests>
+        <procedures>
             <questionnaire-constructor id="SHAPES" name="Drawing shapes" template="TEST">
                 <variables>
                     <string value="Shapes" name="name" />
@@ -87,7 +87,7 @@
                     <string value="VisualAngles" name="name" />
                 </variables>
             </questionnaire-constructor>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="Script" file="Script.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf" />

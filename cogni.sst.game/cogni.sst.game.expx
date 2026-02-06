@@ -94,7 +94,7 @@
                     experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
-                    <test-events complete="CognitiveTask.Complete()" />
+                    <procedure-events complete="CognitiveTask.Complete()" />
 
                     <properties>
                         <participant-instructions experimental-setup-id="sstSetup"
@@ -126,7 +126,7 @@
                     response-collection="none"
                     stimulus-update-rate="44100">
 
-                    <test-events complete="CognitiveTask.Complete()" />
+                    <procedure-events complete="CognitiveTask.Complete()" />
 
                     <properties>
                         <participant-instructions experimental-setup-id="sstSetup"
@@ -154,10 +154,10 @@
                 </stimulation-sequence>    
             </content>
         </templates>
-        <tests>
+        <procedures>
             <stimulation-sequence-constructor id="StopSignalTraining" name="Stop Signal Task (Training Task)" template="StopSignalTraining"/>
             <stimulation-sequence-constructor id="StopSignalGame" name="Stop Signal Game" template="StopSignalGame"/>
-        </tests>
+        </procedures>
         <assets>
             <file-asset file="StopSignalGameImages.zip">
                 <aliases>

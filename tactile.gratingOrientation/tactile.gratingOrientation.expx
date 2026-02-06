@@ -6,7 +6,7 @@
     <experimental-setup />
     <protocol>
         <defines />
-        <tests>
+        <procedures>
             <psychophysics-manual-threshold-estimation id="TPD_PSI_FC1I2A"
                                                        name="Grating Orientation (Psi, Forced Choice)"                                                       
                                                        stimulus-unit="mm">
@@ -22,7 +22,7 @@
                                                  alternative-b="Across"
                                                  question="What is the orientation of two points (Along or Across)?"/>
             </psychophysics-manual-threshold-estimation>
-        </tests>
+        </procedures>
 
         <assets>
             <file-asset id="TactileImages" file="TactileImages.zip" />

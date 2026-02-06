@@ -16,7 +16,7 @@
     </experimental-setup>
     <protocol>
         <defines />
-        <tests>           
+        <procedures>           
             <psychophysics-threshold-estimation id="THR"
                                                 name="Pain5 for TSP"
                                                 stimulus-update-rate="100">
@@ -205,7 +205,7 @@
                     </likert>
                 </content>
             </questionnaire>        
-        </tests>
+        </procedures>
         <assets>
         </assets>
     </protocol>    

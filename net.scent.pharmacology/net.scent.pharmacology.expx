@@ -404,7 +404,7 @@
                 </psychophysics-threshold-estimation>            
             </content>
         </templates>
-        <tests>
+        <procedures>
             <psychophysics-stimulus-presentation-constructor id="PINFAM" 
                 name="PIN: Familization" 
                 template="SCENTFamilization">
@@ -438,7 +438,7 @@
                     <string name="dependency" value="PINPsiS" />
                 </variables>
             </psychophysics-threshold-estimation-constructor>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="SCENTInstructions" file="SCENTInstructions.zip" />
         </assets>

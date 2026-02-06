@@ -128,7 +128,7 @@
             <variables>
                <strings name="QuestionIDs" value="I01;I02;I03;I04;I05;I06;I07;I08;I09;I10;I11;I12;I13;I14;I15;I16;I17;I18;I19;I20;I21;I22;I23;I24;I25;I26;I27;I28;I29;I30;I31;I32;I33;I34;I35;I36;I37;I38;I39;I40;I41;I42" />
             </variables>
-            <test-events complete="func: DassCalculations.Complete(tc)" />
+            <procedure-events complete="func: DassCalculations.Complete(tc)" />
             <properties>
                <participant-instructions
                   experimental-setup-id="image"
@@ -159,7 +159,7 @@
             experimental-setup-id="sstSetup"
             response-collection="none"
             stimulus-update-rate="44100">
-            <test-events complete="CognitiveTask.Complete()" />
+            <procedure-events complete="CognitiveTask.Complete()" />
 
             <properties>
                 <participant-instructions experimental-setup-id="sstSetup"
@@ -190,7 +190,7 @@
             response-collection="none"
             stimulus-update-rate="44100">
 
-            <test-events complete="CognitiveTask.Complete()" />
+            <procedure-events complete="CognitiveTask.Complete()" />
 
             <properties>
                 <participant-instructions experimental-setup-id="sstSetup"
@@ -217,7 +217,7 @@
          </stimulation-sequence>    
          </content>
       </templates>
-      <tests>
+      <procedures>
          <questionnaire 
             id="SUBJECT"
             name="Subject"
@@ -257,7 +257,7 @@
          <questionnaire-constructor id="DASS" name="Depression, Anxietry and Stress Scale (DASS)" template="DASS" />
          <stimulation-sequence-constructor id="StopSignalTraining" name="Stop Signal Task (Training Task)" template="StopSignalTraining"/>
          <stimulation-sequence-constructor id="StopSignalGame" name="Stop Signal Game" template="StopSignalGame"/>
-      </tests>
+      </procedures>
       <assets>
          <file-asset id="DassText" file="DassText_EN.py">
             <localisation>

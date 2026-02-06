@@ -6,7 +6,7 @@
     <experimental-setup />
     <protocol>
         <defines />
-        <tests>
+        <procedures>
             <psychophysics-manual-threshold-estimation id="VFREY_UD_YESNO" 
                 stimulus-unit="g" 
                 name="Somedic Aesthesiometer II (Yes/No, Up/Down, Increasing)">
@@ -62,7 +62,7 @@
                                                  stimulus-image="TactileImages.Filament"
                                                  question="When did you feel two points? In interval A or interval B?" />
             </psychophysics-manual-threshold-estimation>
-        </tests>
+        </procedures>
 
         <assets>
             <file-asset id="TactileImages" file="TactileImages.zip" />

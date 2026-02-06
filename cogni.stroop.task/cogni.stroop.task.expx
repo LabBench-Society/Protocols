@@ -85,7 +85,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopScript.StroopEvaluate(tc)" />
 
                <properties>
                   <participant-instructions 
@@ -126,7 +126,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopScript.StroopEvaluate(tc)" />
                 
                <properties>
                   <participant-instructions 
@@ -167,7 +167,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopScript.StroopEvaluate(tc)" />
 
                <properties>
                   <participant-instructions 
@@ -208,7 +208,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopScript.StroopEvaluate(tc)" />
     
                <properties>
                   <participant-instructions 
@@ -260,7 +260,7 @@
             </stimulation-sequence>        
          </content>
       </templates>
-        <tests>
+        <procedures>
             <stimulation-sequence-constructor id="NSTROOPTrial" 
                name="Neutral Stroop Task (Trial)"
                template="NSTROOPTrial"/>        
@@ -276,7 +276,7 @@
             <stimulation-sequence-constructor id="STROOP" 
                name="Stroop Task"
                template="STROOP"/>
-        </tests>
+        </procedures>
         <assets>
             <file-asset file="StroopInstructions.zip">
                <aliases>

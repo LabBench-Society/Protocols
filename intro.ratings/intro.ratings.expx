@@ -83,9 +83,9 @@
                 <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
                 <device-assignment device-id="lio.scale" instrument-name="RatioScale" />
 
-                <device-assignment device-id="display.vas" instrument-name="Scales" test-id="match: vas"/>
-                <device-assignment device-id="display.nrs" instrument-name="Scales" test-id="match: nrs"/>
-                <device-assignment device-id="display.crs" instrument-name="Scales" test-id="match: crs"/>
+                <device-assignment device-id="display.vas" instrument-name="Scales" procedure-id="match: vas"/>
+                <device-assignment device-id="display.nrs" instrument-name="Scales" procedure-id="match: nrs"/>
+                <device-assignment device-id="display.crs" instrument-name="Scales" procedure-id="match: crs"/>
             </device-mapping>
         </experimental-setup>    
     </experimental-setup-variants>
@@ -93,7 +93,7 @@
         <defines>
             <define name="Walk" value="func: Script.CreateRandomWalk(tc)" />
         </defines>
-        <tests>
+        <procedures>
             <psychophysics-response-recording id="vasRecording" 
                 name="Recording (Visual Analog Scale)"
                 duration="60" 
@@ -143,9 +143,9 @@
                 response-weight="1"
                 signal-weight="1"
                 experimental-setup-id="vas">
-                <test-events>
+                <procedure-events>
                     <instrument interface="ratio-scale" />
-                </test-events>
+                </procedure-events>
                 <signals sample="Walk.Sample()" min="0" max="10">
                     <signal id="CTRL" name="Control Signal" unit="cm" />
                 </signals>
@@ -158,9 +158,9 @@
                 response-weight="1"
                 signal-weight="2"
                 experimental-setup-id="vas">
-                <test-events>
+                <procedure-events>
                     <instrument interface="ratio-scale" />
-                </test-events>
+                </procedure-events>
                 <events-makers>
                     <group id="PDT">
                         <marker id="PDT" name="Pain Detected" next-group="PTT" />
@@ -174,7 +174,7 @@
                     <signal id="CTRL" name="Control Signal" unit="cm" />
                 </signals>
             </psychophysics-response-recording>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="Script" file="Script.py" />
         </assets>

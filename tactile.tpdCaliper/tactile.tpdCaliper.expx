@@ -6,7 +6,7 @@
     <experimental-setup />
     <protocol>
         <defines />
-        <tests>
+        <procedures>
             <psychophysics-manual-threshold-estimation id="TPD_UD_INC_YESNO"
                                                        name="Two-point Discrimination (Yes/No, Up/Down, Increasing)"
                                                        stimulus-unit="mm">
@@ -62,7 +62,7 @@
                                                  stimulus-image="TactileImages.TwoProngs"
                                                  question="When did you feel two points? In interval A or interval B?" />
             </psychophysics-manual-threshold-estimation>
-        </tests>
+        </procedures>
 
         <assets>
             <file-asset id="TactileImages" file="TactileImages.zip" />

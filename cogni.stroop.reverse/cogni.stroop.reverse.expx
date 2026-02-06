@@ -87,7 +87,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
 
                <properties>
                   <participant-instructions
@@ -128,7 +128,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
                 
                <properties>
                   <participant-instructions 
@@ -169,7 +169,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
 
                <properties>
                   <participant-instructions
@@ -210,7 +210,7 @@
                response-collection="yes-no"
                stimulus-update-rate="10000">
 
-               <test-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
+               <procedure-events complete="func: StroopReverseScript.StroopEvaluate(tc)" />
     
                <properties>
                   <participant-instructions 
@@ -262,7 +262,7 @@
             </stimulation-sequence>        
          </content>
       </templates>
-        <tests>            
+        <procedures>
             <stimulation-sequence-constructor id="NRSTROOPTrial" 
                name="Neutral Reverse Stroop Task (Trial)"
                template="NRSTROOPTrial"/>
@@ -278,7 +278,7 @@
             <stimulation-sequence-constructor id="RSTROOP" 
                name="Reverse Stroop Task"
                template="RSTROOP"/>
-        </tests>
+        </procedures>
         <assets>
             <file-asset file="StroopReverseInstructions.zip">
                <aliases>

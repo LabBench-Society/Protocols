@@ -38,10 +38,10 @@
         <defines>
             <!--  Contents omitted for brevity -->
         </defines>
-        <tests>
+        <procedures>
             
             <!--  Contents omitted for brevity -->
-        </tests>
+        </procedures>
         <assets>
             <!--  Contents omitted for brevity -->
         </assets>

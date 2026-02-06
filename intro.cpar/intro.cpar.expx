@@ -79,7 +79,7 @@
     </experimental-setup-variants>
     <protocol>
         <defines />
-        <tests>
+        <procedures>
 
     <!-- 2AP versions of the tests -->
 
@@ -534,7 +534,7 @@
         <dependency id="rSR02BOTH"/>
       </dependencies>
     </algometry-conditioned-pain-modulation-rating>
-  </tests>
+  </procedures>
   <assets>
   </assets>
   </protocol>

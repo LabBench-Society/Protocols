@@ -84,11 +84,11 @@
                         <stimulation-generation trigger-source="response-port01"/>                   
                     </configuration>
 
-                    <test-events selected="var: 'Checkerboard.Setup({N}, {F})'.format(N = N, F = F)"
+                    <procedure-events selected="var: 'Checkerboard.Setup({N}, {F})'.format(N = N, F = F)"
                                  complete="Checkerboard.Complete()"
                                  abort="Checkerboard.Abort()">
                         <instrument name="ImageDisplay" interface="image-display"/>
-                    </test-events>
+                    </procedure-events>
                     
                     <stimulation-scripts initialize="Checkerboard.Initialize()"
                                         stimulate="Checkerboard.Stimulate()"
@@ -111,7 +111,7 @@
                 </stimulation-sequence>
             </content>
         </templates>
-        <tests>
+        <procedures>
             <!-- 16 x 16 -->
 
             <stimulation-sequence-constructor id="N16F05" 
@@ -225,7 +225,7 @@
                     <string name="F" value="4.0" />
                 </variables>
             </stimulation-sequence-constructor>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="Script" file="Script.py"/>
         </assets>

@@ -15,7 +15,7 @@
     </experimental-setup>
     <protocol>
         <defines />
-        <tests>                         
+        <procedures>                         
             <thermal-threshold-estimation id="HDT"
                                           name="Heat Detection Threshold (HDT)"
                                           experimental-setup-id="blank"
@@ -59,7 +59,7 @@
                                           repetitions="3"
                                           stimulation-interval="5"
                                           threshold-type="cold-pain-threshold" />
-        </tests>
+        </procedures>
         <assets>
         </assets>
     </protocol>    

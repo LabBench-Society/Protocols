@@ -121,13 +121,13 @@
                 <questionnaire id="prepareTimeSlot"
                     experimental-setup-id="image"
                     control="operator">
-                    <test-events
+                    <procedure-events
                         start="func: Script.DisplayTimeSlotInstruction(tc)">
                         <instrument interface="image-display" />
-                    </test-events>
+                    </procedure-events>
                     <properties>
                         <time-constraint 
-                            test-id="var: Previous" 
+                            procedure-id="var: Previous" 
                             time-reference="end"
                             min="var: Slot.TimeConstraint"
                             notification="true"/>
@@ -153,15 +153,15 @@
                     </templates>
             
                     <content>
-                        <likert id="APPLICATION" template="APPLICATION" />
-                        <likert id="REMOVAL" template="REMOVAL" />
+                        <likert-constructor id="APPLICATION" template="APPLICATION" />
+                        <likert-constructor id="REMOVAL" template="REMOVAL" />
                     </content>
                 </questionnaire>
 
                 <questionnaire id="application" 
                     control="operator"
                     experimental-setup-id="blank">
-                    <test-events start="func:Script.Annotate(tc)"/>
+                    <procedure-events start="func:Script.Annotate(tc)"/>
                     <properties>
                         <instructions 
                            default="func: Script.PruritogenApplication(tc)"
@@ -186,7 +186,7 @@
                             false-label="No"/>
                     </templates>
                     <content>
-                        <boolean id="CONFIRM" template="CONFIRM" />
+                        <boolean-constructor id="CONFIRM" template="CONFIRM" />
                     </content>
                 </questionnaire>
 
@@ -224,12 +224,12 @@
                             false-label="No"/>
                    </templates>
                     <content>
-                        <boolean id="CONFIRM" template="CONFIRM" />
+                        <boolean-constructor id="CONFIRM" template="CONFIRM" />
                     </content>
                 </questionnaire>              
             </content>             
         </templates>
-        <tests>           
+        <procedures>           
             <foreach variable="Session" in="Sessions">
                 <foreach variable="Slot" in="TimeSlots">                    
                     <questionnaire-constructor
@@ -271,7 +271,7 @@
                     </if>
                 </foreach>
             </foreach>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="Script" file="Script.py" />
             <file-asset id="Sequence" file="Sequence.zip"/>

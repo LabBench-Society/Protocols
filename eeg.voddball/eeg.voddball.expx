@@ -108,7 +108,7 @@
                 name="DisplayTime" 
                 value="500"/>
         </defines>
-        <tests>
+        <procedures>
             <stimulation-sequence id="ODDBALLR"
                 name="Visual Oddball Task (Response Task)"
                 experimental-setup-id="image"
@@ -252,7 +252,7 @@
                     </numeric>
                 </content>
             </questionnaire>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="CountingTask" file="CountingTask.rtf" />
             <file-asset id="ResponseTask" file="ResponseTask.rtf"/>

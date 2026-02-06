@@ -78,7 +78,7 @@
             <define name="DisplayTime" value="1000"/>
             <define name="Images" value="func: FlankerScript.GetImages(tc)"/>
         </defines>
-        <tests>
+        <procedures>
             <stimulation-sequence 
                 id="FLANKER"
                 name="Flanker Task"
@@ -127,7 +127,7 @@
                     <stimulus name="SK" />
                 </stimuli>
             </stimulation-sequence>        
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="FlankerScript" file="FlankerScript.py" />
             <file-asset id="Roboto" file="Roboto-Regular.ttf" />

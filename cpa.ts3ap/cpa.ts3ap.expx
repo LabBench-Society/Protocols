@@ -76,7 +76,7 @@
 </experimental-setup-variants>
     <protocol>
         <defines />
-        <tests>
+        <procedures>
             <algometry-stimulus-response id="SR01"
                 name="Stimulus-Response (Cuff 1)"
                 experimental-setup-id="vas"
@@ -103,7 +103,7 @@
                     <dependency id="SR01"/>
                 </dependencies>
             </algometry-temporal-summation>
-        </tests>
+        </procedures>
         <assets>
         </assets>
     </protocol>

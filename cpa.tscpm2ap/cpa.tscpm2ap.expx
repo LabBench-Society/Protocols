@@ -138,7 +138,7 @@
                 </algometry-conditioned-pain-modulation>
             </content>
         </templates>
-        <tests>
+        <procedures>
             <algometry-stimulus-response-constructor id="SR01" 
                 name="Stimulus-Response (Cuff 1)"
                 template="SR01"/>
@@ -154,7 +154,7 @@
             <algometry-conditioned-pain-modulation-constructor id="CPM" 
                 name="CPM (Cuff 1)"
                 template="CPM"/>
-        </tests>
+        </procedures>
         <assets>
             <file-asset id="CPAInstructions" file="CPAInstructions.zip"></file-asset>
         </assets>
