@@ -29,7 +29,9 @@
                <display id="display" normative-distance="40">
                   <typography active-colour="rgb(255,255,255)" 
                               background-colour="rgb(0,0,0)"
-                              inactive-colour="rgb(32,32,32)" />
+                              inactive-colour="rgb(32,32,32)">
+                     <title size="28" colour="rgb(255,255,255)" weight="bold" />
+                  </typography>
                  
                   <configurations>
                      <image-display id="image" 
