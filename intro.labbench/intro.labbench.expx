@@ -261,22 +261,18 @@
          <stimulation-sequence-constructor id="StopSignalGame" name="Stop Signal Game" template="StopSignalGame"/>
       </procedures>
       <assets>
-         <file-asset id="DassText" file="DassText_EN.py">
-            <localisation>
-               <language code="DA" file="DassText_DA.py" />
-            </localisation>
-         </file-asset>
-         <file-asset id="DassCalculations" file="DassCalculations.py" />
+         <file-asset file="DassText.py" />
+         <file-asset file="DassCalculations.py" />
          <file-asset id="DassInstructions" file="DassImages_EN.zip">
             <localisation>
                <language code="DA" file="DassImages_DA.zip" />
             </localisation>
          </file-asset>
-         <file-asset id="OperatorInstructions" file="OperatorInstructions.zip" />
+         <file-asset file="OperatorInstructions.zip" />
 
          <!-- Stop Signal Game Assets -->
-         <file-asset id="StopSignalGameImages" file="StopSignalGameImages.zip" />
-         <file-asset id="StopSignalGameScript" file="StopSignalGameScript.py" />
+         <file-asset file="StopSignalGameImages.zip" />
+         <file-asset file="StopSignalGameScript.py" />
          <file-asset id="Roboto" file="Roboto-Regular.ttf" />
       </assets>
    </protocol>
