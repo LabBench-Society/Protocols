@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-   <experimental-setup-variants default="LIO">
+   <experimental-setup-variants default="JOYSTICK">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
@@ -75,8 +75,8 @@
     <protocol>
         <variables>
             <!-- Stop Signal Game Defines -->
-            <variable name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value 5 -->
-            <variable name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
+            <variable name="StopSignalTrainingStopSignals" value="2 if 'TEST' in Participant else 5"/> 
+            <variable name="StopSignalNumberOfStopSignals" value="5 if 'TEST' in Participant else 30"/> 
             <variable name="StopSignalLowDelayLimit" value="50"/>
             <variable name="StopSignalHighDelayLimit" value="750"/>
             <variable name="StopSignalFixationDelay"  value="500"/>

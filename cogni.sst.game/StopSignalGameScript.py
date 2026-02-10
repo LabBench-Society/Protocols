@@ -38,7 +38,6 @@ class StopSignalTask:
     def __init__(self, tc, algorithm, feedback, triggers):
         self.Log = tc.Log
         self.feedback = feedback
-        self.Buttons = tc.Response.Buttons
         self.display = tc.Instruments.ImageDisplay
 
         self.triggerGenerator = tc.Instruments.TriggerGenerator
@@ -73,9 +72,9 @@ class StopSignalTask:
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
 
-        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.CreateTrigger(5).Interface(1).TriggerOut()))
+        
         self.triggers.Add(1 if self.signal == 0 else 2)
         
         if self.signal == 0:
@@ -96,7 +95,7 @@ class StopSignalTask:
         return self.responseTimeout - self.algorithm.delay
             
     def Feedback(self):
-        if self.response.LatchedActive != self.Buttons.NoResponse:
+        if self.response.GetLatched() != "none":
             self.answer.append(False)
             self.time.append(int(self.response.ReactionTime))
         else:           
@@ -111,9 +110,9 @@ class StopSignalTask:
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
 
-        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.CreateTrigger(5).Interface(1).TriggerOut()))
+        
         self.feedback.StopFeedback(self.answer[-1])
 
         return self.feedbackTime
@@ -121,7 +120,6 @@ class StopSignalTask:
 class GoSignalTask:
     def __init__(self, tc, feedback, triggers):   
         self.Log = tc.Log    
-        self.Buttons = tc.Response.Buttons
         self.feedback = feedback
         self.tc = tc
         self.display = tc.Instruments.ImageDisplay
@@ -157,9 +155,9 @@ class GoSignalTask:
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
         
-        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.CreateTrigger(5).Interface(1).TriggerOut()))
+        
         self.triggers.Add(5 if self.signal == 0 else 6)
 
         if self.signal == 0:
@@ -170,14 +168,14 @@ class GoSignalTask:
         return self.responseTimeout
                   
     def Feedback(self):
-        button = self.response.LatchedActive
+        button = self.response.GetLatched()
         self.time.append(self.response.ReactionTime)
         
-        if button == self.Buttons.NoResponse:
+        if button == "none":
             self.answer.append(False)
             self.triggers.Add(7)
         else:         
-            self.answer.append(button == self.Buttons.Left if self.signal == 0 else button == self.Buttons.Right)
+            self.answer.append(button == "left" if self.signal == 0 else button == "right")
             self.triggers.Add(8 if self.answer[-1] else 9)
                         
         self.Log.Information("GO RESPONSE [ Button: {button}, Signal: {signal}, Correct: {answer}, Time: {time}]", 
@@ -186,9 +184,9 @@ class GoSignalTask:
                          self.answer[-1],
                          self.time[-1])
 
-        self.triggerGenerator.GenerateTriggerSequence(self.triggerTlk.StartTrigger.Response02, 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.CreateTrigger(5).Interface(1).TriggerOut()))
+        
         self.feedback.GoFeedback(self.answer[-1], self.time[-1])
 
         return self.feedbackTime
@@ -276,19 +274,19 @@ class CognitiveTask:
         display = tc.Instruments.ImageDisplay
         
         if tc.StimulusName == "STOP":
-            display.Run(display.Sequence(self.StopTask)
-                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFixationDelay)
-                        .Run(lambda task: task.Go())
-                        .Run(lambda task: task.Stop())
-                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFeedbackDelay)
-                        .Run(lambda task: task.Feedback()))
+            tc.Scheduler.Run(tc.Scheduler.Create()
+                        .Add(tc.StopSignalFixationDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add(lambda: self.StopTask.Go())
+                        .Add(lambda: self.StopTask.Stop())
+                        .Add( tc.StopSignalFeedbackDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add(lambda: self.StopTask.Feedback()))
             
         elif tc.StimulusName == "GO":
-            display.Run(display.Sequence(self.GoTask)
-                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFixationDelay)
-                        .Run(lambda task: task.Go())
-                        .Display(tc.Assets.StopSignalGameImages.FixationCross, tc.StopSignalFeedbackDelay)
-                        .Run(lambda task: task.Feedback()))
+            tc.Scheduler.Run(tc.Scheduler.Create()
+                        .Add(tc.StopSignalFixationDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add(lambda: self.GoTask.Go())
+                        .Add(tc.StopSignalFeedbackDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add(lambda: self.GoTask.Feedback()))
         else:
             tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
 
