@@ -2,8 +2,8 @@
 
 def GeneratorTrigger(tc, code):
     generator = tc.Instruments.TriggerGenerator    
-    generator.GenerateTriggerSequence(tc.Triggers.StartTrigger.Response02, 
-                                      tc.Triggers.Sequence().Add(tc.Triggers.Trigger(code).Stimulus().Code(1)))
+    generator.GenerateTriggerSequence("port2", 
+                                      tc.Triggers.Sequence().Add(tc.Triggers.CreateTrigger(5).Interface(code).TriggerOut()))
 
 class Position:
     def __init__(self, display):
