@@ -256,7 +256,7 @@
                     <yes-no-task />
 
                     <channels>
-                        <channel id="C01" name="Pulse 1" Imax="var: 'min(Imult * {d}.C01, Stimulator.Imax'.format(d = dependency)">
+                        <channel id="C01" name="Pulse 1" Imax="var: 'min(Imult * {d}.C01, Stimulator.Imax)'.format(d = dependency)">
                             <psi-method number-of-trials="Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -285,7 +285,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C02" name="pulse 2" Imax="var: 'min(Imult * {d}.C02, Stimulator.Imax'.format(d = dependency)">
+                        <channel id="C02" name="pulse 2" Imax="var: 'min(Imult * {d}.C02, Stimulator.Imax)'.format(d = dependency)">
                             <psi-method number-of-trials="Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -314,7 +314,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C03" name="pulse 3" Imax="var: 'min(Imult * {d}.C01, Stimulator.Imax'.format(d = dependency)">
+                        <channel id="C03" name="pulse 3" Imax="var: 'min(Imult * {d}.C01, Stimulator.Imax)'.format(d = dependency)">
                             <psi-method number-of-trials="Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -343,7 +343,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C04" name="pulse 4" Imax="var: 'min(Imult * {d}.C03, Stimulator.Imax'.format(d = dependency)">
+                        <channel id="C04" name="pulse 4" Imax="var: 'min(Imult * {d}.C03, Stimulator.Imax)'.format(d = dependency)">
                             <psi-method number-of-trials="Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
@@ -372,7 +372,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C05" name="pulse 5" Imax="var: 'min(Imult * {d}.C03, Stimulator.Imax'.format(d = dependency)">
+                        <channel id="C05" name="pulse 5" Imax="var: 'min(Imult * {d}.C03, Stimulator.Imax)'.format(d = dependency)">
                             <psi-method number-of-trials="Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
