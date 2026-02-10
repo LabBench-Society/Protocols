@@ -268,7 +268,7 @@
     <post-actions>
         <export-to-csv name="Create Calibration Record" 
             location="C:\CalibrationData" 
-            filename="dynamic: f'{Subject}.csv'">
+            filename="dynamic: f'{Participant}.csv'">
             <item name="SIZE" value="SIZE.VALUE" condition="SIZE.Completed" default="MISSING"/>
             <item name="POSITION" value="POSITION.VALUE" condition="POSITION.Completed" default="MISSING"/>
             <item name="FIDUCIAL X" value="FIDUCIAL.X" condition="FIDUCIAL.Completed" default="MISSING"/>

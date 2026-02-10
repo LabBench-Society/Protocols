@@ -101,7 +101,7 @@ def CreateTextDanish(tc):
 	}
 
 def CreateText(tc):
-    if tc.Language == "da":
+    if tc.Language == "DA":
           return CreateTextDanish(tc)
     
     return CreateTextEnglish(tc)
