@@ -71,9 +71,10 @@ class StopSignalTask:
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
 
-        self.triggerGenerator.GenerateTriggerSequence("port2", 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.Trigger(5).Interface(1).TriggerOut()))
+        
         self.triggers.Add(1 if self.signal == 0 else 2)
         
         if self.signal == 0:
@@ -109,9 +110,9 @@ class StopSignalTask:
                         self.algorithm.stopSignalDelay[-1], 
                         self.algorithm.delay)
 
-        self.triggerGenerator.GenerateTriggerSequence("port2", 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.Trigger(5).Interface(1).TriggerOut()))
+        
         self.feedback.StopFeedback(self.answer[-1])
 
         return self.feedbackTime
@@ -154,9 +155,9 @@ class GoSignalTask:
         self.signal = random.randint(0,1)
         self.goSignals.append(self.signal)
         
-        self.triggerGenerator.GenerateTriggerSequence("port2", 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.Trigger(5).Interface(1).TriggerOut()))
+        
         self.triggers.Add(5 if self.signal == 0 else 6)
 
         if self.signal == 0:
@@ -183,9 +184,9 @@ class GoSignalTask:
                          self.answer[-1],
                          self.time[-1])
 
-        self.triggerGenerator.GenerateTriggerSequence("port2", 
-                                                      self.triggerTlk.Sequence()
-                                                                     .Add(self.triggerTlk.Trigger(1).Stimulus().Code(1)))
+        self.triggerGenerator.GenerateTriggerSequence("port2", self.triggerTlk.Sequence()
+            .Add(self.triggerTlk.Trigger(5).Interface(1).TriggerOut()))
+        
         self.feedback.GoFeedback(self.answer[-1], self.time[-1])
 
         return self.feedbackTime
