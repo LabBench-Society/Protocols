@@ -7,7 +7,7 @@ def RandomColor():
     return "#{r:02x}{g:02x}{b:02x}".format(r = r, g = g, b = b)
 
 def Shapes(tc):
-   display = tc.Devices.ImageDisplay
+   display = tc.Instruments.ImageDisplay
    with tc.Image.GetCanvas(display) as canvas:
       canvas.Font("Monospace")
       canvas.TextSize(24)
@@ -180,7 +180,7 @@ def Shapes(tc):
    return True
 
 def Color(tc):
-   display = tc.Devices.ImageDisplay
+   display = tc.Instruments.ImageDisplay
    with tc.Image.GetCanvas(display) as canvas:
       canvas.Font("Roboto")
       canvas.AlignCenter()
@@ -212,7 +212,7 @@ def Color(tc):
    return True
 
 def Sprites(tc):
-   display = tc.Devices.ImageDisplay
+   display = tc.Instruments.ImageDisplay
    with tc.Image.GetCanvas(tc.Assets.Instructions.Background) as canvas:
       canvas.Font("Roboto")
       canvas.TextSize(48)
@@ -230,7 +230,7 @@ def Sprites(tc):
    return True
 
 def Text(tc):
-   display = tc.Devices.ImageDisplay
+   display = tc.Instruments.ImageDisplay
    with tc.Image.GetCanvas(display) as canvas:
       x1 = (1.0/4.0) * canvas.Width
       x2 = (2.0/4.0) * canvas.Width
@@ -310,7 +310,7 @@ def PhysicalLengths(tc):
    return True
 
 def VisualAngles(tc):
-   display = tc.Devices.ImageDisplay
+   display = tc.Instruments.ImageDisplay
    with tc.Image.GetCanvas(display) as canvas:
       metrics = display.Metrics
       length = metrics.LengthToPixels(10)
