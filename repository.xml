@@ -70,6 +70,7 @@
             category="Pressure Algometry;Validation Protocol;LabBench CPAR+"/>            
     </category> 
 
+    <!-- Disabled as we cannot test them.
     <category name="Thermal Cutaneous Testing" id="tct">
         <protocol id="tct.thr"
             name="Detection and Pain Thresholds" 
@@ -88,6 +89,7 @@
             labbench-version="6.0"
             category="Thermal Cutaneous Testing;QSTLab TCS II"/>            
     </category>
+    -->
 
     <category name="Tests of Cognitive Function" id="cogniCategory">
         <category name="Stop Signal Tasks" id="cogni.sst">
