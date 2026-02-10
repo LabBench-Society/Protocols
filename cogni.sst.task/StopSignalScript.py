@@ -95,7 +95,7 @@ class StopSignalTask:
         return self.responseTimeout - self.algorithm.delay
             
     def Feedback(self):
-        if self.response.GetLactched() != "none":
+        if self.response.GetLatched() != "none":
             self.answer.append(False)
             self.time.append(int(self.response.ReactionTime))
         else:           
