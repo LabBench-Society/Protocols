@@ -14,7 +14,7 @@
         </device-mapping>
     </experimental-setup>
     <protocol>
-        <defines />
+        <variables />
         <procedures>                         
             <thermal-threshold-estimation id="HDT"
                                           name="Heat Detection Threshold (HDT)"

@@ -67,10 +67,10 @@
                 force-warning="false"
                 require-reason="false" />
         </properties>
-        <defines>
-            <define name="NumberOfReversels" value="100" />
-            <define name="Checkerboard" value="func: Script.CreateCheckerboard(tc)" />
-        </defines>
+        <variables>
+            <variable name="NumberOfReversels" value="100" />
+            <variable name="Checkerboard" value="func: Script.CreateCheckerboard(tc)" />
+        </variables>
         <templates>
             <content>
                 <stimulation-sequence id="VEP"

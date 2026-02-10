@@ -32,9 +32,9 @@
         <languages>
             
         </languages>
-        <defines>
-            <define name="NumberOfRepetitions" value="10"/>
-        </defines>
+        <variables>
+            <variable name="NumberOfRepetitions" value="10"/>
+        </variables>
         <templates>
             
         </templates>

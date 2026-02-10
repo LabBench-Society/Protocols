@@ -73,11 +73,11 @@
         </experimental-setup>    
     </experimental-setup-variants>
     <protocol>
-        <defines>
-            <define name="StimulusRepetitions" value="3"/>
-            <define name="DisplayTime" value="1000"/>
-            <define name="Images" value="func: FlankerScript.GetImages(tc)"/>
-        </defines>
+        <variables>
+            <variable name="StimulusRepetitions" value="3"/>
+            <variable name="DisplayTime" value="1000"/>
+            <variable name="Images" value="func: FlankerScript.GetImages(tc)"/>
+        </variables>
         <procedures>
             <stimulation-sequence 
                 id="FLANKER"

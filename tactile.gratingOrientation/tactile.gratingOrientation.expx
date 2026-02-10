@@ -5,7 +5,7 @@
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup />
     <protocol>
-        <defines />
+        <variables />
         <procedures>
             <psychophysics-manual-threshold-estimation id="TPD_PSI_FC1I2A"
                                                        name="Grating Orientation (Psi, Forced Choice)"                                                       

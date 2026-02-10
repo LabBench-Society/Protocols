@@ -78,7 +78,7 @@
           </experimental-setup>    
     </experimental-setup-variants>
     <protocol>
-        <defines />
+        <variables />
         <procedures>
 
     <!-- 2AP versions of the tests -->

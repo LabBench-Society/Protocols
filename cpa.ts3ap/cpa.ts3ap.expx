@@ -75,7 +75,7 @@
       </experimental-setup>    
 </experimental-setup-variants>
     <protocol>
-        <defines />
+        <variables />
         <procedures>
             <algometry-stimulus-response id="SR01"
                 name="Stimulus-Response (Cuff 1)"

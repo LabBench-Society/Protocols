@@ -90,9 +90,9 @@
         </experimental-setup>    
     </experimental-setup-variants>
     <protocol>
-        <defines>
-            <define name="Walk" value="func: Script.CreateRandomWalk(tc)" />
-        </defines>
+        <variables>
+            <variable name="Walk" value="func: Script.CreateRandomWalk(tc)" />
+        </variables>
         <procedures>
             <psychophysics-response-recording id="vasRecording" 
                 name="Recording (Visual Analog Scale)"

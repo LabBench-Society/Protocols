@@ -18,7 +18,7 @@
                 <typography active-colour="rgb(255,0,0)"
                             background-colour="rgb(255,255,255)"
                             inactive-colour="rgb(16,16,16)" />
-
+    
                 <configurations>
                     <visual-analogue-scale id="vas"
                         experimental-setup-id="vas"
@@ -74,10 +74,11 @@
       </experimental-setup>    
 </experimental-setup-variants>
     <protocol>
-        <defines />
+        <variables />
         <templates>
             <content>
-                <algometry-stimulus-response id="SR01"
+                <algometry-stimulus-response 
+                    id="SR01"
                     experimental-setup-id="vas"
                     delta-pressure="1"
                     pressure-limit="100"
@@ -90,7 +91,8 @@
                     </properties>
                 </algometry-stimulus-response>
 
-                <algometry-stimulus-response id="SR02"
+                <algometry-stimulus-response 
+                    id="SR02"
                     experimental-setup-id="vas"
                     delta-pressure="1"
                     pressure-limit="100"
@@ -103,7 +105,8 @@
                     </properties>
                 </algometry-stimulus-response>
 
-                <algometry-temporal-summation id="TS"
+                <algometry-temporal-summation 
+                    id="TS"
                     experimental-setup-id="vas"
                     no-of-stimuli="10"
                     pressure-static="5"
@@ -120,7 +123,8 @@
                     </dependencies>
                 </algometry-temporal-summation>
 
-                <algometry-conditioned-pain-modulation id="CPM"
+                <algometry-conditioned-pain-modulation 
+                    id="CPM"
                     experimental-setup-id="vas"
                     conditional-pressure="0.7 * SR02.PTT"
                     delta-conditional-pressure="10"

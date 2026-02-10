@@ -39,57 +39,57 @@
         </experimental-setup>
     </experimental-setup-variants>
     <protocol>
-        <defines>
+        <variables>
             <!-- Maximal stimulation intensities -->
-            <define name="PinImax" value="2"/>
-            <define name="PatchImax" value="10"/>
+            <variable name="PinImax" value="2"/>
+            <variable name="PatchImax" value="10"/>
 
             <!-- Stimuli long stimuli -->
-            <define name="PLP" value="50"/>
+            <variable name="PLP" value="50"/>
 
             <!-- Stimuli sodium channels protocol -->
             <!-- parameter for pulse 1-->
-            <define name="T1" value="1"/>
-            <define name="PT1" value="10"/>
-            <define name="PS1" value="-0.2"/>
+            <variable name="T1" value="1"/>
+            <variable name="PT1" value="10"/>
+            <variable name="PS1" value="-0.2"/>
 
             <!-- parameter for pulse 2-->
-            <define name="T2" value="0.5"/>
-            <define name="PT2" value="50"/>
-            <define name="PS2" value="-0.2"/>
+            <variable name="T2" value="0.5"/>
+            <variable name="PT2" value="50"/>
+            <variable name="PS2" value="-0.2"/>
 
             <!-- parameter for pulse 3-->
-            <define name="T3" value="1"/>
-            <define name="PT3" value="50"/>
-            <define name="PS3" value="0.2"/>
+            <variable name="T3" value="1"/>
+            <variable name="PT3" value="50"/>
+            <variable name="PS3" value="0.2"/>
 
             <!-- parameter for pulse 4-->
-            <define name="T4" value="90"/>
-            <define name="PT4" value="90"/>
-            <define name="PS4" value="-0.4"/>
+            <variable name="T4" value="90"/>
+            <variable name="PT4" value="90"/>
+            <variable name="PS4" value="-0.4"/>
 
             <!-- parameterp for pulse 5-->
-            <define name="T5" value="90"/>
-            <define name="PT5" value="90"/>
-            <define name="PS5" value="0.2"/>
+            <variable name="T5" value="90"/>
+            <variable name="PT5" value="90"/>
+            <variable name="PS5" value="0.2"/>
 
             <!-- Up/Down Parameters -->
-            <define name="ReversalRule" value="1" />
-            <define name="StepSize" value="0.25" />
-            <define name="StepSizeReduction" value="0.5" />
-            <define name="MaxStepSizeReduction" value="0.25"/>
+            <variable name="ReversalRule" value="1" />
+            <variable name="StepSize" value="0.25" />
+            <variable name="StepSizeReduction" value="0.5" />
+            <variable name="MaxStepSizeReduction" value="0.25"/>
 
             <!-- Psi Method -->
-            <define name="Trials" value="30"/> 
-            <define name="Imult" value="4"/>
-            <define name="alphaX0" value="0.05"/>
-            <define name="alphaN" value="200"/>
-            <define name="intensityX0" value="0.05"/>
-            <define name="intensityN" value="100"/>
-            <define name="Del" value="5"/>
-            <define name="betaX0" value="0"/>
-            <define name="betaN" value="1.2"/>
-        </defines>
+            <variable name="Trials" value="30"/> 
+            <variable name="Imult" value="4"/>
+            <variable name="alphaX0" value="0.05"/>
+            <variable name="alphaN" value="200"/>
+            <variable name="intensityX0" value="0.05"/>
+            <variable name="intensityN" value="100"/>
+            <variable name="Del" value="5"/>
+            <variable name="betaX0" value="0"/>
+            <variable name="betaN" value="1.2"/>
+        </variables>
         <templates>
             <variables>
 

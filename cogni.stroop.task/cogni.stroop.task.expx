@@ -72,12 +72,12 @@
    </experimental-setup-variants>
    
    <protocol>
-      <defines>
-         <define name="StroopStimulusRepetitions" value="6"/>
-         <define name="StroopDisplayTime" value="1500"/>
-         <define name="StroopColors" value="{'b': '#0000FF','y': '#FFFF00','r': '#FF0000','g': '#00FF00'}"/>
-         <define name="StroopWords" value="{'b': 'BLUE','y': 'YELLOW','r': 'RED','g': 'GREEN'}"/>
-      </defines>
+      <variables>
+         <variable name="StroopStimulusRepetitions" value="6"/>
+         <variable name="StroopDisplayTime" value="1500"/>
+         <variable name="StroopColors" value="{'b': '#0000FF','y': '#FFFF00','r': '#FF0000','g': '#00FF00'}"/>
+         <variable name="StroopWords" value="{'b': 'BLUE','y': 'YELLOW','r': 'RED','g': 'GREEN'}"/>
+      </variables>
       <templates>
          <content>
             <stimulation-sequence id="NSTROOPTrial"

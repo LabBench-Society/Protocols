@@ -71,24 +71,24 @@
     </experimental-setup>
    </experimental-setup-variants>                    
     <protocol>
-        <defines>
+        <variables>
             <!-- Defines for the Stop-Signal Task -->
-            <define name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value: 5 -->
-            <define name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
-            <define name="StopSignalLowDelayLimit" value="50"/>
-            <define name="StopSignalHighDelayLimit" value="750"/>
-            <define name="StopSignalFixationDelay"  value="500"/>
-            <define name="StopSignalResponseTimeout"  value="1000"/>
-            <define name="StopSignalFeedbackDelay" value="1000"/>            
-            <define name="StopSignalFeedbackTime" value="1000"/>
-            <define name="StopSignalPause" value="1000"/>
-            <define name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
+            <variable name="StopSignalTrainingStopSignals" value="5"/> <!-- Intended value: 5 -->
+            <variable name="StopSignalNumberOfStopSignals" value="30"/> <!-- Intended value: 30 -->
+            <variable name="StopSignalLowDelayLimit" value="50"/>
+            <variable name="StopSignalHighDelayLimit" value="750"/>
+            <variable name="StopSignalFixationDelay"  value="500"/>
+            <variable name="StopSignalResponseTimeout"  value="1000"/>
+            <variable name="StopSignalFeedbackDelay" value="1000"/>            
+            <variable name="StopSignalFeedbackTime" value="1000"/>
+            <variable name="StopSignalPause" value="1000"/>
+            <variable name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
 
-            <define name="StopSignalTrials" value="50"/>
-            <define name="StopSignalConfidenceLevel" value="0.95"/>
+            <variable name="StopSignalTrials" value="50"/>
+            <variable name="StopSignalConfidenceLevel" value="0.95"/>
 
-            <define name="CognitiveTask" value="func: StopSignalScript.CreateTask(tc)"/>
-        </defines>
+            <variable name="CognitiveTask" value="func: StopSignalScript.CreateTask(tc)"/>
+        </variables>
         <templates>
             <content>
                 <stimulation-sequence id="StopSignalTaskTraining"

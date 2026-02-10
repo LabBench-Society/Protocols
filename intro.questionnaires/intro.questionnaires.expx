@@ -35,9 +35,9 @@
         <languages>
             <!--  Contents omitted for brevity -->
         </languages>
-        <defines>
+        <variables>
             <!--  Contents omitted for brevity -->
-        </defines>
+        </variables>
         <procedures>
             
             <!--  Contents omitted for brevity -->

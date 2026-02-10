@@ -124,9 +124,9 @@
         <languages>
             
         </languages>
-        <defines>
+        <variables>
             
-        </defines>
+        </variables>
         <procedures>
             <psychophysics-threshold-estimation id="yesNo"
                 name="Yes/No Response Task (Up/Down)"

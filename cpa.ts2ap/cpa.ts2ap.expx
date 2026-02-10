@@ -76,7 +76,7 @@
       </experimental-setup>    
 </experimental-setup-variants>
     <protocol>
-        <defines />
+        <variables />
         <templates>
             <content>
                 <algometry-stimulus-response id="SR01"

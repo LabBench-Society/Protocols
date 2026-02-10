@@ -68,12 +68,12 @@
             <session id="SES01" name="Session 1" />
             <session id="SES02" name="Session 2" />
         </sessions>
-        <randomisations>
+        <persistent-variables>
             <integers value="func: Script.GenerateCreamSequence(tc)" name="CreamSequence" />
             <integers value="func: Script.GenerateLocationSequence(tc)" name="LocationSequence" />
-        </randomisations>
-        <defines>
-        </defines>
+        </persistent-variables>
+        <variables>
+        </variables>
         <templates>
             <variables>
                 <strings value="SES01;SES02" name="Sessions" />

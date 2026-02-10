@@ -76,9 +76,9 @@
         <languages>
             
         </languages>
-        <defines>
+        <variables>
             
-        </defines>
+        </variables>
         <templates>
             <variables>
             </variables>

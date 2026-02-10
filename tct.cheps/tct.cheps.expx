@@ -15,10 +15,10 @@
         </device-mapping>
     </experimental-setup>
     <protocol>
-        <defines>
-            <define name="RiseTime" value="10.0/3.0" />
-            <define name="Ts" value="175.0" />
-        </defines>
+        <variables>
+            <variable name="RiseTime" value="10.0/3.0" />
+            <variable name="Ts" value="175.0" />
+        </variables>
         <procedures>                        
             <stimulation-sequence id="CHEPS" 
                 name="Contact Heat Evoked Potentials">

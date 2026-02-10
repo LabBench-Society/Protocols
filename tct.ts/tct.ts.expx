@@ -15,7 +15,7 @@
         </device-mapping>
     </experimental-setup>
     <protocol>
-        <defines />
+        <variables />
         <procedures>           
             <psychophysics-threshold-estimation id="THR"
                                                 name="Pain5 for TSP"

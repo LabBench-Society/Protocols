@@ -100,14 +100,10 @@
                 force-warning="false"
                 require-reason="false" />
         </properties>
-        <defines>
-            <define 
-                name="NumberOfOddballs" 
-                value="60" />
-            <define 
-                name="DisplayTime" 
-                value="500"/>
-        </defines>
+        <variables>
+            <variable name="NumberOfOddballs" value="60" />
+            <variable name="DisplayTime" value="500"/>
+        </variables>
         <procedures>
             <stimulation-sequence id="ODDBALLR"
                 name="Visual Oddball Task (Response Task)"

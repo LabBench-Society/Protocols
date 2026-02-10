@@ -38,9 +38,9 @@
                 force-warning="false"
                 require-reason="false" />
         </properties>
-        <defines>
-            <define name="NumberOfOddballs" value="40" />
-        </defines>
+        <variables>
+            <variable name="NumberOfOddballs" value="40" />
+        </variables>
         <procedures>
             <psychophysics-stimulus-presentation
                 id="PRESENTATION"

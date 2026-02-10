@@ -46,9 +46,9 @@
         <languages>
             
         </languages>
-        <defines>
+        <variables>
             
-        </defines>
+        </variables>
         <templates>
             <content>
                 <questionnaire
