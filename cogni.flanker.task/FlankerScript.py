@@ -1,7 +1,7 @@
 ﻿def GeneratorTrigger(tc, code):
     generator = tc.Instruments.TriggerGenerator    
-    generator.GenerateTriggerSequence(tc.Triggers.StartTrigger.Response02, 
-                                      tc.Triggers.Sequence().Add(tc.Triggers.Trigger(code).Stimulus().Code(1)))
+    generator.GenerateTriggerSequence("port2", 
+                                      tc.Triggers.Sequence().Add(tc.Triggers.CreateTrigger(5).Interface(code).TriggerOut()))
 
 def GenerateImage(tc, name):
     with tc.Image.GetCanvas(1920,1080) as canvas:
