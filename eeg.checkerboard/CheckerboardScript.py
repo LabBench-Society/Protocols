@@ -25,10 +25,8 @@ class Checkerboard:
         self.display.Display(self.evenImage)
         self.count = 0
 
-        triggerGenerator.GenerateTriggerSequence(self.tc.Triggers.StartTrigger.Response01, 
-                                                 True,
-                                                 self.tc.Triggers.Sequence()
-                                                                 .Add(self.tc.Triggers.Trigger(10).Stimulus().Digital().Code(1)))
+        triggerGenerator.GenerateTriggerSequence("port1", True, self.tc.Triggers.Sequence()
+            .Add(self.tc.Triggers.CreateTrigger(10).TriggerOut().Interface(1)))
         return True      
     
     def Complete(self):

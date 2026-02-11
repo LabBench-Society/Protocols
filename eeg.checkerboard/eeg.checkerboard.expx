@@ -2,16 +2,16 @@
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <participant-validator
-        regex="^S[0-9]{3}$"
-        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants default="LIO">
+        regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+        advice="Please enter an ID in the form of SXXX or TESTXXX, where X is a digit" />
+    <experimental-setup-variants default="JOYSTICK">
         <experimental-setup id="JOYSTICK" name="Joystick">
             <devices>
                 <joystick id="joystick">
                     <map>
                         <button-assignment code="16" button="button-01" label="1" />
                     </map>
-                </joystick>
+                </joystick> 
                 <display id="display" normative-distance="40">
                     <typography active-colour="rgb(255,255,255)" 
                                 background-colour="rgb(0,0,0)"
@@ -68,8 +68,8 @@
                 require-reason="false" />
         </properties>
         <variables>
-            <variable name="NumberOfReversels" value="100" />
-            <variable name="Checkerboard" value="func: Script.CreateCheckerboard(tc)" />
+            <variable name="NumberOfReversels" value="10 if 'TEST' in Participant else 100" />
+            <variable name="Checkerboard" value="func: CheckerboardScript.CreateCheckerboard(tc)" />
         </variables>
         <templates>
             <content>
@@ -227,7 +227,7 @@
             </stimulation-sequence-constructor>
         </procedures>
         <assets>
-            <file-asset id="Script" file="Script.py"/>
+            <file-asset id="CheckerboardScript" file="CheckerboardScript.py"/>
         </assets>
     </protocol>
     <post-actions>
