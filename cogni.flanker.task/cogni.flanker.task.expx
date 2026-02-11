@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-    <participant-validator regex="^S[0-9]{3}$"
-                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX or TESTXXX, where X is a digit" />
     <experimental-setup-variants default="JOYSTICK">
         <experimental-setup name="Joystick" id="JOYSTICK">
             <devices>
@@ -74,7 +74,7 @@
     </experimental-setup-variants>
     <protocol>
         <variables>
-            <variable name="StimulusRepetitions" value="3"/>
+            <variable name="StimulusRepetitions" value="1 if 'TEST' in Participant else 3"/>
             <variable name="DisplayTime" value="1000"/>
             <variable name="Images" value="func: FlankerScript.GetImages(tc)"/>
         </variables>
