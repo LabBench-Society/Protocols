@@ -447,7 +447,7 @@
     <post-actions>
         <export-data name="Exporting session to JSON"
                      location="C:\LabBenchExport\SCENTPharm"
-                     filename="dynamic: '{s}D{time}.json'.format(s = Subject, time = StartTime.ToString('yyyyMMdd'))"
+                     filename="dynamic: f'{Participant}D{StartTime:yyyyMMdd}.json'"
                      format="json"/>
     </post-actions>
 </experiment>
