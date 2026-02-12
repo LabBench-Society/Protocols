@@ -259,9 +259,17 @@
             </content>
          </questionnaire>
 
-         <questionnaire-constructor id="DASS" name="Depression, Anxietry and Stress Scale (DASS)" template="DASS" />
-         <stimulation-sequence-constructor id="StopSignalTraining" name="Stop Signal Task (Training Task)" template="StopSignalTraining"/>
-         <stimulation-sequence-constructor id="StopSignalGame" name="Stop Signal Game" template="StopSignalGame"/>
+         <questionnaire-constructor id="DASS" 
+            name="Depression, Anxietry and Stress Scale (DASS)" 
+            template="DASS" />
+
+         <stimulation-sequence-constructor id="StopSignalTraining" 
+            name="Stop Signal Task (Training Task)" 
+            template="StopSignalTraining"/>
+            
+         <stimulation-sequence-constructor id="StopSignalGame" 
+            name="Stop Signal Game" 
+            template="StopSignalGame"/>
       </procedures>
       <assets>
          <file-asset file="DassText.py" />
