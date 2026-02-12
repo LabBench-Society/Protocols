@@ -76,8 +76,6 @@
         </variables>
         <templates>
             <variables>
-                <strings value="SES01;SES02" name="Sessions" />
-
                 <structs name="TimeSlots">
                     <struct>
                         <string value="SLOT01" name="ID" />

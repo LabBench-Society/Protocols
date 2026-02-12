@@ -13,10 +13,10 @@ def GenerateLocationSequence(tc):
    return sequence
 
 def GetTimeSlotDuration(tc):
-    return 10 if tc.SESSION_NAME.startswith('TEST') else 45*60
+    return 10 if 'TEST' in tc.Participant else 45*60
 
 def GetCOVASDuration(tc):
-    return 60 if tc.SESSION_NAME.startswith('TEST') else 600
+    return 60 if 'TEST' in tc.Participant  else 600
 
 def GetCreamNames():
    return [ 'Cream A', 'Cream B', 'Cream C', 'Cream D']
@@ -28,10 +28,10 @@ def GetLocationColors():
    return [ '#8FAADC', '#A9D18E', '#F4B183', '#FFD966' ]
      
 def GetPruritogenSES01(tc):
-   return "Cowhage" if tc.SubjectNumber % 2 == 0 else "Histamine"
+   return "Cowhage" if tc.ParticipantNumber % 2 == 0 else "Histamine"
 
 def GetPruritogenSES02(tc):
-   return "Histamine" if tc.SubjectNumber % 2 == 0 else "Cowhage"
+   return "Histamine" if tc.ParticipantNumber % 2 == 0 else "Cowhage"
 
 # ================= TESTING SETTING ANNOTATIONS =====================================================
 
