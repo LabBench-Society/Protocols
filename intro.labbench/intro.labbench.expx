@@ -34,7 +34,7 @@
                  
                   <configurations>
                      <image-display id="image" 
-                        experimental-setup-id="image"
+                        experimental-setup-id="sstSetup"
                         background-colour="rgb(0,0,0)" />
                      
                      <questionnaire id="questionnaire"
@@ -85,7 +85,9 @@
                               inactive-colour="rgb(32,32,32)" />
       
                   <configurations>
-                     <image-display id="image" experimental-setup-id="image" background-colour="rgb(0,0,0)" />
+                     <image-display id="image" 
+                        experimental-setup-id="sstSetup" 
+                        background-colour="rgb(0,0,0)" />
 
                      <questionnaire id="questionnaire"
                         experimental-setup-id="questionnaire"
@@ -135,7 +137,7 @@
             <procedure-events complete="func: DassCalculations.Complete(tc)" />
             <properties>
                <participant-instructions
-                  experimental-setup-id="image"
+                  experimental-setup-id="sstGame"
                   default="DassInstructions.DASS" />
             </properties>
             <dependencies>
@@ -266,7 +268,7 @@
          <stimulation-sequence-constructor id="StopSignalTraining" 
             name="Stop Signal Task (Training Task)" 
             template="StopSignalTraining"/>
-            
+
          <stimulation-sequence-constructor id="StopSignalGame" 
             name="Stop Signal Game" 
             template="StopSignalGame"/>
