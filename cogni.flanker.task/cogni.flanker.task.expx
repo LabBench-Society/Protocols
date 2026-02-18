@@ -15,7 +15,7 @@
    
                     <configurations>
                         <image-display id="image"
-                                       experimental-setup-id="image"
+                                       experimental-setup-id="flanker"
                                        background-colour="rgb(0,0,0)" />
                     </configurations>
                 </display>
@@ -44,7 +44,7 @@
               
                     <configurations>
                         <image-display id="image"
-                                       experimental-setup-id="image"
+                                       experimental-setup-id="flanker"
                                        background-colour="rgb(0,0,0)" />
                     </configurations>
                 </display>
@@ -73,69 +73,75 @@
         </experimental-setup>    
     </experimental-setup-variants>
     <protocol>
-        <variables>
-            <variable name="StimulusRepetitions" value="1 if 'TEST' in Participant else 3"/>
-            <variable name="DisplayTime" value="1000"/>
-            <variable name="Images" value="func: FlankerScript.GetImages(tc)"/>
-        </variables>
-        <procedures>
-            <stimulation-sequence 
-                id="FLANKER"
-                name="Flanker Task"
-                experimental-setup-id="image"
-                response-collection="yes-no"
-                stimulus-update-rate="10000">
+        <templates>
+            <protocol-variables>
+                <struct name="nsFlanker">
+                    <variable name="StimulusRepetitions" value="1 if 'TEST' in Participant else 3"/>
+                    <variable name="DisplayTime" value="1000"/>
+                    <variable name="Images" value="func: FlankerScript.GetImages(tc)"/>
+                </struct>
+            </protocol-variables>
+            <procedure-templates>
+                <stimulation-sequence id="FLANKER"
+                    experimental-setup-id="flanker"
+                    response-collection="yes-no"
+                    stimulus-update-rate="10000">
 
-                <properties>
-                    <participant-instructions experimental-setup-id="image" 
-                        default="Assets.FlankerInstruction.Joystick if ExperimentalSetup == 'JOYSTICK' else Assets.FlankerInstruction.LIO"/>
-                </properties>
-                
-                <stimulation-scripts initialize="True"
-                                     stimulate="func: FlankerScript.Stimulate(tc,x)"
-                                     stimulus-description="Image"
-                                     stimulus-unit="N/A">
-                    <instrument name="ImageDisplay" interface="image-display"/>
-                    <instrument name="TriggerGenerator" interface="trigger-generator" />
-                </stimulation-scripts>
-    
-                <stimulation-pattern time-base="seconds">
-                    <sequence iterations="1">
-                        <sequence iterations="1" Tperiod="4" stimulate="false" />
-    
-                        <uniformly-distributed-sequence minTperiod="2"
-                                                        maxTperiod="3"
-                                                        iterations="NumberOfStimuli * StimulusRepetitions" />
-                    </sequence>
-                </stimulation-pattern>
-    
-                <stimuli order="block-random">
-                    <stimulus name="CH" count="2" />
-                    <stimulus name="CK" />
-                    <stimulus name="CS" />
-    
-                    <stimulus name="HC" count="2" />
-                    <stimulus name="HK" />
-                    <stimulus name="HS" />
-    
-                    <stimulus name="KC" count="2" />
-                    <stimulus name="KH" />
-                    <stimulus name="KS" />
-    
-                    <stimulus name="SC" count="2" />
-                    <stimulus name="SH" />
-                    <stimulus name="SK" />
-                </stimuli>
-            </stimulation-sequence>        
+                    <properties>
+                        <participant-instructions experimental-setup-id="flanker" 
+                            default="Assets.FlankerInstruction.Joystick if ExperimentalSetup == 'JOYSTICK' else Assets.FlankerInstruction.LIO"/>
+                    </properties>
+                    
+                    <stimulation-scripts initialize="True"
+                                        stimulate="func: FlankerScript.Stimulate(tc,x)"
+                                        stimulus-description="Image"
+                                        stimulus-unit="N/A">
+                        <instrument name="ImageDisplay" interface="image-display"/>
+                        <instrument name="TriggerGenerator" interface="trigger-generator" />
+                    </stimulation-scripts>
+        
+                    <stimulation-pattern time-base="seconds">
+                        <sequence iterations="1">
+                            <sequence iterations="1" Tperiod="4" stimulate="false" />
+        
+                            <uniformly-distributed-sequence minTperiod="2"
+                                                            maxTperiod="3"
+                                                            iterations="NumberOfStimuli * nsFlanker.StimulusRepetitions" />
+                        </sequence>
+                    </stimulation-pattern>
+        
+                    <stimuli order="block-random">
+                        <stimulus name="CH" count="2" />
+                        <stimulus name="CK" />
+                        <stimulus name="CS" />
+        
+                        <stimulus name="HC" count="2" />
+                        <stimulus name="HK" />
+                        <stimulus name="HS" />
+        
+                        <stimulus name="KC" count="2" />
+                        <stimulus name="KH" />
+                        <stimulus name="KS" />
+        
+                        <stimulus name="SC" count="2" />
+                        <stimulus name="SH" />
+                        <stimulus name="SK" />
+                    </stimuli>
+                </stimulation-sequence>        
+            </procedure-templates>
+            <assets>
+                <file-asset id="FlankerScript" file="FlankerScript.py" />
+                <file-asset id="FlankerFont" file="Roboto-Regular.ttf" />
+                <file-asset id="FlankerInstruction" file="FlankerInstruction.zip">
+                    <aliases>
+                    </aliases>
+                </file-asset>
+            </assets>
+        </templates>
+
+        <procedures>
+            <stimulation-sequence-constructor id="FLANKER" name="Flanker Task" template="FLANKER" />
         </procedures>
-        <assets>
-            <file-asset id="FlankerScript" file="FlankerScript.py" />
-            <file-asset id="Roboto" file="Roboto-Regular.ttf" />
-            <file-asset id="FlankerInstruction" file="FlankerInstruction.zip">
-                <aliases>
-                </aliases>
-            </file-asset>
-        </assets>
     </protocol>    
     <post-actions>
     </post-actions>

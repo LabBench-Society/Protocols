@@ -75,7 +75,7 @@
         <variables>
         </variables>
         <templates>
-            <variables>
+            <template-variables>
                 <structs name="TimeSlots">
                     <struct>
                         <string value="SLOT01" name="ID" />
@@ -114,8 +114,8 @@
                         <string value="func: Script.GetTimeSlotDuration(tc)" name="TimeConstraint" />
                     </struct>
                 </structs>
-            </variables>
-            <content>          
+            </template-variables>
+            <procedure-templates>          
                 <questionnaire id="prepareTimeSlot"
                     experimental-setup-id="image"
                     control="operator">
@@ -225,7 +225,7 @@
                         <boolean-constructor id="CONFIRM" template="CONFIRM" />
                     </content>
                 </questionnaire>              
-            </content>             
+            </procedure-templates>             
         </templates>
         <procedures>           
             <foreach variable="Session" in="Sessions">

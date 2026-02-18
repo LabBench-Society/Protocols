@@ -72,7 +72,7 @@
             <variable name="Checkerboard" value="func: CheckerboardScript.CreateCheckerboard(tc)" />
         </variables>
         <templates>
-            <content>
+            <procedure-templates>
                 <stimulation-sequence id="VEP"
                     experimental-setup-id="image"
                     response-collection="none"
@@ -109,7 +109,7 @@
                         <stimulus name="stimulus" />
                     </stimuli>
                 </stimulation-sequence>
-            </content>
+            </procedure-templates>
         </templates>
         <procedures>
             <!-- 16 x 16 -->

@@ -81,7 +81,7 @@
          <variable name="StroopWords" value="{'b': 'BLUE','y': 'YELLOW','r': 'RED','g': 'GREEN'}"/>
       </variables>
       <templates>
-         <content>
+         <procedure-templates>
             <stimulation-sequence id="NRSTROOPTrial"
                experimental-setup-id="reverseStroopSetup"
                response-collection="yes-no"
@@ -260,7 +260,7 @@
                   <stimulus name="yy" count="3"/>
                </stimuli>
             </stimulation-sequence>        
-         </content>
+         </procedure-templates>
       </templates>
         <procedures>
             <stimulation-sequence-constructor id="NRSTROOPTrial" 

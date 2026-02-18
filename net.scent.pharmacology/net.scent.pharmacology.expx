@@ -91,10 +91,7 @@
             <variable name="betaN" value="1.2"/>
         </variables>
         <templates>
-            <variables>
-
-            </variables>
-            <content>
+            <procedure-templates>
                 <psychophysics-stimulus-presentation id="SCENTFamilization" stimulus-update-rate="20000">
                     <properties>
                         <instructions default="var: 'SCENTInstructions.{e}'.format(e = electrode)" override-results="false" />
@@ -402,7 +399,7 @@
                         </channel>
                     </channels>
                 </psychophysics-threshold-estimation>            
-            </content>
+            </procedure-templates>
         </templates>
         <procedures>
             <psychophysics-stimulus-presentation-constructor id="PINFAM" 

@@ -23,15 +23,28 @@
         <properties>
             <!--  Contents omitted for brevity -->
         </properties>
-        <randomisations>
+        <persistent-variables>
             <!--  Contents omitted for brevity -->
-        </randomisations>        
-        <defines>
+        </persistent-variables>        
+        <variables>
             <!--  Contents omitted for brevity -->
-        </defines>
+        </variables>
         <templates>
-            <!--  Contents omitted for brevity -->
-           
+              <includes>
+                  <!--  Contents omitted for brevity -->
+              </includes>
+              <protocol-variables>
+                  <!--  Contents omitted for brevity -->
+              </protocol-variables>
+              <template-variables>
+                  <!--  Contents omitted for brevity -->
+              </template-variables>
+              <procedure-templates>
+                  <!--  Contents omitted for brevity -->
+              </procedure-templates>
+              <assets>
+                  <!--  Contents omitted for brevity -->
+              </assets>           
         </templates>
         <procedures>
             <!--  Contents omitted for brevity -->

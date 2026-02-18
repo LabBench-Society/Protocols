@@ -80,9 +80,7 @@
             
         </variables>
         <templates>
-            <variables>
-            </variables>
-            <content>
+            <procedure-templates>
                 <psychophysics-response-recording 
                     id="ItchCOVAS"
                     experimental-setup-id="vas"
@@ -197,7 +195,7 @@
                     </content>
 
                 </questionnaire>
-            </content>             
+            </procedure-templates>             
         </templates>
         <procedures>
             <psychophysics-response-recording-constructor 

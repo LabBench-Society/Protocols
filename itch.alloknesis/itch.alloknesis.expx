@@ -50,7 +50,7 @@
             
         </variables>
         <templates>
-            <content>
+            <procedure-templates>
                 <questionnaire
                     id="nrsAlloknesisRating"
                     control="participant"
@@ -127,7 +127,7 @@
                         </foreach>
                     </content>
                 </questionnaire>   
-            </content>             
+            </procedure-templates>             
         </templates>
         <procedures>
             <questionnaire-constructor id="NRS" name="Alloknesis (NRS)" template="nrsAlloknesisRating" />

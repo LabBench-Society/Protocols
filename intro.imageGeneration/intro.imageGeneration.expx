@@ -32,7 +32,7 @@
             
         </variables>
         <templates>
-            <content>
+            <procedure-templates>
                 <questionnaire id="TEST" 
                     experimental-setup-id="image"
                     control="operator">
@@ -54,7 +54,7 @@
                         <boolean-constructor id="CONFIRM" template="CONFIRM"></boolean-constructor>
                     </content>
                 </questionnaire>                            
-            </content>            
+            </procedure-templates>            
         </templates>
         <procedures>
             <questionnaire-constructor id="SHAPES" name="Drawing shapes" template="TEST">

@@ -5,7 +5,7 @@
 
 def GenerateImage(tc, name):
     with tc.Image.GetCanvas(1920,1080) as canvas:
-        canvas.Font('Roboto')
+        canvas.Font('FlankerFont')
         canvas.TextSize(200)
         canvas.Color("#FFFFFF")
         canvas.AlignCenter()
@@ -31,5 +31,5 @@ def GetImages(tc):
     
 def Stimulate(tc, x):
     GeneratorTrigger(tc, 1)     
-    tc.Instruments.ImageDisplay.Display(tc.Images[tc.StimulusName], tc.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")  
+    tc.Instruments.ImageDisplay.Display(tc.nsFlanker.Images[tc.StimulusName], tc.nsFlanker.DisplayTime, tc.ExperimentalSetup != "JOYSTICK")  
     return True

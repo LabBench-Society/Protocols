@@ -81,7 +81,7 @@
         <variables> 
         </variables>
         <templates>
-            <content>
+            <procedure-templates>
                 <algometry-stimulus-response id="SR01"
                     experimental-setup-id="vas"
                     delta-pressure="1"
@@ -124,7 +124,7 @@
                         <dependency id="SR02"/>
                     </dependencies>
                 </algometry-conditioned-pain-modulation>
-            </content>
+            </procedure-templates>
         </templates>
         <procedures>
             <algometry-stimulus-response-constructor id="SR01" 

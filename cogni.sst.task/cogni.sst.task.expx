@@ -90,7 +90,7 @@
             <variable name="CognitiveTask" value="func: StopSignalScript.CreateTask(tc)"/>
         </variables>
         <templates>
-            <content>
+            <procedure-templates>
                 <stimulation-sequence id="StopSignalTaskTraining"
                     experimental-setup-id="sstSetup"
                     response-collection="none"
@@ -156,7 +156,7 @@
                         <stimulus name="STOP" count="1"/>
                     </stimuli>
                 </stimulation-sequence>    
-            </content>
+            </procedure-templates>
         </templates>
         <procedures>
             <stimulation-sequence-constructor id="StopSignalTaskTraining" 
