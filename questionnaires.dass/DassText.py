@@ -114,7 +114,7 @@ def CreateTextDanish(tc):
 	}
 
 def CreateText(tc):
-    if tc.Language.casefold() == "da":
-          return DictWrapper(CreateTextDanish(tc), "DassText")
+    if tc.Language == "da":
+          return DictWrapper(CreateTextDanish(tc), "DassTextDB")
     
-    return DictWrapper(CreateTextEnglish(tc), "DassText")
+    return DictWrapper(CreateTextEnglish(tc), "DassTextDB")

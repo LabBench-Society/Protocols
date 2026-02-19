@@ -3,15 +3,51 @@
             xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants default="SetupID">
-        <experimental-setup id="SetupID" name="Name of experimental setup">
+    <experimental-setup-variants default="JOYSTICK">
+         <experimental-setup name="Joystick" id="JOYSTICK">
             <devices>
-                <!--  Contents omitted for brevity -->
+               <joystick id="joystick">
+                  <map experimental-setup-id="image">
+                     <button-assignment code="16" button="left" label="left"/> <!-- number: 5-->
+                     <button-assignment code="32" button="right" label="right"/> <!--  number: 7 -->
+                  </map>
+                  <map experimental-setup-id="questionnaire">
+                     <button-assignment code="16" button="previous" label="previous"/> <!-- number: 5-->
+                     <button-assignment code="32" button="next" label="next"/> <!--  number: 7 -->
+                     <button-assignment code="2" button="up" label="up" />
+                     <button-assignment code="4" button="down" label="down" />
+                     <button-assignment code="1" button="decrease" label="decrease" />
+                     <button-assignment code="8" button="increase" label="increase" />
+                  </map>  
+                  <map experimental-setup-id="sstSetup">
+                     <button-assignment code="80" button="left" label="Left"/> <!-- number: 5-->
+                     <button-assignment code="160" button="right" label="Right"/> <!--  number: 7 -->
+                  </map>
+               </joystick>
+               <display id="display" normative-distance="40">
+                  <typography active-colour="rgb(255,255,255)" 
+                              foreground-colour="rgb(255,255,255)"
+                              background-colour="rgb(0,0,0)"
+                              inactive-colour="rgb(32,32,32)" />
+                 
+                  <configurations>
+                     <image-display id="image" 
+                        experimental-setup-id="image"
+                        background-colour="rgb(0,0,0)" />
+                     
+                     <questionnaire id="questionnaire"
+                        experimental-setup-id="questionnaire"
+                        controller-device="joystick" />
+                  </configurations>                
+               </display>
             </devices>
             <device-mapping>
-                <!--  Contents omitted for brevity -->
+               <device-assignment device-id="display.image" instrument-name="ImageDisplay" />                   
+               <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire"/>           
+               <device-assignment device-id="joystick" instrument-name="Button"/>     
+               <device-assignment device-id="joystick" instrument-name="TriggerGenerator" />                   
             </device-mapping>
-        </experimental-setup>    
+         </experimental-setup>
     </experimental-setup-variants>
     <protocol>
         <languages>
@@ -20,10 +56,40 @@
         </languages>
         <templates>
             <protocol-variables>
+                <variable name="DassTextDB" value="func: DassText.CreateText(tc)" />
             </protocol-variables>
             <template-variables>
             </template-variables>
             <procedure-templates>
+                <questionnaire id="DASS" experimental-setup-id="questionnaire" control="participant">
+                    <variables>
+                        <strings name="QuestionIDs" value="I01;I02;I03;I04;I05;I06;I07;I08;I09;I10;I11;I12;I13;I14;I15;I16;I17;I18;I19;I20;I21;I22;I23;I24;I25;I26;I27;I28;I29;I30;I31;I32;I33;I34;I35;I36;I37;I38;I39;I40;I41;I42" />
+                    </variables>
+                    <procedure-events complete="func: DassCalculations.Complete(tc)" />
+                    <properties>
+                        <participant-instructions experimental-setup-id="image"
+                            default="DassInstructions.Instructions" />
+                        </properties>
+                    <dependencies>
+                        <dependency id="var: dependency" virtual="true" />
+                    </dependencies>
+                    <templates>               
+                        <likert id="LIKERT"
+                            title="dynamic: DassTextDB.QUESTION"
+                            instruction="var: 'dynamic: DassTextDB.{}'.format(id)">
+                            
+                            <choice value="0" label="var: 'dynamic: DassTextDB.L0'" />
+                            <choice value="1" label="var: 'dynamic: DassTextDB.L1'" />
+                            <choice value="2" label="var: 'dynamic: DassTextDB.L2'" />
+                            <choice value="3" label="var: 'dynamic: DassTextDB.L3'" />
+                        </likert>
+                    </templates>
+                    <content>
+                    <foreach variable="id" in="QuestionIDs">
+                        <likert id="var: id" template="LIKERT"></likert>
+                    </foreach>
+                    </content>
+                </questionnaire>
             </procedure-templates>
             <assets>
                 <file-asset file="DassCalculations.py" />
@@ -39,10 +105,27 @@
             </assets>           
         </templates>
         <procedures>
-            <!--  Contents omitted for brevity -->
+            <questionnaire-constructor id="DASS" 
+                name="Depression, Anxietry and Stress Scale (DASS)" 
+                template="DASS">
+                <variables>
+                    <string name="dependency" value="" />
+                </variables>
+            </questionnaire-constructor>
         </procedures>
     </protocol>
     <post-actions>
-        <!--  Contents omitted for brevity -->
+        <export-to-csv name="Export to CSV"
+            location="C:\LabBenchExport\questionnaires.dass"
+            header="true"
+            separator=";"
+            filename="dynamic: f'{Participant}.csv'">
+
+            <item name="ID" value="Participant" default="NA"/>
+            <item name="Stress" value="DASS.Annotations.Stress" default="NA" />
+            <item name="Anxiety" value="DASS.Annotations.Anxiety" default="NA" />
+            <item name="Depression" value="DASS.Annotations.Depression" default="NA" />
+            <item name="Total" value="DASS.Annotations.Total" default="NA" />
+        </export-to-csv>
     </post-actions>
 </experiment>
