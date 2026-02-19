@@ -111,7 +111,7 @@
       <templates>
          <includes>
             <include protocol-id="questionnaires.dass" />
-            <include protocol-id="" />
+            <include protocol-id="cogni.sst.game" />
          </includes>
       </templates>
       <procedures>
@@ -158,13 +158,23 @@
                </variables>
          </questionnaire-constructor>
 
-         <stimulation-sequence-constructor id="StopSignalTraining" 
-            name="Stop Signal Task (Training Task)" 
-            template="StopSignalTraining"/>
+            <stimulation-sequence-constructor id="StopSignalTraining" 
+                name="Stop Signal Task (Training Task)" 
+                template="StopSignalTraining">
+                <variables>
+                    <string name="dependency" value="DASS" />
+                    <string name="experimentalSetup" value="image" />
+                </variables>
+            </stimulation-sequence-constructor>
 
-         <stimulation-sequence-constructor id="StopSignalGame" 
-            name="Stop Signal Game" 
-            template="StopSignalGame"/>
+            <stimulation-sequence-constructor id="StopSignalGame" 
+                name="Stop Signal Game" 
+                template="StopSignalGame">
+                <variables>
+                    <string name="experimentalSetup" value="image" />
+                    <string name="trainingProcedure" value="StopSignalTraining" />
+                </variables>
+            </stimulation-sequence-constructor>
       </procedures>
    </protocol>
    <post-actions>
@@ -186,9 +196,9 @@
 
             <!-- Stop Signal Game -->
             <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
-            <item name="RT" value="func: StopSignalGameScript.CalculateRT(tc)" default="NA" />
-            <item name="SSD" value="func: StopSignalGameScript.CalculateSSD(tc)" default="NA" />
-            <item name="SSRT" value="func: StopSignalGameScript.CalculateSSRT(tc)" default="NA" />
+            <item name="RT" value="StopSignalGame.Annotations.RT" default="NA" />
+            <item name="SSD" value="StopSignalGame.Annotations.SSD" default="NA" />
+            <item name="SSRT" value="StopSignalGame.Annotations.SSRT" default="NA" />
       </export-to-csv>
    </post-actions>
 </experiment>
