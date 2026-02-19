@@ -5,225 +5,114 @@
    <participant-validator
       regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
       advice="Please enter an ID in the form of SXXX or TESTXXX, where X is a digit" />      
-      <experimental-setup-variants default="JOYSTICK">
-         <experimental-setup name="Joystick" id="JOYSTICK">
-            <devices>
-               <joystick id="joystick">
-                  <map experimental-setup-id="image">
-                     <button-assignment code="16" button="left" label="left"/> <!-- number: 5-->
-                     <button-assignment code="32" button="right" label="right"/> <!--  number: 7 -->
-                  </map>
-                  <map experimental-setup-id="questionnaire">
-                     <button-assignment code="16" button="previous" label="previous"/> <!-- number: 5-->
-                     <button-assignment code="32" button="next" label="next"/> <!--  number: 7 -->
-                     <button-assignment code="2" button="up" label="up" />
-                     <button-assignment code="4" button="down" label="down" />
-                     <button-assignment code="1" button="decrease" label="decrease" />
-                     <button-assignment code="8" button="increase" label="increase" />
-                  </map>  
-                  <map experimental-setup-id="sstSetup">
-                     <button-assignment code="80" button="left" label="Left"/> <!-- number: 5-->
-                     <button-assignment code="160" button="right" label="Right"/> <!--  number: 7 -->
-                  </map>
-               </joystick>
-               <display id="display" normative-distance="40">
-                  <typography active-colour="rgb(255,255,255)" 
-                              foreground-colour="rgb(255,255,255)"
-                              background-colour="rgb(0,0,0)"
-                              inactive-colour="rgb(32,32,32)" />
-                 
-                  <configurations>
-                     <image-display id="image" 
-                        experimental-setup-id="sstSetup"
-                        background-colour="rgb(0,0,0)" />
-                     
-                     <questionnaire id="questionnaire"
-                        experimental-setup-id="questionnaire"
-                        controller-device="joystick" />
-                  </configurations>                
-               </display>
-            </devices>
-            <device-mapping>
-               <device-assignment device-id="display.image" instrument-name="ImageDisplay" />                   
-               <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire"/>           
-               <device-assignment device-id="joystick" instrument-name="Button"/>     
-               <device-assignment device-id="joystick" instrument-name="TriggerGenerator" />                   
-            </device-mapping>
-         </experimental-setup>
-         <experimental-setup name="LabBench I/O" id="LIO">
-            <devices>
-               <lio id="lio" default-analogue-output="0">
-                  <response-devices>
-                     <response-pad id="pad" 
-                        type="button-4-cross" 
-                        timing-source="response-port02">
-                        <map experimental-setup-id="sstSetup">
-                           <button-assignment code="5" button="left" label="Left" />
-                           <button-assignment code="6" button="right" label="Right" />
-                        </map>
-                        <map experimental-setup-id="image">
-                           <button-assignment code="5" button="left" label="left"/> <!-- number: 5-->
-                           <button-assignment code="6" button="right" label="right"/> <!--  number: 7 -->
-                        </map>
-                        <map experimental-setup-id="questionnaire">
-                           <button-assignment code="5" button="previous" label="previous"/> <!-- number: 5-->
-                           <button-assignment code="6" button="next" label="next"/> <!--  number: 7 -->
-                           <button-assignment code="3" button="up" label="up" />
-                           <button-assignment code="1" button="down" label="down" />
-                           <button-assignment code="3" button="decrease" label="decrease" />
-                           <button-assignment code="1" button="increase" label="increase" />
-                        </map>                
-                     </response-pad>
-                     <visual-trigger id="vtrig" arming-period="200" timing-source="response-port02" />
-                  </response-devices>
-               </lio>
-            
-               <display id="display" normative-distance="40">
-                  <typography active-colour="rgb(255,255,255)" 
-                              background-colour="rgb(0,0,0)"
-                              foreground-colour="rgb(255,255,255)"
-                              inactive-colour="rgb(32,32,32)" />
-      
-                  <configurations>
-                     <image-display id="image" 
-                        experimental-setup-id="sstSetup" 
-                        background-colour="rgb(0,0,0)" />
+   <experimental-setup-variants default="JOYSTICK">
+      <experimental-setup name="Joystick" id="JOYSTICK">
+         <devices>
+            <joystick id="joystick">
+               <map experimental-setup-id="image">
+                  <button-assignment code="16" button="left" label="left"/> <!-- number: 5-->
+                  <button-assignment code="32" button="right" label="right"/> <!--  number: 7 -->
+               </map>
+               <map experimental-setup-id="questionnaire">
+                  <button-assignment code="16" button="previous" label="previous"/> <!-- number: 5-->
+                  <button-assignment code="32" button="next" label="next"/> <!--  number: 7 -->
+                  <button-assignment code="2" button="up" label="up" />
+                  <button-assignment code="4" button="down" label="down" />
+                  <button-assignment code="1" button="decrease" label="decrease" />
+                  <button-assignment code="8" button="increase" label="increase" />
+               </map>  
+               <map experimental-setup-id="sstSetup">
+                  <button-assignment code="80" button="left" label="Left"/> <!-- number: 5-->
+                  <button-assignment code="160" button="right" label="Right"/> <!--  number: 7 -->
+               </map>
+            </joystick>
+            <display id="display" normative-distance="40">
+               <typography active-colour="rgb(255,255,255)" 
+                           foreground-colour="rgb(255,255,255)"
+                           background-colour="rgb(0,0,0)"
+                           inactive-colour="rgb(32,32,32)" />
+               
+               <configurations>
+                  <image-display id="image" 
+                     experimental-setup-id="sstSetup"
+                     background-colour="rgb(0,0,0)" />
+                  
+                  <questionnaire id="questionnaire"
+                     experimental-setup-id="questionnaire"
+                     controller-device="joystick" />
+               </configurations>                
+            </display>
+         </devices>
+         <device-mapping>
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay" />                   
+            <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire"/>           
+            <device-assignment device-id="joystick" instrument-name="Button"/>     
+            <device-assignment device-id="joystick" instrument-name="TriggerGenerator" />                   
+         </device-mapping>
+      </experimental-setup>
+      <experimental-setup name="LabBench I/O" id="LIO">
+         <devices>
+            <lio id="lio" default-analogue-output="0">
+               <response-devices>
+                  <response-pad id="pad" 
+                     type="button-4-cross" 
+                     timing-source="response-port02">
+                     <map experimental-setup-id="sstSetup">
+                        <button-assignment code="5" button="left" label="Left" />
+                        <button-assignment code="6" button="right" label="Right" />
+                     </map>
+                     <map experimental-setup-id="image">
+                        <button-assignment code="5" button="left" label="left"/> <!-- number: 5-->
+                        <button-assignment code="6" button="right" label="right"/> <!--  number: 7 -->
+                     </map>
+                     <map experimental-setup-id="questionnaire">
+                        <button-assignment code="5" button="previous" label="previous"/> <!-- number: 5-->
+                        <button-assignment code="6" button="next" label="next"/> <!--  number: 7 -->
+                        <button-assignment code="3" button="up" label="up" />
+                        <button-assignment code="1" button="down" label="down" />
+                        <button-assignment code="3" button="decrease" label="decrease" />
+                        <button-assignment code="1" button="increase" label="increase" />
+                     </map>                
+                  </response-pad>
+                  <visual-trigger id="vtrig" arming-period="200" timing-source="response-port02" />
+               </response-devices>
+            </lio>
+         
+            <display id="display" normative-distance="40">
+               <typography active-colour="rgb(255,255,255)" 
+                           background-colour="rgb(0,0,0)"
+                           foreground-colour="rgb(255,255,255)"
+                           inactive-colour="rgb(32,32,32)" />
+   
+               <configurations>
+                  <image-display id="image" 
+                     experimental-setup-id="sstSetup" 
+                     background-colour="rgb(0,0,0)" />
 
-                     <questionnaire id="questionnaire"
-                        experimental-setup-id="questionnaire"
-                        controller-device="lio.pad" />
-                  </configurations>                
-               </display>
-            </devices>
-            <device-mapping>
-               <device-assignment device-id="display.image" instrument-name="ImageDisplay" />                   
-               <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire"/>           
-               <device-assignment device-id="lio.pad" instrument-name="Button"/>           
-               <device-assignment device-id="lio" instrument-name="TriggerGenerator" />             
-            </device-mapping>
-         </experimental-setup>            
-      </experimental-setup-variants>
+                  <questionnaire id="questionnaire"
+                     experimental-setup-id="questionnaire"
+                     controller-device="lio.pad" />
+               </configurations>                
+            </display>
+         </devices>
+         <device-mapping>
+            <device-assignment device-id="display.image" instrument-name="ImageDisplay" />                   
+            <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire"/>           
+            <device-assignment device-id="lio.pad" instrument-name="Button"/>           
+            <device-assignment device-id="lio" instrument-name="TriggerGenerator" />             
+         </device-mapping>
+      </experimental-setup>            
+   </experimental-setup-variants>
    <protocol>
       <languages>
-         <language code="EN" name="English" />
-         <language code="DA" name="Danish" />
+         <language code="en" name="English" />
+         <language code="da" name="Danish" />
       </languages>
-      <variables>
-         <!-- Depression, Anxiety and Stress Scale (DASS) -->
-         <variable name="DassTextDB" value="func: DassText.CreateText(tc)" />
-
-         <!-- Stop Signal Game Defines -->
-         <variable name="StopSignalTrainingStopSignals" value="2 if 'TEST' in Participant else 5"/> 
-         <variable name="StopSignalNumberOfStopSignals" value="5 if 'TEST' in Participant else 30"/> 
-         <variable name="StopSignalLowDelayLimit" value="50"/>
-         <variable name="StopSignalHighDelayLimit" value="750"/>
-         <variable name="StopSignalFixationDelay"  value="500"/>
-         <variable name="StopSignalResponseTimeout"  value="1000"/>
-         <variable name="StopSignalFeedbackDelay" value="1000"/>            
-         <variable name="StopSignalFeedbackTime" value="1000"/>
-         <variable name="StopSignalPause" value="1000"/>
-         <variable name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
-
-         <variable name="CognitiveTask" value="func: StopSignalGameScript.CreateTask(tc)"/>
-      </variables>      
       <templates>
-         <procedure-templates>
-            <questionnaire id="DASS"
-               experimental-setup-id="questionnaire"
-               control="participant">
-            <variables>
-               <strings name="QuestionIDs" value="I01;I02;I03;I04;I05;I06;I07;I08;I09;I10;I11;I12;I13;I14;I15;I16;I17;I18;I19;I20;I21;I22;I23;I24;I25;I26;I27;I28;I29;I30;I31;I32;I33;I34;I35;I36;I37;I38;I39;I40;I41;I42" />
-            </variables>
-            <procedure-events complete="func: DassCalculations.Complete(tc)" />
-            <properties>
-               <participant-instructions
-                  experimental-setup-id="sstGame"
-                  default="DassInstructions.DASS" />
-            </properties>
-            <dependencies>
-               <dependency id="SUBJECT" virtual="true"/>
-            </dependencies>
-            <templates>               
-               <likert 
-                  id="LIKERT"
-                  title="dynamic: DassTextDB['QUESTION']"
-                  instruction="var: 'dynamic: DassTextDB[\'{q}\']'.format(q = id)">
-                  <choice value="0" label="var: 'dynamic: DassTextDB[\'L0\']'" />
-                  <choice value="1" label="var: 'dynamic: DassTextDB[\'L1\']'" />
-                  <choice value="2" label="var: 'dynamic: DassTextDB[\'L2\']'" />
-                  <choice value="3" label="var: 'dynamic: DassTextDB[\'L3\']'" />
-               </likert>
-            </templates>
-            <content>
-               <foreach variable="id" in="QuestionIDs">
-                  <likert id="var: id" template="LIKERT"></likert>
-               </foreach>
-            </content>
-            </questionnaire>
-
-            <stimulation-sequence id="StopSignalTraining"
-               experimental-setup-id="sstSetup"
-               response-collection="none"
-               stimulus-update-rate="44100">
-               <procedure-events complete="CognitiveTask.Complete()" />
-
-               <properties>
-                  <participant-instructions experimental-setup-id="sstSetup"
-                        default="Assets.StopSignalGameImages.Instructions" 
-                        completed="func: StopSignalGameScript.DisplayScore(tc)"/>
-               </properties>
-
-               <stimulation-scripts initialize="CognitiveTask.Initialize(100, 150)"
-                                    stimulate="CognitiveTask.Stimulate()"
-                                    stimulus-description="Image"
-                                    stimulus-unit="N/A">
-                  <instrument name="ImageDisplay" interface="image-display"/>
-                  <instrument name="Button" interface="button"/>
-                  <instrument name="TriggerGenerator" interface="trigger-generator" />
-               </stimulation-scripts>
-
-               <stimulation-pattern time-base="seconds">
-                  <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
-               </stimulation-pattern>
-
-               <stimuli order="block-random">
-                  <stimulus name="GO" count="3" />
-                  <stimulus name="STOP" count="1"/>
-               </stimuli>
-            </stimulation-sequence>
-
-            <stimulation-sequence id="StopSignalGame"
-               experimental-setup-id="sstSetup"
-               response-collection="none"
-               stimulus-update-rate="44100">
-
-               <procedure-events complete="CognitiveTask.Complete()" />
-
-               <properties>
-                  <participant-instructions experimental-setup-id="sstSetup"
-                        default="Assets.StopSignalGameImages.Instructions" 
-                        completed="func: StopSignalGameScript.DisplayScore(tc)"/>
-               </properties>
-
-               <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTraining.Annotations.sstLastStopSignalDelay)"
-                                    stimulate="CognitiveTask.Stimulate()"
-                                    stimulus-description="Image"
-                                    stimulus-unit="N/A">
-                  <instrument name="ImageDisplay" interface="image-display"/>
-                  <instrument name="Button" interface="button"/>
-                  <instrument name="TriggerGenerator" interface="trigger-generator" />
-               </stimulation-scripts>
-
-               <stimulation-pattern time-base="seconds">
-                  <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
-               </stimulation-pattern>
-
-               <stimuli order="block-random">
-                  <stimulus name="GO" count="3" />                        
-                  <stimulus name="STOP" count="1"/>
-               </stimuli>
-            </stimulation-sequence>    
-         </procedure-templates>
+         <includes>
+            <include protocol-id="questionnaires.dass" />
+            <include protocol-id="" />
+         </includes>
       </templates>
       <procedures>
          <questionnaire id="SUBJECT"
@@ -262,8 +151,12 @@
          </questionnaire>
 
          <questionnaire-constructor id="DASS" 
-            name="Depression, Anxietry and Stress Scale (DASS)" 
-            template="DASS" />
+               name="Depression Anxietry and Stress Scales (DASS)" 
+               template="DASS">
+               <variables>
+                  <string name="dependency" value="SUBJECT" />
+               </variables>
+         </questionnaire-constructor>
 
          <stimulation-sequence-constructor id="StopSignalTraining" 
             name="Stop Signal Task (Training Task)" 
@@ -273,31 +166,6 @@
             name="Stop Signal Game" 
             template="StopSignalGame"/>
       </procedures>
-      <assets>
-         <file-asset file="DassText.py" />
-         <file-asset file="DassCalculations.py" />
-         <file-asset id="DassInstructions" file="DassImages_EN.zip">
-            <localisation>
-               <language code="DA" file="DassImages_DA.zip" />
-            </localisation>
-         </file-asset>
-         <file-asset file="OperatorInstructions.zip" />
-
-         <!-- Stop Signal Game Assets -->
-            <file-asset file="StopSignalGameImages.zip">
-                <aliases>
-                    <alias replace="Slide1" with="Right" />
-                    <alias replace="Slide2" with="Left" />
-                    <alias replace="Slide3" with="StopRight" />
-                    <alias replace="Slide4" with="StopLeft" />
-                    <alias replace="Slide5" with="Clear" />
-                    <alias replace="Slide6" with="FixationCross" />
-                    <alias replace="Slide7" with="Instructions" />
-                </aliases>
-            </file-asset>
-         <file-asset file="StopSignalGameScript.py" />
-         <file-asset id="Roboto" file="Roboto-Regular.ttf" />
-      </assets>
    </protocol>
    <post-actions>
       <export-to-csv name="Export to CSV"
@@ -309,10 +177,14 @@
             <item name="Sex" value="SUBJECT.SEX" default="NA" />
             <item name="Age" value="SUBJECT.AGE" default="NA" />
             <item name="Handedness" value="SUBJECT.HANDEDNESS" default="NA" />
-            <item name="Stress" value="func: DassCalculations.Stress(tc)" default="NA" />
-            <item name="Anxiety" value="func: DassCalculations.Anxiety(tc)" default="NA" />
-            <item name="Depression" value="func: DassCalculations.Depression(tc)" default="NA" />
-            <item name="Total" value="func: DassCalculations.Total(tc)" default="NA" />
+
+            <!-- DASS Questionnaire-->
+            <item name="Stress" value="DASS.Annotations.Stress" default="NA" />
+            <item name="Anxiety" value="DASS.Annotations.Anxiety" default="NA" />
+            <item name="Depression" value="DASS.Annotations.Depression" default="NA" />
+            <item name="Total" value="DASS.Annotations.Total" default="NA" />
+
+            <!-- Stop Signal Game -->
             <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
             <item name="RT" value="func: StopSignalGameScript.CalculateRT(tc)" default="NA" />
             <item name="SSD" value="func: StopSignalGameScript.CalculateSSD(tc)" default="NA" />

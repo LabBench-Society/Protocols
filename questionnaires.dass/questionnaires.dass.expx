@@ -8,21 +8,17 @@
             <devices>
                <joystick id="joystick">
                   <map experimental-setup-id="image">
-                     <button-assignment code="16" button="left" label="left"/> <!-- number: 5-->
-                     <button-assignment code="32" button="right" label="right"/> <!--  number: 7 -->
+                     <button-assignment code="16" button="left" label="left"/> 
+                     <button-assignment code="32" button="right" label="right"/> 
                   </map>
                   <map experimental-setup-id="questionnaire">
-                     <button-assignment code="16" button="previous" label="previous"/> <!-- number: 5-->
-                     <button-assignment code="32" button="next" label="next"/> <!--  number: 7 -->
+                     <button-assignment code="16" button="previous" label="previous"/> 
+                     <button-assignment code="32" button="next" label="next"/> 
                      <button-assignment code="2" button="up" label="up" />
                      <button-assignment code="4" button="down" label="down" />
                      <button-assignment code="1" button="decrease" label="decrease" />
                      <button-assignment code="8" button="increase" label="increase" />
                   </map>  
-                  <map experimental-setup-id="sstSetup">
-                     <button-assignment code="80" button="left" label="Left"/> <!-- number: 5-->
-                     <button-assignment code="160" button="right" label="Right"/> <!--  number: 7 -->
-                  </map>
                </joystick>
                <display id="display" normative-distance="40">
                   <typography active-colour="rgb(255,255,255)" 
