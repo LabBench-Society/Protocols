@@ -20,7 +20,7 @@
 
                 <configurations>
                     <image-display id="image"
-                        experimental-setup-id="sstSetup"
+                        experimental-setup-id="image"
                         background-colour="rgb(0,0,0)" />
 
                 </configurations>                
@@ -85,7 +85,7 @@
                     <variable name="FeedbackDelay" value="1000"/>            
                     <variable name="FeedbackTime" value="1000"/>
                     <variable name="Pause" value="1000"/>
-                    <variable name="Period" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
+                    <variable name="Period" value="(StopSignal.FixationDelay + StopSignal.ResponseTimeout + StopSignal.FeedbackDelay + StopSignal.FeedbackTime + StopSignal.Pause)/1000"/>
 
                     <variable name="Task" value="func: StopSignalGameScript.CreateTask(tc)"/>
                 </struct>
@@ -158,7 +158,7 @@
                     </stimulation-scripts>
 
                     <stimulation-pattern time-base="seconds">
-                        <sequence Tperiod="StopSignalPeriod" 
+                        <sequence Tperiod="StopSignal.Period" 
                             iterations="NumberOfStimuli * StopSignal.NumberOfStopSignals" />
                     </stimulation-pattern>
 
