@@ -105,7 +105,7 @@
         </templates>
         <procedures>
             <questionnaire-constructor id="DASS" 
-                name="Depression, Anxietry and Stress Scale (DASS)" 
+                name="Depression Anxietry and Stress Scales (DASS)" 
                 template="DASS">
                 <variables>
                     <string name="dependency" value="" />

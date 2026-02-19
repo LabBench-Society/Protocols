@@ -102,7 +102,7 @@
             <protocol id="cogni.sst.game"
                 name="Stop Signal Game"
                 labbench-version="6.0"
-                category="Cognitive Task"/>              
+                category="Template Protocol;Cognitive Task"/>              
         </category>
         <category name="Stroop Tasks" id="cogni.stroop">
             <protocol id="cogni.stroop.task"
@@ -172,7 +172,7 @@
         <protocol id="questionnaires.dass" 
             name="Depression Anxiety Stress Scales (DASS 42)" 
             labbench-version="6.0"
-            category="Questionnaire;Depression;Anxiety;Stress" />
+            category="Template Protocol;Questionnaire;Depression;Anxiety;Stress" />
     </category>
 
     <category name="Calibration" id="calibration">

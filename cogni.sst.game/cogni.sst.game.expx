@@ -5,7 +5,7 @@
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
-                <map experimental-setup-id="sstSetup">
+                <map>
                     <button-assignment code="80" button="left" label="Left"/> <!-- number: 5-->
                     <button-assignment code="160" button="right" label="Right"/> <!--  number: 7 -->
                 </map>
@@ -22,6 +22,7 @@
                     <image-display id="image"
                         experimental-setup-id="sstSetup"
                         background-colour="rgb(0,0,0)" />
+
                 </configurations>                
             </display>         
         </devices>
@@ -39,7 +40,7 @@
                     <response-pad id="pad" 
                         type="button-4-cross" 
                         timing-source="response-port02">
-                        <map experimental-setup-id="sstSetup">
+                        <map>
                             <button-assignment code="5" button="left" label="Left" />
                             <button-assignment code="6" button="right" label="Right" />
                         </map>
@@ -58,8 +59,7 @@
                             inactive-colour="rgb(32,32,32)" />                    
 
                 <configurations>
-                    <image-display
-                        id="image"
+                    <image-display id="image"
                         experimental-setup-id="sstSetup"
                         background-colour="rgb(0,0,0)" />
                 </configurations>                
@@ -73,31 +73,36 @@
     </experimental-setup>
    </experimental-setup-variants>                    
     <protocol>
-        <variables>
-            <!-- Stop Signal Game Defines -->
-            <variable name="StopSignalTrainingStopSignals" value="2 if 'TEST' in Participant else 5"/> 
-            <variable name="StopSignalNumberOfStopSignals" value="5 if 'TEST' in Participant else 30"/> 
-            <variable name="StopSignalLowDelayLimit" value="50"/>
-            <variable name="StopSignalHighDelayLimit" value="750"/>
-            <variable name="StopSignalFixationDelay"  value="500"/>
-            <variable name="StopSignalResponseTimeout"  value="1000"/>
-            <variable name="StopSignalFeedbackDelay" value="1000"/>            
-            <variable name="StopSignalFeedbackTime" value="1000"/>
-            <variable name="StopSignalPause" value="1000"/>
-            <variable name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
-
-            <variable name="CognitiveTask" value="func: StopSignalGameScript.CreateTask(tc)"/>
-        </variables>
         <templates>
+            <protocol-variables>
+                <variable name="StopSignalTrainingStopSignals" value="2 if 'TEST' in Participant else 5"/> 
+                <variable name="StopSignalNumberOfStopSignals" value="5 if 'TEST' in Participant else 30"/> 
+                <variable name="StopSignalLowDelayLimit" value="50"/>
+                <variable name="StopSignalHighDelayLimit" value="750"/>
+                <variable name="StopSignalFixationDelay"  value="500"/>
+                <variable name="StopSignalResponseTimeout"  value="1000"/>
+                <variable name="StopSignalFeedbackDelay" value="1000"/>            
+                <variable name="StopSignalFeedbackTime" value="1000"/>
+                <variable name="StopSignalPause" value="1000"/>
+                <variable name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
+
+                <variable name="CognitiveTask" value="func: StopSignalGameScript.CreateTask(tc)"/>
+            </protocol-variables>
+
             <procedure-templates>
                 <stimulation-sequence id="StopSignalTraining"
-                    experimental-setup-id="sstSetup"
+                    experimental-setup-id="var: experimentalSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
+
+                    <dependencies>
+                        <dependency id="var: dependency" virtual="true" />
+                    </dependencies>
+
                     <procedure-events complete="CognitiveTask.Complete()" />
 
                     <properties>
-                        <participant-instructions experimental-setup-id="sstSetup"
+                        <participant-instructions experimental-setup-id="image"
                             default="Assets.StopSignalGameImages.Instructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
@@ -112,7 +117,8 @@
                     </stimulation-scripts>
 
                     <stimulation-pattern time-base="seconds">
-                        <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
+                        <sequence Tperiod="StopSignalPeriod" 
+                            iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
                     </stimulation-pattern>
 
                     <stimuli order="block-random">
@@ -122,29 +128,36 @@
                 </stimulation-sequence>
 
                 <stimulation-sequence id="StopSignalGame"
-                    experimental-setup-id="sstSetup"
+                    experimental-setup-id="var: experimentalSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
+
+                    <dependencies>
+                        <dependency id="var: trainingProcedure" virtual="true" />
+                    </dependencies>
 
                     <procedure-events complete="CognitiveTask.Complete()" />
 
                     <properties>
-                        <participant-instructions experimental-setup-id="sstSetup"
+                        <participant-instructions experimental-setup-id="image"
                             default="Assets.StopSignalGameImages.Instructions" 
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTraining.Annotations.sstLastStopSignalDelay)"
-                                        stimulate="CognitiveTask.Stimulate()"
-                                        stimulus-description="Image"
-                                        stimulus-unit="N/A">
+                    <stimulation-scripts 
+                        initialize="var: f'CognitiveTask.Initialize(50, {trainingProcedure}.Annotations.sstLastStopSignalDelay)'"
+                        stimulate="CognitiveTask.Stimulate()"
+                        stimulus-description="Image"
+                        stimulus-unit="N/A">
+
                         <instrument name="ImageDisplay" interface="image-display"/>
                         <instrument name="Button" interface="button"/>
                         <instrument name="TriggerGenerator" interface="trigger-generator" />
                     </stimulation-scripts>
 
                     <stimulation-pattern time-base="seconds">
-                        <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
+                        <sequence Tperiod="StopSignalPeriod" 
+                            iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
                     </stimulation-pattern>
 
                     <stimuli order="block-random">
@@ -153,34 +166,50 @@
                     </stimuli>
                 </stimulation-sequence>    
             </procedure-templates>
+
+            <assets>
+                <file-asset file="StopSignalGameImages.zip">
+                    <aliases>
+                        <alias replace="Slide1" with="Right" />
+                        <alias replace="Slide2" with="Left" />
+                        <alias replace="Slide3" with="StopRight" />
+                        <alias replace="Slide4" with="StopLeft" />
+                        <alias replace="Slide5" with="Clear" />
+                        <alias replace="Slide6" with="FixationCross" />
+                        <alias replace="Slide7" with="Instructions" />
+                    </aliases>
+                </file-asset>
+                <file-asset file="StopSignalGameScript.py" />
+                <file-asset id="Roboto" file="Roboto-Regular.ttf" />
+            </assets>
         </templates>
         <procedures>
-            <stimulation-sequence-constructor id="StopSignalTraining" name="Stop Signal Task (Training Task)" template="StopSignalTraining"/>
-            <stimulation-sequence-constructor id="StopSignalGame" name="Stop Signal Game" template="StopSignalGame"/>
+            <stimulation-sequence-constructor id="StopSignalTraining" 
+                name="Stop Signal Task (Training Task)" 
+                template="StopSignalTraining">
+                <variables>
+                    <string name="dependency" value="" />
+                    <string name="experimentalSetup" value="image" />
+                </variables>
+            </stimulation-sequence-constructor>
+
+            <stimulation-sequence-constructor id="StopSignalGame" 
+                name="Stop Signal Game" 
+                template="StopSignalGame">
+                <variables>
+                    <string name="experimentalSetup" value="image" />
+                    <string name="trainingProcedure" value="StopSignalTraining" />
+                </variables>
+            </stimulation-sequence-constructor>
         </procedures>
-        <assets>
-            <file-asset file="StopSignalGameImages.zip">
-                <aliases>
-                    <alias replace="Slide1" with="Right" />
-                    <alias replace="Slide2" with="Left" />
-                    <alias replace="Slide3" with="StopRight" />
-                    <alias replace="Slide4" with="StopLeft" />
-                    <alias replace="Slide5" with="Clear" />
-                    <alias replace="Slide6" with="FixationCross" />
-                    <alias replace="Slide7" with="Instructions" />
-                </aliases>
-            </file-asset>
-            <file-asset file="StopSignalGameScript.py" />
-            <file-asset id="Roboto" file="Roboto-Regular.ttf" />
-        </assets>
     </protocol>
     <post-actions>
         <export-to-csv name="Export to CSV"
-            location="C:\LabBenchData\cogni.sst.game"
+            location="C:\LabBenchExport\cogni.sst.game"
             header="true"
             separator=";"
-            filename="dynamic: '{subject}.csv'.format(subject = Subject)">
-            <item name="ID" value="Subject" default="NA"/>
+            filename="dynamic: f'{Participant}.csv'">
+            <item name="ID" value="Participant" default="NA"/>
             <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
             <item name="RT" value="func: StopSignalGameScript.CalculateRT(tc)" default="NA" />
             <item name="SSD" value="func: StopSignalGameScript.CalculateSSD(tc)" default="NA" />
