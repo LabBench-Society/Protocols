@@ -15,8 +15,8 @@ class TriggerRecording:
 class UpDownAlgorithm:
     def __init__(self, tc, stepsize, initialDelay):
         self.Log = tc.Log
-        self.lowerLimit = int(tc.StopSignalLowDelayLimit)
-        self.highLimit = int(tc.StopSignalHighDelayLimit)
+        self.lowerLimit = int(tc.StopSignal.LowDelayLimit)
+        self.highLimit = int(tc.StopSignal.HighDelayLimit)
         self.delay = initialDelay
         self.stopSignalDelay = []
         self.stepsize = stepsize
@@ -47,9 +47,9 @@ class StopSignalTask:
         self.response = tc.Instruments.Button
         self.images = tc.Assets.StopSignalGameImages
         self.algorithm = algorithm
-        self.feedbackTime = tc.StopSignalFeedbackTime
-        self.responseTimeout = tc.StopSignalResponseTimeout
-        self.feedbackDelay = tc.StopSignalFeedbackDelay
+        self.feedbackTime = tc.StopSignal.FeedbackTime
+        self.responseTimeout = tc.StopSignal.ResponseTimeout
+        self.feedbackDelay = tc.StopSignal.FeedbackDelay
                    
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
@@ -131,14 +131,14 @@ class GoSignalTask:
         self.response = tc.Instruments.Button
         self.images = tc.Assets.StopSignalGameImages
 
-        self.goDelay = tc.StopSignalHighDelayLimit
+        self.goDelay = tc.StopSignal.HighDelayLimit
         self.goSignals = [] # 0: left, 1: right
         self.answer = []
         self.time = []
         
-        self.feedbackTime = tc.StopSignalFeedbackTime
-        self.responseTimeout = tc.StopSignalResponseTimeout
-        self.feedbackDelay = tc.StopSignalFeedbackDelay
+        self.feedbackTime = tc.StopSignal.FeedbackTime
+        self.responseTimeout = tc.StopSignal.ResponseTimeout
+        self.feedbackDelay = tc.StopSignal.FeedbackDelay
         
         self.result = tc.Current
         self.Fiducials = tc.ExperimentalSetup != "JOYSTICK"
@@ -210,12 +210,12 @@ class GameFeedback:
         with self.tc.Image.GetCanvas(self.display) as canvas:
             canvas.AlignCenter()
             canvas.AlignMiddle()
-            canvas.Font("Roboto")
+            canvas.Font("StopSignalFont")
             canvas.TextSize(98)
             distance = display.Height/14
 
             if answer:
-                score = math.ceil((self.tc.StopSignalResponseTimeout - time)/10)
+                score = math.ceil((self.tc.StopSignal.ResponseTimeout - time)/10)
                 score = score if score > 0 else 1
                 self.score = int(self.score + score)
                 self.accumulated = int(self.accumulated + score)
@@ -234,7 +234,7 @@ class GameFeedback:
         with self.tc.Image.GetCanvas(self.display) as canvas:
             canvas.AlignCenter()
             canvas.AlignMiddle()
-            canvas.Font("Roboto")
+            canvas.Font("StopSignalFont")
             canvas.TextSize(98)
             distance = display.Height/14
 
@@ -261,12 +261,28 @@ class CognitiveTask:
         self.StopTask = StopSignalTask(self.tc, UpDownAlgorithm(self.tc, stepsize, initialDelay), self.Feedback, self.Triggers)
         self.GoTask = GoSignalTask(self.tc, self.Feedback, self.Triggers)        
         return True
-
+   
     def Complete(self):
         self.StopTask.Complete()
         self.GoTask.Complete()        
         self.Feedback.Complete()
         self.Triggers.Complete()
+
+        # Calcuulate Reaction Time(RT)
+        gtTime = self.tc.Current.Annotations.gtTime
+        gtAnswer = self.tc.Current.Annotations.gtAnswer
+        rt = [time for time, answer in zip(gtTime, gtAnswer) if answer]
+        rt = int(sum(rt) / len(rt) if rt else 0)
+        self.tc.Current.Annotations.SetInteger("RT", rt)
+
+        #Calculate Stop Signal Delay (SSD)
+        ssd = self.tc.Current.Annotations.sstStopSignalDelays
+        ssd = int(sum(ssd) / len(ssd) if ssd else 0)
+        self.tc.Current.Annotations.SetInteger("SSD", ssd)
+
+        # Calculate Stop Signal Reaction Time (SSRT)
+        self.tc.Current.Annotations.SetInteger("SSRT", rt - ssd)
+        
         return True
     
     def Stimulate(self):
@@ -275,17 +291,17 @@ class CognitiveTask:
         
         if tc.StimulusName == "STOP":
             tc.Scheduler.Run(tc.Scheduler.Create()
-                        .Add(tc.StopSignalFixationDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add(tc.StopSignal.FixationDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
                         .Add(lambda: self.StopTask.Go())
                         .Add(lambda: self.StopTask.Stop())
-                        .Add( tc.StopSignalFeedbackDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add( tc.StopSignal.FeedbackDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
                         .Add(lambda: self.StopTask.Feedback()))
             
         elif tc.StimulusName == "GO":
             tc.Scheduler.Run(tc.Scheduler.Create()
-                        .Add(tc.StopSignalFixationDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add(tc.StopSignal.FixationDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
                         .Add(lambda: self.GoTask.Go())
-                        .Add(tc.StopSignalFeedbackDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
+                        .Add(tc.StopSignal.FeedbackDelay, lambda: display.Display(tc.Assets.StopSignalGameImages.FixationCross))
                         .Add(lambda: self.GoTask.Feedback()))
         else:
             tc.Log.Error("Unknown stimulus: {name}".format(name = tc.StimulusName))
@@ -299,21 +315,8 @@ def DisplayScore(tc):
     with tc.Image.GetCanvas(tc.DisplayWidth, tc.DisplayHeight) as canvas:
         canvas.AlignCenter()
         canvas.AlignMiddle()
-        canvas.Font("Roboto")
+        canvas.Font("StopSignalFont")
         canvas.TextSize(72)
         canvas.Color("#FFFFFF")
         canvas.Write(tc.DisplayWidth/2, tc.DisplayHeight/2, "Final Score: {points} points".format(points = int(tc.Current.Annotations.score)))
         return canvas.GetAsset()
-    
-def CalculateRT(tc):
-    gtTime = tc.StopSignalGame.Annotations.gtTime
-    gtAnswer = tc.StopSignalGame.Annotations.gtAnswer
-    rt = [time for time, answer in zip(gtTime, gtAnswer) if answer]
-    return int(sum(rt) / len(rt) if rt else 0)
-
-def CalculateSSD(tc):
-    ssd = tc.StopSignalGame.Annotations.sstStopSignalDelays
-    return int(sum(ssd) / len(ssd) if ssd else 0)
-
-def CalculateSSRT(tc):
-    return CalculateRT(tc) - CalculateSSD(tc)

@@ -75,18 +75,20 @@
     <protocol>
         <templates>
             <protocol-variables>
-                <variable name="StopSignalTrainingStopSignals" value="2 if 'TEST' in Participant else 5"/> 
-                <variable name="StopSignalNumberOfStopSignals" value="5 if 'TEST' in Participant else 30"/> 
-                <variable name="StopSignalLowDelayLimit" value="50"/>
-                <variable name="StopSignalHighDelayLimit" value="750"/>
-                <variable name="StopSignalFixationDelay"  value="500"/>
-                <variable name="StopSignalResponseTimeout"  value="1000"/>
-                <variable name="StopSignalFeedbackDelay" value="1000"/>            
-                <variable name="StopSignalFeedbackTime" value="1000"/>
-                <variable name="StopSignalPause" value="1000"/>
-                <variable name="StopSignalPeriod" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
+                <struct name="StopSignal">
+                    <variable name="TrainingStopSignals" value="2 if 'TEST' in Participant else 5"/> 
+                    <variable name="NumberOfStopSignals" value="5 if 'TEST' in Participant else 30"/> 
+                    <variable name="LowDelayLimit" value="50"/>
+                    <variable name="HighDelayLimit" value="750"/>
+                    <variable name="FixationDelay"  value="500"/>
+                    <variable name="ResponseTimeout"  value="1000"/>
+                    <variable name="FeedbackDelay" value="1000"/>            
+                    <variable name="FeedbackTime" value="1000"/>
+                    <variable name="Pause" value="1000"/>
+                    <variable name="Period" value="(StopSignalFixationDelay + StopSignalResponseTimeout + StopSignalFeedbackDelay + StopSignalFeedbackTime + StopSignalPause)/1000"/>
 
-                <variable name="CognitiveTask" value="func: StopSignalGameScript.CreateTask(tc)"/>
+                    <variable name="Task" value="func: StopSignalGameScript.CreateTask(tc)"/>
+                </struct>
             </protocol-variables>
 
             <procedure-templates>
@@ -99,7 +101,7 @@
                         <dependency id="var: dependency" virtual="true" />
                     </dependencies>
 
-                    <procedure-events complete="CognitiveTask.Complete()" />
+                    <procedure-events complete="StopSignal.Task.Complete()" />
 
                     <properties>
                         <participant-instructions experimental-setup-id="image"
@@ -107,8 +109,8 @@
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="CognitiveTask.Initialize(100, 150)"
-                                        stimulate="CognitiveTask.Stimulate()"
+                    <stimulation-scripts initialize="StopSignal.Task.Initialize(100, 150)"
+                                        stimulate="StopSignal.Task.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
                         <instrument name="ImageDisplay" interface="image-display"/>
@@ -117,8 +119,8 @@
                     </stimulation-scripts>
 
                     <stimulation-pattern time-base="seconds">
-                        <sequence Tperiod="StopSignalPeriod" 
-                            iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
+                        <sequence Tperiod="StopSignal.Period" 
+                            iterations="NumberOfStimuli * StopSignal.TrainingStopSignals" />                        
                     </stimulation-pattern>
 
                     <stimuli order="block-random">
@@ -136,7 +138,7 @@
                         <dependency id="var: trainingProcedure" virtual="true" />
                     </dependencies>
 
-                    <procedure-events complete="CognitiveTask.Complete()" />
+                    <procedure-events complete="StopSignal.Task.Complete()" />
 
                     <properties>
                         <participant-instructions experimental-setup-id="image"
@@ -145,8 +147,8 @@
                     </properties>
 
                     <stimulation-scripts 
-                        initialize="var: f'CognitiveTask.Initialize(50, {trainingProcedure}.Annotations.sstLastStopSignalDelay)'"
-                        stimulate="CognitiveTask.Stimulate()"
+                        initialize="var: f'StopSignal.Task.Initialize(50, {trainingProcedure}.Annotations.sstLastStopSignalDelay)'"
+                        stimulate="StopSignal.Task.Stimulate()"
                         stimulus-description="Image"
                         stimulus-unit="N/A">
 
@@ -157,7 +159,7 @@
 
                     <stimulation-pattern time-base="seconds">
                         <sequence Tperiod="StopSignalPeriod" 
-                            iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
+                            iterations="NumberOfStimuli * StopSignal.NumberOfStopSignals" />
                     </stimulation-pattern>
 
                     <stimuli order="block-random">
@@ -180,7 +182,7 @@
                     </aliases>
                 </file-asset>
                 <file-asset file="StopSignalGameScript.py" />
-                <file-asset id="Roboto" file="Roboto-Regular.ttf" />
+                <file-asset id="StopSignalFont" file="Roboto-Regular.ttf" />
             </assets>
         </templates>
         <procedures>
@@ -211,9 +213,9 @@
             filename="dynamic: f'{Participant}.csv'">
             <item name="ID" value="Participant" default="NA"/>
             <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
-            <item name="RT" value="func: StopSignalGameScript.CalculateRT(tc)" default="NA" />
-            <item name="SSD" value="func: StopSignalGameScript.CalculateSSD(tc)" default="NA" />
-            <item name="SSRT" value="func: StopSignalGameScript.CalculateSSRT(tc)" default="NA" />
+            <item name="RT" value="StopSignalGame.Annotations.score.RT" default="NA" />
+            <item name="SSD" value="StopSignalGame.Annotations.SSD" default="NA" />
+            <item name="SSRT" value="StopSignalGame.Annotations.SSRT" default="NA" />
         </export-to-csv>                
     </post-actions>
 </experiment>
