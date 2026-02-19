@@ -7,11 +7,7 @@
          <experimental-setup name="Joystick" id="JOYSTICK">
             <devices>
                <joystick id="joystick">
-                  <map experimental-setup-id="image">
-                     <button-assignment code="16" button="left" label="left"/> 
-                     <button-assignment code="32" button="right" label="right"/> 
-                  </map>
-                  <map experimental-setup-id="questionnaire">
+                  <map experimental-setup-id="match: image|questionnaire">
                      <button-assignment code="16" button="previous" label="previous"/> 
                      <button-assignment code="32" button="next" label="next"/> 
                      <button-assignment code="2" button="up" label="up" />
