@@ -5,7 +5,7 @@
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
-                <map>
+                <map experimental-setup-id="match: image|sstSetup">
                     <button-assignment code="80" button="left" label="Left"/> <!-- number: 5-->
                     <button-assignment code="160" button="right" label="Right"/> <!--  number: 7 -->
                 </map>
@@ -20,9 +20,8 @@
 
                 <configurations>
                     <image-display id="image"
-                        experimental-setup-id="image"
+                        experimental-setup-id="match: image|sstSetup"
                         background-colour="rgb(0,0,0)" />
-
                 </configurations>                
             </display>         
         </devices>
@@ -40,7 +39,7 @@
                     <response-pad id="pad" 
                         type="button-4-cross" 
                         timing-source="response-port02">
-                        <map>
+                        <map experimental-setup-id="match: image|sstSetup">
                             <button-assignment code="5" button="left" label="Left" />
                             <button-assignment code="6" button="right" label="Right" />
                         </map>
@@ -60,7 +59,7 @@
 
                 <configurations>
                     <image-display id="image"
-                        experimental-setup-id="sstSetup"
+                        experimental-setup-id="match: image|sstSetup"
                         background-colour="rgb(0,0,0)" />
                 </configurations>                
             </display>         
@@ -93,7 +92,7 @@
 
             <procedure-templates>
                 <stimulation-sequence id="StopSignalTraining"
-                    experimental-setup-id="var: experimentalSetup"
+                    experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
 
@@ -130,7 +129,7 @@
                 </stimulation-sequence>
 
                 <stimulation-sequence id="StopSignalGame"
-                    experimental-setup-id="var: experimentalSetup"
+                    experimental-setup-id="sstSetup"
                     response-collection="none"
                     stimulus-update-rate="44100">
 
@@ -191,7 +190,6 @@
                 template="StopSignalTraining">
                 <variables>
                     <string name="dependency" value="" />
-                    <string name="experimentalSetup" value="image" />
                 </variables>
             </stimulation-sequence-constructor>
 
@@ -199,7 +197,6 @@
                 name="Stop Signal Game" 
                 template="StopSignalGame">
                 <variables>
-                    <string name="experimentalSetup" value="image" />
                     <string name="trainingProcedure" value="StopSignalTraining" />
                 </variables>
             </stimulation-sequence-constructor>
