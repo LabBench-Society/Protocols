@@ -213,7 +213,7 @@
             filename="dynamic: f'{Participant}.csv'">
             <item name="ID" value="Participant" default="NA"/>
             <item name="Score" value="StopSignalGame.Annotations.score" default="NA" />
-            <item name="RT" value="StopSignalGame.Annotations.score.RT" default="NA" />
+            <item name="RT" value="StopSignalGame.Annotations.RT" default="NA" />
             <item name="SSD" value="StopSignalGame.Annotations.SSD" default="NA" />
             <item name="SSRT" value="StopSignalGame.Annotations.SSRT" default="NA" />
         </export-to-csv>                
