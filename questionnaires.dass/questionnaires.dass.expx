@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+    <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup-variants default="SetupID">
+        <experimental-setup id="SetupID" name="Name of experimental setup">
+            <devices>
+                <!--  Contents omitted for brevity -->
+            </devices>
+            <device-mapping>
+                <!--  Contents omitted for brevity -->
+            </device-mapping>
+        </experimental-setup>    
+    </experimental-setup-variants>
+    <protocol>
+        <languages>
+            <language code="en" name="English" />
+            <language code="da" name="Danish" />
+        </languages>
+        <templates>
+            <protocol-variables>
+            </protocol-variables>
+            <template-variables>
+            </template-variables>
+            <procedure-templates>
+            </procedure-templates>
+            <assets>
+                <file-asset file="DassCalculations.py" />
+                <file-asset file="DassText.py" />
+                <file-asset id="DassInstructions" file="DassInstructions_en.zip">
+                    <localisation>
+                        <language code="da" file="DassInstructions_da.zip" />
+                    </localisation>
+                    <aliases>
+                        <alias replace="Slide1" with="Instructions" />
+                    </aliases>
+                </file-asset>
+            </assets>           
+        </templates>
+        <procedures>
+            <!--  Contents omitted for brevity -->
+        </procedures>
+    </protocol>
+    <post-actions>
+        <!--  Contents omitted for brevity -->
+    </post-actions>
+</experiment>

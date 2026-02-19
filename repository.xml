@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <repository xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://labbench.io/xsd/5.0/repository.xsd"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/repository.xsd"
             id="labbench.io"
             name="LabBench Protocol Repository">
 
@@ -166,6 +166,13 @@
             name="Alloknesis"
             labbench-version="6.0"
             category="Psychometrics;Demonstration Protocol"/>
+    </category>
+
+    <category name="Questionnaires" id="questionnaires">
+        <protocol id="questionnaires.dass" 
+            name="Depression Anxiety Stress Scales (DASS 42)" 
+            labbench-version="6.0"
+            category="Questionnaire;Depression;Anxiety;Stress" />
     </category>
 
     <category name="Calibration" id="calibration">
