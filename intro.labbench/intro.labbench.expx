@@ -29,8 +29,8 @@
                            inactive-colour="rgb(32,32,32)" />
                
                <configurations>
-                  <image-display id="match: image|sstSetup" 
-                     experimental-setup-id="sstSetup"
+                  <image-display id="image" 
+                     experimental-setup-id="match: image|sstSetup"
                      background-colour="rgb(0,0,0)" />
                   
                   <questionnaire id="questionnaire"
@@ -77,8 +77,8 @@
                            inactive-colour="rgb(32,32,32)" />
    
                <configurations>
-                  <image-display id="match: image|sstSetup" 
-                     experimental-setup-id="sstSetup" 
+                  <image-display id="image" 
+                     experimental-setup-id="match: image|sstSetup" 
                      background-colour="rgb(0,0,0)" />
 
                   <questionnaire id="questionnaire"
