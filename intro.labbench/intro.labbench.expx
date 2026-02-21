@@ -107,15 +107,15 @@
          </includes>
       </templates>
       <procedures>
-         <questionnaire id="SUBJECT"
-            name="Subject"
+         <questionnaire id="PARTICIPANT"
+            name="Participant"
             experimental-setup-id="image">
             <dependencies />
             <content>
                <likert 
                   id="SEX"
                   title="Sex"
-                  instruction="Please specify the biological sex of the subject">
+                  instruction="Please specify the biological sex of the participant">
 
                   <choice value="0" label="Female" />
                   <choice value="1" label="Male" />
@@ -124,7 +124,7 @@
                <numeric 
                   id="AGE"
                   title="Age"
-                  instruction="Please specify the age of the subject">
+                  instruction="Please specify the age of the participant">
                   <validation 
                      min="14"
                      min-included="true"
@@ -134,7 +134,7 @@
                <likert
                   id="HANDEDNESS"
                   title="Handedness"
-                  instruction="With hand do you prefer to use for hand writing?">
+                  instruction="With hand do the participant prefer to use for hand writing?">
                   <choice value="0" label="Right"/>
                   <choice value="1" label="Left"/>
                   <choice value="2" label="Any, I don't care"/>
@@ -146,7 +146,7 @@
                name="Depression Anxietry and Stress Scales (DASS)" 
                template="DASS">
                <variables>
-                  <string name="dependency" value="SUBJECT" />
+                  <string name="dependency" value="PARTICIPANT" />
                </variables>
          </questionnaire-constructor>
 
@@ -174,9 +174,9 @@
             separator=";"
             filename="dynamic: f'{Participant}.csv'">
             <item name="ID" value="Participant" default="NA"/>
-            <item name="Sex" value="SUBJECT.SEX" default="NA" />
-            <item name="Age" value="SUBJECT.AGE" default="NA" />
-            <item name="Handedness" value="SUBJECT.HANDEDNESS" default="NA" />
+            <item name="Sex" value="PARTICIPANT.SEX" default="NA" />
+            <item name="Age" value="PARTICIPANT.AGE" default="NA" />
+            <item name="Handedness" value="PARTICIPANT.HANDEDNESS" default="NA" />
 
             <!-- DASS Questionnaire-->
             <item name="Stress" value="DASS.Annotations.Stress" default="NA" />
