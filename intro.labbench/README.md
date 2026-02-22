@@ -2,11 +2,11 @@
 
 *Kristian Hennings*
 
-This protocol is a study on the correlation between depression, anxiety and stress assessed with the DASS scale, and response inhibition measured with the Stop-Signal Task. It is written to demonstrate the capabilities of LabBench to automate experimental protocols, providing guidance to operators and subjects, and for automatic processing and export of experimental data.
+This protocol is a study on the correlation between depression, anxiety and stress assessed with the DASS scale, and response inhibition measured with the Stop-Signal Task. It is written to demonstrate the capabilities of LabBench to automate experimental protocols, providing guidance to operators and participants, and for automatic processing and export of experimental data.
 
 ## Introduction
 
-The purpose of this protocol is to demonstrate how an experimental protocol can be implemented with LabBench, which is demonstrated with a protocol that studies the relationship between Depression, Anxiety and Stress, and response inhibition is implemented. Depression, Anxiety and Stress is assessed with the DASS scale from the Psychology Foundation of Australia []. The DASS scale measures three related emotional states of depression, anxiety, and stress on 42-item self-report questionnaire. 
+The purpose of this protocol is to demonstrate how an experimental protocol can be implemented with LabBench, which is demonstrated with a protocol that studies the relationship between Depression, Anxiety and Stress, and response inhibition is implemented. Depression, Anxiety and Stress is assessed with the DASS scale from the [Psychology Foundation of Australia](https://www2.psy.unsw.edu.au/dass/). The DASS scale measures three related emotional states of depression, anxiety, and stress on 42-item self-report questionnaire. 
 
 Response inhibition is assessed with the use of a gamified version of the Stop-Signal Task. The classical Stop-Signal Task measures the ability to supress actions that are no longer required or appropriate. In the Stop-Signal Task participants are asked to perform a Go task that at random and infrequent times are interrupted by a Stop-Signal. Without a Stop-Signal the subjects see a Go signal of a left or right arrow and must press the left or right button respectively. In these Go-trials, not pressing a button is an error and the goal is to press the correct right or left button as fast as possible. However, when a Stop-Signal is presented with a delay after the Go-Signal, the participant must inhibit their response, and in these trials pressing a button is an error. The delay between the Go and Stop signals is adjusted throughout the test to find the minimal delay at which the participants can inhibit their response.
 
@@ -35,14 +35,12 @@ LabBench is intended for experiments that takes place in a laboratory where equi
 
 In the present protocol we need to perform two experimental procedures; filling out a questionnaire, and performing a cognitive task based on visual stimuli (Stop-Signal Task). These two experimental procedures need the following instruments:
 
-| Procedure | Instruments  | Purpose  |
-|-----------|--------------|----------|
+| Procedure          | Instruments   | Purpose  |
+|--------------------|---------------|----------|
 | DASS Questionnaire | Questionnaire | The Questionnaire instrument makes it possible to display series questions to the subject, such as Likert scales, multiple choice, Boolean questions, etc. For the DASS questionnaire in the present protocol only Likert questions are displayed to the subject. |
-| | Button | The Button instrument makes it possible for the subject to give their answer to the questions in the DASS questionnaire. For the DASS questionnaire four buttons is defined; 1) Increase the Likert rating, 2) Decrease the Likert rating, 3) Go to the next question, and 4) Go to the previous question. |
-| Stop-Signal Task | ImageDisplay | The ImageDisplay instrument makes it possible to display images to the subject. For the Stop-Signal Task it is used to display the visual stimuli in the Go and Stop Trials and to give feedback to subject on whether they answered correctly (WIN + Score) or incorrectly (LOSS + Score). |
-| | Button | The Button instrument makes it possible for the subject to respond to the Go trials or to provide an incorrect answer (a response) in the Stop trials. |
-
-These three instrument types that are a small subset of the instruments that are available for LabBench protocols. Please see the manual LabBench Instruments [] for a full overview of all the instruments and their capabilities that are available.
+|                    | Button        | The Button instrument makes it possible for the subject to give their answer to the questions in the DASS questionnaire. For the DASS questionnaire four buttons is defined; 1) Increase the Likert rating, 2) Decrease the Likert rating, 3) Go to the next question, and 4) Go to the previous question. |
+| Stop-Signal Task   | ImageDisplay  | The ImageDisplay instrument makes it possible to display images to the subject. For the Stop-Signal Task it is used to display the visual stimuli in the Go and Stop Trials and to give feedback to subject on whether they answered correctly (WIN + Score) or incorrectly (LOSS + Score). |
+|                    | Button        | The Button instrument makes it possible for the subject to respond to the Go trials or to provide an incorrect answer (a response) in the Stop trials. |
 
 These instruments are provided by two alternative experimental setups; one based on the LabBench I/O device, and the other based on a standard USB joystick. This is possible as both a joystick and the LabBench I/O implements the Button instrument that is required for the protocol. In addition to either a joystick or an LabBench I/O both setups use a standard external monitor that implements the Questionnaire and ImageDisplay instruments.
 
@@ -108,15 +106,15 @@ The “Store experiment remotely in the repository” allows you to configure wh
 
 When you have provided an ID, Name, and chosen the experimental setup that match the devices you have available, then click the CREATE button. Once you click the CREATE button, the experiment will be created, and you will be taken to its Experiment page on the Experiments tab of the LabBench Designer.
 
-## Configuring the experiment
+## Managing the experiment
 
-Once the experiment is created, some experiments will need to be configured if they use devices that will need a different configuration based on which laboratory computer is used for the experiment. They may also need configuration if they use post session actions. The “Introduction to LabBench” use an external monitor (LabBench DISPLAY) where its size and location of fiducials needs to be configured. Consequently, this protocol needs to be configured after the experiment is created.
+Managing and export of data from experiments takes place on the Experiments tab of the LabBench Designer (see Figure 7). This tab consists of to the left a list of all the experiments that are currently installed on the computer and two the right the Experiment page for the currently selected experiment. 
 
 ![](images/IntroLabBench_Images/Slide6.PNG)
 
 *Figure 7:*
 
-Configuration of and export of data from experiments takes place on the Experiments tab of the LabBench Designer (see Figure 7). This tab consists of to the left a list of all the experiments that are currently installed on the computer and two the right the Experiment page for the currently selected experiment. The experiment page consists of up three tabs:
+The experiment page consists of up three tabs:
 
 ![](images/IntroLabBench_Images/Slide20.PNG)
 
