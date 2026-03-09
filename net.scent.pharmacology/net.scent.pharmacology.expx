@@ -39,67 +39,69 @@
         </experimental-setup>
     </experimental-setup-variants>
     <protocol>
-        <variables>
-            <!-- Maximal stimulation intensities -->
-            <variable name="PinImax" value="2"/>
-            <variable name="PatchImax" value="10"/>
-
-            <!-- Stimuli long stimuli -->
-            <variable name="PLP" value="50"/>
-
-            <!-- Stimuli sodium channels protocol -->
-            <!-- parameter for pulse 1-->
-            <variable name="T1" value="1"/>
-            <variable name="PT1" value="10"/>
-            <variable name="PS1" value="-0.2"/>
-
-            <!-- parameter for pulse 2-->
-            <variable name="T2" value="0.5"/>
-            <variable name="PT2" value="50"/>
-            <variable name="PS2" value="-0.2"/>
-
-            <!-- parameter for pulse 3-->
-            <variable name="T3" value="1"/>
-            <variable name="PT3" value="50"/>
-            <variable name="PS3" value="0.2"/>
-
-            <!-- parameter for pulse 4-->
-            <variable name="T4" value="90"/>
-            <variable name="PT4" value="90"/>
-            <variable name="PS4" value="-0.4"/>
-
-            <!-- parameterp for pulse 5-->
-            <variable name="T5" value="90"/>
-            <variable name="PT5" value="90"/>
-            <variable name="PS5" value="0.2"/>
-
-            <!-- Up/Down Parameters -->
-            <variable name="ReversalRule" value="1" />
-            <variable name="StepSize" value="0.25" />
-            <variable name="StepSizeReduction" value="0.5" />
-            <variable name="MaxStepSizeReduction" value="0.25"/>
-
-            <!-- Psi Method -->
-            <variable name="Trials" value="30"/> 
-            <variable name="Imult" value="4"/>
-            <variable name="alphaX0" value="0.05"/>
-            <variable name="alphaN" value="200"/>
-            <variable name="intensityX0" value="0.05"/>
-            <variable name="intensityN" value="100"/>
-            <variable name="Del" value="5"/>
-            <variable name="betaX0" value="0"/>
-            <variable name="betaN" value="1.2"/>
-        </variables>
         <templates>
-            <procedure-templates>
+            <protocol-variables>
+                <struct name="Scent">
+                    <!-- Maximal stimulation intensities -->
+                    <variable name="PinImax" value="2"/>
+                    <variable name="PatchImax" value="10"/>
+
+                    <!-- Stimuli long stimuli -->
+                    <variable name="PLP" value="50"/>
+
+                    <!-- Stimuli sodium channels protocol -->
+                    <!-- parameter for pulse 1-->
+                    <variable name="T1" value="1"/>
+                    <variable name="PT1" value="10"/>
+                    <variable name="PS1" value="-0.2"/>
+
+                    <!-- parameter for pulse 2-->
+                    <variable name="T2" value="0.5"/>
+                    <variable name="PT2" value="50"/>
+                    <variable name="PS2" value="-0.2"/>
+
+                    <!-- parameter for pulse 3-->
+                    <variable name="T3" value="1"/>
+                    <variable name="PT3" value="50"/>
+                    <variable name="PS3" value="0.2"/>
+
+                    <!-- parameter for pulse 4-->
+                    <variable name="T4" value="90"/>
+                    <variable name="PT4" value="90"/>
+                    <variable name="PS4" value="-0.4"/>
+
+                    <!-- parameterp for pulse 5-->
+                    <variable name="T5" value="90"/>
+                    <variable name="PT5" value="90"/>
+                    <variable name="PS5" value="0.2"/>
+
+                    <!-- Up/Down Parameters -->
+                    <variable name="ReversalRule" value="1" />
+                    <variable name="StepSize" value="0.25" />
+                    <variable name="StepSizeReduction" value="0.5" />
+                    <variable name="MaxStepSizeReduction" value="0.25"/>
+
+                    <!-- Psi Method -->
+                    <variable name="Trials" value="30"/> 
+                    <variable name="Imult" value="4"/>
+                    <variable name="alphaX0" value="0.05"/>
+                    <variable name="alphaN" value="200"/>
+                    <variable name="intensityX0" value="0.05"/>
+                    <variable name="intensityN" value="100"/>
+                    <variable name="Del" value="5"/>
+                    <variable name="betaX0" value="0"/>
+                    <variable name="betaN" value="1.2"/>
+                </struct>
+            </protocol-variables>
+            <procedure-templates>                
                 <psychophysics-stimulus-presentation id="SCENTFamilization" stimulus-update-rate="20000">
                     <properties>
-                        <instructions default="var: 'SCENTInstructions.{e}'.format(e = electrode)" override-results="false" />
+                        <instructions default="var: f'SCENTInstructions.{electrode}'" override-results="false" />
                     </properties>
 
                     <intensity type="geomspace" 
-                        x0="var: '{e}Imax/20.0'.format(e = electrode)" 
-                        x1="var: '{e}Imax'.format(e = electrode)" 
+                        x0="var: f'Scent.{electrode}Imax/20.0'" 
+                        x1="var: f'Scent.{electrode}Imax'" 
                         n="20" />
 
                     <responses response-collection="yes-no" />
@@ -130,13 +132,13 @@
                     <yes-no-task />
 
                     <channels>
-                        <channel id="C01" name="pulse 1" Imax="var: '{e}Imax'.format(e = electrode)">
+                        <channel id="C01" name="pulse 1" Imax="var: 'Scent.{e}Imax'.format(e = electrode)">
                             <up-down-method reversal-rule="ReversalRule"
                                             skip-rule="1"
                                             start-intensity="0.1"
-                                            step-size="StepSize"
-                                            max-step-size-reduction="MaxStepSizeReduction"
-                                            step-size-reduction="StepSizeReduction"
+                                            step-size="Scent.StepSize"
+                                            max-step-size-reduction="Scent.MaxStepSizeReduction"
+                                            step-size-reduction="Scent.StepSizeReduction"
                                             stop-rule="3" />
 
                             <triggers>
@@ -164,14 +166,14 @@
 
                     <yes-no-task  />
 
-                    <stimulus-channel-template Imax="var: '{e}Imax'.format(e = electrode)">
+                    <stimulus-channel-template Imax="var: 'Scent.{e}Imax'.format(e = electrode)">
                         <up-down-method down-rule="1"
                                         up-rule="1"
                                         skip-rule="1"
                                         start-intensity="var: '0.5 * {d}.C01'.format(d = dependency)"
-                                        step-size="StepSize"
-                                        max-step-size-reduction="MaxStepSizeReduction"
-                                        step-size-reduction="StepSizeReduction"
+                                        step-size="Scent.StepSize"
+                                        max-step-size-reduction="Scent.MaxStepSizeReduction"
+                                        step-size-reduction="Scent.StepSizeReduction"
                                         stop-rule="3" />                        
                     </stimulus-channel-template>
 
@@ -185,15 +187,15 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS1*x"
-                                        Ts="PT1+T1"
+                                    <pulse Is="Scent.PS1*x"
+                                        Ts="Scent.PT1+Scent.T1"
                                         Tdelay="0"/>
-                                    <pulse Is="x-PS1*x"
-                                        Ts="T1"
-                                        Tdelay="PT1"/>
-                                    <pulse Is="-1*((PS1*x)*(PT1+T1)+(x-PS1*x)*T1)/(PT1*5+T1*5)"
-                                        Ts="PT1*5+T1*5"
-                                        Tdelay="PT1+T1+Del"/>
+                                    <pulse Is="x-Scent.PS1*x"
+                                        Ts="Scent.T1"
+                                        Tdelay="Scent.PT1"/>
+                                    <pulse Is="-1*((Scent.PS1*x)*(Scent.PT1+Scent.T1)+(x-Scent.PS1*x)*Scent.T1)/(Scent.PT1*5+Scent.T1*5)"
+                                        Ts="Scent.PT1*5+Scent.T1*5"
+                                        Tdelay="Scent.PT1+Scent.T1+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
@@ -207,15 +209,15 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS2*x"
-                                        Ts="PT2+T2"
+                                    <pulse Is="Scent.PS2*x"
+                                        Ts="Scent.PT2+Scent.T2"
                                         Tdelay="0"/>
-                                    <pulse Is="x-PS2*x"
-                                        Ts="T2"
-                                        Tdelay="PT2"/>
-                                    <pulse Is="-1*((PS2*x)*(PT2+T2)+(x-PS2*x)*T2)/(PT2*5+T2*5)"
-                                        Ts="PT2*5+T2*5"
-                                        Tdelay="PT2+T2+Del"/>
+                                    <pulse Is="x-Scent.PS2*x"
+                                        Ts="Scent.T2"
+                                        Tdelay="Scent.PT2"/>
+                                    <pulse Is="-1*((Scent.PS2*x)*(Scent.PT2+Scent.T2)+(x-Scent.PS2*x)*Scent.T2)/(Scent.PT2*5+Scent.T2*5)"
+                                        Ts="Scent.PT2*5+Scent.T2*5"
+                                        Tdelay="Scent.PT2+Scent.T2+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
@@ -229,15 +231,15 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS5*x"
-                                        Ts="PT5+T5"
+                                    <pulse Is="Scent.PS5*x"
+                                        Ts="Scent.PT5+Scent.T5"
                                         Tdelay="0"/>
-                                    <ramp Is="x-PS5*x"
-                                        Ts="T5"
-                                        Tdelay="PT5"/>
-                                    <pulse Is="-1*((PS5*x)*(PT5+T5)+((x-PS5*x)*T5)*0.5)/(PT5*5+T5*5)"
-                                        Ts="PT5*5+T5*5"
-                                        Tdelay="PT5+T5+Del"/>
+                                    <ramp Is="x-Scent.PS5*x"
+                                        Ts="Scent.T5"
+                                        Tdelay="Scent.PT5"/>
+                                    <pulse Is="-1*((Scent.PS5*x)*(Scent.PT5+Scent.T5)+((x-Scent.PS5*x)*Scent.T5)*0.5)/(Scent.PT5*5+Scent.T5*5)"
+                                        Ts="Scent.PT5*5+Scent.T5*5"
+                                        Tdelay="Scent.PT5+Scent.T5+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
@@ -253,12 +255,12 @@
                     <yes-no-task />
 
                     <channels>
-                        <channel id="C01" name="Pulse 1" Imax="var: 'min(Imult * {d}.C01, Stimulator.Imax)'.format(d = dependency)">
-                            <psi-method number-of-trials="Trials">
+                        <channel id="C01" name="Pulse 1" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                            <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
-                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
-                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                                <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
+                                <alpha type="linspace" x0="Scent.alphaX0" x1="1" n="Scent.alphaN" />
+                                <intensity type="linspace" x0="Scent.intensityX0" x1="1" n="Scent.intensityN" />
                             </psi-method>
 
                             <triggers>
@@ -269,25 +271,25 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS1*x"
-                                        Ts="PT1+T1"
+                                    <pulse Is="Scent.PS1*x"
+                                        Ts="Scent.PT1+Scent.T1"
                                         Tdelay="0"/>
-                                    <pulse Is="x-PS1*x"
-                                        Ts="T1"
-                                        Tdelay="PT1"/>
-                                    <pulse Is="-1*((PS1*x)*(PT1+T1)+(x-PS1*x)*T1)/(PT1*5+T1*5)"
-                                        Ts="PT1*5+T1*5"
-                                        Tdelay="PT1+T1+Del"/>
+                                    <pulse Is="x-Scent.PS1*x"
+                                        Ts="Scent.T1"
+                                        Tdelay="Scent.PT1"/>
+                                    <pulse Is="-1*((Scent.PS1*x)*(Scent.PT1+Scent.T1)+(x-Scent.PS1*x)*Scent.T1)/(Scent.PT1*5+Scent.T1*5)"
+                                        Ts="Scent.PT1*5+Scent.T1*5"
+                                        Tdelay="Scent.PT1+Scent.T1+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
 
-                        <channel id="C02" name="pulse 2" Imax="var: 'min(Imult * {d}.C02, Stimulator.Imax)'.format(d = dependency)">
-                            <psi-method number-of-trials="Trials">
+                        <channel id="C02" name="pulse 2" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                            <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
-                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
-                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                                <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
+                                <alpha type="linspace" x0="Scent.alphaX0" x1="1" n="Scent.alphaN" />
+                                <intensity type="linspace" x0="Scent.intensityX0" x1="1" n="Scent.intensityN" />
                             </psi-method>
 
                             <triggers>
@@ -298,25 +300,25 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS2*x"
-                                        Ts="PT2+T2"
+                                    <pulse Is="Scent.PS2*x"
+                                        Ts="Scent.PT2+Scent.T2"
                                         Tdelay="0"/>
-                                    <pulse Is="x-PS2*x"
-                                        Ts="T2"
-                                        Tdelay="PT2"/>
-                                    <pulse Is="-1*((PS2*x)*(PT2+T2)+(x-PS2*x)*T2)/(PT2*5+T2*5)"
-                                        Ts="PT2*5+T2*5"
-                                        Tdelay="PT2+T2+Del"/>
+                                    <pulse Is="x-Scent.PS2*x"
+                                        Ts="Scent.T2"
+                                        Tdelay="Scent.PT2"/>
+                                    <pulse Is="-1*((Scent.PS2*x)*(Scent.PT2+Scent.T2)+(x-Scent.PS2*x)*Scent.T2)/(Scent.PT2*5+Scent.T2*5)"
+                                        Ts="Scent.PT2*5+Scent.T2*5"
+                                        Tdelay="Scent.PT2+Scent.T2+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
 
-                        <channel id="C03" name="pulse 3" Imax="var: 'min(Imult * {d}.C01, Stimulator.Imax)'.format(d = dependency)">
-                            <psi-method number-of-trials="Trials">
+                        <channel id="C03" name="pulse 3" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                            <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
-                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
-                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                                <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
+                                <alpha type="linspace" x0="Scent.alphaX0" x1="1" n="Scent.alphaN" />
+                                <intensity type="linspace" x0="Scent.intensityX0" x1="1" n="Scent.intensityN" />
                             </psi-method>
 
                             <triggers>
@@ -327,25 +329,25 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS3*x"
-                                        Ts="PT3+T3"
+                                    <pulse Is="Scent.PS3*x"
+                                        Ts="Scent.PT3+Scent.T3"
                                         Tdelay="0"/>
-                                    <pulse Is="x-PS3*x"
+                                    <pulse Is="x-Scent.PS3*x"
                                         Ts="T3"
-                                        Tdelay="PT3"/>
-                                    <pulse Is="-1*((PS3*x)*(PT3+T3)+(x-PS3*x)*T3)/(PT3*5+T3*5)"
-                                        Ts="PT3*5+T3*5"
-                                        Tdelay="PT3+T3+Del"/>
+                                        Tdelay="Scent.PT3"/>
+                                    <pulse Is="-1*((Scent.PS3*x)*(Scent.PT3+Scent.T3)+(x-Scent.PS3*x)*Scent.T3)/(Scent.PT3*5+Scent.T3*5)"
+                                        Ts="Scent.PT3*5+Scent.T3*5"
+                                        Tdelay="Scent.PT3+Scent.T3+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
 
-                        <channel id="C04" name="pulse 4" Imax="var: 'min(Imult * {d}.C03, Stimulator.Imax)'.format(d = dependency)">
-                            <psi-method number-of-trials="Trials">
+                        <channel id="C04" name="pulse 4" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                            <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
-                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
-                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                                <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
+                                <alpha type="linspace" x0="Scent.alphaX0" x1="1" n="Scent.alphaN" />
+                                <intensity type="linspace" x0="Scent.intensityX0" x1="1" n="Scent.intensityN" />
                             </psi-method>
 
                             <triggers>
@@ -356,25 +358,25 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS4*x"
-                                        Ts="PT4+T4"
+                                    <pulse Is="Scent.PS4*x"
+                                        Ts="Scent.PT4+Scent.T4"
                                         Tdelay="0"/>
-                                    <ramp Is="x-PS4*x"
-                                        Ts="T4"
-                                        Tdelay="PT4"/>
-                                    <pulse Is="-1*((PS4*x)*(PT4+T4)+((x-PS4*x)*T4)*0.5)/(PT4*5+T4*5)"
-                                        Ts="PT4*5+T4*5"
-                                        Tdelay="PT4+T4+Del"/>
+                                    <ramp Is="x-Scent.PS4*x"
+                                        Ts="Scent.T4"
+                                        Tdelay="Scent.PT4"/>
+                                    <pulse Is="-1*((Scent.PS4*x)*(Scent.PT4+Scent.T4)+((x-Scent.PS4*x)*Scent.T4)*0.5)/(Scent.PT4*5+Scent.T4*5)"
+                                        Ts="Scent.PT4*5+Scent.T4*5"
+                                        Tdelay="Scent.PT4+Scent.T4+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
 
-                        <channel id="C05" name="pulse 5" Imax="var: 'min(Imult * {d}.C03, Stimulator.Imax)'.format(d = dependency)">
-                            <psi-method number-of-trials="Trials">
+                        <channel id="C05" name="pulse 5" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                            <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
-                                <beta type="linspace" x0="betaX0" x1="betaN" n="20"/>
-                                <alpha type="linspace" x0="alphaX0" x1="1" n="alphaN" />
-                                <intensity type="linspace" x0="intensityX0" x1="1" n="intensityN" />
+                                <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
+                                <alpha type="linspace" x0="Scent.alphaX0" x1="1" n="Scent.alphaN" />
+                                <intensity type="linspace" x0="Scent.intensityX0" x1="1" n="Scent.intensityN" />
                             </psi-method>
 
                             <triggers>
@@ -385,21 +387,24 @@
 
                             <stimulus>
                                 <combined>
-                                    <pulse Is="PS5*x"
-                                        Ts="PT5+T5"
+                                    <pulse Is="Scent.PS5*x"
+                                        Ts="Scent.PT5+Scent.T5"
                                         Tdelay="0"/>
-                                    <ramp Is="x-PS5*x"
-                                        Ts="T5"
-                                        Tdelay="PT5"/>
-                                    <pulse Is="-1*((PS5*x)*(PT5+T5)+((x-PS5*x)*T5)*0.5)/(PT5*5+T5*5)"
-                                        Ts="PT5*5+T5*5"
-                                        Tdelay="PT5+T5+Del"/>
+                                    <ramp Is="x-Scent.PS5*x"
+                                        Ts="Scent.T5"
+                                        Tdelay="Scent.PT5"/>
+                                    <pulse Is="-1*((Scent.PS5*x)*(Scent.PT5+Scent.T5)+((x-Scent.PS5*x)*Scent.T5)*0.5)/(Scent.PT5*5+Scent.T5*5)"
+                                        Ts="Scent.PT5*5+Scent.T5*5"
+                                        Tdelay="Scent.PT5+Scent.T5+Scent.Del"/>
                                 </combined>
                             </stimulus>
                         </channel>
                     </channels>
                 </psychophysics-threshold-estimation>            
             </procedure-templates>
+            <assets>
+                <file-asset id="SCENTInstructions" file="SCENTInstructions.zip" />
+            </assets>
         </templates>
         <procedures>
             <psychophysics-stimulus-presentation-constructor id="PINFAM" 
@@ -436,9 +441,6 @@
                 </variables>
             </psychophysics-threshold-estimation-constructor>
         </procedures>
-        <assets>
-            <file-asset id="SCENTInstructions" file="SCENTInstructions.zip" />
-        </assets>
     </protocol>
 
     <post-actions>
