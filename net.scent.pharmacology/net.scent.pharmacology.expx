@@ -93,7 +93,182 @@
                     <variable name="betaN" value="1.2"/>
                 </struct>
             </protocol-variables>
-            <procedure-templates>                
+            <procedure-templates>            
+                <psychophysics-stimulus-presentation id="SCENTPulse01Demo" stimulus-update-rate="20000">
+                    <properties>
+                        <instructions default="var: f'SCENTInstructions.{electrode}'" override-results="false" />
+                    </properties>
+
+                    <intensity type="geomspace" 
+                        x0="var: f'Scent.{electrode}Imax/20.0'" 
+                        x1="var: f'Scent.{electrode}Imax'" 
+                        n="20" />
+
+                    <responses response-collection="yes-no" />
+
+                    <triggers start-triggger="internal">
+                        <trigger duration="1">
+                            <code output="stimulator-trigger-output" value="1"/>
+                        </trigger>
+                    </triggers>
+                    
+                    <stimulation>
+                        <stimulus>
+                            <combined>
+                                <pulse Is="Scent.PS1*x"
+                                    Ts="Scent.PT1+Scent.T1"
+                                    Tdelay="0"/>
+                                <pulse Is="x-Scent.PS1*x"
+                                    Ts="Scent.T1"
+                                    Tdelay="Scent.PT1"/>
+                                <pulse Is="-1*((Scent.PS1*x)*(Scent.PT1+Scent.T1)+(x-Scent.PS1*x)*Scent.T1)/(Scent.PT1*5+Scent.T1*5)"
+                                    Ts="Scent.PT1*5+Scent.T1*5"
+                                    Tdelay="Scent.PT1+Scent.T1+Scent.Del"/>
+                            </combined>
+                        </stimulus>
+                    </stimulation>
+                </psychophysics-stimulus-presentation>
+
+                <psychophysics-stimulus-presentation id="SCENTPulse02Demo" stimulus-update-rate="20000">
+                    <properties>
+                        <instructions default="var: f'SCENTInstructions.{electrode}'" override-results="false" />
+                    </properties>
+
+                    <intensity type="geomspace" 
+                        x0="var: f'Scent.{electrode}Imax/20.0'" 
+                        x1="var: f'Scent.{electrode}Imax'" 
+                        n="20" />
+
+                    <responses response-collection="yes-no" />
+
+                    <triggers start-triggger="internal">
+                        <trigger duration="1">
+                            <code output="stimulator-trigger-output" value="1"/>
+                        </trigger>
+                    </triggers>
+                    
+                    <stimulation>
+                        <stimulus>
+                            <combined>
+                                <pulse Is="Scent.PS2*x"
+                                    Ts="Scent.PT2+Scent.T2"
+                                    Tdelay="0"/>
+                                <pulse Is="x-Scent.PS2*x"
+                                    Ts="Scent.T2"
+                                    Tdelay="Scent.PT2"/>
+                                <pulse Is="-1*((Scent.PS2*x)*(Scent.PT2+Scent.T2)+(x-Scent.PS2*x)*Scent.T2)/(Scent.PT2*5+Scent.T2*5)"
+                                    Ts="Scent.PT2*5+Scent.T2*5"
+                                    Tdelay="Scent.PT2+Scent.T2+Scent.Del"/>
+                            </combined>
+                        </stimulus>
+                    </stimulation>
+                </psychophysics-stimulus-presentation>
+
+                <psychophysics-stimulus-presentation id="SCENTPulse03Demo" stimulus-update-rate="20000">
+                    <properties>
+                        <instructions default="var: f'SCENTInstructions.{electrode}'" override-results="false" />
+                    </properties>
+
+                    <intensity type="geomspace" 
+                        x0="var: f'Scent.{electrode}Imax/20.0'" 
+                        x1="var: f'Scent.{electrode}Imax'" 
+                        n="20" />
+
+                    <responses response-collection="yes-no" />
+
+                    <triggers start-triggger="internal">
+                        <trigger duration="1">
+                            <code output="stimulator-trigger-output" value="1"/>
+                        </trigger>
+                    </triggers>
+                    
+                    <stimulation>
+                        <stimulus>
+                            <combined>
+                                <pulse Is="Scent.PS3*x"
+                                    Ts="Scent.PT3+Scent.T3"
+                                    Tdelay="0"/>
+                                <pulse Is="x-Scent.PS3*x"
+                                    Ts="Scent.T3"
+                                    Tdelay="Scent.PT3"/>
+                                <pulse Is="-1*((Scent.PS3*x)*(Scent.PT3+Scent.T3)+(x-Scent.PS3*x)*Scent.T3)/(Scent.PT3*5+Scent.T3*5)"
+                                    Ts="Scent.PT3*5+Scent.T3*5"
+                                    Tdelay="Scent.PT3+Scent.T3+Scent.Del"/>
+                            </combined>
+                        </stimulus>
+                    </stimulation>
+                </psychophysics-stimulus-presentation>
+
+                <psychophysics-stimulus-presentation id="SCENTPulse04Demo" stimulus-update-rate="20000">
+                    <properties>
+                        <instructions default="var: f'SCENTInstructions.{electrode}'" override-results="false" />
+                    </properties>
+
+                    <intensity type="geomspace" 
+                        x0="var: f'Scent.{electrode}Imax/20.0'" 
+                        x1="var: f'Scent.{electrode}Imax'" 
+                        n="20" />
+
+                    <responses response-collection="yes-no" />
+
+                    <triggers start-triggger="internal">
+                        <trigger duration="1">
+                            <code output="stimulator-trigger-output" value="1"/>
+                        </trigger>
+                    </triggers>
+                    
+                    <stimulation>
+                        <stimulus>
+                            <combined>
+                                <pulse Is="Scent.PS4*x"
+                                    Ts="Scent.PT4+Scent.T4"
+                                    Tdelay="0"/>
+                                <ramp Is="x-Scent.PS4*x"
+                                    Ts="Scent.T4"
+                                    Tdelay="Scent.PT4"/>
+                                <pulse Is="-1*((Scent.PS4*x)*(Scent.PT4+Scent.T4)+((x-Scent.PS4*x)*Scent.T4)*0.5)/(Scent.PT4*5+Scent.T4*5)"
+                                    Ts="Scent.PT4*5+Scent.T4*5"
+                                    Tdelay="Scent.PT4+Scent.T4+Scent.Del"/>
+                            </combined>
+                        </stimulus>
+                    </stimulation>
+                </psychophysics-stimulus-presentation>
+
+                <psychophysics-stimulus-presentation id="SCENTPulse05Demo" stimulus-update-rate="20000">
+                    <properties>
+                        <instructions default="var: f'SCENTInstructions.{electrode}'" override-results="false" />
+                    </properties>
+
+                    <intensity type="geomspace" 
+                        x0="var: f'Scent.{electrode}Imax/20.0'" 
+                        x1="var: f'Scent.{electrode}Imax'" 
+                        n="20" />
+
+                    <responses response-collection="yes-no" />
+
+                    <triggers start-triggger="internal">
+                        <trigger duration="1">
+                            <code output="stimulator-trigger-output" value="1"/>
+                        </trigger>
+                    </triggers>
+                    
+                    <stimulation>
+                        <stimulus>
+                            <combined>
+                                <pulse Is="Scent.PS5*x"
+                                    Ts="Scent.PT5+Scent.T5"
+                                    Tdelay="0"/>
+                                <ramp Is="x-Scent.PS5*x"
+                                    Ts="Scent.T5"
+                                    Tdelay="Scent.PT5"/>
+                                <pulse Is="-1*((Scent.PS5*x)*(Scent.PT5+Scent.T5)+((x-Scent.PS5*x)*Scent.T5)*0.5)/(Scent.PT5*5+Scent.T5*5)"
+                                    Ts="Scent.PT5*5+Scent.T5*5"
+                                    Tdelay="Scent.PT5+Scent.T5+Scent.Del"/>
+                            </combined>
+                        </stimulus>
+                    </stimulation>
+                </psychophysics-stimulus-presentation>
+
                 <psychophysics-stimulus-presentation id="SCENTFamilization" stimulus-update-rate="20000">
                     <properties>
                         <instructions default="var: f'SCENTInstructions.{electrode}'" override-results="false" />
@@ -406,6 +581,46 @@
             </assets>
         </templates>
         <procedures>
+            <psychophysics-stimulus-presentation-constructor id="PULSE01" 
+                name="PIN: Pulse 1" 
+                template="SCENTPulse01Demo">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                </variables>
+            </psychophysics-stimulus-presentation-constructor>
+
+            <psychophysics-stimulus-presentation-constructor id="PULSE02" 
+                name="PIN: Pulse 2" 
+                template="SCENTPulse02Demo">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                </variables>
+            </psychophysics-stimulus-presentation-constructor>
+
+            <psychophysics-stimulus-presentation-constructor id="PULSE03" 
+                name="PIN: Pulse 3" 
+                template="SCENTPulse03Demo">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                </variables>
+            </psychophysics-stimulus-presentation-constructor>
+
+            <psychophysics-stimulus-presentation-constructor id="PULSE04" 
+                name="PIN: Pulse 4" 
+                template="SCENTPulse04Demo">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                </variables>
+            </psychophysics-stimulus-presentation-constructor>
+
+            <psychophysics-stimulus-presentation-constructor id="PULSE05" 
+                name="PIN: Pulse 5" 
+                template="SCENTPulse05Demo">
+                <variables>
+                    <string name="electrode" value="Pin" />
+                </variables>
+            </psychophysics-stimulus-presentation-constructor>
+
             <psychophysics-stimulus-presentation-constructor id="PINFAM" 
                 name="PIN: Familization" 
                 template="SCENTFamilization">
