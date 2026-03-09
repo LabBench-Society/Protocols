@@ -133,7 +133,7 @@
 
                     <channels>
                         <channel id="C01" name="pulse 1" Imax="var: 'Scent.{e}Imax'.format(e = electrode)">
-                            <up-down-method reversal-rule="ReversalRule"
+                            <up-down-method reversal-rule="Scent.ReversalRule"
                                             skip-rule="1"
                                             start-intensity="0.1"
                                             step-size="Scent.StepSize"
@@ -167,8 +167,7 @@
                     <yes-no-task  />
 
                     <stimulus-channel-template Imax="var: 'Scent.{e}Imax'.format(e = electrode)">
-                        <up-down-method down-rule="1"
-                                        up-rule="1"
+                        <up-down-method reversal-rule="Scent.ReversalRule"
                                         skip-rule="1"
                                         start-intensity="var: '0.5 * {d}.C01'.format(d = dependency)"
                                         step-size="Scent.StepSize"
@@ -255,7 +254,7 @@
                     <yes-no-task />
 
                     <channels>
-                        <channel id="C01" name="Pulse 1" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                        <channel id="C01" name="Pulse 1" Imax="var: f'min(Scent.Imult * {dependency}.C01, Stimulator.Imax)'">
                             <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
@@ -284,7 +283,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C02" name="pulse 2" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                        <channel id="C02" name="pulse 2" Imax="var: f'min(Scent.Imult * {dependency}.C01, Stimulator.Imax)'">
                             <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
@@ -313,7 +312,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C03" name="pulse 3" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                        <channel id="C03" name="pulse 3" Imax="var: f'min(Scent.Imult * {dependency}.C01, Stimulator.Imax)'">
                             <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
@@ -333,7 +332,7 @@
                                         Ts="Scent.PT3+Scent.T3"
                                         Tdelay="0"/>
                                     <pulse Is="x-Scent.PS3*x"
-                                        Ts="T3"
+                                        Ts="Scent.T3"
                                         Tdelay="Scent.PT3"/>
                                     <pulse Is="-1*((Scent.PS3*x)*(Scent.PT3+Scent.T3)+(x-Scent.PS3*x)*Scent.T3)/(Scent.PT3*5+Scent.T3*5)"
                                         Ts="Scent.PT3*5+Scent.T3*5"
@@ -342,7 +341,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C04" name="pulse 4" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                        <channel id="C04" name="pulse 4" Imax="var: f'min(Scent.Imult * {dependency}.C01, Stimulator.Imax)'">
                             <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
@@ -371,7 +370,7 @@
                             </stimulus>
                         </channel>
 
-                        <channel id="C05" name="pulse 5" Imax="var: f'min(Imult * {dependency}.C01, Stimulator.Imax)'">
+                        <channel id="C05" name="pulse 5" Imax="var: f'min(Scent.Imult * {dependency}.C01, Stimulator.Imax)'">
                             <psi-method number-of-trials="Scent.Trials">
                                 <quick alpha="0.5" beta="1" lambda="0.05" gamma="0.05" />
                                 <beta type="linspace" x0="Scent.betaX0" x1="Scent.betaN" n="20"/>
