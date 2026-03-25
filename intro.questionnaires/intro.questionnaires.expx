@@ -152,7 +152,7 @@
                         top-anchor="Maximal Sensation" 
                         bottom-anchor="No Sensation" 
                         active-colour="rgb(255,0,0)" 
-                        inactive-colour="rgb(32,32,32">
+                        inactive-colour="rgb(32,32,32)">
                         <category value="C1" />
                         <category value="C2" />
                         <category value="C3" />
@@ -166,7 +166,7 @@
                         top-anchor="Maximal Sensation" 
                         bottom-anchor="No Sensation" 
                         active-colour="rgb(255,0,0)" 
-                        inactive-colour="rgb(32,32,32"/>
+                        inactive-colour="rgb(32,32,32)"/>
                     <numerical-scale id="numericalScaleQuestion" 
                         title="Numerical Rating Question"
                         instruction="Please rate your sensation"
@@ -175,7 +175,7 @@
                         top-anchor="Maximal Sensation" 
                         bottom-anchor="No Sensation" 
                         active-colour="rgb(255,0,0)" 
-                        inactive-colour="rgb(32,32,32"/>
+                        inactive-colour="rgb(32,32,32)"/>
                 </content>
             </questionnaire>               
 
@@ -285,7 +285,7 @@
                         top-anchor="Maximal Sensation" 
                         bottom-anchor="No Sensation" 
                         active-colour="rgb(255,0,0)" 
-                        inactive-colour="rgb(32,32,32">
+                        inactive-colour="rgb(32,32,32)">
                         <category value="C1" />
                         <category value="C2" />
                         <category value="C3" />
@@ -299,7 +299,7 @@
                         top-anchor="Maximal Sensation" 
                         bottom-anchor="No Sensation" 
                         active-colour="rgb(255,0,0)" 
-                        inactive-colour="rgb(32,32,32"/>
+                        inactive-colour="rgb(32,32,32)"/>
                     <numerical-scale id="numericalScaleQuestion" 
                         title="Numerical Rating Question"
                         instruction="Please rate your sensation"
@@ -308,7 +308,7 @@
                         top-anchor="Maximal Sensation" 
                         bottom-anchor="No Sensation" 
                         active-colour="rgb(255,0,0)" 
-                        inactive-colour="rgb(32,32,32"/>
+                        inactive-colour="rgb(32,32,32)"/>
                 </content>
             </questionnaire>               
         </procedures>
