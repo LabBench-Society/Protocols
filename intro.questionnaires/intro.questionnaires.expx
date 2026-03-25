@@ -8,14 +8,18 @@
             <devices>
                 <joystick id="joystick">
                     <map experimental-setup-id="questionnaire">
-                        <button-assignment code="1" button="left" label="Left" />
-                        <button-assignment code="2" button="up" label="Up" />
-                        <button-assignment code="4" button="down" label="Down" />
-                        <button-assignment code="8" button="right" label="Rigt" />
-                        <button-assignment code="16" button="decrease" label="Decrease" />
-                        <button-assignment code="32" button="increase" label="Increase" />
-                        <button-assignment code="64" button="previous" label="Previous" />
-                        <button-assignment code="128" button="next" label="Next" />
+                        <!-- 
+                            <button-assignment code="4" button="left" label="Left" />
+                            -->
+                        <button-assignment code="8" button="up" label="Up" />
+                        <button-assignment code="1" button="down" label="Down" />
+                        <!-- 
+                            <button-assignment code="2" button="right" label="Rigt" />
+                            -->
+                        <button-assignment code="4" button="decrease" label="Decrease" />
+                        <button-assignment code="2" button="increase" label="Increase" />
+                        <button-assignment code="16" button="previous" label="Previous" />
+                        <button-assignment code="32" button="next" label="Next" />
                     </map>                        
                 </joystick>
                 <display id="display" normative-distance="40">
@@ -50,7 +54,7 @@
                 name="Operator Controlled"
                 experimental-setup-id="questionnaire"
                 control="operator" 
-                progress-format="none">
+                progress-format="index">
 
                 <question-events start="True"
                                  changed="True"
@@ -114,13 +118,45 @@
                     <time id="timeQuestion" 
                         title="Time question"
                         instruction="Please enter a time" />
-                    <map id="mapQuestion"
-                        title="Map Question"
+                    <map id="mapQuestionSingle"
+                        title="Map Question (Single selection)"
                         instruction="Makes it possible for operators to mark single areas"
                         image-map="Assets.BodyMap.Areas"
                         overlay-image="Assets.BodyMap.Overlay"
                         initial-active-area="C01"
                         selection-mode="single"
+                        selected-colour="#ADFFA6"
+                        active-selected-colour="#82BF7C"
+                        deselected-colour="#FFFFFF"
+                        active-deselected-colour="#E3E3E3">
+
+                        <area id="C01" colour="#FF0A0A" down="C02" />
+                        <area id="C02" colour="#FF1414" down="C03" up="C01"/>
+                        <area id="C03" colour="#FF1E1E" down="C04" up="C02" left="C14" right="C17" />
+                        <area id="C04" colour="#FF2828" down="C05" up="C03" />
+                        <area id="C05" colour="#FF3232" down="C06" up="C04" left="C15" right="C18"/>
+                        <area id="C06" colour="#FF3C3C" down="C07" up="C05" left="C10" />
+                        <area id="C07" colour="#FF4646" down="C08" up="C06" left="C11" />
+                        <area id="C08" colour="#FF5050" down="C09" up="C07" left="C12" />
+                        <area id="C09" colour="#FF5A5A"            up="C08" left="C13" />
+                        <area id="C10" colour="#FF6464" down="C11" up="C05" right="C06" />
+                        <area id="C11" colour="#FF6E6E" down="C12" up="C10" right="C07" />
+                        <area id="C12" colour="#FF7878" down="C13" up="C11" right="C08" />
+                        <area id="C13" colour="#FF8282"            up="C12" right="C09" />
+                        <area id="C14" colour="#FF8C8C" down="C15"          right="C05" />
+                        <area id="C15" colour="#FF9696" down="C16" up="C14" right="C05" />
+                        <area id="C16" colour="#FFA0A0"            up="C15" />
+                        <area id="C17" colour="#FFAAAA" down="C18"          left="C03" />
+                        <area id="C18" colour="#FFB4B4" down="C19" up="C17" left="C05" />
+                        <area id="C19" colour="#FFBEBE"            up="C18"  />
+                    </map>
+                    <map id="mapQuestionMultiple"
+                        title="Map Question (Multiple selection)"
+                        instruction="Makes it possible for operators to mark multiple areas"
+                        image-map="Assets.BodyMap.Areas"
+                        overlay-image="Assets.BodyMap.Overlay"
+                        initial-active-area="C01"
+                        selection-mode="multiple"
                         selected-colour="#ADFFA6"
                         active-selected-colour="#82BF7C"
                         deselected-colour="#FFFFFF"
@@ -183,7 +219,7 @@
                 name="Participant Controlled"
                 experimental-setup-id="questionnaire"
                 control="participant" 
-                progress-format="none">
+                progress-format="percentage">
 
                 <question-events start="True"
                                  changed="True"
@@ -247,13 +283,45 @@
                     <time id="timeQuestion" 
                         title="Time question"
                         instruction="Please enter a time" />
-                    <map id="mapQuestion"
-                        title="Map Question"
-                        instruction="Makes it possible for participants to mark single areas"
+                    <map id="mapQuestionSingle"
+                        title="Map Question (Single selection)"
+                        instruction="Makes it possible for operators to mark single areas"
                         image-map="Assets.BodyMap.Areas"
                         overlay-image="Assets.BodyMap.Overlay"
                         initial-active-area="C01"
                         selection-mode="single"
+                        selected-colour="#ADFFA6"
+                        active-selected-colour="#82BF7C"
+                        deselected-colour="#FFFFFF"
+                        active-deselected-colour="#E3E3E3">
+
+                        <area id="C01" colour="#FF0A0A" down="C02" />
+                        <area id="C02" colour="#FF1414" down="C03" up="C01"/>
+                        <area id="C03" colour="#FF1E1E" down="C04" up="C02" left="C14" right="C17" />
+                        <area id="C04" colour="#FF2828" down="C05" up="C03" />
+                        <area id="C05" colour="#FF3232" down="C06" up="C04" left="C15" right="C18"/>
+                        <area id="C06" colour="#FF3C3C" down="C07" up="C05" left="C10" />
+                        <area id="C07" colour="#FF4646" down="C08" up="C06" left="C11" />
+                        <area id="C08" colour="#FF5050" down="C09" up="C07" left="C12" />
+                        <area id="C09" colour="#FF5A5A"            up="C08" left="C13" />
+                        <area id="C10" colour="#FF6464" down="C11" up="C05" right="C06" />
+                        <area id="C11" colour="#FF6E6E" down="C12" up="C10" right="C07" />
+                        <area id="C12" colour="#FF7878" down="C13" up="C11" right="C08" />
+                        <area id="C13" colour="#FF8282"            up="C12" right="C09" />
+                        <area id="C14" colour="#FF8C8C" down="C15"          right="C05" />
+                        <area id="C15" colour="#FF9696" down="C16" up="C14" right="C05" />
+                        <area id="C16" colour="#FFA0A0"            up="C15" />
+                        <area id="C17" colour="#FFAAAA" down="C18"          left="C03" />
+                        <area id="C18" colour="#FFB4B4" down="C19" up="C17" left="C05" />
+                        <area id="C19" colour="#FFBEBE"            up="C18"  />
+                    </map>
+                    <map id="mapQuestionMultiple"
+                        title="Map Question (Multiple selection)"
+                        instruction="Makes it possible for operators to mark multiple areas"
+                        image-map="Assets.BodyMap.Areas"
+                        overlay-image="Assets.BodyMap.Overlay"
+                        initial-active-area="C01"
+                        selection-mode="multiple"
                         selected-colour="#ADFFA6"
                         active-selected-colour="#82BF7C"
                         deselected-colour="#FFFFFF"
