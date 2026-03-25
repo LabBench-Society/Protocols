@@ -3,19 +3,13 @@
             xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants default="LIGHT">
-        <experimental-setup id="LIGHT" name="Light Mode">
+    <experimental-setup-variants default="DARK">
+        <experimental-setup id="LIGHT" name="Light Mode (Default)">
             <devices>
                 <joystick id="joystick">
                     <map experimental-setup-id="questionnaire">
-                        <!-- 
-                            <button-assignment code="4" button="left" label="Left" />
-                            -->
                         <button-assignment code="8" button="up" label="Up" />
                         <button-assignment code="1" button="down" label="Down" />
-                        <!-- 
-                            <button-assignment code="2" button="right" label="Rigt" />
-                            -->
                         <button-assignment code="4" button="decrease" label="Decrease" />
                         <button-assignment code="2" button="increase" label="Increase" />
                         <button-assignment code="16" button="previous" label="Previous" />
@@ -36,11 +30,38 @@
                 <device-assignment device-id="joystick" instrument-name="Button" />
             </device-mapping>
         </experimental-setup>
-        <!-- 
         <experimental-setup id="DARK" name="Dark Mode">
-
+            <devices>
+                <joystick id="joystick">
+                    <map experimental-setup-id="questionnaire">
+                        <button-assignment code="8" button="up" label="Up" />
+                        <button-assignment code="1" button="down" label="Down" />
+                        <button-assignment code="4" button="decrease" label="Decrease" />
+                        <button-assignment code="2" button="increase" label="Increase" />
+                        <button-assignment code="16" button="previous" label="Previous" />
+                        <button-assignment code="32" button="next" label="Next" />
+                    </map>                        
+                </joystick>
+                <display id="display" normative-distance="40">
+                    <typography
+                        background-colour="rgb(0,0,0)"
+                        foreground-colour="rgb(255,255,255)"
+                        active-colour="rgb(255,0,0)"
+                        inactive-colour="rgb(32,32,32)">
+                    </typography>
+                    <configurations>
+                        <image-display id="image" experimental-setup-id="image" />
+                        <questionnaire id="questionnaire" 
+                            experimental-setup-id="questionnaire" 
+                            controller-device="joystick"/>
+                    </configurations>
+                </display>            
+            </devices>
+            <device-mapping>
+                <device-assignment device-id="display.questionnaire" instrument-name="Questionnaire" />
+                <device-assignment device-id="joystick" instrument-name="Button" />
+            </device-mapping>
         </experimental-setup>
-        -->
     </experimental-setup-variants>
     <protocol>
         <languages>
