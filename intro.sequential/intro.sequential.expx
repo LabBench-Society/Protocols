@@ -124,7 +124,14 @@
     <assets>
       <file-asset id="Script" file="Script.py" />
       <file-asset id="Cards" file="Cards.zip" />
-      <file-asset id="Images" file="Images.zip" />
+      <file-asset id="Images" file="Images.zip">
+        <aliases>
+          <alias replace="Slide1" with="Cross" />
+          <alias replace="Slide2" with="Stimulating" />
+          <alias replace="Slide3" with="RatingInstruction" />
+          <alias replace="Slide4" with="Empty" />
+        </aliases>
+      </file-asset>
     </assets>
   </protocol>
   <post-actions>    
