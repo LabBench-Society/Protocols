@@ -17,6 +17,10 @@
             name="Introduction to Questionnaires"
             labbench-version="6.0"
             category="Demonstration Protocol"/>
+        <protocol id="intro.sequential" 
+            name="Introduction to Sequential Procedures"
+            labbench-version="6.0"
+            category="Demonstration Protocol"/>
         <protocol id="intro.cpar"
             name="Introduction to Cuff Pressure Algometry"
             labbench-version="6.0"
