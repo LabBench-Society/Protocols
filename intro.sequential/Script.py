@@ -4,10 +4,10 @@ import random
 class ResponseTask:
    def __init__(self, tc):
       self.tc = tc
-      self.Cue = tc.Assets.Images.Cue
-      self.Cue01 = tc.Assets.Images.Cue01
-      self.Cue02 = tc.Assets.Images.Cue02
+      self.Cross = tc.Assets.Images.Cross
       self.Stimulating = tc.Assets.Images.Stimulating
+      self.RatingInstruction = tc.Assets.Images.RatingInstruction
+      self.Empty = tc.Assets.Images.Empty
       self.ratings = []    
       self.current = 0  
 
@@ -27,33 +27,43 @@ class ResponseTask:
          image.Write(x /2, y /2, "Rating: {r}".format(r = self.current))
          return image.GetImage()
       
-   def Stimulate(self, freq):
-      sound = self.tc.Instruments.SoundCard
-      sound.Play(self.tc.Waveforms.Sin(1, freq, 0, 4000,44100).SetChannel(3))      
+   def Stimulate(self, freq):      
+      pass
+
+   def GenerateCues(self):
+      with self.tc.Image.GetCanvas(self.tc.Instruments.ImageDisplay, "#000000") as image:
+
+         return image.GetImage()
+
+   def GenerateSelectedCue(self):
+      with self.tc.Image.GetCanvas(self.tc.Instruments.ImageDisplay, "#000000") as image:
+
+         return image.GetImage()
 
    def Enter(self, srTest):
       id = self.tc.CurrentState.ID
       display = self.tc.Instruments.ImageDisplay
       self.tc.Keyboard.Clear();
 
-      if id == "CUE":
-         display.Display(self.Cue)
+      if id == "CROSS":
+         display.Display(self.Cross)
          return True
-      if id == "CUE01":
-         display.Display(self.Cue01)
+      if id == "SELECTION":
+         display.Display(self.GenerateCues())
          return True
-      if id == "STIM01":
-         self.Stimulate(1000)
-         display.Display(self.Stimulating)
+      if id == "DISPLAY":
+         display.Display(self.GenerateSelectedCue())
          return True
-      if id == "CUE02":
-         display.Display(self.Cue02)
-         return True
-      if id == "STIM02":
-         self.Stimulate(2000)
+      if id == "STIMULATION":
+         self.Stimulate(50)
          display.Display(self.Stimulating)
          return True
       if id == "RATING":
+         return True
+      if id == "RESET":
+         display.Display(self.RatingInstruction)
+         return True
+      if id == "PAUSE":
          self.current = 0
          self.tc.Log.Information("Actions; ESC) Abort, INSERT) Complete, ENTER) Continue.")
          self.tc.CurrentState.SetPlotter(lambda x, y: self.PlotRating(x,y))
@@ -66,25 +76,31 @@ class ResponseTask:
       id = self.tc.CurrentState.ID
       self.tc.Keyboard.Clear();
 
-      if id == "CUE":
+      if id == "CROSS":
          return True
-      if id == "CUE01":
+      if id == "SELECTION":
          return True
-      if id == "STIM01":
+      if id == "DISPLAY":
          return True
-      if id == "CUE02":
-         return True
-      if id == "STIM02":
+      if id == "STIMULATION":
          return True
       if id == "RATING":
          return True
+      if id == "RESET":
+         return True
+      if id == "PAUSE":
+         return True
       
-      return False      
+      return True      
    
    def Update(self):
       id = self.tc.CurrentState.ID
 
-      if id == "CUE":
+      if id == "CROSS":
+         self.tc.CurrentState.Status = "Remaining time: {time}".format(time = 2000 - self.tc.CurrentState.RunningTime)
+         return "*" if self.tc.CurrentState.RunningTime < 500 else "SELECTION"
+      
+      if id == "SELECTION":
          button = self.tc.Instruments.Button
          self.tc.CurrentState.Status = "Remaining time: {time}".format(time = 2000 - self.tc.CurrentState.RunningTime)
 
@@ -100,21 +116,24 @@ class ResponseTask:
 
          return "*" 
       
-      if id == "CUE01":
-         return "*" if self.tc.CurrentState.RunningTime < 1000 else "STIM01"
-      
-      if id == "STIM01":
+      if id == "DISPLAY":
          self.tc.CurrentState.Status = "Running time: {time}".format(time = self.tc.CurrentState.RunningTime)
-         return "*" if self.tc.CurrentState.RunningTime < 1000 else "RATING"
+         return "*" if self.tc.CurrentState.RunningTime < 1000 else "STIMULATION"
       
-      if id == "CUE02":
-         return "*" if self.tc.CurrentState.RunningTime < 1000 else "STIM02"
-      
-      if id == "STIM02":
+      if id == "STIMULATION":
          self.tc.CurrentState.Status = "Running time: {time}".format(time = self.tc.CurrentState.RunningTime)
          return "*" if self.tc.CurrentState.RunningTime < 1000 else "RATING"
       
       if id == "RATING":
+         button = self.tc.Instruments.Button
+
+         return "*" 
+      
+      if id == "RESET":
+         self.tc.CurrentState.Status = "Running time: {time}".format(time = self.tc.CurrentState.RunningTime)
+         return "*"
+      
+      if id == "PAUSE":
          self.current = self.tc.Instruments.Scale.GetCurrentRating()
          self.tc.CurrentState.Changed = True
 
