@@ -39,6 +39,12 @@ class ResponseTask:
       with self.tc.Image.GetCanvas(self.tc.Instruments.ImageDisplay, "#000000") as image:
          # TODO: Generate the selected cue Lure or Target
          return image.GetImage()
+   
+   def Start(self):
+      return True
+
+   def Complete(self):
+      return True
 
    def Enter(self, srTest):
       id = self.tc.CurrentState.ID
