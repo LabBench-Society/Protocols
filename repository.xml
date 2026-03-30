@@ -134,6 +134,11 @@
             name="Visual Evoked Potentials (Checkerboard)"
             labbench-version="6.0"
             category="EEG" />
+
+        <protocol id="eeg.electricallyEvoked"
+            name="Electrically Evoked Potentials"
+            labbench-version="6.0"
+            category="EEG" />
     </category>
 
     <category name="Tactile Sensitivity Testing" id="tactile">

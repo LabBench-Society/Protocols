@@ -4,7 +4,7 @@
     <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="LIO">
-        <experimental-setup id="LIO" name="Name of experimental setup">
+        <experimental-setup id="LIO" name="LabBench I/O">
             <devices>
                 <lio id="lio">
                     <trigger-setup 
@@ -33,9 +33,9 @@
                 </lio>
             </devices>
             <device-mapping>
-                <device-assignment device-id="Stimulator" instrument-name="lio" />
-                <device-assignment device-id="TriggerGenerator" instrument-name="lio" />
-                <device-assignment device-id="Button" instrument-name="lio.button" />
+                <device-assignment device-id="lio" instrument-name="Stimulator" />
+                <device-assignment device-id="lio" instrument-name="TriggerGenerator" />
+                <device-assignment device-id="lio.button" instrument-name="Button" />
             </device-mapping>
         </experimental-setup>    
     </experimental-setup-variants>
@@ -71,7 +71,7 @@
             </psychophysics-threshold-estimation>
 
             <psychophysics-threshold-estimation id="PDT" 
-                name="Perception Threshold" 
+                name="Pain Detection Threshold" 
                 stimulus-update-rate="20000">
                 <dependencies>
                     <dependency id="THR" />
@@ -105,7 +105,7 @@
                     <dependency id="PDT" virtual="false" />
                 </dependencies>
 
-                <stimulation-pattern>
+                <stimulation-pattern time-base="milliseconds">
                     <uniformly-distributed-sequence 
                         iterations="NumberOfStimuli * StimulusRepetitions"
                         maxTperiod="1000" 
@@ -114,7 +114,7 @@
 
                 <stimuli order="block-random">
                     <stimulus name="THR" count="2" 
-                        intensity="min(Stimulator.Max, 0.5 * (PDT.CH01 - THR.CH01) + THR.CH01)">
+                        intensity="0.5 * (PDT.CH01 - THR.CH01) + THR.CH01">
                         <triggers>
                             <trigger duration="1">
                                 <code output="trigger-interface" />
@@ -125,7 +125,7 @@
                         </stimulus>
                     </stimulus>
                     <stimulus name="PDT" count="2" 
-                        intensity="min(Stimulator.Max, 1.25 * PDT.CH01)">
+                        intensity="1.25 * PDT.CH01">
                         <triggers>
                             <trigger duration="1">
                                 <code output="trigger-interface" />
