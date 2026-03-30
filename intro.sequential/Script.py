@@ -1,6 +1,5 @@
 import random 
 
-
 class ResponseTask:
    def __init__(self, tc):
       self.tc = tc
@@ -27,17 +26,18 @@ class ResponseTask:
          image.Write(x /2, y /2, "Rating: {r}".format(r = self.current))
          return image.GetImage()
       
-   def Stimulate(self, freq):      
-      pass
+   def Stimulate(self, intensity):    
+      # TODO: Generate stimulation based on selected intensity
+      self.tc.Log.Information("Stimulating: {intensity}", intensity)
 
    def GenerateCues(self):
       with self.tc.Image.GetCanvas(self.tc.Instruments.ImageDisplay, "#000000") as image:
-
+         # TODO: Generate Lure and Target Cues as assigned to button 1 (left) and button 2 (right)
          return image.GetImage()
 
    def GenerateSelectedCue(self):
       with self.tc.Image.GetCanvas(self.tc.Instruments.ImageDisplay, "#000000") as image:
-
+         # TODO: Generate the selected cue Lure or Target
          return image.GetImage()
 
    def Enter(self, srTest):
@@ -59,8 +59,10 @@ class ResponseTask:
          display.Display(self.Stimulating)
          return True
       if id == "RATING":
+         self.tc.CurrentState.SetPlotter(lambda x, y: self.PlotRating(x,y))
          return True
       if id == "RESET":
+         self.tc.CurrentState.SetPlotter(lambda x, y: self.PlotRating(x,y))
          display.Display(self.RatingInstruction)
          return True
       if id == "PAUSE":
@@ -95,48 +97,50 @@ class ResponseTask:
    
    def Update(self):
       id = self.tc.CurrentState.ID
+      self.tc.CurrentState.Status = "Running time: {time}".format(time = self.tc.CurrentState.RunningTime)
 
       if id == "CROSS":
-         self.tc.CurrentState.Status = "Remaining time: {time}".format(time = 2000 - self.tc.CurrentState.RunningTime)
          return "*" if self.tc.CurrentState.RunningTime < 500 else "SELECTION"
       
       if id == "SELECTION":
-         button = self.tc.Instruments.Button
-         self.tc.CurrentState.Status = "Remaining time: {time}".format(time = 2000 - self.tc.CurrentState.RunningTime)
-
          if self.tc.CurrentState.RunningTime > 2000: 
             self.tc.Log.Information("No response, selecting one random selection")
-            return random.choice(["CUE01", "CUE02"])
+            # Select a the lure
+            return "DISPLAY"
          
-         if button.IsLatched("1"):
-            return "CUE01"
+         if self.tc.Instruments.Button.IsLatched("1"):
+            # Select the cue assigned to button 1
+            return "DISPLAY"
 
-         if button.IsLatched("2"):
-            return "CUE02"
+         if self.tc.Instruments.Button.IsLatched("2"):
+            # Select the cue assigned to button 2
+            return "DISPLAY"
 
          return "*" 
       
       if id == "DISPLAY":
-         self.tc.CurrentState.Status = "Running time: {time}".format(time = self.tc.CurrentState.RunningTime)
          return "*" if self.tc.CurrentState.RunningTime < 1000 else "STIMULATION"
       
       if id == "STIMULATION":
-         self.tc.CurrentState.Status = "Running time: {time}".format(time = self.tc.CurrentState.RunningTime)
          return "*" if self.tc.CurrentState.RunningTime < 1000 else "RATING"
       
       if id == "RATING":
          button = self.tc.Instruments.Button
-
-         return "*" 
-      
-      if id == "RESET":
-         self.tc.CurrentState.Status = "Running time: {time}".format(time = self.tc.CurrentState.RunningTime)
-         return "*"
-      
-      if id == "PAUSE":
          self.current = self.tc.Instruments.Scale.GetCurrentRating()
          self.tc.CurrentState.Changed = True
 
+         if button.IsLatched("1") or button.IsLatched("2"):
+            return "RESET"
+         
+         return "*" 
+      
+      if id == "RESET":
+         if (self.tc.Instruments.Scale.GetCurrentRating() < 0.1):
+            return "PAUSE"
+         
+         return "*"
+      
+      if id == "PAUSE":
          if self.tc.Keyboard.Pressed("ESC"):
             return "abort"
          
@@ -146,7 +150,7 @@ class ResponseTask:
          
          if self.tc.Keyboard.Pressed("ENTER"):
             self.ratings.append(self.current)
-            return "CUE"
+            return "CROSS"
 
          return "*"
 
