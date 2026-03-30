@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+    <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup-variants default="LIO">
+        <experimental-setup id="LIO" name="Name of experimental setup">
+            <devices>
+                <lio id="lio">
+                    <trigger-setup 
+                        logic-system="positive" 
+                        low-byte-voltage-level="unconnected" 
+                        high-byte-voltage-level="unconnected" />
+                    
+                    <stimulators>
+                        <ds5 name="DS5" transconductance="5mA_1V"/>
+                    </stimulators>
+
+                    <response-devices>
+                        <response-pad id="button" 
+                            timing-source="response-port01" 
+                            type="button-4-cross">
+                            <map>
+                                <button-assignment code="1" button="button-01" label="1" />
+                                <button-assignment code="2" button="button-01" label="1" />
+                                <button-assignment code="3" button="button-01" label="1" />
+                                <button-assignment code="4" button="button-01" label="1" />
+                                <button-assignment code="5" button="button-01" label="1" />
+                                <button-assignment code="6" button="button-01" label="1" />
+                            </map>
+                        </response-pad>
+                    </response-devices>
+                </lio>
+            </devices>
+            <device-mapping>
+                <device-assignment device-id="Stimulator" instrument-name="lio" />
+                <device-assignment device-id="TriggerGenerator" instrument-name="lio" />
+                <device-assignment device-id="Button" instrument-name="lio.button" />
+            </device-mapping>
+        </experimental-setup>    
+    </experimental-setup-variants>
+    <protocol>
+        <variables>
+            <variable name="StimulusRepetitions" value="10" />
+        </variables>
+        <procedures>
+            <psychophysics-threshold-estimation id="THR" 
+                name="Perception Threshold" 
+                stimulus-update-rate="20000">
+                <update-rate-deterministic value="2000" />
+
+                <yes-no-task />
+
+                <channels>
+                    <channel id="CH01" name="Pulse 01">
+                        <up-down-method 
+                            start-intensity="Stimulator.Max/100"                             
+                            reversal-rule="1" 
+                            skip-rule="1"
+                            stop-rule="7"/>
+                        <triggers>
+                            <trigger duration="1">
+                                <code output="trigger-interface" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <pulse Is="x" Ts="1" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <psychophysics-threshold-estimation id="PDT" 
+                name="Perception Threshold" 
+                stimulus-update-rate="20000">
+                <dependencies>
+                    <dependency id="THR" />
+                </dependencies>
+                <update-rate-deterministic value="2000" />
+                
+                <yes-no-task />
+
+                <channels>
+                    <channel id="CH01" name="Pulse 01">
+                        <up-down-method 
+                            start-intensity="THR.CH01"                             
+                            reversal-rule="1" 
+                            skip-rule="1"
+                            stop-rule="7"/>
+                        <triggers>
+                            <trigger duration="1">
+                                <code output="trigger-interface" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <pulse Is="x" Ts="1" />
+                        </stimulus>
+                    </channel>
+                </channels>
+            </psychophysics-threshold-estimation>
+
+            <stimulation-sequence id="EVOKED" name="Evoked Potentials">
+                <dependencies>
+                    <dependency id="THR" virtual="false" />
+                    <dependency id="PDT" virtual="false" />
+                </dependencies>
+
+                <stimulation-pattern>
+                    <uniformly-distributed-sequence 
+                        iterations="NumberOfStimuli * StimulusRepetitions"
+                        maxTperiod="1000" 
+                        minTperiod="2000" />
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus name="THR" count="2" 
+                        intensity="min(Stimulator.Max, 0.5 * (PDT.CH01 - THR.CH01) + THR.CH01)">
+                        <triggers>
+                            <trigger duration="1">
+                                <code output="trigger-interface" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <pulse Is="x" Ts="1" />
+                        </stimulus>
+                    </stimulus>
+                    <stimulus name="PDT" count="2" 
+                        intensity="min(Stimulator.Max, 1.25 * PDT.CH01)">
+                        <triggers>
+                            <trigger duration="1">
+                                <code output="trigger-interface" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <pulse Is="x" Ts="1" />
+                        </stimulus>
+                    </stimulus>
+                </stimuli>
+            </stimulation-sequence>            
+        </procedures>
+    </protocol>
+</experiment>
