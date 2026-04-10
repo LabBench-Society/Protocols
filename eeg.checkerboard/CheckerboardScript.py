@@ -26,7 +26,7 @@ class Checkerboard:
         self.count = 0
 
         triggerGenerator.GenerateTriggerSequence("port1", True, self.tc.Triggers.Sequence()
-            .Add(self.tc.Triggers.CreateTrigger(10).TriggerOut().Interface(1)))
+            .Add(self.tc.Triggers.CreateTrigger(25).TriggerOut().Interface(1)))
         return True      
     
     def Complete(self):
