@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+    <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
+                       advice="Please enter an ID in the form of SXXX, where X is a digit" />
+    <experimental-setup-variants default="LIO">
+        <experimental-setup id="LIO" name="LabBench I/O">
+            <devices>
+                <lio id="lio">
+                    <stimulators>
+                        <ds5 name="DS5" transconductance="5mA_1V"/>
+                    </stimulators>
+                    <response-devices>
+                        <visual-analogue-scale id="vas">
+                            <anchors>
+                                <modality text="Pain" />
+                                <bottom-anchor text="No Pain" />
+                                <top-anchor text="Maximal Pain" />
+                            </anchors>
+                        </visual-analogue-scale>
+                    </response-devices>
+                </lio>
+            </devices>
+            <device-mapping>
+                <device-assignment device-id="lio" instrument-name="Stimulator" />
+                <device-assignment device-id="lio" instrument-name="TriggerGenerator" />
+                <device-assignment device-id="lio.vas" instrument-name="RatioScale" />
+            </device-mapping>
+        </experimental-setup>    
+    </experimental-setup-variants>
+    <protocol>
+        <languages>
+            <!--  Contents omitted for brevity -->
+        </languages>
+        <sessions>
+            <!--  Contents omitted for brevity -->
+        </sessions>
+        <properties>
+            <!--  Contents omitted for brevity -->
+        </properties>
+        <persistent-variables>
+            <!--  Contents omitted for brevity -->
+        </persistent-variables>        
+        <variables>
+            <!--  Contents omitted for brevity -->
+        </variables>
+        <templates>
+              <includes>
+                  <!--  Contents omitted for brevity -->
+              </includes>
+              <protocol-variables>
+                  <!--  Contents omitted for brevity -->
+              </protocol-variables>
+              <template-variables>
+                  <!--  Contents omitted for brevity -->
+              </template-variables>
+              <procedure-templates>
+                  <!--  Contents omitted for brevity -->
+              </procedure-templates>
+              <assets>
+                  <!--  Contents omitted for brevity -->
+              </assets>           
+        </templates>
+        <procedures>
+            <stimulation-sequence id="T01" 
+                name="Electrically Evoked Potentials"
+                response-collection="ratio-rating"
+                stimulus-update-rate="20000"
+                trigger-update-rate="20000">
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence iterations="20">                       
+                        <uniformly-distributed-sequence 
+                            maxTperiod="2" 
+                            minTperiod="1"
+                            iterations="NumberOfStimuli" />
+                        <sequence Tperiod="10" stimulate="false"/>
+                    </sequence>
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus name="Oddball"
+                        intensity="50"
+                        count="1">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="trigger-output" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <pulse Is="x" Ts="1" />
+                        </stimulus>
+                    </stimulus>
+                    <stimulus name="Normal"
+                        intensity="20"
+                        count="4">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="trigger-output" />
+                            </trigger>
+                        </triggers>
+                        <stimulus>
+                            <pulse Is="x" Ts="1" />
+                        </stimulus>
+                    </stimulus>
+                </stimuli>
+            </stimulation-sequence>
+        </procedures>
+        <assets>
+            <!--  Contents omitted for brevity -->
+        </assets>
+    </protocol>
+    <post-actions>
+        <!--  Contents omitted for brevity -->
+    </post-actions>
+</experiment>
