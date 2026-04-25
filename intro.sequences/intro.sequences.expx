@@ -11,20 +11,37 @@
                         <ds5 name="DS5" transconductance="5mA_1V"/>
                     </stimulators>
                     <response-devices>
-                        <visual-analogue-scale id="vas">
-                            <anchors>
-                                <modality text="Pain" />
-                                <bottom-anchor text="No Pain" />
-                                <top-anchor text="Maximal Pain" />
-                            </anchors>
-                        </visual-analogue-scale>
+                        <response-pad id="button">
+                            <map experimental-setup-id="setupOddball">
+                                <button-assignment code="5" button="left" label="left" />
+                                <button-assignment code="6" button="right" label="right" />
+                            </map>
+                            <map experimental-setup-id="setupThreshold">
+                                <button-assignment code="1" button="button-01" label="1" />
+                                <button-assignment code="2" button="button-01" label="1" />
+                                <button-assignment code="3" button="button-01" label="1" />
+                                <button-assignment code="4" button="button-01" label="1" />
+                                <button-assignment code="5" button="button-01" label="1" />
+                                <button-assignment code="6" button="button-01" label="1" />
+                            </map>
+                        </response-pad>
                     </response-devices>
                 </lio>
+
+                <display id="display" normative-distance="40">
+                    <configurations>
+                        <image-display id="image" 
+                            experimental-setup-id="match: setup" 
+                            background-colour="rgb(0,0,0)" />
+                    </configurations>
+                </display>
             </devices>
             <device-mapping>
                 <device-assignment device-id="lio" instrument-name="Stimulator" />
                 <device-assignment device-id="lio" instrument-name="TriggerGenerator" />
-                <device-assignment device-id="lio.vas" instrument-name="RatioScale" />
+                <device-assignment device-id="lio.button" instrument-name="Button" />
+                <device-assignment device-id="display.image" instrument-name="ImageDi
+                splay" />
             </device-mapping>
         </experimental-setup>    
     </experimental-setup-variants>
@@ -62,11 +79,18 @@
               </assets>           
         </templates>
         <procedures>
-            <stimulation-sequence id="T01" 
-                name="Electrically Evoked Potentials"
-                response-collection="ratio-rating"
+            <stimulation-sequence id="T02" 
+                name="Electrically Oddball Paradigm"
+                experimental-setup-id="setupOddball"
+                response-collection="yes-no"
                 stimulus-update-rate="20000"
                 trigger-update-rate="20000">
+
+                <stimulation-scripts stimulate="">
+                    <instrument interface="image-display" />
+                    <instrument interface="stimulator" />
+                    <instrument interface="trigger-generator" />
+                </stimulation-scripts>
 
                 <stimulation-pattern time-base="seconds">
                     <sequence iterations="20">                       
@@ -107,7 +131,7 @@
             </stimulation-sequence>
         </procedures>
         <assets>
-            <!--  Contents omitted for brevity -->
+            <file-asset file="Script.py" />
         </assets>
     </protocol>
     <post-actions>
