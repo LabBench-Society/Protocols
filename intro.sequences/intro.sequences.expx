@@ -79,6 +79,51 @@
               </assets>           
         </templates>
         <procedures>
+            <stimulation-sequence id="T01" 
+                name="Oddball Paradigm"
+                experimental-setup-id="setupOddball"
+                response-collection="yes-no"
+                stimulus-update-rate="20000"
+                trigger-update-rate="20000">
+
+                <stimulation-scripts stimulate="">
+                    <instrument interface="image-display" />
+                    <instrument interface="stimulator" />
+                    <instrument interface="trigger-generator" />
+                </stimulation-scripts>
+
+                <stimulation-pattern time-base="seconds">
+                    <sequence iterations="20">                       
+                        <uniformly-distributed-sequence 
+                            maxTperiod="2" 
+                            minTperiod="1"
+                            iterations="NumberOfStimuli" />
+                        <sequence Tperiod="10" stimulate="false"/>
+                    </sequence>
+                </stimulation-pattern>
+
+                <stimuli order="block-random">
+                    <stimulus name="Oddball"
+                        intensity="50"
+                        count="1">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="trigger-output" />
+                            </trigger>
+                        </triggers>
+                    </stimulus>
+                    <stimulus name="Normal"
+                        intensity="20"
+                        count="4">
+                        <triggers>
+                            <trigger duration="10">
+                                <code output="trigger-output" />
+                            </trigger>
+                        </triggers>
+                    </stimulus>
+                </stimuli>
+            </stimulation-sequence>
+
             <stimulation-sequence id="T02" 
                 name="Electrically Oddball Paradigm"
                 experimental-setup-id="setupOddball"
