@@ -83,13 +83,16 @@
 
     <!-- 2AP versions of the tests -->
 
-    <algometry-stimulus-response id="AP2SR01" name="Stimulus Response (Stop on VAS 10) [Cuff 1]"
+    <algometry-stimulus-response id="AP2SR01" 
+      name="Stimulus Response (Stop on VAS 10) [Cuff 1]"
+      experimental-setup-id="vas" 
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="1"
       second-cuff="false"
       stop-mode="stop-on-maximal-rating"
-      vas-pdt="0.1" />
+      vas-pdt="0.1" 
+      conditioning-time="0"  />
 
     <algometry-stimulus-response id="AP2SR02" name="Stimulus Response (Stop on VAS 10) [Cuff 2]"
       delta-pressure="1"
@@ -116,9 +119,12 @@
       stop-mode="stop-on-maximal-rating"
       vas-pdt="0.1" />
 
-    <algometry-conditioned-pain-modulation id="AP2CPM" name="CPM Test (Stop on VAS 10)"
+    <algometry-conditioned-pain-modulation id="AP2CPM" 
+      name="CPM Test (Stop on VAS 10)"
+      experimental-setup-id="vas"
       delta-conditional-pressure="10"
       conditional-pressure="0.7 * AP2SR02.PTT"
+      conditioning-time="0"
       delta-pressure="1"
       pressure-limit="100"
       primary-cuff="1"
@@ -170,7 +176,9 @@
       </dependencies>
     </algometry-conditioned-pain-modulation>
 
-    <algometry-temporal-summation id="AP2TSum" name="Temporal Summation (Stop on VAS 10) [Cuff 1]"
+    <algometry-temporal-summation id="AP2TSum" 
+      name="Temporal Summation (Stop on VAS 10) [Cuff 1]"
+      experimental-setup-id="vas"
       no-of-stimuli="10"
       pressure-static="0"
       pressure-stimulate="AP2SR02.PTT"
@@ -183,7 +191,9 @@
       </dependencies>
     </algometry-temporal-summation>
 
-    <algometry-static-temporal-summation id="AP2STSum" name="Static Temporal Summation (Stop on VAS 10) [Cuff 1]"
+    <algometry-static-temporal-summation id="AP2STSum" 
+      name="Static Temporal Summation (Stop on VAS 10) [Cuff 1]"
+      experimental-setup-id="vas"
       pressure-stimulate="AP2SR01.PTT"
       primary-cuff="1"
       second-cuff="false"
@@ -194,7 +204,9 @@
       </dependencies>
     </algometry-static-temporal-summation>
 
-    <algometry-arbitrary-temporal-summation id="AP2ATSum" name="Arbitrary Temporal Summation (Stop on VAS 10) [Cuff 1]"
+    <algometry-arbitrary-temporal-summation id="AP2ATSum" 
+      name="Arbitrary Temporal Summation (Stop on VAS 10) [Cuff 1]"
+      experimental-setup-id="vas"
       pressure-static="0"
       primary-cuff="1"
       second-cuff="false">
@@ -416,12 +428,15 @@
     <!-- Stimulus Rating Tests -->
 
 
-    <algometry-stimulus-rating id="rSR01PDT" name="Stimulus Rating (PTD) [Cuff 1]"
+    <algometry-stimulus-rating id="rSR01PDT" 
+      name="Stimulus Rating (PTD) [Cuff 1]"
+      experimental-setup-id="vas"
       delta-pressure="1"
       pressure-limit="100"
       second-cuff="false"
       primary-cuff="1"
-      measurement="pdt"/>
+      measurement="pdt"
+      conditioning-time="0"/>
 
     <algometry-stimulus-rating id="rSR01PPT" name="Stimulus Rating (PTT) [Cuff 1]"
       delta-pressure="1"
@@ -459,7 +474,10 @@
       primary-cuff="1"
       measurement="both"/>
 
-    <algometry-conditioned-pain-modulation-rating id="rCPMPDT" name="CPM (PDT) [Cuff 1]"
+    <algometry-conditioned-pain-modulation-rating id="rCPMPDT" 
+      name="CPM (PDT) [Cuff 1]"
+      experimental-setup-id="vas"
+      conditioning-time="0"
       conditional-pressure="0.7 * rSR02BOTH.PTT"
       delta-conditional-pressure="10"
       delta-pressure="1"
