@@ -275,9 +275,74 @@
                 </stimulation>
             </psychophysics-stimulus-presentation>
 
+            <psychophysics-stimulus-presentation id="repeatedCombinedStimulus" 
+                name="Repeated Combined Stimulus" 
+                experimental-setup-id="image"
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max + 2" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>                          
+                        <repeated Tperiod="20" N="3">
+                            <combined>
+                                <pulse Is="-2" Ts="10" />
+                                <pulse Is="x" Ts="1" Tdelay="6" />                                
+                            </combined>
+                        </repeated>
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="customStimulus" 
+                name="Custom stimulation" 
+                experimental-setup-id="image"
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <scripts stimulate="func: Script.Stimulate(context, x)">
+                        <instrument interface="stimulator" />
+                        <instrument interface="image-display" />
+                    </scripts>
+                    <stimulus>
+                        <pulse Is="x" Ts="1" Tdelay="0" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
         </procedures>
         <assets>
-            <!--  Contents omitted for brevity -->
+            <file-asset file="Images.zip">
+                <aliases>
+                    <alias replace="Slide1" with="Cue" />
+                    <alias replace="Slide2" with="Blank" />
+                </aliases>
+            </file-asset>
+            <file-asset file="Script.py" />
         </assets>
     </protocol>
     <post-actions>
