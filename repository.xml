@@ -41,6 +41,9 @@
             name="Introduction to Image Generation"
             labbench-version="6.0"
             category="Demonstration Protocol"/>
+        <protocol id="intro.procedureComponents" name="Introduction to procedure components" 
+            labbench-version="6.0" 
+            category="Demonstration Protcol"/>
     </category>
     <category name="Nerve Excitability Testing (NET)" id="net">
         <category name="Sodium Channel Excitability Nociceptor Test (SCENT)" id="sent">
