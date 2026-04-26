@@ -6,10 +6,34 @@
     <experimental-setup-variants default="SetupID">
         <experimental-setup id="SetupID" name="Name of experimental setup">
             <devices>
-                <!--  Contents omitted for brevity -->
+                <lio id="lio" default-analogue-output="0">
+                    <trigger-setup 
+                        logic-system="positive" 
+                        low-byte-voltage-level="unconnected" 
+                        high-byte-voltage-level="unconnected" />
+
+                    <stimulators>
+                        <ds5 name="DS5" transconductance="1mA_1V"/>
+                    </stimulators>
+
+                    <response-devices>
+                        <response-pad id="button">
+                            <map>
+                                <button-assignment code="1" button="button-01" label="1" />
+                                <button-assignment code="2" button="button-02" label="2" />
+                                <button-assignment code="3" button="button-03" label="3" />
+                                <button-assignment code="4" button="button-04" label="4" />
+                                <button-assignment code="5" button="button-05" label="5" />
+                                <button-assignment code="6" button="button-06" label="6" />
+                            </map>
+                        </response-pad>
+                    </response-devices>
+                </lio>
             </devices>
             <device-mapping>
-                <!--  Contents omitted for brevity -->
+                <device-assignment device-id="lio" instrument-name="TriggerGenerator" />
+                <device-assignment device-id="lio" instrument-name="Stimulator" />
+                <device-assignment device-id="lio.button" instrument-name="Button" />
             </device-mapping>
         </experimental-setup>    
     </experimental-setup-variants>
@@ -47,7 +71,196 @@
               </assets>           
         </templates>
         <procedures>
-            <!--  Contents omitted for brevity -->
+            <psychophysics-stimulus-presentation id="pulseStimulus" 
+                name="Pulse" 
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>
+                        <pulse Is="x" Ts="1" Tdelay="0" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="rampStimulus" 
+                name="Ramp" 
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>                        
+                        <ramp Is="x" Ts="10" Tdelay="0" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="sineStimulus" 
+                name="Sine" 
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>                        
+                        <sine Is="x" Ts="10" Frequency="500" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <!-- 
+            Hugosdottir, R., Schouenborg, J., Andersen, O. K., & Arendt-Nielsen, L. (2019).
+            **Preferential activation of small cutaneous fibers through small pin electrode also depends on the shape of a long duration electrical current.**
+            *BMC Neuroscience, 20*, 48.
+            https://doi.org/10.1186/s12868-019-0530-8
+            -->
+            <psychophysics-stimulus-presentation id="arbitraryStimulus" 
+                name="Arbitrary (Bounded Exponential Stimulus)" 
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>                        
+                        <arbitrary Ts="50" expression="x * ((1 - exp(-t/10))/(1 - exp(-50/10)))" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="windowedSineStimulus" 
+                name="Windowed Sine" 
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>  
+                        <window window="bartlett" parameter="1">
+                            <sine Is="x" Ts="10" Frequency="500" />
+                        </window>                      
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="repeatedStimulus" 
+                name="Repeated Stimulus" 
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>  
+                        <repeated Tperiod="10" N="4">
+                            <repeated Tperiod="2" N="3">
+                                <pulse Is="x" Ts="1" />
+                            </repeated>                        
+                        </repeated>
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="combinedStimulus" 
+                name="Combined Stimulus" 
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max + 2" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none" />
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>  
+                        <combined>
+                            <pulse Is="-2" Ts="10" />
+                            <pulse Is="x" Ts="1" Tdelay="6" />
+                        </combined>
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
         </procedures>
         <assets>
             <!--  Contents omitted for brevity -->
