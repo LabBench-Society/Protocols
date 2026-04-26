@@ -17,7 +17,7 @@
                     </stimulators>
 
                     <response-devices>
-                        <response-pad id="button">
+                        <response-pad id="button" timing-source="response-port02">
                             <map>
                                 <button-assignment code="1" button="button-01" label="1" />
                                 <button-assignment code="2" button="button-02" label="2" />
@@ -27,13 +27,20 @@
                                 <button-assignment code="6" button="button-06" label="6" />
                             </map>
                         </response-pad>
+                        <visual-trigger id="vDetector" arming-period="200" timing-source="response-port02"/>
                     </response-devices>
                 </lio>
+                <display id="display" normative-distance="40">
+                    <configurations>
+                        <image-display id="image" experimental-setup-id="image" background-colour="rgb(0,0,0)" />
+                    </configurations>
+                </display>
             </devices>
             <device-mapping>
                 <device-assignment device-id="lio" instrument-name="TriggerGenerator" />
                 <device-assignment device-id="lio" instrument-name="Stimulator" />
                 <device-assignment device-id="lio.button" instrument-name="Button" />
+                <device-assignment device-id="display.image" instrument-name="ImageDisplay" />
             </device-mapping>
         </experimental-setup>    
     </experimental-setup-variants>
@@ -73,6 +80,7 @@
         <procedures>
             <psychophysics-stimulus-presentation id="pulseStimulus" 
                 name="Pulse" 
+                experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
                 
@@ -98,6 +106,7 @@
 
             <psychophysics-stimulus-presentation id="rampStimulus" 
                 name="Ramp" 
+                experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
                 
@@ -123,6 +132,7 @@
 
             <psychophysics-stimulus-presentation id="sineStimulus" 
                 name="Sine" 
+                experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
                 
@@ -154,6 +164,7 @@
             -->
             <psychophysics-stimulus-presentation id="arbitraryStimulus" 
                 name="Arbitrary (Bounded Exponential Stimulus)" 
+                experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
                 
@@ -179,6 +190,7 @@
 
             <psychophysics-stimulus-presentation id="windowedSineStimulus" 
                 name="Windowed Sine" 
+                experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
                 
@@ -206,6 +218,7 @@
 
             <psychophysics-stimulus-presentation id="repeatedStimulus" 
                 name="Repeated Stimulus" 
+                experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
                 
@@ -235,6 +248,7 @@
 
             <psychophysics-stimulus-presentation id="combinedStimulus" 
                 name="Combined Stimulus" 
+                experimental-setup-id="image"
                 stimulus-update-rate="20000">
                 <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max + 2" n="10"/>
                 
