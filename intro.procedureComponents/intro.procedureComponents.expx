@@ -125,7 +125,7 @@
 
                 <stimulation>
                     <stimulus>                        
-                        <ramp Is="x" Ts="10" Tdelay="0" />
+                        <ramp Is="x" Ts="10" Tdelay="0" Ioffset="-1" />
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
@@ -151,7 +151,7 @@
 
                 <stimulation>
                     <stimulus>                        
-                        <sine Is="x" Ts="10" Frequency="500" />
+                        <sine Is="x" Ts="10" Frequency="500" Tdelay="0"/>
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
@@ -183,7 +183,7 @@
 
                 <stimulation>
                     <stimulus>                        
-                        <arbitrary Ts="50" expression="x * ((1 - exp(-t/10))/(1 - exp(-50/10)))" />
+                        <arbitrary expression="x * ((1 - exp(-t/10))/(1 - exp(-50/10)))" Ts="50" Tdelay="0" />
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
@@ -237,7 +237,7 @@
 
                 <stimulation>
                     <stimulus>  
-                        <repeated Tperiod="10" N="4">
+                        <repeated Tperiod="10" N="4" Tdelay="0">
                             <repeated Tperiod="2" N="3">
                                 <pulse Is="x" Ts="1" />
                             </repeated>                        
