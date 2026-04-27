@@ -350,7 +350,7 @@
                 <responses  response-collection="yes-no"/>
 
                 <triggers>
-                    <trigger duration="1">
+                    <trigger duration="1" Tdelay="0">
                         <code output="trigger-output" />
                         <code output="stimulator-trigger-output" />
                         <code output="trigger-interface" value="16"/>
@@ -378,7 +378,7 @@
                 <responses  response-collection="yes-no"/>
 
                 <triggers>
-                    <combined-triggers>
+                    <combined-triggers Tdelay="0">
                         <trigger duration="10">
                             <code output="trigger-output" />
                         </trigger>
