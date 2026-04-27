@@ -9,7 +9,7 @@
                 <lio id="lio" default-analogue-output="0">
                     <trigger-setup 
                         logic-system="positive" 
-                        low-byte-voltage-level="unconnected" 
+                        low-byte-voltage-level="5.0V" 
                         high-byte-voltage-level="unconnected" />
 
                     <stimulators>
@@ -314,6 +314,7 @@
                 
                 <configuration>
                     <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="response-port01"/>
                 </configuration>
 
                 <responses  response-collection="yes-no"/>
@@ -331,6 +332,100 @@
                     </scripts>
                     <stimulus>
                         <pulse Is="x" Ts="1" Tdelay="0" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="triggerOnly" 
+                name="Single trigger only" 
+                experimental-setup-id="image"
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none"/>
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <trigger duration="1">
+                        <code output="trigger-output" />
+                        <code output="stimulator-trigger-output" />
+                        <code output="trigger-interface" value="16"/>
+                    </trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>                          
+                        <pulse Is="0" Ts="1" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="triggerCombined" 
+                name="Combined triggers" 
+                experimental-setup-id="image"
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none"/>
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <combined-triggers>
+                        <trigger duration="10">
+                            <code output="trigger-output" />
+                        </trigger>
+                        <trigger duration="1" Tdelay="5">
+                            <code output="stimulator-trigger-output" />
+                            <code output="trigger-interface" value="16"/>
+                        </trigger>
+                    </combined-triggers>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>                          
+                        <pulse Is="0" Ts="1" />
+                    </stimulus>
+                </stimulation>
+            </psychophysics-stimulus-presentation>
+
+            <psychophysics-stimulus-presentation id="triggerRepeated" 
+                name="Repeated triggers" 
+                experimental-setup-id="image"
+                stimulus-update-rate="20000">
+                <intensity type="linspace" x0="Stimulator.Max/10" x1="Stimulator.Max" n="10"/>
+                
+                <configuration>
+                    <trigger-generation trigger-source="internal" />
+                    <stimulation-generation trigger-source="none"/>
+                </configuration>
+
+                <responses  response-collection="yes-no"/>
+
+                <triggers>
+                    <repeated-trigger Tperiod="10" N="3">                                                
+                        <combined-trigger>
+                            <trigger duration="4">
+                                <code output="trigger-output" />
+                            </trigger>
+                            <trigger duration="1" Tdelay="1">
+                                <code output="stimulator-trigger-output" />
+                                <code output="trigger-interface" value="16"/>
+                            </trigger>
+                        </combined-trigger>
+                    </repeated-trigger>
+                </triggers>
+
+                <stimulation>
+                    <stimulus>                          
+                        <pulse Is="0" Ts="1" />
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
