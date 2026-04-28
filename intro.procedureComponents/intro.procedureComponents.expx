@@ -296,7 +296,7 @@
 
                 <stimulation>
                     <stimulus>                          
-                        <repeated Tperiod="20" N="3">
+                        <repeated Tperiod="20" N="3" Tdelay="0">
                             <combined>
                                 <pulse Is="-2" Ts="10" />
                                 <pulse Is="x" Ts="1" Tdelay="6" />                                
@@ -326,7 +326,8 @@
                 </triggers>
 
                 <stimulation>
-                    <scripts stimulate="func: Script.Stimulate(context, x)">
+                    <scripts initialize="func: Script.Initialize(contect)"
+                             stimulate="func: Script.Stimulate(context, x)">
                         <instrument interface="stimulator" />
                         <instrument interface="image-display" />
                     </scripts>
