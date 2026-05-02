@@ -27,7 +27,7 @@
             <!--  Contents omitted for brevity -->
         </persistent-variables>        
         <variables>
-            <!--  Contents omitted for brevity -->
+            <variable name="Uploader" value="func: Script.CreateUploader(context)" />
         </variables>
         <templates>
               <includes>
@@ -62,7 +62,7 @@
             </questionnaire>
         </procedures>
         <assets>
-            <!--  Contents omitted for brevity -->
+            <file-asset file="Script.py" />
         </assets>
     </protocol>
     <post-actions>
@@ -82,6 +82,9 @@
             <item name="Participation" value="DATA.Participation" default="NA" condition="DATA.Completed" />
             <item name="Age" value="DATA.Age" default="NA" condition="DATA.Completed" />
         </export-to-csv>
+        <export-script name="Upload data" 
+            location="C:\LabBenchExport\intro.postSessionActions" 
+            script="Uploader.upload_file(f'{Participant}.csv')" />
 
         <!--  Contents omitted for brevity -->
     </post-actions>
