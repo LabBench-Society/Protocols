@@ -71,6 +71,17 @@
             filename="dynamic: f'{Participant}.pdf'" 
             id="Inventors' Way"
             level="debug"/>
+        <export-data name="Export data" 
+            location="C:\LabBenchExport\intro.postSessionActions"
+            format="json" 
+            filename="dynamic: f'{Participant}.json'" />
+        <export-to-csv name="Export to CSV" 
+            location="C:\LabBenchExport\intro.postSessionActions" 
+            filename="dynamic: f'{Participant}.csv'">
+            <item name="ID" value="Participant" default="NA" />
+            <item name="Participation" value="DATA.Participation" default="NA" condition="DATA.Completed" />
+            <item name="Age" value="DATA.Age" default="NA" condition="DATA.Completed" />
+        </export-to-csv>
 
         <!--  Contents omitted for brevity -->
     </post-actions>
