@@ -44,6 +44,9 @@
         <protocol id="intro.procedureComponents" name="Introduction to procedure components" 
             labbench-version="6.0" 
             category="Demonstration Protcol"/>
+        <protocol id="intro.postSessionActions" 
+            name="Introduction to post-session actions" 
+            labbench-version="6.0" />
     </category>
     <category name="Nerve Excitability Testing (NET)" id="net">
         <category name="Sodium Channel Excitability Nociceptor Test (SCENT)" id="sent">
