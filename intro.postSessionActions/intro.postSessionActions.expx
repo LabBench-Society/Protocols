@@ -86,6 +86,10 @@
             location="C:\LabBenchExport\intro.postSessionActions" 
             script="Uploader.upload_file(f'{Participant}.csv')" />
 
+        <copy name="Copy file" 
+            location="C:\LabBenchExport" 
+            source="C:\LabBenchExport\intro.postSessionActions" 
+            filename="dynamic: f'{Participant}.csv'" />
         <!--  Contents omitted for brevity -->
     </post-actions>
 </experiment>
