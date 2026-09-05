@@ -3,8 +3,8 @@
             xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
     <participant-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
-    <experimental-setup-variants>
-        <experimental-setup name="LabBench CPAR+">
+    <experimental-setup-variants default="CPARplus">
+        <experimental-setup name="LabBench CPAR+" id="CPARplus">
             <devices>
                 <cpar-plus id="dev"/>
             </devices>
@@ -12,7 +12,7 @@
               <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
             </device-mapping>
           </experimental-setup>        
-          <experimental-setup name="LabBench CPAR+ (Scale on secondary monitor)">
+          <experimental-setup name="LabBench CPAR+ (Scale on secondary monitor)" id="CPARPlusDisplay">
             <devices>
                 <cpar-plus id="dev"/>
         
@@ -40,7 +40,7 @@
               <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
             </device-mapping>
           </experimental-setup>    
-          <experimental-setup name="Nocitech CPAR">
+          <experimental-setup name="Nocitech CPAR" id="CPAR">
             <devices>
                 <cpar id="dev" compressor-mode="auto"/>
             </devices>
@@ -48,7 +48,7 @@
               <device-assignment instrument-name="PressureAlgometer" device-id="dev" />
             </device-mapping>
           </experimental-setup>
-          <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)">
+          <experimental-setup name="Nocitech CPAR (Scale on secondary monitor)" id="CPARDisplay">
             <devices>
                 <cpar id="dev" compressor-mode="auto"/>
     
