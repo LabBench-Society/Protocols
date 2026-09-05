@@ -10,11 +10,11 @@
         <devices>
             <joystick id="joystick">
                 <map experimental-setup-id="image">
-                    <button-assignment code="49" button="button-01" label="Button 1"/>
+                    <button-assignment code="52" button="button-01" label="Button 1"/>
 
-                    <button-assignment code="2" button="button-02" label="Button 1"/>
-                    <button-assignment code="4" button="button-04" label="Button 1"/>
-                    <button-assignment code="8" button="button-03" label="Button 1"/>
+                    <button-assignment code="8" button="button-02" label="Button 1"/>
+                    <button-assignment code="1" button="button-04" label="Button 1"/>
+                    <button-assignment code="2" button="button-03" label="Button 1"/>
                 </map>
                 <map experimental-setup-id="fyn">
                     <button-assignment code="16" button="left" label="Left"/>
