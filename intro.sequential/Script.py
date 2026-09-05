@@ -3,6 +3,10 @@ import random
 class ResponseTask:
    def __init__(self, tc):
       self.tc = tc
+      self.Cue = tc.Assets.Cues.Cue
+      self.Cue01 = tc.Assets.Cues.Cue01
+      self.Cue02 = tc.Assets.Cues.Cue02
+      self.selectedCue = None
       self.Cross = tc.Assets.Images.Cross
       self.Stimulating = tc.Assets.Images.Stimulating
       self.RatingInstruction = tc.Assets.Images.RatingInstruction
@@ -30,16 +34,6 @@ class ResponseTask:
       # TODO: Generate stimulation based on selected intensity
       self.tc.Log.Information("Stimulating: {intensity}", intensity)
 
-   def GenerateCues(self):
-      with self.tc.Image.GetCanvas(self.tc.Instruments.ImageDisplay, "#000000") as image:
-         # TODO: Generate Lure and Target Cues as assigned to button 1 (left) and button 2 (right)
-         return image.GetImage()
-
-   def GenerateSelectedCue(self):
-      with self.tc.Image.GetCanvas(self.tc.Instruments.ImageDisplay, "#000000") as image:
-         # TODO: Generate the selected cue Lure or Target
-         return image.GetImage()
-   
    def Start(self):
       return True
 
@@ -54,9 +48,10 @@ class ResponseTask:
       if id == "CROSS":
          display.Display(self.Cross)
       if id == "SELECTION":
-         display.Display(self.GenerateCues())
+         self.selectedCue = None
+         display.Display(self.Cue)
       if id == "DISPLAY":
-         display.Display(self.GenerateSelectedCue())
+         display.Display(self.selectedCue)
       if id == "STIMULATION":
          self.Stimulate(50)
          display.Display(self.Stimulating)
@@ -83,13 +78,13 @@ class ResponseTask:
       if id == "SELECTION":
          if self.tc.CurrentState.RunningTime > 4000: 
             self.tc.Log.Information("No response, selecting one random selection")
-            # Select a the lure
+            self.selectedCue = random.choice([self.Cue01, self.Cue02])
             return "DISPLAY"         
          if self.tc.Instruments.Button.IsLatched("1"):
-            # Select the cue assigned to button 1
+            self.selectedCue = self.Cue01
             return "DISPLAY"
          if self.tc.Instruments.Button.IsLatched("2"):
-            # Select the cue assigned to button 2
+            self.selectedCue = self.Cue02
             return "DISPLAY"      
          
       if id == "DISPLAY":

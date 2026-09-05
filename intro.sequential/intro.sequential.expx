@@ -126,6 +126,7 @@
     <assets>
       <file-asset id="Script" file="Script.py" />
       <file-asset id="Cards" file="Cards.zip" />
+      <file-asset id="Cues" file="Cues.zip" />
       <file-asset id="Images" file="Images.zip">
         <aliases>
           <alias replace="Slide1" with="Cross" />
