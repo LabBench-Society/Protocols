@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
     <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="LIO">
@@ -125,7 +125,7 @@
                 response-weight="1"
                 signal-weight="0"
                 experimental-setup-id="vas">
-                <events-makers>
+                <event-markers>
                     <group id="PDT">
                         <marker id="PDT" name="Pain Detected" next-group="PTT" />
                         <marker id="STOP" name="Hand withdrawn" complete="true" />
@@ -133,7 +133,7 @@
                     <group id="PTT">
                         <marker id="STOP" name="Hand withdrawn" complete="true" />
                     </group>
-                </events-makers>
+                </event-markers>
             </psychophysics-response-recording>
 
             <psychophysics-response-recording id="vasSignals" 
@@ -161,7 +161,7 @@
                 <procedure-events>
                     <instrument interface="ratio-scale" />
                 </procedure-events>
-                <events-makers>
+                <event-markers>
                     <group id="PDT">
                         <marker id="PDT" name="Pain Detected" next-group="PTT" />
                         <marker id="STOP" name="Hand withdrawn" complete="true" />
@@ -169,7 +169,7 @@
                     <group id="PTT">
                         <marker id="STOP" name="Hand withdrawn" complete="true" />
                     </group>
-                </events-makers>
+                </event-markers>
                 <signals sample="Walk.Sample()" min="0" max="10">
                     <signal id="CTRL" name="Control Signal" unit="cm" />
                 </signals>

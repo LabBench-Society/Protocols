@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
     <!-- This sodium channel excitability nociceptor testing (SCENT) protocol consists 
         of rectangular and ramp test pulses preceded by hyperpolarizing or depolarizing 
         pre-pulses. The pulse shapes are derived to isolate Sodium curents from Nav1.7, 
@@ -106,7 +105,7 @@
 
                     <responses response-collection="yes-no" />
 
-                    <triggers start-triggger="internal">
+                    <triggers start-trigger="internal">
                         <trigger duration="1">
                             <code output="stimulator-trigger-output" value="1"/>
                         </trigger>
@@ -141,7 +140,7 @@
 
                     <responses response-collection="yes-no" />
 
-                    <triggers start-triggger="internal">
+                    <triggers start-trigger="internal">
                         <trigger duration="1">
                             <code output="stimulator-trigger-output" value="1"/>
                         </trigger>
@@ -176,7 +175,7 @@
 
                     <responses response-collection="yes-no" />
 
-                    <triggers start-triggger="internal">
+                    <triggers start-trigger="internal">
                         <trigger duration="1">
                             <code output="stimulator-trigger-output" value="1"/>
                         </trigger>
@@ -211,7 +210,7 @@
 
                     <responses response-collection="yes-no" />
 
-                    <triggers start-triggger="internal">
+                    <triggers start-trigger="internal">
                         <trigger duration="1">
                             <code output="stimulator-trigger-output" value="1"/>
                         </trigger>
@@ -246,7 +245,7 @@
 
                     <responses response-collection="yes-no" />
 
-                    <triggers start-triggger="internal">
+                    <triggers start-trigger="internal">
                         <trigger duration="1">
                             <code output="stimulator-trigger-output" value="1"/>
                         </trigger>
@@ -281,7 +280,7 @@
 
                     <responses response-collection="yes-no" />
 
-                    <triggers start-triggger="internal">
+                    <triggers start-trigger="internal">
                         <trigger duration="1">
                             <code output="stimulator-trigger-output" value="1"/>
                         </trigger>
@@ -310,7 +309,7 @@
                         <channel id="C01" name="pulse 1" Imax="var: 'Scent.{e}Imax'.format(e = electrode)">
                             <up-down-method reversal-rule="Scent.ReversalRule"
                                             skip-rule="1"
-                                            start-intensity="0.1"
+                                            initial-intensity="0.1"
                                             step-size="Scent.StepSize"
                                             max-step-size-reduction="Scent.MaxStepSizeReduction"
                                             step-size-reduction="Scent.StepSizeReduction"
@@ -344,7 +343,7 @@
                     <stimulus-channel-template Imax="var: 'Scent.{e}Imax'.format(e = electrode)">
                         <up-down-method reversal-rule="Scent.ReversalRule"
                                         skip-rule="1"
-                                        start-intensity="var: '0.5 * {d}.C01'.format(d = dependency)"
+                                        initial-intensity="var: '0.5 * {d}.C01'.format(d = dependency)"
                                         step-size="Scent.StepSize"
                                         max-step-size-reduction="Scent.MaxStepSizeReduction"
                                         step-size-reduction="Scent.StepSizeReduction"

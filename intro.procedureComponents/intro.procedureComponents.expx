@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
     <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="SetupID">
@@ -151,7 +151,7 @@
 
                 <stimulation>
                     <stimulus>                        
-                        <sine Is="x" Ts="10" Frequency="500" Tdelay="0"/>
+                        <sine Is="x" Ts="10" frequency="500" Tdelay="0"/>
                     </stimulus>
                 </stimulation>
             </psychophysics-stimulus-presentation>
@@ -210,7 +210,7 @@
                 <stimulation>
                     <stimulus>  
                         <window window="bartlett" parameter="1">
-                            <sine Is="x" Ts="10" Frequency="500" />
+                            <sine Is="x" Ts="10" frequency="500" />
                         </window>                      
                     </stimulus>
                 </stimulation>
@@ -326,7 +326,7 @@
                 </triggers>
 
                 <stimulation>
-                    <scripts initialize="func: Script.Initialize(contect)"
+                    <scripts initialise="func: Script.Initialize(contect)"
                              stimulate="func: Script.Stimulate(context, x)">
                         <instrument interface="stimulator" />
                         <instrument interface="image-display" />

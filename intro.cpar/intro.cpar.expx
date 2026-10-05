@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
     <participant-validator regex="^S[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="CPARplus">
@@ -179,7 +179,7 @@
     <algometry-temporal-summation id="AP2TSum" 
       name="Temporal Summation (Stop on VAS 10) [Cuff 1]"
       experimental-setup-id="vas"
-      no-of-stimuli="10"
+      number-of-stimuli="10"
       pressure-static="0"
       pressure-stimulate="AP2SR02.PTT"
       primary-cuff="1"
@@ -227,7 +227,7 @@
     </algometry-arbitrary-temporal-summation>
 
     <algometry-temporal-summation id="AP2SpatialTSum" name="Spatial Temporal Summation (Stop on VAS 10) [Cuff 1 + 2]"
-      no-of-stimuli="10"
+      number-of-stimuli="10"
       pressure-static="0"
       pressure-stimulate="AP2SpatialSum.PTT"
       primary-cuff="1"
@@ -338,7 +338,7 @@
     </algometry-conditioned-pain-modulation>
 
     <algometry-temporal-summation id="AP3TSum" name="Temporal Summation (Stop on button) [Cuff 1]"
-      no-of-stimuli="10"
+      number-of-stimuli="10"
       pressure-static="0"
       pressure-stimulate="AP3SR02.PTT"
       primary-cuff="1"
@@ -382,7 +382,7 @@
     </algometry-arbitrary-temporal-summation>
 
     <algometry-temporal-summation id="AP3SpatialTSum" name="Spatial Temporal Summation (Stop on button) [Cuff 1 + 2]"
-      no-of-stimuli="10"
+      number-of-stimuli="10"
       pressure-static="0"
       pressure-stimulate="AP3SpatialSum.PTT"
       primary-cuff="1"

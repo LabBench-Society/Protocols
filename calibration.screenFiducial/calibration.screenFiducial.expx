@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-    <experimental-setup-variants>
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
+<experimental-setup-variants>
         <experimental-setup id="LabBench PAD (Fiducial: upper-right)">
             <devices>
                 <display id="display" normative-distance="40">
@@ -55,11 +55,11 @@
                 </properties>                
 
                 <content>
-                    <numeric id="VALUE"
+                    <numerical id="VALUE"
                         title="Screen size"
                         instruction="Please enter the diagonal length (in millimeters) of the screen">
                         <validation min="0" min-included="true" max="10000" max-included="true"/>
-                    </numeric>
+                    </numerical>
                 </content>            
             </questionnaire>
 
@@ -79,11 +79,11 @@
                 </properties>                
 
                 <content>
-                    <numeric id="VALUE"
+                    <numerical id="VALUE"
                         title="Screen position"
                         instruction="Please enter the distance in millimeters between the subject's eyes and the screen">
                         <validation min="0" min-included="true" max="10000" max-included="true"/>
-                    </numeric>
+                    </numerical>
                 </content>            
             </questionnaire>
 
@@ -103,16 +103,16 @@
                 </properties>                
 
                 <content>
-                    <numeric id="X"
+                    <numerical id="X"
                         title="Horizontal Position (X)"
                         instruction="Please enter the horizontal position in millimeters">
                         <validation min="0" min-included="true" max="1000" max-included="true"/>
-                    </numeric>
-                    <numeric id="Y"
+                    </numerical>
+                    <numerical id="Y"
                         title="Vertical Position (Y)"
                         instruction="Please enter the vertical position in millimeters">
                         <validation min="0" min-included="true" max="1000" max-included="true"/>
-                    </numeric>
+                    </numerical>
                 </content>            
             </questionnaire>
 
@@ -237,7 +237,7 @@
                 </properties>             
                 
                 <stimulation-scripts
-                    initialize="func: Script.Initialize(tc)"
+                    initialise="func: Script.Initialize(tc)"
                     stimulate="func: Script.Stimulate(tc,x)"
                     stimulus-description="Image"
                     stimulus-unit="lux">
@@ -251,7 +251,7 @@
                     </sequence>
                 </stimulation-pattern>
 
-                <stimuli order="block-random">
+                <stimuli order="block-randomised">
                     <stimulus name="S1" />
                     <stimulus name="S2" />
                     <stimulus name="S3" />

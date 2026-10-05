@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
     <participant-validator regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
                        advice="Please enter an ID in the form of SXXX, where X is a digit" />
     <experimental-setup-variants default="LIO">
@@ -54,7 +54,7 @@
                 <channels>
                     <channel id="CH01" name="Pulse 01">
                         <up-down-method 
-                            start-intensity="Stimulator.Max/100"                             
+                            initial-intensity="Stimulator.Max/100"                             
                             reversal-rule="1" 
                             skip-rule="1"
                             stop-rule="7"/>
@@ -83,7 +83,7 @@
                 <channels>
                     <channel id="CH01" name="Pulse 01">
                         <up-down-method 
-                            start-intensity="THR.CH01"                             
+                            initial-intensity="THR.CH01"                             
                             reversal-rule="1" 
                             skip-rule="1"
                             stop-rule="7"/>
@@ -112,7 +112,7 @@
                         minTperiod="2000" />
                 </stimulation-pattern>
 
-                <stimuli order="block-random">
+                <stimuli order="block-randomised">
                     <stimulus name="THR" count="2" 
                         intensity="0.5 * (PDT.CH01 - THR.CH01) + THR.CH01">
                         <triggers>

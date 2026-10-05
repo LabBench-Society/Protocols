@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
 <experimental-setup-variants default="CPARPlus">
     <experimental-setup name="LabBench CPAR+" id="CPARPlus">
         <devices>
@@ -92,7 +92,7 @@
             <algometry-temporal-summation id="TS"
                 name="Temporal Summation (Cuff 1)"
                 experimental-setup-id="vas"
-                no-of-stimuli="10"
+                number-of-stimuli="10"
                 pressure-static="5"
                 pressure-stimulate="1.0 * SR01.PTT"
                 primary-cuff="1"

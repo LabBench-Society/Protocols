@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-   <experimental-setup-variants default="JOYSTICK">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
+<experimental-setup-variants default="JOYSTICK">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
@@ -103,7 +103,7 @@
                             default="Assets.StopSignalImages.Instructions" />
                     </properties>
 
-                    <stimulation-scripts initialize="CognitiveTask.Initialize(100, 150)"
+                    <stimulation-scripts initialise="CognitiveTask.Initialize(100, 150)"
                                         stimulate="CognitiveTask.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
@@ -116,7 +116,7 @@
                         <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalTrainingStopSignals" />                        
                     </stimulation-pattern>
 
-                    <stimuli order="block-random">
+                    <stimuli order="block-randomised">
                         <stimulus name="GO" count="3" />
                         <stimulus name="STOP" count="1"/>
                     </stimuli>
@@ -138,7 +138,7 @@
                         <dependency id="StopSignalTaskTraining" />                        
                     </dependencies>
 
-                    <stimulation-scripts initialize="CognitiveTask.Initialize(50, StopSignalTaskTraining.Annotations.sstLastStopSignalDelay)"
+                    <stimulation-scripts initialise="CognitiveTask.Initialize(50, StopSignalTaskTraining.Annotations.sstLastStopSignalDelay)"
                                          stimulate="CognitiveTask.Stimulate()"
                                          stimulus-description="Image"
                                          stimulus-unit="N/A">
@@ -151,7 +151,7 @@
                         <sequence Tperiod="StopSignalPeriod" iterations="NumberOfStimuli * StopSignalNumberOfStopSignals" />
                     </stimulation-pattern>
 
-                    <stimuli order="block-random">
+                    <stimuli order="block-randomised">
                         <stimulus name="GO" count="3" />                        
                         <stimulus name="STOP" count="1"/>
                     </stimuli>

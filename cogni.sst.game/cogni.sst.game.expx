@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
-   <experimental-setup-variants default="JOYSTICK">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
+<experimental-setup-variants default="JOYSTICK">
     <experimental-setup name="Joystick" id="JOYSTICK">
         <devices>
             <joystick id="joystick">
@@ -108,7 +108,7 @@
                             completed="func: StopSignalGameScript.DisplayScore(tc)"/>
                     </properties>
 
-                    <stimulation-scripts initialize="StopSignal.Task.Initialize(100, 150)"
+                    <stimulation-scripts initialise="StopSignal.Task.Initialize(100, 150)"
                                         stimulate="StopSignal.Task.Stimulate()"
                                         stimulus-description="Image"
                                         stimulus-unit="N/A">
@@ -122,7 +122,7 @@
                             iterations="NumberOfStimuli * StopSignal.TrainingStopSignals" />                        
                     </stimulation-pattern>
 
-                    <stimuli order="block-random">
+                    <stimuli order="block-randomised">
                         <stimulus name="GO" count="3" />
                         <stimulus name="STOP" count="1"/>
                     </stimuli>
@@ -146,7 +146,7 @@
                     </properties>
 
                     <stimulation-scripts 
-                        initialize="var: f'StopSignal.Task.Initialize(50, {trainingProcedure}.Annotations.sstLastStopSignalDelay)'"
+                        initialise="var: f'StopSignal.Task.Initialize(50, {trainingProcedure}.Annotations.sstLastStopSignalDelay)'"
                         stimulate="StopSignal.Task.Stimulate()"
                         stimulus-description="Image"
                         stimulus-unit="N/A">
@@ -161,7 +161,7 @@
                             iterations="NumberOfStimuli * StopSignal.NumberOfStopSignals" />
                     </stimulation-pattern>
 
-                    <stimuli order="block-random">
+                    <stimuli order="block-randomised">
                         <stimulus name="GO" count="3" />                        
                         <stimulus name="STOP" count="1"/>
                     </stimuli>

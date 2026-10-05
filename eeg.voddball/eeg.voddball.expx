@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/6.0/experiment.xsd">
+            xsi:noNamespaceSchemaLocation="https://files.labbench.io/xsd/7.0/experiment.xsd">
     <participant-validator
         regex="^S[0-9]{3}$|^TEST[0-9]{3}$"
         advice="Please enter an ID in the form of SXXX or TESTXXX, where X is a digit" />
@@ -121,7 +121,7 @@
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
                 
-                <stimulation-scripts initialize="True"
+                <stimulation-scripts initialise="True"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
@@ -138,7 +138,7 @@
                     </sequence>                   
                 </stimulation-pattern>
 
-                <stimuli order="block-random">
+                <stimuli order="block-randomised">
                     <stimulus
                         name="oddball"
                         count="1">
@@ -181,7 +181,7 @@
                     <trigger-generation trigger-source="response-port01" />
                 </configuration>
 
-                <stimulation-scripts initialize="True"
+                <stimulation-scripts initialise="True"
                                      stimulate="func: Script.Stimulate(tc,x)"
                                      stimulus-description="Image"
                                      stimulus-unit="N/A">
@@ -198,7 +198,7 @@
                     </sequence>                   
                 </stimulation-pattern>
 
-                <stimuli order="block-random">
+                <stimuli order="block-randomised">
                     <stimulus
                         name="oddball"
                         count="1">
@@ -236,7 +236,7 @@
                 </properties>
 
                 <content>
-                    <numeric
+                    <numerical
                         id="COUNT"
                         title="Number of oddballs"
                         instruction="How many red cues did you count?">
@@ -245,7 +245,7 @@
                             max-included="true"
                             min="0"
                             min-included="true" />
-                    </numeric>
+                    </numerical>
                 </content>
             </questionnaire>
         </procedures>
